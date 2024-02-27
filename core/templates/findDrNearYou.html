@@ -1,0 +1,197 @@
+{% load static %}
+{% include "header.html" %}
+<style>
+    .hero-container {
+        position: static;
+    }
+
+    .search-result-div {
+        width: 100%;
+    }
+
+    .main-div {
+        background-color: #034154;
+        /* background-image: linear-gradient(rgb(97, 136, 251), rgb(199, 199, 248)); */
+        text-align: center;
+        border-radius: 10px;
+        padding:15px;
+        color: white;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        
+    }
+
+    .main-div h3 {}
+
+    .search-div {
+        max-width: 600px;
+        min-width: 100px;
+        margin: auto;
+        /* align-self: centers; */
+        position: relative;
+        bottom: -25px;
+
+    }
+
+    .search-div input {
+        background-color: #dcf3f7;
+        /* background-image: linear-gradient(rgb(167, 189, 253),rgb(255, 255, 255),rgb(175, 192, 244)); */
+        height: 50px;
+    }
+
+    .search_bar {
+        /* height: 100px; */
+    }
+
+    main {
+        padding-top: 12vh;
+    }
+
+    .card {
+        flex: 0 0 100%;
+        max-width: 25%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.256);
+        margin-right: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+        transition-duration: 0.3s;
+    }
+
+    .s-card {
+        background-color: rgb(169, 169, 169);
+        border-radius: 10px;
+    }
+    .doctor{
+        background-color: rgba(210, 210, 210, 0.783);
+        border-top: 1px solid black;
+    }
+    .infocard{
+        margin: 10px;
+        /* padding: 10px; */
+        border-radius: 12px;
+        width:calc(100% - 20px) ;
+        background-image: linear-gradient(to right,rgb(52, 52, 253),rgb(163, 163, 249));
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* flex-wrap: wrap; */
+        /* position: relative; */
+    }
+    .infocard div{
+        margin: 10px;
+    }
+    .infocard img{
+        width: 30%;
+        position: relative;
+        right: 20px;
+        transition-duration: 0.3s;
+        transform: scale(1.12);
+    }
+    .subdiv_img .card img{
+        width: 100%;
+    }
+    .infocard img:hover{
+        transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 750px) {
+        main {
+            padding-top: 23vh;
+        }
+        .infocard{
+            flex-wrap: wrap;
+           
+        }
+        .infocard img{
+            min-width: 350px;
+        }
+
+        .card {
+            max-width: 60%;
+        }
+
+        .search-result-div img {
+            max-width: 100px;
+        }
+    }
+</style>
+<main>
+    <div class="infocard">
+        <div class="text1">
+        <p class="card-text" >
+            <h3>Find Docter near you</h3>
+            
+            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
+
+        </p>
+        <button type="button m-3" class="btn btn-success">success</button>
+    </div>
+       <img src="{% static 'searchdr.png' %}" alt="">
+    </div>
+    <div class="hero-container">
+        <!-- <h1>Find Docter near you</h1> -->
+        <div class="main-div">
+            <h3 class="m-3">search for Docters near you</h3>
+            <div class="search-div">
+                <div class="search_bar">
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" placeholder="Location" aria-label="location" class="form-control"
+                                list="browsers" name="Flocation" required>
+                            <input type="text" placeholder="Category" aria-label="Category" class="form-control"
+                                name="Fcategory" required>
+                            <button type="submit" class="input-group-text"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="search-result-div">
+
+            {% if Fdata %}
+           
+                <div class="other-div" style="font-size: medium; color: black;">
+                    <h3>{{Fcount}} doctors available nearby {{Fad}}
+                    </h3>
+                    <!-- <button class="cut-button mr-0 ml-auto" onclick="cutSearchResults()" align="right"><i
+                            class="fa-solid fa-xmark" id="icon"></i></button> -->
+                </div>
+                <div class="smain_div" style="width: 100%; ">
+                    {% for i in Fdata %}
+                    <a href="/drProfile/{{i.user.id}}" class="doctor" >
+                        <img src="{{i.profile_picture.url}}" alt="Doctor 1" />
+                        <div class="doctor-info">
+                            <h2>Dr. {{i.user.first_name}} {{i.user.last_name}}</h2>
+                            <p>Specialty: {{i.specialization}}</p>
+                            <p>Location: {{i.address}}</p>
+                            <p>Contact: {{i.specialization}}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+           
+            {% endif %}
+
+            <!-- <div class="card-8 m-3 s-card p-3" >
+                <div class="row g-0">
+                    <div class="col-md-1  m-2">
+                        <img src="https://isobarscience.com/wp-content/uploads/2020/09/default-profile-picture1.jpg" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    {% include "cardslider.html" %}
+    {% include "footer.html" %}
+</main>

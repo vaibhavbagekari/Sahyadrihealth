@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+
+
+        /* index.css start */
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo_img {
+            width: 10%;
+            border-radius: 50%;
+        }
+
+        .titel {
+            text-transform: uppercase;
+            font-weight: bolder;
+            color: #13bf1b;
+            align-self: center;
+        }
+
+        header {
+            z-index: 1;
+            width: 100vw;
+            background-color: #446c9c;
+            color: white;
+            flex-wrap: wrap;
+            padding: 10px;
+            position: fixed;
+            display: grid;
+            /* gap: 10px; */
+            grid-template-rows: 8vh;
+            grid-template-columns: 0vw 31vw 45vw 21vw;
+            align-items: center;
+        }
+
+        .nav_bar {
+            display: flex;
+            background-color: rgb(45, 71, 104);
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 10.2vh;
+            width: 250px;
+            height: 99.8vh;
+            flex-direction: column;
+            transition-duration: 0.5s;
+            z-index: 0;
+        }
+
+        .nav_bar a {
+            text-decoration: none;
+            color: white;
+            padding: 8px;
+            margin: 2px;
+            text-align: center;
+            border-bottom: 1px solid #777;
+        }
+
+        main {
+            margin-left: 260px;
+            padding: 0px;
+
+            /* height: 75vh; */
+        }
+
+        .icon {
+            display: none;
+            align-self: flex-start;
+            float: left;
+            height: fit-content;
+        }
+
+        .search_bar {
+            align-self: center;
+
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero_text {
+            display: none;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50, -50);
+            z-index: 999;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            /* height: 85vh; */
+            margin: auto;
+            top: 10.2vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev-btn,
+        .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .active {
+            background: rgba(202, 202, 202, 0.437)
+        }
+
+        .highlight {
+            color: red;
+            text-align: center;
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            background-color: #77777779;
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+
+        .form-div2 form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-div2 label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-div2 input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-div2 input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-div2 input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-div {
+            z-index: 1000;
+            position: fixed;
+            width: 100vw;
+            top: 0px;
+            left: 0px;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff00;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            display: none;
+        }
+
+        .form-div2 {
+            z-index: 1000;
+            position: fixed;
+            width: 100vw;
+            top: 0px;
+            left: 0px;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff00;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            display: none;
+        }
+
+
+        .SignUp_form {
+            display: block;
+            background-color: #fff;
+            padding: 20px;
+            width: 50vw;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .from-div label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-div input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-div input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-div input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .cut {
+            transform: scale(2);
+            color: red;
+            position: relative;
+            left: 95%;
+            top: 0px;
+        }
+
+        .display_block {
+            display: flex;
+        }
+
+        .social_media_icon {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            top: 40%;
+            position: fixed;
+            gap: 2em;
+            right: 0px;
+            height: max-content;
+        }
+
+        .social_media_icon i {
+            transform: scale(2.5);
+            margin: 8px;
+        }
+
+        .sub_div {
+            /* height: 100px; */
+            width: 100%;
+            /* background-color: red; */
+            margin-top: 5vh;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-family: 'Exo', sans-serif;
+        }
+
+
+        .context {
+            width: 100%;
+            position: relative;
+        }
+
+        .context h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 50px;
+            /* margin: 2rem; */
+        }
+
+        .line {
+            height: 5px;
+            width: 200px;
+            background-color: rgb(0, 0, 0);
+            margin: auto;
+        }
+
+        .area {
+            background: #9ca1f7;
+            background: -webkit-linear-gradient(to left, #9b9feb, #777ce2);
+            width: 100%;
+            height: 50vh;
+            overflow-y: hidden;
+
+
+        }
+
+        .circles {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.303);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+
+        }
+
+        .circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+
+        .circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        .subdiv_img {
+            height: 300px;
+            width: 100%;
+            /* background-image: url("Doctor.jpg"); */
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* backdrop-filter: blur(10px); */
+
+        }
+
+        .sub_div_demo {
+            height: 300px;
+            width: 100%;
+        }
+
+
+        @keyframes animate {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+
+        }
+
+        @media screen and (max-width: 750px) {
+            .SignUp_form{
+                width: 80vw;
+            }
+            .area {
+                /* display: none; */
+            }
+
+            .sub_div {
+                margin-top: 22vh;
+            }
+
+            .nav_bar {
+                left: -100%;
+                position: fixed;
+                top: 22.6vh;
+                height: 80vh;
+            }
+
+            .slider-container {
+                top: 22vh;
+                height: unset;
+            }
+
+            .highlight {
+                grid-column: 1/4;
+            }
+
+            header {
+                grid-template-rows: 8vh 6vh 8vh;
+                grid-template-columns: 8vw 40vw 50vw;
+            }
+
+            .titel {
+                grid-row: 1/2;
+                grid-column: 2/4;
+            }
+
+            .icon {
+                display: block;
+                padding: 7px;
+                margin: 5px;
+                transform: scale(1.9);
+            }
+
+            .search_bar {
+                padding-right: 30px;
+                grid-row: 2/3;
+                grid-column: 2/4;
+            }
+
+            .nav_bar_mob {
+                left: 0%;
+            }
+
+            .nav_bar a {
+                /* flex: 1; */
+                text-align: center;
+                /* border-bottom: none; */
+            }
+
+            main {
+                margin-left: 0;
+            }
+        }
+
+        .hero-container {
+            position: relative;
+            top: 10.2vh;
+            z-index: -1;
+        }
+
+        @media screen and (max-width: 750px) {
+            .hero-container {
+                top: 22vh;
+            }
+        }
+
+        /* index.css end */
+        .highlight {
+            animation-name: blinking;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+        .highlight {
+            text-align: center;
+            padding: 5px;
+            font-size: larger;
+        }
+
+        main {
+            /* padding-top: 12vh; */
+            /* background-color:#b7d7fff2 ; */
+        }
+
+        @keyframes blinking {
+            0% {
+                color: azure;
+            }
+
+            40% {
+                color: brown;
+            }
+
+            90% {
+                color: chartreuse;
+            }
+
+        }
+
+        #loader_overlay {
+            display: block;
+        }
+    </style>
+    <style type="text/css">
+        .contener_general {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 1000;
+            visibility: visible;
+            -webkit-animation: animball_two 1s infinite;
+            -moz-animation: animball_two 1s infinite;
+            -ms-animation: animball_two 1s infinite;
+            animation: animball_two 1s infinite;
+            width: 44px;
+            height: 44px
+        }
+
+        .contener_mixte {
+            width: 44px;
+            height: 44px;
+            position: fixed
+        }
+
+        .ballcolor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%
+        }
+
+        .ball_1,
+        .ball_2,
+        .ball_3,
+        .ball_4 {
+            position: absolute;
+            -webkit-animation: animball_one 1s infinite ease;
+            -moz-animation: animball_one 1s infinite ease;
+            -ms-animation: animball_one 1s infinite ease;
+            animation: animball_one 1s infinite ease
+        }
+
+        .ball_1 {
+            background-color: #CB2025;
+            top: 0;
+            left: 0
+        }
+
+        .ball_2 {
+            background-color: #F8B334;
+            top: 0;
+            left: 24px
+        }
+
+        .ball_3 {
+            background-color: #00A096;
+            top: 24px;
+            left: 0
+        }
+
+        .ball_4 {
+            background-color: #9FC725;
+            top: 24px;
+            left: 24px
+        }
+
+        @-webkit-keyframes animball_one {
+            0% {
+                position: absolute
+            }
+
+            50% {
+                top: 12px;
+                left: 12px;
+                position: absolute;
+                opacity: 0.5
+            }
+
+            100% {
+                position: absolute
+            }
+        }
+
+        @-moz-keyframes animball_one {
+            0% {
+                position: absolute
+            }
+
+            50% {
+                top: 12px;
+                left: 12px;
+                position: absolute;
+                opacity: 0.5
+            }
+
+            100% {
+                position: absolute
+            }
+        }
+
+        @-ms-keyframes animball_one {
+            0% {
+                position: absolute
+            }
+
+            50% {
+                top: 12px;
+                left: 12px;
+                position: absolute;
+                opacity: 0.5
+            }
+
+            100% {
+                position: absolute
+            }
+        }
+
+        @keyframes animball_one {
+            0% {
+                position: absolute
+            }
+
+            50% {
+                top: 12px;
+                left: 12px;
+                position: absolute;
+                opacity: 0.5
+            }
+
+            100% {
+                position: absolute
+            }
+        }
+
+        @-webkit-keyframes animball_two {
+            0% {
+                -webkit-transform: rotate(0deg) scale(1)
+            }
+
+            50% {
+                -webkit-transform: rotate(360deg) scale(1.2)
+            }
+
+            100% {
+                -webkit-transform: rotate(720deg) scale(1)
+            }
+        }
+
+        @-moz-keyframes animball_two {
+            0% {
+                -moz-transform: rotate(0deg) scale(1)
+            }
+
+            50% {
+                -moz-transform: rotate(360deg) scale(1.3)
+            }
+
+            100% {
+                -moz-transform: rotate(720deg) scale(1)
+            }
+        }
+
+        @-ms-keyframes animball_two {
+            0% {
+                -ms-transform: rotate(0deg) scale(1)
+            }
+
+            50% {
+                -ms-transform: rotate(360deg) scale(1.3)
+            }
+
+            100% {
+                -ms-transform: rotate(720deg) scale(1)
+            }
+        }
+
+        main {
+            padding-top: 1vh;
+            margin-left: 250px;
+        }
+
+        .nav_bar {
+            top: 11vh;
+
+        }
+
+        @media screen and (max-height: 650px) {
+            .nav_bar {
+                overflow-y: scroll;
+            }
+        }
+
+
+        @media screen and (max-width: 750px) {
+            main {
+                padding-top: 10vh;
+                margin-left: 0vw;
+            }
+
+            .nav_bar {
+                top: 25vh;
+                z-index: 1;
+            }
+        }
+    </style>
+    <script>
+        function downLoad() {
+            if (document.all) {
+                document.all["layer1"].style.visibility = "hidden";
+                document.all["loader_overlay"].style.display = "none";
+                document.all["layer2"].style.visibility = "visible";
+            } else if (document.getElementById) {
+                node = document.getElementById("layer1").style.visibility = 'hidden';
+                node = document.getElementById("loader_overlay").style.display = 'none';
+                node = document.getElementById("layer2").style.visibility = 'visible';
+            }
+        }
+    </script>
+
+    <style>
+        .icon {
+            margin: 2px;
+            padding: 4px;
+        }
+    </style>
+</head>
+
+<body onload="downLoad()">
+    <div class="contener_general" id="layer1">
+        <div class="contener_mixte">
+            <div class="ballcolor ball_1">&nbsp;</div>
+        </div>
+        <div class="contener_mixte">
+            <div class="ballcolor ball_2">&nbsp;</div>
+        </div>
+        <div class="contener_mixte">
+            <div class="ballcolor ball_3">&nbsp;</div>
+        </div>
+        <div class="contener_mixte">
+            <div class="ballcolor ball_4">&nbsp;</div>
+        </div>
+    </div>
+    <div class="overlay" id="loader_overlay"></div>
+    <div class="overlay" id="overlay"></div>
+    <header>
+        {% if messages %}
+        {% for message in messages %}
+        <script>
+            alert("{{message}}")
+        </script>
+        {% endfor %}
+        {% endif %}
+        <div></div>
+        <h2 class="titel"><img src="{% static 'logo.png' %}" alt="" class="logo_img"> Sahyadri Health</h2>
+        <i class="fa-solid fa-xmark icon" id="icon" onclick="toggle_layout()"></i>
+        <div class="search_bar">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" placeholder="Location" aria-label="location" class="form-control" list="browsers"
+                        name="location" required>
+                    <input type="text" placeholder="Category" aria-label="Category" class="form-control" name="category"
+                        required>
+                    <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+            </form>
+        </div>
+        <div class="highlight"><span>Help Line Number</span>
+            <br>
+            <span>+91 9999999999</span>
+        </div>
+        <datalist id="browsers" class="popUp">
+            {% for i in locations %}
+            <option value="{{i}}">
+                {% endfor %}
+        </datalist>
+    </header>
+    {% include "search_result.html" %}
+    <nav class="nav_bar" id="nav_bar">
+        {% if not request.user.is_authenticated %}
+
+        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            signIn/signUp
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a type="button" onclick="form_state2()" class="dropdown-item">Patient SignIn</a></li>
+            <li><a type="button" onclick="form_state()" class="dropdown-item">Patient SignUp</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a href="/drSigUp/" class="dropdown-item">Doctor SingUp</a></li>
+            <li><a href="/drsignin/" class="dropdown-item">Doctor SingIn</a></li>
+        </ul>
+        </div>
+        <!-- <button type="button" class="main_btn">
+                signIn/signUp
+                <div class="toggle_display">
+                    <button type="button" onclick="form_state2()">SignIn</button>
+                    <button type="button" onclick="form_state()">SignUp</button>
+                </div>
+            </button> -->
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <h5> {{request.user}}</h5>
+        {% if request.user.patients.get.user %}
+        <a href="{% url 'patient_dashbord' %}"
+            class="{% if request.path == '/patient_dashbord/' %} active {% endif %}">Dashboard</a>
+        {% endif %}
+        {% if request.user.doctors.get.user %}
+        <a href="{% url 'drDashbord' %}"
+            class="{% if request.path == '/drDashbord/' %} active {% endif %}">Dashboard</a>
+        {% endif %}
+
+        {% endif %}
+        <a href="{% url 'home' %}"
+            class="{% if request.path == '/home/' or request.path == '/' %} active {% endif %}">Home</a>
+        <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}">About</a>
+        <a href="{% url 'services' %}" class="{% if request.path == '/services/' %} active {% endif %}">Services</a>
+        <a href="{% url 'findDr' %}" class="{% if request.path == '/findDr/' %} active {% endif %}">Find doctor near
+            you</a>
+        <a href="{% url 'goverment_scheme' %}" class="{% if request.path == '/goverment_scheme/' %} active {% endif %}">Goverment scheme</a>
+        <a href="{% url 'search_ambulance' %}" class="{% if request.path == '/search_ambulance/' %} active {% endif %}">Search Ambulance </a>
+        <!-- <a href="#">Insurence Services</a> -->
+        <a href="{% url 'blood_storage' %}" class="{% if request.path == '/blood_storage/' %} active {% endif %}">Blood Storage Centre</a>
+        <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}">Contact</a>
+        {% if request.user.is_authenticated %}
+        <a href="/logout/" class="btn btn-danger">log Out</a>
+        {% endif %}
+    </nav>
+    <div class="form-div" id="form-div">
+        <form method="post" class="SignUp_form">
+            {% csrf_token %}
+            <i class="fa-solid fa-xmark cut" onclick="form_state()"></i>
+            <h2>User Information</h2>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+            <label for="fullName">Full Name: </label>
+            <input placeholder="enter full name" type="text" id="fullName" name="fullName" required>
+            <input type="hidden" id="check" name="check" value="SignUp">
+
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            <label for="Password">Password</label>
+            <input type="Password" id="password" name="password" required>
+
+            <button type="submit" class="btn btn-success">Sign Up</button>
+        </form>
+
+    </div>
+    <div class="form-div2" id="form2">
+
+        <form method="post" class="SignIn_form ">
+            {% csrf_token %}
+            <i class="fa-solid fa-xmark cut" onclick="form_state2()"></i>
+            <h2>Petiant Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <input type="hidden" id="check" name="check" value="SignIn">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <script>
+        function toggle_layout() {
+            var obj1 = document.getElementById("nav_bar");
+            obj1.classList.toggle('nav_bar_mob');
+            var obj2 = document.getElementById('icon');
+            obj2.classList.toggle('fa-xmark');
+            obj2.classList.toggle('fa-bars');
+        }
+        var b = document.getElementById('overlay');
+        var a = document.getElementById('form-div');
+        var c = document.getElementById('form2');
+
+        function form_state() {
+            a.classList.toggle('display_block');
+            b.classList.toggle('display_block');
+
+        }
+        function form_state2() {
+            c.classList.toggle('display_block')
+            b.classList.toggle('display_block');
+        }
+
+
+    </script>

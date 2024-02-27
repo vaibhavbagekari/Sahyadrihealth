@@ -1,0 +1,163 @@
+{% load static %}
+<style>
+    .card-slider3 {
+        overflow: hidden;
+        min-width:100%;
+        position: relative;
+    }
+    .scontainer{
+        margin: 30px auto 30px auto;
+    }
+    .scontainer h3{
+        padding: 10px;
+    }
+
+    .card-slider3 .card-container3 {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .cardm {
+        width: 250px;
+        margin: 0 10px;
+    }
+
+    /* Optional: Adjust styles for smaller screens */
+    @media (max-width: 768px) {
+        .cardm {
+            width: 100%;
+        }
+    }
+    .btn_div{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        
+        /* z-index: 2; */
+    }
+</style>
+</head>
+<body>
+
+<div class="scontainer">
+    <br>
+    <h3 style="margin: auto; text-align: center;"><img src="
+        {% static "icons8-activity.gif" %}" alt="" style="width: 45px;">Find experienced doctors across all specialties<img src="
+        {% static "icons8-activity.gif" %}" alt="" style="width: 45px;"></h3>
+        <br>
+<div id="manualSlider" class="card-slider3">
+    <div class="card-container3">
+        <div class="card cardm">
+            <img src="{% static "dentist.jpg" %}" class="card-img-top" alt="Card Image 1">
+            <div class="card-body">
+                <h5 class="card-title">Dentist</h5>
+                <p class="card-text">Teething troubles? Schedule a dental checkup</p>
+            </div>
+        </div>
+        <!-- Add more cards as needed -->
+        <div class="card cardm">
+            <img src="{% static "gynecologist.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">Gynecologist/Obstetrician</h5>
+                <p class="card-text">Explore for women’s health, pregnancy and infertility treatments</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "drimgc.png" %}" class="card-img-top" alt="Card Image 3">
+            <div class="card-body">
+                <h5 class="card-title">Dietitian/Nutrition</h5>
+                <p class="card-text">Get guidance on eating right, weight management and sports nutrition</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "physiotherapist.jpg" %}" class="card-img-top" alt="Card Image 1">
+            <div class="card-body">
+                <h5 class="card-title">Physiotherapist</h5>
+                <p class="card-text">Pulled a muscle? Get it treated by a trained physiotherapist</p>
+            </div>
+        </div>
+        <!-- Add more cards as needed -->
+        <div class="card cardm">
+            <img src="{% static "generalsurgeon.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">General surgeon</h5>
+                <p class="card-text">Need to get operated? Find the right surgeon</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "orthopedist.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">Orthopedist</h5>
+                <p class="card-text">For Bone and Joints issues, spinal injuries and more</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "general-doctor.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">General physician</h5>
+                <p class="card-text">Find the right family doctor in your neighborhood</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "pediatrician.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">Pediatrician</h5>
+                <p class="card-text">Child Specialists and Doctors for Infant</p>
+            </div>
+        </div>
+        <div class="card cardm">
+            <img src="{% static "gastroenterologist.jpg" %}" class="card-img-top" alt="Card Image 2">
+            <div class="card-body">
+                <h5 class="card-title">Gastroenterologist</h5>
+                <p class="card-text">Explore for issues related to digestive system, liver and pancreas</p>
+            </div>
+        </div>
+        
+        <!-- Add more cards as needed -->
+    </div>
+    <div class="btn_div">
+
+        <button class="btn " onclick="showPrevCard2()"><img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px; 
+                                                                                                                transform: rotate(180deg);">Previous</button>
+        <button class="btn" onclick="showNextCard2()">Next <img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px;"></button>
+    </div>
+    </div>
+</div>
+<script>
+// Manual card slider using Bootstrap
+const slider3 = document.getElementById('manualSlider');
+let cardContainer = slider3.querySelector('.card-container3');
+let cards = slider3.querySelectorAll('.card');
+
+let currentIndex = 0;
+
+function updateSlider2() {
+    cardContainer.style.transform = `translateX(${-currentIndex * (cards[0].offsetWidth + 20)}px)`;
+}
+
+function showNextCard2() {
+    if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        updateSlider2();
+    }
+}
+
+function showPrevCard2() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider2();
+    }
+}
+
+// Optional: Add event listeners for arrow keys or custom buttons
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+        showNextCard2();
+    } else if (event.key === 'ArrowLeft') {
+        showPrevCard2();
+    }
+});
+</script>
+</body>
+</html>

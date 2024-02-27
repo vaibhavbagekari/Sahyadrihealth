@@ -1,0 +1,181 @@
+{% load static %}
+{% include "header.html" %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .Snav{
+    padding-top: 12vh;
+  }
+
+
+  .Snav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #343a40;
+    overflow: hidden;
+  }
+
+  .Snav li {
+    float: left;
+    margin: 0;
+  }
+
+  .Snav a {
+    display: block;
+    padding: 14px 16px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .Snav a:hover {
+    background-color: #555;
+  }
+
+  section {
+    margin: 20px;
+  }
+
+  body {
+    font-family: Arial;
+  }
+
+  /* Style the tab */
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+   
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: #ffffff;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+    color: black;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  /* Style the close button */
+  .topright {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+  }
+
+  .topright:hover {
+    color: red;
+  }
+  .main_img{
+    width: 100%;
+    height: max-content;
+  }
+  @media screen and (max-width: 750px){
+    .Snav{
+    padding-top: 22vh;
+  }
+  }
+</style>
+<main>
+<nav class="Snav">
+  <ul class="tab">
+    <li><button class="tablinks" onclick="openCity(event, 'Health_Information')" id="defaultOpen">Health Information</button></li>
+    <li><button class="tablinks" onclick="openCity(event, 'Blood_Storage')">Blood Storage </button></li>
+    <li><button class="tablinks" onclick="openCity(event, 'Ambulance_Service')">Ambulance Service</button></li>
+    <li><button class="tablinks" onclick="openCity(event, 'Government_Services')">Government Services</button></li>
+    <li><button class="tablinks" onclick="openCity(event, 'Online_Appointment_Booking')">Online Appointment
+        Booking</button></li>
+
+  </ul>
+</nav>
+
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Your custom JavaScript code -->
+
+<div id="Health_Information" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Health Information</h3>
+  <p>Health Information</p>
+  <div class="main_img">
+    <img src="{% static 'healthInfo.jpeg' %}" alt="" srcset="">
+  </div>
+</div>
+
+<div id="Blood_Storage" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Blood Storage</h3>
+  <p>Blood Storage</p>
+</div>
+
+<div id="Ambulance_Service" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Ambulance Service</h3>
+  <p>Ambulance Service</p>
+</div>
+
+<div id="Government_Services" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Government_Services</h3>
+  <p>Government_Services</p>
+</div>
+<div id="Online_Appointment_Booking" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Online_Appointment_Booking</h3>
+  <p>Online_Appointment_Booking</p>
+</div>
+{% include "footer.html" %}
+</main>
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+
+</html>

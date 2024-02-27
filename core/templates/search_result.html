@@ -1,0 +1,128 @@
+<style>
+    .search-results {
+        width: 100vw;
+        height: 100vh;
+        background-color: #4c4c4ca3;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        z-index: 1000;
+        padding-top: 10vh;
+        backdrop-filter: bler(4px);
+    }
+
+    .smain_div {
+        padding: 10px;
+        width: 80%;
+        margin: auto;
+        height: 70vh;
+        overflow-y: scroll;
+    }
+
+    .cut-button {
+        background-color: #e74c3c;
+        color: #fff;
+        /* float: right; */
+        /* float: right; */
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .cut-button:hover {
+        background-color: #c0392b;
+    }
+
+    .doctor {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        width: 100%;
+        color: #333;
+    }
+
+    .doctor:hover {
+        background-color: #bcbcbc;
+    }
+
+    .doctor img {
+        max-width: 100px;
+        height: auto;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .doctor-info {
+        flex-grow: 1;
+    }
+
+    .doctor-info h2 {
+        margin-top: 0;
+    }
+
+    .doctor-info p {
+        margin: 5px 0;
+    }
+
+    .notification {
+        position: fixed;
+        z-index: 0;
+    }
+
+    .other-div {
+        color: #ffffff;
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px;
+        /* background-color: #ffffff; */
+
+
+    }
+</style>
+{% if m %}
+<script>
+    alert("{{m}}")
+</script>
+{% endif %}
+
+{% if data %}
+<div class="search-results">
+    <div class="other-div">
+        <h3>{{count}} doctors available nearby {{ad}}
+        </h3>
+        <button class="cut-button mr-0 ml-auto" onclick="cutSearchResults()" align="right"><i class="fa-solid fa-xmark"
+                id="icon"></i></button>
+    </div>
+    <div class="smain_div">
+        {% for i in data %}
+        <a href="/drProfile/{{i.user.id}}" class="doctor">
+            <img src="{{i.profile_picture.url}}" alt="Doctor 1" />
+            <div class="doctor-info">
+                <h2>Dr. {{i.user.first_name}} {{i.user.last_name}}</h2>
+                <p>Specialty: {{i.specialization}}</p>
+                <p>Location: {{i.address}}</p>
+                <p>Contact: {{i.specialization}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endif %}
+<script>
+    function cutSearchResults() {
+        document.querySelector(".search-results").style.display = "none";
+    }
+</script>

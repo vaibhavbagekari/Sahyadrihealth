@@ -1,0 +1,31 @@
+{% include "header.html" %}
+<style>
+    .Udiv{
+        magin-top:18uh;
+    }
+</style>
+<main>
+   
+            <form action='/update-patient/{{Patient.id}}/' method="post" class="SignUp_form">
+                {% csrf_token %}
+                <i class="fa-solid fa-xmark cut" onclick="form_state()"></i>
+                <h2>User Information</h2>
+
+                <label for="fullName" >Full Name: </label>
+                <input placeholder="enter full name" type="text" value="{{Patient.name}}" id="fullName" name="fullName" required>
+
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" id="contactNumber" value="{{Patient.contact_no}}" name="contactNumber" pattern="[0-9]{10}" required>
+
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" value="{{Patient.email}}" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value="{{Patient.age}}" required>
+               
+
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+
+    
+</main>

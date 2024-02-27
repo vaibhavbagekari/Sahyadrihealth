@@ -1,0 +1,170 @@
+{% load static %}
+{% include "header.html" %}
+<style>
+    .infocard {
+        margin: 10px;
+        margin-top: 100px;
+        border-radius: 12px;
+        width: calc(100% - 20px);
+        background-image: linear-gradient(to right, rgb(245, 102, 102), rgb(248, 223, 223));
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* flex-wrap: wrap; */
+        /* position: relative; */
+    }
+
+    .infocard div {
+        margin: 10px;
+    }
+
+    .infocard img {
+        width: 40%;
+        position: relative;
+        right: 20px;
+        transition-duration: 0.3s;
+    }
+
+    .subdiv_img .card img {
+        width: 100%;
+    }
+
+    .infocard img:hover {
+        transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 750px) {
+        .infocard {
+            flex-wrap: wrap;
+        }
+
+        .infocard img {
+            min-width: 350px;
+        }
+    }
+</style>
+<main>
+    <div class="infocard">
+        <div class="text1">
+            <p class="card-text">
+            <h3>Ambulance Services</h3>
+            Our ambulance services are available 24/7 to provide immediate medical assistance. 
+            Our fleet of well-equipped ambulances is staffed with trained medical professionals 
+            to ensure the safety and well-being of patients during transport.
+            </p>
+            <button type="button m-3" class="btn btn-success">success</button>
+        </div>
+        <img src="{% static 'ambulance2.jpg' %}" alt="">
+    </div>
+    
+  <title>Ambulance Search</title>
+  <style>
+    .main_sdiv {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: max-content;
+      background-color: #f2f2f2;
+    }
+
+    .search-container {
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #suggestions {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .suggestion-item {
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .suggestion-item:hover {
+      background-color: #ddd;
+    }
+  </style>
+<div class="main_sdiv">
+  <div class="search-container">
+    <h1>Ambulance Search</h1>
+    <input type="text" id="locationInput" placeholder="Enter location">
+    <button onclick="searchAmbulance()">Search</button>
+    <ul id="suggestions"></ul>
+  </div>
+</div>
+  <script>
+    const locationInput = document.getElementById('locationInput');
+    const suggestionsList = document.getElementById('suggestions');
+
+    locationInput.addEventListener('input', function () {
+      // TODO: Fetch location suggestions based on user input from the backend
+      const inputValue = locationInput.value.trim();
+      if (inputValue.length > 0) {
+        // Mock suggestions for demonstration purposes
+        const mockSuggestions = ['Division A', 'Division B', 'Division C'];
+        displaySuggestions(mockSuggestions);
+      } else {
+        clearSuggestions();
+      }
+    });
+
+    function displaySuggestions(suggestions) {
+      clearSuggestions();
+      suggestions.forEach((suggestion) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'suggestion-item';
+        listItem.textContent = suggestion;
+        listItem.addEventListener('click', function () {
+          locationInput.value = suggestion;
+          clearSuggestions();
+        });
+        suggestionsList.appendChild(listItem);
+      });
+    }
+
+    function clearSuggestions() {
+      suggestionsList.innerHTML = '';
+    }
+
+    // function searchAmbulance() {
+    //   const location = locationInput.value.trim();
+    //   // TODO: Send the location to the backend for ambulance search
+    //   if (location.length > 0) {
+    //     // Simulate backend response
+    //     alert(`Searching for ambulances in ${location}`);
+    //   } else {
+    //     alert('Please enter a valid location');
+    //   }
+    // }
+  </script>
+</body>
+</html>
+
+    {% include "footer.html" %}
+</main>

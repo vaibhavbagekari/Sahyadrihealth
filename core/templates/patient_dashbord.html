@@ -1,0 +1,204 @@
+{% include "header.html" %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+
+  .header {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+  }
+
+  #dashboard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2em;
+  }
+
+  .card {
+    margin: 1em;
+    width: 18rem;
+  }
+
+  .details {
+    display: none;
+  }
+ 
+  .container1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #88cbf898;
+    box-shadow: 2px 2px 4px rgb(66, 66, 66);
+    padding: 10px;
+  }
+  .pd_dic1{
+    width: 150px;
+  }
+  .pd_dic2{
+    width: 70%;
+  }
+  .container2{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .card-div{
+    width: 30%;
+    background-color: rgba(221, 208, 245, 0.896);
+  }
+  .profile-picture{
+    transition-duration: 0.5s;
+  }
+  .profile-picture:hover{
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 750px) {
+    .card-div{
+      width: 90%;
+    }
+  }
+</style>
+<main>
+  <div class="header">
+    <h1>Patient Dashboard</h1>
+  </div>
+  {% if request.user.is_authenticated %}
+  <div class="container1">
+      <div class="pd_dic1">
+        <!-- Left side: Profile Picture -->
+        <img
+        
+          src="{{request.user.patients.get.profile_picture.url}}"
+          alt="Profile Picture"
+          class="profile-picture"
+          width="50"
+        />
+      </div>
+      <div class="pd_dic2">
+        <!-- Right side: Patient Information -->
+        <div class="patient-info-container">
+          <h4>Patient Information</h4>
+          <h3><strong>{{request.user.patients.get.name }}</strong></h3>
+          <p><strong>User Name:</strong> {{request.user}}</p>
+        </div>
+      </div>
+  </div>
+
+  <div id="dashboard" class="container2">
+    <div class="card card-div">
+      <div class="card-body">
+        <h2 class="card-title">Patient Information</h2>
+        <p class="card-text">Name:{{request.user.patients.get.name}}</p>
+        <p class="card-text">Age: {{request.user.patients.get.contact_no}}</p>
+        <p class="card-text">
+          Gender: {{request.user.patients.geti.contact_no}}
+        </p>
+        <p class="card-text">
+          Address: {{request.user.patients.get.contact_no}}
+        </p>
+        <p class="card-text">Email: {{request.user.email}}</p>
+        <p class="card-text">Username : {{request.user.username}}</p>
+        <p class="card-text">
+          Contact: {{request.user.patients.get.contact_no}}
+        </p>
+      </div>
+    </div>
+    <div class="card card-div">
+      <div class="card-body">
+        <h2 class="card-title">Medical History</h2>
+        <p class="card-text">Diagnosis: Hypertension</p>
+        <p class="card-text">Medications: Lisinopril</p>
+        <p class="card-text">Last Visit: 2024-01-01</p>
+        <button class="btn btn-primary" onclick="toggleDetails()">
+          Show Details
+        </button>
+        <div class="details">
+          <p>Additional details about medical history go here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-div">
+      <div class="card-body">
+        <h2 class="card-title">Appointments</h2>
+        <p class="card-text">Next Appointment: 2024-02-01</p>
+        <p class="card-text">Doctor: Dr. Smith</p>
+        <button
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#appointmentModal"
+        >
+          Schedule Appointment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment Modal -->
+  <div
+    class="modal fade"
+    id="appointmentModal"
+    tabindex="-1"
+    aria-labelledby="appointmentModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="appointmentModalLabel">
+            Schedule Appointment
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="appointmentDate" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="appointmentDate"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="doctorName" class="form-label">Doctor Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="doctorName"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Schedule</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% include "footer.html" %}
+</main>
+<!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function toggleDetails() {
+    const details = document.querySelector(".details");
+    details.style.display =
+      details.style.display === "none" || details.style.display === ""
+        ? "block"
+        : "none";
+  }
+</script>

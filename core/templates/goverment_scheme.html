@@ -1,0 +1,99 @@
+{% load static %}
+{% include "header.html" %}
+<style>
+    .infocard {
+        margin: 10px;
+        margin-top: 100px;
+        border-radius: 12px;
+        width: calc(100% - 20px);
+        background-image: linear-gradient(to right, rgb(116, 56, 245), rgb(221, 195, 248));
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* flex-wrap: wrap; */
+        /* position: relative; */
+    }
+
+    .infocard div {
+        margin: 10px;
+    }
+
+    .infocard img {
+        width: 40%;
+        position: relative;
+        right: 20px;
+        transition-duration: 0.3s;
+    }
+
+    .subdiv_img .card img {
+        width: 100%;
+    }
+
+    .infocard img:hover {
+        transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 750px) {
+        .infocard {
+            flex-wrap: wrap;
+        }
+
+        .infocard img {
+            min-width: 350px;
+        }
+    }
+</style>
+<main>
+    <div class="infocard">
+        <div class="text1">
+            <p class="card-text">
+            <h3>Ambulance Services</h3>
+            Our ambulance services are available 24/7 to provide immediate medical assistance. 
+            Our fleet of well-equipped ambulances is staffed with trained medical professionals 
+            to ensure the safety and well-being of patients during transport.
+            </p>
+            <button type="button m-3" class="btn btn-success">success</button>
+        </div>
+        <img src="{% static 'central_government_scheme.png' %}" alt="">
+    </div>
+    <style>
+      
+    
+        section {
+          margin: 20px;
+        }
+    
+        .card {
+          margin-bottom: 20px;
+        }
+    
+    
+      </style>
+    
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <img src="{% static 'Central-Government-Health-Scheme-CGHS.jpg' %}" class="card-img-top" alt="Scheme 1">
+                <div class="card-body">
+                  <h5 class="card-title">Scheme Title 1</h5>
+                  <p class="card-text">Description of the government health scheme. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <img src="{% static "Government-Schemes.jpg" %}" class="card-img-top" alt="Scheme 2">
+                <div class="card-body">
+                  <h5 class="card-title">Scheme Title 2</h5>
+                  <p class="card-text">Description of the government health scheme. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Add more cards as needed -->
+          </div>
+        </div>
+      </section>
+    {% include "footer.html" %}
+</main>

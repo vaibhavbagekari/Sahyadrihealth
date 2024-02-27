@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{% static 'patient_signup.jpg' %}");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+           
+        }
+
+        .signup-container {
+            /* background-color: #fff; */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            background-color: rgba(89, 89, 89, 0.185);
+            backdrop-filter: blur(10px);
+            /* text-align: center; */
+        }
+
+        .signup-container h2 {
+            color: #3ee632;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        {% if messages %}
+        {% for message in messages %}
+        <script>
+            alert("{{message}}")
+        </script>
+        {% endfor %}
+        {% endif %}
+        <h2>Patient Sign Up</h2>
+        <form id="signupForm" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="fullName">Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+                <div class="error-message" id="nameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="number" id="contactNumber" name="contactNumber" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="validateForm()">Sign Up</button>
+            </div>
+            <div style="color: #fff;">
+                Do you have an account? <a href="{% url 'patient_signin' %}">Sign in</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Reset error messages
+            document.getElementById('nameError').innerHTML = '';
+            document.getElementById('emailError').innerHTML = '';
+            document.getElementById('passwordError').innerHTML = '';
+            document.getElementById('confirmPasswordError').innerHTML = '';
+
+            // Validation rules (you can customize these as needed)
+            if (name.trim() === '') {
+                document.getElementById('nameError').innerHTML = 'Name is required';
+                return;
+            }
+
+            if (email.trim() === '') {
+                document.getElementById('emailError').innerHTML = 'Email is required';
+                return;
+            }
+
+            // Basic email format validation
+            var emailRegex = /^\S+@\S+\.\S+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerHTML = 'Invalid email format';
+                return;
+            }
+
+            if (password.trim() === '') {
+                document.getElementById('passwordError').innerHTML = 'Password is required';
+                return;
+            }
+
+            if (confirmPassword.trim() === '') {
+                document.getElementById('confirmPasswordError').innerHTML = 'Confirm Password is required';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').innerHTML = 'Passwords do not match';
+                return;
+            }
+
+            // If all validations pass, you can submit the form or perform additional actions
+            // For now, we'll just alert a success message
+           
+
+            // Optionally, you can submit the form to a server using AJAX
+            // document.getElementById('signupForm').submit();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<style>
+
+</style>
+{% include "header.html" %}
+
+
+<style>
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .header {
+        background-color: #333;
+        color: #ff0000;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .card {
+        display: flex;
+        gap: 2em;
+        flex-direction: row;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        border-radius: 50%;
+        max-width: 250px;
+        height: auto;
+        margin-right: 20px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    main {
+        padding-top: 12vh;
+        /* margin-left: 0px; */
+    }
+   
+</style>
+<main>
+    <div class="header">
+        <h1 style="color: white;">Doctor Profile</h1>
+    </div>
+    {% for i in doctor %}
+
+    <div class="card">
+        <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo">
+        <div>
+            <h1>Dr. {{i.first_name}}{{i.last_name}}</h1>
+            <p>Specialization: {{i.doctors.get.specialization}}</p>
+            <p>Experience: {{i.doctors.get.experience}}</p>
+            <p>Education: {{i.doctors.get.education}}</p>
+            <p>Location: {{i.doctors.get.address}}</p>
+            <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p>
+            <button class="button" onclick="bookAppointment()">Book Appointment</button>
+        </div>
+    </div>
+    {% endfor %}
+    <script>
+        function bookAppointment() {
+            alert("Appointment booked successfully!");
+            // You can add additional logic for booking an appointment here
+        }
+    </script>
+
+    {% include "footer.html" %}
+</main>

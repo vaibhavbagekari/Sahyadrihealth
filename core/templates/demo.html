@@ -1,0 +1,19 @@
+
+{% include "header.html" %}
+<style>
+  .demodiv{
+    padding-top: 18vh;
+  }
+</style>
+<main>
+  <div class="demodiv">
+  {%for i in patient%}
+    <h3>{{i.name}}</h3>
+    <h3>{{i.age}}</h3>
+    <h3>{{i.password}}</h3>
+    <a class="btn btn-danger" href="/demo/{{i.id}}">delete</a>
+    <a class="btn btn-success" href="/update_patient_tem/{{i.id}}">update</a>
+  {%endfor%}
+</div>
+  {% include "footer.html" %}
+</main>

@@ -1,0 +1,97 @@
+{% load static %}
+<style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+    }
+    
+    .Amain-container {
+      padding: 5px;
+      padding-top: 16ch;
+      /* z-index: -1; */
+      
+    }
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      margin: 5px;
+      /* z-index: -1; */
+    }
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card-body {
+      padding: 30px;
+    }
+    .btn-primary {
+      background-color: #dc3545;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    .btn-primary:hover {
+      background-color: #c82333;
+    }
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+  <title>About Us</title>
+</head>
+{% include "header.html" %}
+<main>
+<div class="Amain-container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color: #007bff;">Our Story</h3>
+          <p>We are a team of passionate individuals dedicated to providing high-quality healthcare services. Our journey began with a vision to make healthcare accessible to everyone, everywhere.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color: #28a745;">Our Mission</h3>
+          <p>Our mission is to improve the well-being of individuals and communities by delivering exceptional healthcare solutions. We strive to innovate, collaborate, and make a positive impact on people's lives.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color: #007bff;">Meet the Team</h3>
+          <ul>
+            <li>Dr. John Doe - Founder & CEO</li>
+            <li>Dr. Jane Smith - Chief Medical Officer</li>
+            <li>Emily Johnson - Head of Operations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color: #17a2b8;">Contact Us</h3>
+          <p>If you have any questions or inquiries, feel free to reach out to us:</p>
+          <button class="btn btn-primary">Contact Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include "footer.html" %}
+</main>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

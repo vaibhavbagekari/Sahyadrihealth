@@ -1,0 +1,125 @@
+{% load static %}
+<style>
+    .card-slider {
+        overflow: hidden;
+    }
+
+    .card-slider .card-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .card {
+        width: 300px;
+        margin: 0 10px;
+    }
+
+    /* Optional: Adjust styles for smaller screens */
+    @media (max-width: 768px) {
+        .card {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="container mt-5" style="width:100%;">
+        <div id="autoManualSlider" class="card-slider" style="width:100%;">
+            <div class="card-container">
+                <div class="card">
+                    <!-- Add your cards here -->
+                    <img src="{% static 'drimg1.jpg' %}" alt="Card 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                    <!-- Add card content as needed -->
+                </div>
+                <div class="card">
+                    <!-- Add your cards here -->
+                    <img src="{% static 'drimg2.jpg' %}" alt="Card 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                    <!-- Add card content as needed -->
+                </div>
+                <div class="card">
+                    <!-- Add your cards here -->
+                    <img src="{% static 'ambulance.jpg' %}" alt="Card 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                    <!-- Add card content as needed -->
+                </div>
+                <div class="card">
+                    <!-- Add your cards here -->
+                    <img src="{% static 'drimg4.jpg' %}" alt="Card 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                    <!-- Add card content as needed -->
+
+
+                    <!-- Add more cards as needed -->
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            // Auto and manual card slider using Bootstrap and JavaScript
+            const slider = document.getElementById('autoManualSlider');
+            let cardContainer = slider.querySelector('.card-container');
+            let cards = slider.querySelectorAll('.card');
+
+            let currentIndex = 0;
+            let interval;
+
+            function updateSlider() {
+                cardContainer.style.transform = `translateX(${-currentIndex * (cards[0].offsetWidth + 20)}px)`;
+            }
+
+            function showNextCard() {
+                if (currentIndex < cards.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateSlider();
+            }
+
+            function autoSlide() {
+                interval = setInterval(showNextCard, 3000); // Adjust the interval as needed (3000 milliseconds = 3 seconds)
+            }
+
+            function stopAutoSlide() {
+                clearInterval(interval);
+            }
+
+            // Optional: Add event listeners for arrow keys or custom buttons
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') {
+                    showNextCard();
+                    stopAutoSlide();
+                } else if (event.key === 'ArrowLeft') {
+                    showPrevCard();
+                    stopAutoSlide();
+                }
+            });
+
+            autoSlide(); // Uncomment this line if you want the slider to start automatically
+        </script>
