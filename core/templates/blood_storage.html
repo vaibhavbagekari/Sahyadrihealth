@@ -2,31 +2,40 @@
 {% include "header.html" %}
   <title>Blood Storage Center Search</title>
   <style>
-    .main_sdiv {
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+   
+   *{
+        font-family: "Poppins", sans-serif;
+   }
+      .main_sdiv {
       /* font-family: Arial, sans-serif; */
-      margin: 0;
+      margin-bottom: -2rem;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 50vh;
+      height: 70vh;
       background-color: #f2f2f2;
     }
 
     .search-container {
       text-align: center;
+      
+    }
+    .search-container h2{
+      margin-bottom: 1rem;
     }
 
     input {
       padding: 10px;
-      width: 300px;
+      width: 20rem;
       font-size: 16px;
       border: 1px solid #ccc;
     }
 
     button {
       padding: 10px 20px;
-      font-size: 16px;
+      font-size: 1rem;
       cursor: pointer;
       background-color: #4CAF50;
       color: white;
@@ -39,7 +48,7 @@
       margin: 0;
       max-height: 200px;
       overflow-y: auto;
-      border: 1px solid #ccc;
+      border: 2px solid #ccc;
       border-top: none;
     }
 
@@ -56,15 +65,25 @@
       position: relative;
       width: 100%;
       height: 400px;
-      background: linear-gradient(to right,rgba(53, 153, 241, 0.777), rgba(255, 255, 255, 0.5)), url('{% static 'blood-sample-collection.jpg' %}');
+      background: linear-gradient(to right,rgba(53, 153, 241, 0.777), rgba(255, 255, 255, 0.5)), url("{% static 'donor.jpg' %} ");
       background-size: cover;
       background-position: center;
-      color: white;
+      color: #125953;;
       text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
       color:black;
+    }
+    @media screen and (max-width: 500px) {
+      input{
+        width:15rem;
+      }
+    }
+    @media screen and (max-width: 400px) {
+      input{
+        width:10rem;
+      }
     }
     
   </style>
@@ -81,7 +100,7 @@
     
     <div class="main_sdiv">
   <div class="search-container">
-    <h1>Blood Storage Center Search</h1>
+    <h2>Blood Storage Center Search</h2>
     <input type="text" id="locationInput" placeholder="Enter location">
     <button onclick="searchBloodCenter()">Search</button>
     <ul id="suggestions"></ul>
@@ -128,7 +147,7 @@
       // TODO: Send the location to the backend for blood center search
       if (location.length > 0) {
         // Simulate backend response
-        alert(`Searching for blood centers in ${location}`);
+        alert(Searching for blood centers in ${location});
       } else {
         alert('Please enter a valid location');
       }

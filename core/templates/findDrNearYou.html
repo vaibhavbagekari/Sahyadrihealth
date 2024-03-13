@@ -3,6 +3,7 @@
 <style>
     .hero-container {
         position: static;
+        
     }
 
     .search-result-div {
@@ -10,18 +11,22 @@
     }
 
     .main-div {
-        background-color: #034154;
+        background-color: #41b0b4;
         /* background-image: linear-gradient(rgb(97, 136, 251), rgb(199, 199, 248)); */
         text-align: center;
-        border-radius: 10px;
-        padding:15px;
-        color: white;
-        margin-bottom: 30px;
+   
+        padding:75px;
+        color: #0c3b3e;
+        margin: 30px;
+      
+        
         text-transform: uppercase;
         
     }
 
-    .main-div h3 {}
+    .other-div h3 {
+        font-size: 1rem;
+    }
 
     .search-div {
         max-width: 600px;
@@ -29,22 +34,23 @@
         margin: auto;
         /* align-self: centers; */
         position: relative;
-        bottom: -25px;
+      
 
     }
 
     .search-div input {
-        background-color: #dcf3f7;
+       
         /* background-image: linear-gradient(rgb(167, 189, 253),rgb(255, 255, 255),rgb(175, 192, 244)); */
         height: 50px;
     }
 
-    .search_bar {
+    .input-group {
         /* height: 100px; */
     }
 
     main {
         padding-top: 12vh;
+        overflow-x: hidden;
     }
 
     .card {
@@ -114,6 +120,20 @@
             max-width: 100px;
         }
     }
+    .card-slider3 .card-container3 {
+        width: 70vw;
+    }
+    @media screen and (max-width: 400px){
+        .card-slider3 .card-container3 {
+    width: 110vw;
+}
+    }
+    @media screen and (max-width: 300px){
+        .card-slider3 .card-container3 {
+    width: 155vw;
+}
+    }
+
 </style>
 <main>
     <div class="infocard">
@@ -136,12 +156,12 @@
                 <div class="search_bar">
                     <form action="">
                         <div class="input-group">
-                            <input type="text" placeholder="Location" aria-label="location" class="form-control"
+                            <input type="text" placeholder="Location" aria-label="location" class="form-control" style="height: 5vh; border: none;margin-right: 5px;"
                                 list="browsers" name="Flocation" required>
-                            <input type="text" placeholder="Category" aria-label="Category" class="form-control"
+                            <input type="text" placeholder="Category" aria-label="Category" class="form-control" style="height: 5vh; border: none;margin-right: 3px;"
                                 name="Fcategory" required>
-                            <button type="submit" class="input-group-text"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            <button style="background-color:#3a3afd;"  type="submit" class="input-group-text"><i
+                                   class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
 
                     </form>
@@ -153,12 +173,12 @@
             {% if Fdata %}
            
                 <div class="other-div" style="font-size: medium; color: black;">
-                    <h3>{{Fcount}} doctors available nearby {{Fad}}
+                    <h3 style="color: blue;">{{Fcount}} doctors available nearby {{Fad}}
                     </h3>
                     <!-- <button class="cut-button mr-0 ml-auto" onclick="cutSearchResults()" align="right"><i
                             class="fa-solid fa-xmark" id="icon"></i></button> -->
                 </div>
-                <div class="smain_div" style="width: 100%; ">
+                <div class="smain_div" style="width: 90%; ">
                     {% for i in Fdata %}
                     <a href="/drProfile/{{i.user.id}}" class="doctor" >
                         <img src="{{i.profile_picture.url}}" alt="Doctor 1" />

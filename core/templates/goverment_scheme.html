@@ -58,22 +58,64 @@
     </div>
     <style>
       
-    
+    .container{
+      
+    }
         section {
           margin: 20px;
         }
     
         .card {
+          
           margin-bottom: 20px;
+          height: 25rem;
         }
-    
-    
+        .card img{
+          height: 40%;
+        }
+        .row{
+  display: flex;
+  margin-left: 0;
+   width: 100%;
+   align-items: center;
+   justify-content: center;
+    }
+.hid{
+  width: 30%;
+  margin-left: 5rem;
+}
+@media screen and (max-width: 1200px) {
+  .hid{
+  margin-left: 0rem;
+}
+.row{
+  display: flex;
+   flex-direction: column;
+   width: 100%;
+   align-items: center;
+   justify-content: center;
+    }
+    .hid{
+    width: 70%;
+    margin-left: 0;
+   }
+}
+@media screen and (max-width: 500px){
+  .hid{
+    width: 90%;
+    margin-left: 0;
+   }
+   .card {
+
+          height: 22rem;
+        }
+}
       </style>
     
       <section>
         <div class="container">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 hid">
               <div class="card">
                 <img src="{% static 'Central-Government-Health-Scheme-CGHS.jpg' %}" class="card-img-top" alt="Scheme 1">
                 <div class="card-body">
@@ -82,8 +124,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card">
+            <div class="col-md-4 hid" >
+              <div class="card" >
                 <img src="{% static "Government-Schemes.jpg" %}" class="card-img-top" alt="Scheme 2">
                 <div class="card-body">
                   <h5 class="card-title">Scheme Title 2</h5>

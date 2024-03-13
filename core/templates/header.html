@@ -14,6 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -21,9 +22,11 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <style>
-        * {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+}
 
 
 
@@ -34,41 +37,135 @@
             padding: 0px;
         }
 
+        /* Input Group Styling */
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control {
+            flex: 1;
+            padding: 6.5px;
+            margin-right: 2px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-group-text {
+            background-color: #1bba9a;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-group-text:hover {
+            background-color: #319c87;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
         .logo_img {
-            width: 10%;
+            width: 8%;
             border-radius: 50%;
+            display: none;
+
         }
 
         .titel {
-            text-transform: uppercase;
+            font-size: 1.7rem;
             font-weight: bolder;
-            color: #13bf1b;
-            align-self: center;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         header {
-            z-index: 1;
+            z-index:1;
             width: 100vw;
-            background-color: #446c9c;
-            color: white;
+            background-color: #0077bd;
+            /* background-color:#223645; */
+            border-bottom: 1px solid #00A0DD;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.1);
             flex-wrap: wrap;
             padding: 10px;
             position: fixed;
             display: grid;
+
             /* gap: 10px; */
             grid-template-rows: 8vh;
             grid-template-columns: 0vw 31vw 45vw 21vw;
             align-items: center;
+            /* background-color: #12ac8e; */
         }
 
         .nav_bar {
             display: flex;
-            background-color: rgb(45, 71, 104);
+            background-color: #3445b4;
+
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 10.2vh;
+            width: 250px;
+            height: 100vh;
+            line-height: 2rem;
+            flex-direction: column;
+            transition-duration: 0.5s;
+
+            font-family: "Poppins", sans-serif;
+        }
+
+        .pd_dict {
+
+            width: 3rem;
+            height: 3rem;
+            overflow: visible;
+            border-radius: 50%;
+            position: relative;
+            left: 30%;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            border: 2px solid;
+        }
+
+        .patient_img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+        .nav_bar a {
+            text-decoration: none;
+            color: black;
+            padding: 8px;
+            margin: 2px;
+            text-align: center;
+            border-bottom: 1px solid #777;
+        }
+
+        .nav_bar {
+            display: flex;
+            /* background-color: #6c9acee2; */
+            /* background-color: #ddeffa; */
+            /* background-color: #647589; */
+            background-color: #3445b4;
+
+            /* background-color:#0077bd; */
+            /* background-color: #00A096; */
+            /* background-color: #2c3e50;; */
+            /* background-color:#007c9d; */
             color: white;
             padding: 10px;
             position: fixed;
@@ -77,16 +174,75 @@
             height: 99.8vh;
             flex-direction: column;
             transition-duration: 0.5s;
-            z-index: 0;
+            /* overflow: scroll; */
+            box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+            
         }
 
         .nav_bar a {
             text-decoration: none;
+            color: black;
             color: white;
+            font-size: 16px;
             padding: 8px;
-            margin: 2px;
-            text-align: center;
-            border-bottom: 1px solid #777;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav_bar a:hover {
+            background-color: #4e87c8e2;
+            /* background-color: rgba(39, 186, 39, 0.808); */
+            color: black;
+        }
+
+        .nav_bar .btn-danger:hover {
+            background-color: rgb(220, 23, 23);
+        }
+
+        .nav_bar i {
+            margin-right: 8px;
+        }
+
+        .nav_bar h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+
+        .nav_bar .home a::before {
+            content: "\1F3E0";
+            margin-right: 8px;
+        }
+
+        .nav_bar .services a::before {
+            content: "\1F488";
+            margin-right: 8px;
+        }
+
+        .nav_bar .about a::before {
+            content: "\1F468";
+            margin-right: 8px;
+        }
+
+        .nav_bar .contact a::before {
+            content: "\1F4E9";
+        }
+
+        .nav_bar .signup a::before {
+            content: "\1F46B";
+            margin-right: 8px;
+        }
+
+        .nav_bar .signin a::before {
+            content: "\1F464";
+            margin-right: 8px;
+        }
+
+        .dropdown-toggle {
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+            border-radius: 0;
         }
 
         main {
@@ -110,7 +266,7 @@
 
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
         .hero_text {
@@ -173,20 +329,47 @@
             font-size: 2rem;
         }
 
+        .highlight span {
+            font-size: 1rem;
+        }
+
         .overlay {
             display: none;
             position: fixed;
-            height: 100vh;
-            width: 100vw;
-            background-color: #77777779;
-            z-index: 999;
+            height: 200vh;
+            width: 200vw;
+            background-color: #6f626279;
+            z-index: 10000;
+            background-color: #16131379;
             backdrop-filter: blur(3px);
+            /*
+            z-index: 10000;
+            backdrop-filter: blur(13px); */
+        }
+
+        .sure {}
+
+        .yes {
+            color: black;
+            background-color: white;
+            width: 5rem;
+            height: 5rem;
+            position: absolute;
+            top: -3rem;
+
+            border: 5px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+
         }
 
         .form-div2 form {
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 0px;
+            border-top: 5px solid #00A096;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -215,7 +398,7 @@
         }
 
         .form-div {
-            z-index: 1000;
+            z-index: 100000;
             position: fixed;
             width: 100vw;
             top: 0px;
@@ -231,7 +414,7 @@
         }
 
         .form-div2 {
-            z-index: 1000;
+            z-index: 100000;
             position: fixed;
             width: 100vw;
             top: 0px;
@@ -250,10 +433,29 @@
         .SignUp_form {
             display: block;
             background-color: #fff;
-            padding: 20px;
-            width: 50vw;
-            border-radius: 8px;
+            transition: all .3s ease-in-out;
+            width: 37vw;
+            border-radius: 0px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top: 8px solid #00A096;
+
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .SignUp_form:hover {
+            /* border-top: 0px solid #125953; */
+            /* border-bottom: 8px solid #00A096; */
+        }
+
+        #signUpbtn {
+            border: 0;
+            border-radius: 0;
+            background-color: rgb(68, 68, 224);
+        }
+
+        #signUpbtn:hover {
+            color: black;
         }
 
         .from-div label {
@@ -315,7 +517,7 @@
             margin-top: 5vh;
         }
 
-        @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
         * {
             margin: 0px;
@@ -323,7 +525,7 @@
         }
 
         body {
-            font-family: 'Exo', sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
 
@@ -468,8 +670,15 @@
         .sub_div_demo {
             height: 300px;
             width: 100%;
+            font-weight: 200;
         }
 
+        .icon {
+            position: relative;
+            top: 3rem;
+            left: 1rem;
+            z-index: 1;
+        }
 
         @keyframes animate {
 
@@ -487,10 +696,23 @@
 
         }
 
-        @media screen and (max-width: 750px) {
-            .SignUp_form{
-                width: 80vw;
+        @media screen and (max-width: 1150px) {
+            .SignUp_form {
+                width: 45vw;
             }
+        }
+
+        @media screen and (max-width: 880px) {
+            .SignUp_form {
+                width: 60vw;
+            }
+        }
+
+        @media screen and (max-width: 750px) {
+            .SignUp_form {
+                width: 85vw;
+            }
+
             .area {
                 /* display: none; */
             }
@@ -513,6 +735,12 @@
 
             .highlight {
                 grid-column: 1/4;
+
+            }
+
+            .highlight span {
+                font-size: .9rem;
+
             }
 
             header {
@@ -565,18 +793,49 @@
             }
         }
 
+        @media screen and (max-width: 400px) {
+            .SignUp_form {
+                width: 94vw;
+            }
+        }
+
         /* index.css end */
-        .highlight {
-            animation-name: blinking;
-            animation-duration: 4s;
-            animation-iteration-count: infinite;
+        @keyframes continuousAlert {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .highlight {
+            animation: continuousAlert 2s infinite;
+            /* 2s duration, infinite loop */
+            font-size: 16px;
+            color: #ff0000;
+            /* Red color, you can change it as per your design */
             text-align: center;
-            padding: 5px;
-            font-size: larger;
+            padding: 10px;
+            /* Background color, adjust as needed */
+
         }
+
+        .highlight span {
+            display: block;
+            font-weight: bold;
+
+        }
+
+        .highlight span:first-child {
+            margin-bottom: -1.5rem;
+        }
+
 
         main {
             /* padding-top: 12vh; */
@@ -598,9 +857,235 @@
 
         }
 
+        #thank-you-msg {
+            display: none;
+            background-color: #f4f9fc;
+            padding: 20px;
+            width: 30vw;
+            height: 25vh;
+            transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 2);
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            border-top: 5px solid #125953;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+
+        }
+
+        .h4 {
+
+            display: none;
+            font-weight: 600;
+            color: #125953;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+
+        #thank-you-msg:hover {
+            height: 40vh;
+
+            border-bottom: 5px solid #125953;
+
+        }
+
+        #thank-you-msg:hover .h4 {
+            display: block;
+
+        }
+
+        .button button {
+            padding: .5rem;
+            width: 8rem;
+            background-color: #125953;
+            border: 0;
+            margin-left: 1rem;
+            color: white;
+            text-transform: uppercase;
+        }
+
         #loader_overlay {
             display: block;
         }
+
+        @media screen and (max-width: 1300px) {
+            #thank-you-msg {
+                width: 35vw;
+                height: 27vh;
+            }
+
+            #thank-you-msg:hover {
+                height: 41vh;
+            }
+        }
+
+        @media screen and (max-width: 1150px) {
+            #thank-you-msg {
+                width: 48vw;
+                height: 28vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 42vh;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            #thank-you-msg {
+                width: 52vw;
+                height: 29vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 43vh;
+            }
+        }
+
+        @media screen and (max-width: 750px) {
+            #thank-you-msg {
+                width: 55vw;
+                height: 30vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 45vh;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            #thank-you-msg {
+                width: 65vw;
+                height: 30vh;
+
+            }
+
+            .h4 {
+                font-size: 1.2rem;
+            }
+
+            #thank-you-msg:hover {
+                height: 46vh;
+            }
+
+            .button button {
+
+                width: 6rem;
+
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            #thank-you-msg {
+                width: 65vw;
+                height: 32vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 47vh;
+            }
+
+            .h4 {
+                font-size: 1rem;
+            }
+
+            .button button {
+
+                width: 5rem;
+
+            }
+        }
+
+        @media screen and (max-width: 365px) {
+            #thank-you-msg {
+                width: 68vw;
+                height: 33vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 50vh;
+            }
+
+            .button button {
+
+                width: 4rem;
+
+            }
+
+            .h4s {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            #thank-you-msg {
+                width: 80vw;
+                height: 40vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 53vh;
+            }
+
+            .button button {
+
+                width: 3.8rem;
+
+            }
+
+            .h4 {
+
+                text-wrap: wrap;
+            }
+
+            .h4s {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 250px) {
+            #thank-you-msg {
+                width: 90vw;
+                height: 40vh;
+
+            }
+
+            #thank-you-msg:hover {
+                height: 59vh;
+            }
+
+            .button button {
+                margin-top: .5rem;
+                width: 3.5rem;
+
+            }
+
+            .h4 {
+
+                text-wrap: wrap;
+            }
+
+            .h4s {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* @media (max-width:420) and (max-height: 1000px){
+    #thank-you-msg:hover{
+    height: 20vh;
+}
+    } */
     </style>
     <style type="text/css">
         .contener_general {
@@ -780,14 +1265,20 @@
         }
 
         .nav_bar {
-            top: 11vh;
+            top:11vh ;
 
+        }
+        .nav_bar {
+                overflow-y: scroll;
+            }
+
+        .nav_bar::-webkit-scrollbar{
+            width: 5px;
         }
 
         @media screen and (max-height: 650px) {
-            .nav_bar {
-                overflow-y: scroll;
-            }
+            
+
         }
 
 
@@ -798,9 +1289,27 @@
             }
 
             .nav_bar {
-                top: 25vh;
-                z-index: 1;
+                top: 0vh;
+                z-index: 999;
+                height: 100%;
             }
+            .nav_overlay{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(70, 70, 70, 0.293);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            position: fixed;
+            display: none;
+        }
+        .toggle_nav_overlay{
+            
+            display: block;
+        }
+        .zindex{
+            z-index: 0;
+        }
         }
     </style>
     <script>
@@ -826,6 +1335,7 @@
 </head>
 
 <body onload="downLoad()">
+    <div class="nav_overlay" id="nav_overlay" onclick="toggle_layout()"></div>
     <div class="contener_general" id="layer1">
         <div class="contener_mixte">
             <div class="ballcolor ball_1">&nbsp;</div>
@@ -842,7 +1352,7 @@
     </div>
     <div class="overlay" id="loader_overlay"></div>
     <div class="overlay" id="overlay"></div>
-    <header>
+    <header id="head">
         {% if messages %}
         {% for message in messages %}
         <script>
@@ -851,15 +1361,27 @@
         {% endfor %}
         {% endif %}
         <div></div>
-        <h2 class="titel"><img src="{% static 'logo.png' %}" alt="" class="logo_img"> Sahyadri Health</h2>
-        <i class="fa-solid fa-xmark icon" id="icon" onclick="toggle_layout()"></i>
+        <h2 class="titel"><img src="{% static 'sahyadri.png' %}" alt="" class="logo_img">Sahyadri </h2>
+        <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
         <div class="search_bar">
             <form action="">
                 <div class="input-group">
                     <input type="text" placeholder="Location" aria-label="location" class="form-control" list="browsers"
                         name="location" required>
-                    <input type="text" placeholder="Category" aria-label="Category" class="form-control" name="category"
+
+
+                    <input type="text" placeholder="Category" list="categories" class="form-control" name="category"
                         required>
+
+                    <datalist id="categories">
+                        <option value="Gynecologist">
+                        <option value="Dietitian">
+                        <option value="Dentist">
+                        <option value="General surgeon">
+                        <option value="Physiotherapist">
+                            <!-- Add more options as needed -->
+                    </datalist>
+
                     <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
@@ -874,7 +1396,9 @@
             <option value="{{i}}">
                 {% endfor %}
         </datalist>
+
     </header>
+
     {% include "search_result.html" %}
     <nav class="nav_bar" id="nav_bar">
         {% if not request.user.is_authenticated %}
@@ -901,32 +1425,65 @@
             </button> -->
         {% endif %}
         {% if request.user.is_authenticated %}
-        <h5> {{request.user}}</h5>
+        <div class="pd_dict">
+            <!-- Left side: Profile Picture -->
+            <img class="patient_img"
+                src="https://img.freepik.com/free-photo/nurse-preparing-consult_23-2149309949.jpg?t=st=1709031515~exp=1709035115~hmac=546e90648c171fde3668741c4155def0209b521812021efc46e28331d3ae2c06&w=360"
+                alt="">
+        </div>
+        <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
         {% if request.user.patients.get.user %}
-        <a href="{% url 'patient_dashbord' %}"
-            class="{% if request.path == '/patient_dashbord/' %} active {% endif %}">Dashboard</a>
+        <a href="{% url 'patient_dashbord' %}" class="{% if request.path == '/patient_dashbord/' %} active {% endif %}">
+            <i class='bx bxs-dashboard'></i> Dashboard</a>
         {% endif %}
         {% if request.user.doctors.get.user %}
         <a href="{% url 'drDashbord' %}"
-            class="{% if request.path == '/drDashbord/' %} active {% endif %}">Dashboard</a>
+            class="{% if request.path == '/drDashbord/' %} active {% endif %}"><i class='bx bxs-dashboard'></i> Dashboard</a>
         {% endif %}
 
         {% endif %}
         <a href="{% url 'home' %}"
-            class="{% if request.path == '/home/' or request.path == '/' %} active {% endif %}">Home</a>
-        <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}">About</a>
-        <a href="{% url 'services' %}" class="{% if request.path == '/services/' %} active {% endif %}">Services</a>
-        <a href="{% url 'findDr' %}" class="{% if request.path == '/findDr/' %} active {% endif %}">Find doctor near
+            class="{% if request.path == '/home/' or request.path == '/' %} active {% endif %}"><i
+                class='bx bxs-home'></i>Home</a>
+        <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}"><i
+                class="fa-regular fa-address-card"></i>About</a>
+        <a href="{% url 'services' %}" class="{% if request.path == '/services/' %} active {% endif %}"><i
+                class="fa-solid fa-user-nurse"></i>Services</a>
+        <a href="{% url 'findDr' %}" class="{% if request.path == '/findDr/' %} active {% endif %}"><i
+                class="fa-solid fa-user-doctor"></i>Find doctor near
             you</a>
-        <a href="{% url 'goverment_scheme' %}" class="{% if request.path == '/goverment_scheme/' %} active {% endif %}">Goverment scheme</a>
-        <a href="{% url 'search_ambulance' %}" class="{% if request.path == '/search_ambulance/' %} active {% endif %}">Search Ambulance </a>
+        <a href="{% url 'goverment_scheme' %}"
+            class="{% if request.path == '/goverment_scheme/' %} active {% endif %}"><i
+                class="fa-solid fa-indian-rupee-sign"></i>Goverment scheme</a>
+        <a href="{% url 'search_ambulance' %}"
+            class="{% if request.path == '/search_ambulance/' %} active {% endif %}"><i
+                class="fa-solid fa-truck-medical"></i>Search Ambulance </a>
         <!-- <a href="#">Insurence Services</a> -->
-        <a href="{% url 'blood_storage' %}" class="{% if request.path == '/blood_storage/' %} active {% endif %}">Blood Storage Centre</a>
-        <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}">Contact</a>
+        <a href="{% url 'blood_storage' %}" class="{% if request.path == '/blood_storage/' %} active {% endif %}"><i
+                class="fa-solid fa-hand-holding-droplet"></i>Blood Storage Centre</a>
+        <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}"><i
+                class="fa-solid fa-address-book"></i>Contact</a>
         {% if request.user.is_authenticated %}
-        <a href="/logout/" class="btn btn-danger">log Out</a>
+        <a href="/logout/" class="btn btn-danger " id="out" style="margin-bottom: 3rem;"><i
+                class="fa-solid fa-arrow-right-from-bracket"></i>log Out</a>
+                <a href="" class="btn btn-danger " style="margin-bottom: 3rem; background-color: transparent; border: none;"></a>
         {% endif %}
     </nav>
+
+    <div id="thank-you-msg">
+        <div class="sure" style="display: flex; align-items: center;justify-content: center;">
+            <h2 class="yes"><i class="fa-solid fa-question"></i></h2>
+        </div>
+        <h4 class="h4">Leaving the Hospital Hub. Complete your health exit.</h4>
+        <h4 class="h4s" style="color: orangered;">Are You Sure?</h4>
+
+        <div class="button">
+            <a href="/logout/"><button>yes</button></a>
+            <button id="no">No</button>
+        </div>
+    </div>
+
+
     <div class="form-div" id="form-div">
         <form method="post" class="SignUp_form">
             {% csrf_token %}
@@ -940,21 +1497,23 @@
             </ul>
             {% endif %}
             <label for="fullName">Full Name: </label>
-            <input placeholder="enter full name" type="text" id="fullName" name="fullName" required>
+            <input placeholder="Full name" type="text" id="fullName" name="fullName" required>
             <input type="hidden" id="check" name="check" value="SignUp">
 
             <label for="contactNumber">Contact Number:</label>
-            <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+            <input type="tel" placeholder="Contact No" id="contactNumber" name="contactNumber" pattern="[0-9]{10}"
+                required>
 
             <label for="email">Email ID:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" placeholder="For example:abc@123" id="email" name="email" required>
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
-            <label for="Password">Password</label>
-            <input type="Password" id="password" name="password" required>
+            <input type="number" placeholder="Your Age" id="age" name="age" required>
+            <label for="Password">Password </label>
+            <input type="Password" placeholder="Enter Your Password" id="password" name="password" required>
 
-            <button type="submit" class="btn btn-success">Sign Up</button>
+            <button type="submit" class="btn btn-success" id="signUpbtn">Sign Up</button>
+            <h6 style="margin-top: .5rem;">Already have Account? <a href="{% url 'patient_signin' %}">Log In</a></h6>
         </form>
 
     </div>
@@ -963,7 +1522,7 @@
         <form method="post" class="SignIn_form ">
             {% csrf_token %}
             <i class="fa-solid fa-xmark cut" onclick="form_state2()"></i>
-            <h2>Petiant Login</h2>
+            <h2>Petient Login</h2>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
             <input type="hidden" id="check" name="check" value="SignIn">
@@ -975,9 +1534,11 @@
     </div>
 
     <script>
-        function toggle_layout() {
+       function toggle_layout() {
             var obj1 = document.getElementById("nav_bar");
             obj1.classList.toggle('nav_bar_mob');
+            var objm = document.getElementById("nav_overlay");
+            objm.classList.toggle('toggle_nav_overlay');
             var obj2 = document.getElementById('icon');
             obj2.classList.toggle('fa-xmark');
             obj2.classList.toggle('fa-bars');
@@ -985,16 +1546,43 @@
         var b = document.getElementById('overlay');
         var a = document.getElementById('form-div');
         var c = document.getElementById('form2');
+        var e = document.getElementById("nav_bar");
 
         function form_state() {
             a.classList.toggle('display_block');
             b.classList.toggle('display_block');
+            e.classList.toggle("zindex");
 
         }
         function form_state2() {
             c.classList.toggle('display_block')
             b.classList.toggle('display_block');
         }
+        let out = document.getElementById("out")
+
+        let msg = document.getElementById("thank-you-msg")
+
+        out.addEventListener("click", () => {
+            event.preventDefault();
 
 
+            b.classList.toggle('display_block');
+            msg.style.display = "flex"
+
+        })
+        let noButton1 = document.getElementById("no");
+        document.addEventListener("DOMContentLoaded", function () {
+        noButton1.addEventListener("click", function () {
+            // event.preventDefault();
+
+
+            b.classList.toggle('display_block');
+            if (msg.style.display = "flex"){
+                msg.style.display = "none"
+            }
+            else{
+                msg.style.display = "flex"
+            }
+                });
+        });
     </script>

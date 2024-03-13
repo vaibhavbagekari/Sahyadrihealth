@@ -20,6 +20,8 @@ from django.urls import path
 from core.views import *
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from core import utils
+from core import doctor_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home,name="home"),
@@ -34,10 +36,10 @@ urlpatterns = [
     path('update_patient_tem/<id>/',update_patient_tem,name='update_patient_tem'),
     path('logout/',logout_btn,name="logout_btn"),
     path('drSigUp/',drSigUp,name="drSigUp"),
-    path('drDashbord/',drDashbord,name="drDashbord"),
+    path('drDashbord/',doctor_views.drDashbord,name="drDashbord"),
     path('drsignin/',drsignin,name="drsignin"),
     path('drlogin/',drlogin,name="drlogin"),
-    path('drProfile/<id>',drProfile,name="drProfile"),
+    path('drProfile/<id>',doctor_views.drProfile,name="drProfile"),
     path('patient_signin/',patient_signin,name="patient_signin"),
     path('patient_signup',patient_signup,name="patient_signup"),
     path('patient_dashbord/',patient_dashbord,name="patient_dashbord"),
@@ -45,8 +47,19 @@ urlpatterns = [
     path('search_ambulance/',search_ambulance,name="search_ambulance"),
     path('blood_storage/',blood_storage,name="blood_storage"),
     path('save_events/<id>', save_events, name='save_events'),
+    path('delete_events/<id>', delete_events, name='delete_events'),
+    path('appointmentbooking/<id>', appointmentbooking, name='appointmentbooking'),
+    path('update_events/<id>', update_events, name='update_events'),
+    path('send_email', send_email, name='send_email'),
+    path('img_upload/', doctor_views.image_upload, name='img_upload'),
+    path('image_slider', doctor_views.image_slider, name='image_slider'),
+    path('drDashbord_setting/', doctor_views.drDashbord_setting, name='drDashbord_setting'),
+    path('delet_img/<id>', doctor_views.delet_img, name='delet_img'),
+    # path('doctor_availability/<id>', doctor_views.doctor_availability, name='doctor_availability'),
+    path('manage-availability/', manage_availability, name='manage_availability'),
 
-]
+
+]    
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

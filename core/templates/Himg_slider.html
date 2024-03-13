@@ -1,0 +1,149 @@
+<style>
+    .img_contianer {
+        width: 100%;
+        position: relative;
+        overflow-x: hidden;
+        margin: 2rem 0rem 2rem 0rem;
+    }
+
+    .main_slider_div {
+        width: 100%;
+        height: 150px;
+        overflow-x: scroll;
+        padding: 5px;
+        position: relative;
+    }
+
+    style-6::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #F5F5F5;
+    }
+
+    .main_slider_div::-webkit-scrollbar {
+        height: 10px;
+        background-color: #F5F5F5;
+    }
+
+    .main_slider_div::-webkit-scrollbar-thumb {
+        background-color: #F90;
+        background-image: -webkit-linear-gradient(45deg,
+                rgba(255, 255, 255, .2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, .2) 50%,
+                rgba(255, 255, 255, .2) 75%,
+                transparent 75%,
+                transparent)
+    }
+
+
+    .main_slider_div .img_card {
+        height: 100%;
+        max-width: max-content;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        box-sizing: border-box;
+    }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        border-radius: 8px;
+
+    }
+
+    /* Style the image */
+    .image-container img {
+
+        height: 100%;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .image-caption {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.505);
+        color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /* Show the caption on hover */
+    .image-container:hover .image-caption {
+        opacity: 1;
+    }
+
+    .image-caption i {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        margin: 5px;
+
+    }
+
+    .add_img {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        background-image: linear-gradient(to right, rgba(253, 253, 253, 0), rgba(0, 0, 0, 0.962));
+
+    }
+
+    @media screen and (max-width: 750px) {
+        form {
+            width: 100px;
+        }
+    }
+</style>
+<script>
+     function openUrl(id) {
+    // Replace "https://www.example.com" with the desired URL
+    if (confirm("Do you want to delete this image?")){
+    window.location.href = "/delet_img/"+id;
+    }
+  }
+</script>
+</script>
+</head>
+
+<body>
+    <div class="img_contianer">
+        <div class="main_slider_div">
+            <div class="img_card">
+                {% for image in images %}
+                <div class="image-container">
+                    <img src="{{image.image.url}}" alt="{{image.title}}">
+                    <div class="image-caption">{{image.title}} <i class="fa-solid fa-trash" onclick="openUrl({{image.id}})"></i></div>
+                </div>
+                {% endfor %}
+                <div class="image-container">
+                    <img src="https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Photo_Add-RoundedBlack-512.png"
+                        alt="add image">
+                    <div class="image-caption">add image</div>
+                </div>
+            </div>
+        </div>
+        <div class="add_img">
+            <form id="myForm" enctype="multipart/form-data" action="/img_upload/" method="post">
+                {% csrf_token %}
+
+                <input type="text" id="title" name="title" placeholder="Enter image title" required />
+                <input type="file" id="image" name="image" required />
+
+                <input type="submit" class="btn btn-primary" value="Upload">
+            </form>
+        </div>
+
+    </div>

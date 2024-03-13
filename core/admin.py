@@ -33,3 +33,20 @@ class EventAdmin(admin.ModelAdmin):
         'color'
     )
 admin.site.register(Event,EventAdmin)
+
+class Hospital_ImageAdmin(admin.ModelAdmin):
+    HimgDisplay = (
+        'user',
+        'title',
+        'image',
+    )
+admin.site.register(Hospital_Image,Hospital_ImageAdmin)
+
+class AvailabilityAdmin(admin.ModelAdmin):
+    AvailabilityDisplay=(
+        'doctor',
+        'day_of_week',
+        'start_time',
+        'end_time',
+    )
+admin.site.register(Availability,AvailabilityAdmin)

@@ -8,7 +8,11 @@
             crossorigin="anonymous"></script>
 <style>
     *{
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: "Poppins", sans-serif;
+
+    }
+    main{
+        overflow-x: hidden;
     }
     .sub_div {
         position: relative;
@@ -42,42 +46,155 @@
 
     } */
 
+   
+    .slider-container {
+        z-index: -1;
+        
+    }
 
     .slider-container {
-        z-index: 0;
-    }
+    position: relative;
+    margin-top: -4rem;
+}
 
+.slider-container .slider.over {
+    position: relative;
+}
+
+.slider-container .slider.over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .55);
+    z-index: 9999;
+}
+
+.slider-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: -1; 
+}
+
+.hero_textm{
+    font-size: 3.1rem;
+  color: rgba(255, 255, 255, 0.845);
+  color: #fff;
+width: 65%;
+
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+.hero_textm button{
+    padding: .9rem;  
+    background-color: #008080;
+     font-size: 1rem;
+     border: 0;
+     /* margin-bottom: 2rem; */
+     color:white
+}
+.hero_textm button:hover{
+    background-color: #c8d0cf;
+}
+.hero_textm p{
+    font-size: 1.1rem;
+    color: #f4f9fcbd;
+   font-weight: 500;
+    margin-top: .5rem;
+    width: 80%;
+}
     .sub_div_demo {
-        margin-top: 100px;
-        height: max-content;
-        width: 100%;
+        margin-top: 5rem;
+        background-color: #f4f9fc;
+       align-items: center;
+       height: 90vh;
         display: flex;
         flex-direction: row;
-        text-align: justify;
+      padding: 5rem;
         /* flex-wrap: wrap; */
     }
+
     .sub_div_demo img{
-        width: 30%;
+        width: 25%;
+        margin-left: 1.5rem;
         transition-duration: 0.3s;
     }
     .sub_div_demo img:hover{
-        transform: scale(1.05);
+        /* transform: scale(1.05); */
     }
     .social_media_icon {
         z-index: 1;
     }
+    .sub_div_demo .text{
+        display: flex;
+        transition: all 1.3s;
+        position: relative;
+        
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #125953;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+  
+   
+    text-transform: normal;
+   
+    }
+    @keyframes fadeIn {
+  
+    100% {
+    transform: scale(1);
+    opacity: 1;
+    left: 0;
+  }
+}
+    .sub_div_demo .text h1{
+        text-align: center;
+        margin-top: 2rem;
+
+ 
+    }
+    .sub_div_demo .text h4{
+        width: 80%;
+        
+        color: #84b9b2;
+        text-align: center;
+        line-height: 2;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+       
+    }
+    .sub_div_demo .text button{
+        border-radius: 0;
+        background-color: #125953;
+        padding: .5rem 1.2rem;
+    }
+    
+    
     /* Add your styles as before */
     * {
         box-sizing: border-box;
     }
 
     body {
-        font-family: Arial, sans-serif;
+       overflow-x: hidden;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background-color: #fefefe;
     }
-
+    /* .slider img{
+        width: 0%;
+        margin-top: 1rem;
+        padding: 1rem;
+    } */
     .slider-container2 {
         display: flex;
         overflow: hidden;
@@ -93,11 +210,12 @@
 
     .card {
         flex: 0 0 100%;
-        max-width: 25%;
+        max-width: 15%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.256);
         margin-right: 20px;
         border-radius: 8px;
         overflow: hidden;
+        
         transition-duration: 0.3s;
     }
     .card:hover{
@@ -110,20 +228,108 @@
         height: auto;
         border-radius: 8px 8px 0 0;
     }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+         *{
+    font-family: "Poppins", sans-serif;
+    
+  }
+        .feature-box {
+            background-color: #fff;
+            border-bottom: 5px solid #5ed6c9;
+            border-top: 0 solid #5ed6c9;
+            bottom: 0;
+            box-shadow: 0 8px 16px 0 rgba(205, 190, 255, .2);
+            padding: 40px;
+            position: relative;
+            transition: .5s;
+            transition-behavior: normal;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+            transition-property: all;
+
+        }
+
+        .feature-box:hover {
+            border-top: 5px solid #5ed6c9;
+            border-bottom: 0px solid #5ed6c9;
+        }
+
+        .mb-35 {
+            margin-bottom: 35px;
+
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .col-md-4 {
+            flex: 0 0 auto;
+            flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    height: 320px;
+  
+            width: 296px;
+           
+          
+
+
+        }
+      
+
+        
+        .section-back-icon {
+    left: 0;
+    margin: auto;
+    position: relative;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    right: 0;
+    top: 12vh;
+}
+       
+
+        .row{
+            gap: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        #mid{
+            margin-top: 5rem;
+        }
+        .mid-section{
+            background-color: #f4f9fc;
+          
+        }
     .infocard{
-        margin: 10px;
+        margin-top: 0px ;
+        margin-left: 10px ;
+        margin-right: 10px ;
+        /* margin-bottom: -5px; */
         /* padding: 10px; */
-        border-radius: 12px;
+       margin-bottom: -15px;
         width:calc(100% - 20px) ;
         background-image: linear-gradient(to right,rgb(52, 52, 253),rgb(163, 163, 249));
         display: flex;
+        align-items: center;
         flex-direction: row;
         justify-content: space-around;
+        overflow: hidden;
         /* flex-wrap: wrap; */
         /* position: relative; */
     }
     .infocard div{
         margin: 10px;
+      
     }
     .infocard img{
         width: 40%;
@@ -143,25 +349,110 @@
         background: linear-gradient(to right,rgba(53, 153, 241, 0.777), rgba(255, 255, 255, 0.5)), url('{% static 'blood-sample-collection.jpg' %}'); */
         
     }
+    
     .subdiv_img .card img{
         width: 100%;
     }
     .infocard img:hover{
         transform: scale(1.05);
+        
     }
     .text1{
         color: white;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        width: 50%;
     }
+    .text1 h3{
+        font-size: 2rem;
+        color: white;
+    }
+    .text1 button{
+        background-color: green;
+        border-radius: 0;
+        border: none;
+    }
+    h1, h2, h3, h4, h5, h6 {
+    color: #125953;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 0;
+    text-transform: normal;
+    width: 70%;
+    z-index: 999;
+}
+h5{
+    margin-top: 2rem;
+    color: #647589;
+ 
+    font-size: 1.5rem;
+
+}
+.section-title h5 {
+    font-size: 22px;
+    margin-bottom: 28px;
+}
+.home_ser_title .mini-title {
+    color: #84b9b2;
+    font-size: 18px;
+    line-height: 1.2;
+}
+.home_ser_title{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.hidden{
     
+    opacity: 0;
+    transition: all 1s;
+    filter: blur(5px);
+    transform: translateX(100%);
+   
+}
+@media(prefers-reduced-motion){
+    .hidden{
+        transition: none;
+    }
+}
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+.col-md-4:nth-child(1){
+    transition-delay: 1.1s;
+}
+.col-md-4:nth-child(2){
+   
+    transition-delay: 1.2s;
+}
+.col-md-4:nth-child(3){
+    transition-delay: 1.3s;
+}
+
+    /* .text{
+        width: 65%;
+    } */
     .slider-container2{
             margin-top: 100px;
         }
-        .flex_card{
-            max-width: 200px;
+        .flex_card {
+            max-width: 15rem;
+           border-top-right-radius: 0;
+           border-bottom-left-radius: 0;
+           border-bottom: 5px solid #125953;
+           transition-duration: 1.3s;
+        }
+        .flex_card img{
+            border-top-right-radius: 0;
+            
         }
         .carousel-inner{
             height: max-content;
+            
             background-color: rgb(255, 255, 255);
         }
         .scrd{
@@ -171,11 +462,24 @@
         padding: 10px;
         margin-bottom: 20px;
     }
+    .carousel-item{
+        margin-top: 1rem;
+        background-color: #d5e5ee;;
+    }
+    .card-body center h2, .card-body center p{
+        color: #125953;
+    }
+    .card-header{
+        font-size: 1.5rem;
+        color: #125953;
+    }
     .gradient-container {
         position: relative;
         width: 100%;
         height: 400px;
-        background: linear-gradient(to right,rgba(53, 153, 241, 0.898), rgba(255, 255, 255, 0.131)), url('{% static 'blood-sample-collection.jpg' %}');
+        background-attachment: fixed;
+        
+        background: linear-gradient(to right,rgba(53, 153, 241, 0.898), rgba(255, 255, 255, 0.131)), url("{% static 'blood-sample-collection.jpg' %} ");
         background-size: cover;
         background-position: center;
         color: white;
@@ -183,9 +487,129 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color:black;
+        
+      }
+      
+      .gradient-container p,  .gradient-container h1{
+text-align: center;
+width: 70%;
+color: black;
+
+      }
+      .gradient-container .content{
+        width: 100%;
+        height: 100%;
+        align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+      }
+      @media (max-width: 1300px){
+        .hero_textm{
+    font-size: 2.5rem;
+   padding: 1rem;
+        }
+        .hero_textm button{
+            font-size: .8rem;
+        }
+        .hero_textm p{
+            font-size: 0.9rem;
+        }
+      }
+      @media (max-width: 1220px) {
+        .sub_div_demo {
+          
+           height: 100vh;
+        
+        }
+        .sub_div_demo .text h4{
+            font-size: 1rem;
+            text-align: center;
+        }
+            .col-md-4 {
+                max-width: 100%; /* Adjust max-width for smaller screens */
+            }
+            #mid{
+            margin-top: 0rem;
+            
+        }
+      #l_img{
+margin-top: 2rem;
+      }
+        }
+        @media (max-width: 1120px){
+        .hero_textm{
+    font-size: 2.3rem;
+   padding: 1rem;
+        }
+        .hero_textm button{
+            font-size: .8rem;
+        }
+        .hero_textm p{
+            font-size: 0.9rem;
+        }
+      }
+      @media (max-width: 950px){
+        .hero_textm{
+            width: 80%;
+            margin-top: .7rem;
+    font-size: 2rem;
+
+        }
+        .hero_textm button{
+            font-size: .7rem;
+        }
+        .hero_textm p{
+            font-size: 0.8rem;
+        }
+      }
+        @media (max-width: 900px){
+            .infocard{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+           
+           
+        }
+       .text1{
+      
+        width: 90%;
+       }
+        .infocard .text1 h3{
+            text-align: center;
+            width: 100%;
+            font-size: 2rem;
+    margin-bottom: 1.5rem;
+        }
+        .infocard .text1 p{
+            font-size: 1rem;
+        }
+        }
+        @media (max-width: 800px){
+        .hero_textm{
+    font-size: 1.8rem;
+   padding: 1rem;
+        }
+        .hero_textm button{
+            font-size: .6rem;
+        }
+        .hero_textm p{
+            font-size: 0.7rem;
+        }
       }
     @media screen and (max-width: 750px){
+        .col-md-4:nth-child(1){
+    transition-delay: 1s;
+}
+.col-md-4:nth-child(2){
+   
+    transition-delay: 1s;
+}
+.col-md-4:nth-child(3){
+    transition-delay: 1s;
+}
+
         .sub_div_demo{
             padding: 5px;
         }
@@ -195,9 +619,7 @@
         .slider-container2{
             margin-top: 150px;
         }
-        .infocard{
-            flex-wrap: wrap;
-        }
+      
         .card{
             max-width: 70%;
         }
@@ -207,7 +629,101 @@
         .sub_div_demo{
             margin-top: 200px;
         }
+        #mid{
+           
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .flex_card {
+            max-width: 15rem;
+        }
+        .slider-container{
+            margin-top: -3rem;
+        }
+        .hero_textm{
+            width: 80%;
+            margin-top: .7rem;
+    font-size: 2rem;
+
+        }
+        .hero_textm button{
+            font-size: .7rem;
+        }
+        .hero_textm p{
+            font-size: 0.8rem;
+        }
     }
+    @media (max-width: 520px){
+      
+        .hero_textm{
+    font-size: 1.8rem;
+   padding: 1rem;
+        }
+        .hero_textm button{
+            font-size: .6rem;
+        }
+        .hero_textm p{
+            font-size: 0.7rem;
+        }
+      }
+      @media (max-width: 450px){
+        .hero_textm{
+            width: 82%;
+    font-size: 1.6rem;
+   padding: 1.1rem;
+   margin-top: 0;
+        }
+        .hero_textm button{
+            font-size: .5rem;
+        }
+        .hero_textm p{
+            font-size: 0.6rem;
+        }
+      }
+      @media (max-width: 400px){
+        .hero_textm{
+            width: 82%;
+    font-size: 1.5rem;
+   padding: 1rem;
+   margin-top: 0;
+        }
+        .hero_textm button{
+            font-size: .4rem;
+        }
+        .hero_textm p{
+            font-size: 0.5rem;
+        }
+      }
+      @media (max-width: 340px){
+        .hero_textm{
+            width: 85%;
+    font-size: 1.1rem;
+   padding: 1rem;
+   margin-top: 0;
+        }
+        .hero_textm button{
+            padding: .5rem;
+            font-size: .4rem;
+        }
+        .hero_textm p{
+            font-size: 0.4rem;
+        }
+      }
+      @media (max-width: 280px){
+        .hero_textm{
+            width: 85%;
+    font-size: 1rem;
+   padding: 1rem;
+   margin-top: 0;
+        }
+        .hero_textm button{
+            padding: .4rem;
+            font-size: .4rem;
+        }
+        .hero_textm p{
+            font-size: 0.3rem;
+        }
+      }
 </style>
 <main id="layer2">
     <!-- <h2>Main Content</h2>
@@ -215,15 +731,19 @@
 
 
     <div class="slider-container">
-        <!-- <span class="hero_textm">
-            Good health and good sense are two of life's greatest blessings.
-        </span> -->
-        <div class="slider">
+        
+        <div class="slider over">
 
-            <img src="{% static 'image1.jpg' %}" alt="Image 1" />
-            <img src="{% static 'image2.jpg' %}">
+            <img src="{% static 'govern.jpg' %}">
             <img src="{% static 'image3.jpg' %}">
+            <img src="{% static 'image2.jpg' %}"  alt="Image 1" />
+            
         </div>
+        <h2 class="hero_textm">
+           Embrace Hope, Rediscover Health.
+            <p>Our dedicated team of healthcare professionals is committed to restoring your health and well-being through personalized therapies and compassionate care.</p>
+         <button >Know More</button>
+        </h2>
     </div>
     <div class="social_media_icon">
         <i class="fa-brands fa-square-whatsapp" style="color: green;"></i>
@@ -233,39 +753,120 @@
     </div>
     <br><br>
     <div class="sub_div_demo">
-        <img src="{% static 'drimgc2.png' %}" alt="" srcset="">
-        <div class="text">
-            <p class="card-text">
-                <h3><img src="
-                    {% static "icons8-activity.gif" %}" alt="" style="width: 40px;">Recovery from the pandemic</h3>
+       
+        
+        <div class="text hidden">
+            
+            <h1>Recovery from the pandemic</h1>
+            <h4 class="card-text">
                 
                 We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
     
-            </p>
-            <button type="button m-3" class="btn btn-success">success</button>
+            </h4>
+            <button type="button m-3" class="btn btn-success" >success</button>
+            
         </div>
     </div>
         <br><br>
         {% include "cardslider.html" %}
+      <div class="mid-section">
+        <div class="section-icon">
+            <img class="section-back-icon" src="https://www.myhealingjourney.uk/img/section/section-back-icon.png" alt="">
+        </div>
+        <div class="section-text pos-rel home_ser_title hidden ">
+          <h5>Sahyadri Healthcare</h5>
+          <h1>Your Doorway to Exceptional Healthcare</h1>
+          <h4 class="mini-title">At Sahyadri Health, we are committed to transforming lives through the gift of health
+              and wellness.</h4>
+        </div>
+        <div class="row align-items-center" style="justify-content: center;">
+          <div class="col-xl-3 col-lg-4 col-md-4 hidden">
+              <div class="feature-box mb-40">
+                  <div class="feature-small-icon mb-35"><img
+                          src="https://www.myhealingjourney.uk/img/icons/steps/discovery.svg" alt="" class="w-30"></div>
+                  <div class="feature-small-content">
+                      <h3>Discover</h3>
+                      <p>Explore a world of advanced healthcare solutions tailored to your needs.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-4 hidden" id="mid">
+              <div class="feature-box mt-40">
+                  <div class="feature-small-icon mb-35 "><img
+                          src="https://www.myhealingjourney.uk/img/icons/steps/connection.svg" alt="" class="w-30"></div>
+                  <div class="feature-small-content">
+                      <h3>Connect</h3>
+                      <p>Access top-tier medical services, from cutting-edge treatments to trusted professionals.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-4 hidden" id="l_img">
+              <div class="feature-box mb-30">
+                  <div class="feature-small-icon mb-35"><img
+                          src="https://www.myhealingjourney.uk/img/icons/steps/support.svg" alt="" class="w-30"></div>
+                  <div class="feature-small-content">
+                      <h3>Thrive</h3>
+                      <p>Prioritise your well-being with our seamless support, ensuring a stress-free journey to a
+                          healthier, happier you.</p>
+                  </div>
+              </div>
+          </div>
+      </div><br><br><br><br><br><br><br>
+      </div>
   <div class="gradient-container">
-    <div class="content">
-      <h1>Your Title</h1>
-      <p>Your content goes here.</p>
+    <div class="content hidden">
+      <h1>Caring for Your Complete Well-Being</h1>
+      <p>At our clinic, we take your health and well-being to heart. It’s not just about making you feel good; it’s about ensuring that you are genuinely good..</p>
     </div>
-  </div>
+  </div><br><br><br>
 
-<div class="infocard">
-        <div class="text1">
-        <p class="card-text" >
-            <h3>Recovery from the pandemic</h3>
-            
-            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
+  <div class="subdiv_img ">
+    <div class="card flex_card hidden ">
+               <!-- Add your cards here -->
+               <img src="{% static 'doc.jpg' %}"alt="Card 1">
+               <div class="card-body">
+                   <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+               </div>
+               <!-- Add card content as needed -->
+           </div>
+           <div class="card flex_card hidden">
+               <!-- Add your cards here -->
+               <img src="{% static 'blood.jpg' %}" alt="Card 1">
+               <div class="card-body">
+                   <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+               </div>
+               <!-- Add card content as needed -->
+           </div>
+           <div class="card flex_card hidden">
+               <!-- Add your cards here -->
+               <img src="{% static 'ambu.jpg' %}" alt="Card 1">
+               <div class="card-body">
+                   <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+               </div>
+               <!-- Add card content as needed -->
+           </div>
+           <div class="card  flex_card hidden">
+               <!-- Add your cards here -->
+               <img src="{% static 'govern.jpg' %}" alt="Card 1">
+               <div class="card-body">
+                   <h5 class="card-title">Card title</h5>
+                   <p class="card-text">This is a wider card with supporting text below</p>
+                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+               </div>
+               <!-- Add card content as needed -->
 
-        </p>
-        <button type="button m-3" class="btn btn-success">success</button>
-    </div>
-       <img src="{% static 'drimgc.png' %}" alt="">
+
+               <!-- Add more cards as needed -->
+           </div>
+           
 </div>
+<br><br><br>
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="z-index: 0;"></button>
@@ -275,15 +876,18 @@
     <div class="carousel-inner" >
       <div class="carousel-item active" data-bs-interval="10000">
         <div class="card-12 text-center scrd">
-            <div class="card-header">
+            <div class="card-header" >
               Featured
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+                <center>
+                    
+                    <h2 class="card-title">Special title treatment</h2>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" style="margin-bottom: 1rem;border-radius: 0;" class="btn btn-primary">Go somewhere</a>
+                </center>
             </div>
-            <div class="card-footer text-body-secondary">
+            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
               2 days ago
             </div>
           </div>
@@ -294,11 +898,14 @@
               Featured
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+                <center>
+                    
+                    <h2 class="card-title">Special title treatment</h2>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" style="margin-bottom: 1rem;border-radius: 0" class="btn btn-primary">Go somewhere</a>
+                </center>
             </div>
-            <div class="card-footer text-body-secondary">
+            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
               2 days ago
             </div>
           </div>
@@ -309,11 +916,14 @@
               Featured
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+                <center>
+                    
+                    <h2 class="card-title">Special title treatment</h2>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" style="margin-bottom: 1rem;border-radius: 0" class="btn btn-primary">Go somewhere</a>
+                </center>
             </div>
-            <div class="card-footer text-body-secondary">
+            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
               2 days ago
             </div>
           </div>
@@ -332,59 +942,21 @@
   </div>
     <br><br>
 
-    <div class="subdiv_img">
-         <div class="card flex_card">
-                    <!-- Add your cards here -->
-                    <img src="{% static 'drimg1.jpg' %}" alt="Card 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                    <!-- Add card content as needed -->
-                </div>
-                <div class="card flex_card">
-                    <!-- Add your cards here -->
-                    <img src="{% static 'drimg2.jpg' %}" alt="Card 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                    <!-- Add card content as needed -->
-                </div>
-                <div class="card flex_card">
-                    <!-- Add your cards here -->
-                    <img src="{% static 'ambulance.jpg' %}" alt="Card 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                    <!-- Add card content as needed -->
-                </div>
-                <div class="card  flex_card">
-                    <!-- Add your cards here -->
-                    <img src="{% static 'drimg4.jpg' %}" alt="Card 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below</p>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                    <!-- Add card content as needed -->
+<!--    
+<div class="infocard">
+    
+    <div class="text1">
+        <h3>Recovery from the pandemic</h3>
+    <p class="card-text" >
+        
+        We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
 
-
-                    <!-- Add more cards as needed -->
-                </div>
-                
-    </div>
-  
-   
-  
-    <div class="sub_div_demo">
-
-    </div>
-
+    </p>
+    <button type="button m-3" class="btn btn-success">success</button>
+</div>
+   <img src="{% static 'drimgc.png' %}" alt="">
+</div>
+  -->
     {% include "footer.html" %}
 </main>
 
@@ -425,6 +997,7 @@
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
 <script>
+    
     let currentSlide = 0;
 
     function showSlide(index) {
@@ -450,6 +1023,18 @@
         changeSlide(1);
     }, 4000);
 
+     // js for animation
+    const observer=new IntersectionObserver((entries)=>{
+        entries.forEach((entry)=>{
+           
+            if(entry.isIntersecting){
+                entry.target.classList.add('show')
+            }
+        });
+    });
+    const hiddenElement=document.querySelectorAll(".hidden")
+hiddenElement.forEach((el)=>observer.observe(el))
+
 </script> 
 
 {% comment %} <script>
@@ -470,7 +1055,7 @@
 
     function animateSlider() {
         currentTranslate -= 8; // Adjust the speed by changing this value
-        slider.style.transform = `translateX(${currentTranslate}px)`;
+        slider.style.transform = translateX(${currentTranslate}px);
 
         const cardWidth = document.querySelector('.card').offsetWidth;
         const totalWidth = cardWidth * document.querySelectorAll('.card').length;
@@ -484,6 +1069,7 @@
         animationFrame = requestAnimationFrame(animateSlider);
     }
     startSlider();
+
     // slider.addEventListener('mousedown', (e) => {
     //     isDragging = true;
     //     startPos = e.clientX;
@@ -502,7 +1088,7 @@
 
     //         currentTranslate = prevTranslate + moveAmount;
 
-    //         slider.style.transform = `translateX(${currentTranslate}px)`;
+    //         slider.style.transform = translateX(${currentTranslate}px);
     //     }
 
     // });
@@ -519,7 +1105,7 @@
     //     const newIndex = Math.round(currentTranslate / cardWidth);
 
     //     prevTranslate = newIndex * cardWidth;
-    //     slider.style.transform = `translateX(${prevTranslate}px)`;
+    //     slider.style.transform = translateX(${prevTranslate}px);
 
     //     // Resume automatic sliding after manual drag
     //     startSlider();
@@ -536,9 +1122,12 @@
     //     const newIndex = Math.round(currentTranslate / cardWidth);
 
     //     prevTranslate = newIndex * cardWidth;
-    //     slider.style.transform = `translateX(${prevTranslate}px)`;
+    //     slider.style.transform = translateX(${prevTranslate}px);
 
     //     // Resume automatic sliding after manual drag
     //     startSlider();
     // });
+    
+   
+
 </script> {% endcomment %}

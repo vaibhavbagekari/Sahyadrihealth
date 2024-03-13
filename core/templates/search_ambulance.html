@@ -1,6 +1,11 @@
 {% load static %}
 {% include "header.html" %}
 <style>
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  *{
+    font-family: "Poppins", sans-serif;
+  }
     .infocard {
         margin: 10px;
         margin-top: 100px;
@@ -10,21 +15,28 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        overflow: hidden;
+        flex-wrap: wrap;
         /* flex-wrap: wrap; */
         /* position: relative; */
     }
 
-    .infocard div {
-        margin: 10px;
-    }
+ h2{
+ 
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
 
+ }
+ 
     .infocard img {
         width: 40%;
         position: relative;
-        right: 20px;
+   
         transition-duration: 0.3s;
     }
-
+    .infocard button{
+      border-radius: 0;
+    }
     .subdiv_img .card img {
         width: 100%;
     }
@@ -32,22 +44,65 @@
     .infocard img:hover {
         transform: scale(1.05);
     }
+    .text1{
+      
+      width: 40%;
+      padding: 1rem;
+    
+    }
+    @media screen and (max-width:1100px){
+      .infocard {
+      
+        flex-direction: column;
+     align-items: center;
+        text-align: center;
+        
+      
+    }
 
+   
+    .text1{
+      
+      width: 60%;
+     
+    
+    }
     @media screen and (max-width: 750px) {
         .infocard {
             flex-wrap: wrap;
         }
 
         .infocard img {
-            min-width: 350px;
-        }
+        width: 60%;
+        
     }
+    .text1{
+     
+      width: 70%;
+     
+    }
+
+    }
+    @media screen and (max-width: 400px){
+   
+    .text1{
+      padding: 0;
+      width: 90%;
+      margin-bottom: 1rem;
+    }
+    }
+    .infocard img {
+        width: 70%;
+        
+    }
+  }
+
 </style>
 <main>
     <div class="infocard">
         <div class="text1">
-            <p class="card-text">
-            <h3>Ambulance Services</h3>
+            <p  class="card-text">
+            <h2>Ambulance Services</h2>
             Our ambulance services are available 24/7 to provide immediate medical assistance. 
             Our fleet of well-equipped ambulances is staffed with trained medical professionals 
             to ensure the safety and well-being of patients during transport.
@@ -60,23 +115,25 @@
   <title>Ambulance Search</title>
   <style>
     .main_sdiv {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
+     margin-bottom: -2rem;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: max-content;
+      height: 70vh;
       background-color: #f2f2f2;
     }
 
     .search-container {
+    
       text-align: center;
+      
+      margin-bottom: 0;
     }
 
     input {
       padding: 10px;
-      width: 300px;
+      width: 20rem;
       font-size: 16px;
       border: 1px solid #ccc;
     }
@@ -109,8 +166,27 @@
     .suggestion-item:hover {
       background-color: #ddd;
     }
+    @media screen and (max-width: 500px) {
+      input{
+        width: 15rem;
+      }
+      .main_sdiv{
+        margin-bottom: -4rem;
+      }
+    }
+    @media screen and (max-width: 400px) {
+      input{
+        width: 12rem;
+      }
+    }
+    @media screen and (max-width: 340px) {
+      input{
+        width: 9rem;
+      }
+    }
   </style>
 <div class="main_sdiv">
+  
   <div class="search-container">
     <h1>Ambulance Search</h1>
     <input type="text" id="locationInput" placeholder="Enter location">
@@ -157,7 +233,7 @@
     //   // TODO: Send the location to the backend for ambulance search
     //   if (location.length > 0) {
     //     // Simulate backend response
-    //     alert(`Searching for ambulances in ${location}`);
+    //     alert(Searching for ambulances in ${location});
     //   } else {
     //     alert('Please enter a valid location');
     //   }

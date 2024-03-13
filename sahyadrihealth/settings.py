@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xsqkcohp!$w6u9rnd-7--&l!hab5x2zf)0i#5j!4o%2h#23ah6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,3 +134,12 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
+EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
+

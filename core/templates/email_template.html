@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+     
+       Dear {{patient.name}},
+    
+We hope this email finds you well. We are pleased to inform you that your appointment with Dr. {{doctor.first_name}} {{doctor.last_name}}  has been successfully booked.
+<br>
+Appointment Details:
+<ul>
+
+    <li>Doctor: Dr. {{doctor.first_name}} {{doctor.last_name}}</li>
+    <li>Date / Time: {{event.start_time}}</li>
+    {% comment %} <li>Time: [Appointment Time]</li> {% endcomment %}
+    <li>Location: [Clinic/Hospital Name, Address]</li>
+</ul>
+Please make a note of the appointment details, and ensure that you arrive at least 15 minutes before your scheduled time. If, for any reason, you are unable to attend the appointment, kindly inform us at least 24 hours in advance to reschedule or cancel.
+<br>
+If you have any specific requirements or if there's anything else you'd like to discuss before your appointment, feel free to reach out to us at [Contact Number] or [Email Address].
+<br>
+We look forward to assisting you and hope that your appointment with Dr. {{doctor.first_name}} {{doctor.last_name}} is helpful in addressing your healthcare needs.
+<br>
+Best regards,
+<br>
+Sahyadri Health
+<br>
++91 9999999999
+
+</body>
+</html>

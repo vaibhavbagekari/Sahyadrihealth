@@ -1,19 +1,78 @@
+<!-- Add these links to your HTML file -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- Add this link to your HTML file -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iN17EtYjVaP5E6ZBjNl+Zl2aW2UkPJggF0HbYUn5oQQv9BHO9gZLpyMSJ" crossorigin="anonymous">
 
-{% include "header.html" %}
+<!-- templates/slick_image_slider.html -->
 <style>
-  .demodiv{
-    padding-top: 18vh;
+  .slider-container {
+    width: 80%; /* Adjust the width as needed */
+    margin: auto;
   }
+  
+  .slick-slider {
+    width: 100%;
+  }
+  .btndiv{
+    width: 100vw;
+
+  }
+  
+  .slick-slider img {
+    width: 100%;
+    height: auto;
+  }
+  .slick-prev,
+.slick-next {
+  font-size: 24px; /* Adjust the font size as needed */
+  padding: 10px; /* Adjust the padding as needed */
+  color: black;
+  z-index: 1;
+
+}
+.slick-prev{
+  right: 0px;
+}
+.slick-next{
+  right: 0px;
+}
+
+.slick-prev i,
+.slick-next i {
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+.slick-dots{
+  list-style: square inside url("https://tse2.explicit.bing.net/th?id=OIP.mMEoXlNvHC4QN-w26uC8aQHaJj&pid=Api&P=0&h=180");
+}
 </style>
-<main>
-  <div class="demodiv">
-  {%for i in patient%}
-    <h3>{{i.name}}</h3>
-    <h3>{{i.age}}</h3>
-    <h3>{{i.password}}</h3>
-    <a class="btn btn-danger" href="/demo/{{i.id}}">delete</a>
-    <a class="btn btn-success" href="/update_patient_tem/{{i.id}}">update</a>
-  {%endfor%}
+<div class="slick-slider">
+  {% for image in images %}
+    <div>
+      <img src="{{ image.image.url }}" alt="{{ image.title }}">
+      <div class="caption">
+        <h5>{{ image.title }}</h5>
+      </div>
+    </div>
+  {% endfor %}
+  
 </div>
-  {% include "footer.html" %}
-</main>
+<div class="btndiv">
+<button class="slick-prev"><i class="fas fa-chevron-left"></i>Previous</button>
+<button class="slick-next">Next <i class="fas fa-chevron-right"></i></button>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.slick-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear',
+      prevArrow: $('.slick-prev'),
+      nextArrow: $('.slick-next')
+    });
+  });
+</script>

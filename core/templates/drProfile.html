@@ -14,80 +14,181 @@
     }
 
     .header {
-        background-color: #333;
-        color: #ff0000;
-        text-align: center;
-        padding: 1em;
+        background: linear-gradient(90deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .55), rgba(0, 0, 0, .5)), url("https://img.freepik.com/free-photo/portrait-friendly-male-doctor-dressed-uniform_171337-105.jpg?t=st=1709746055~exp=1709749655~hmac=7121eca35017fc018be81d7711a8c846580ab50686d0f198db891c4ca2aae354&w=996");
+        background-repeat: no-repeat;
+    background-size: cover;
+    background-position:top;
+        
+     position: relative;
+       justify-content: center;
+       height: 400px;
+        padding: 2rem;
+        margin-top: -1rem;
+        margin-bottom: 8rem;
+    }
+    .header h1{
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #12a9aeb1;
+       font-size: 3.2rem;
+       position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100%, -50%);
     }
 
     .card {
         display: flex;
-        gap: 2em;
+  border-bottom: 5px solid #12a8ae;
+        align-items: center;
+        justify-content: space-around;
         flex-direction: row;
-        width: 80%;
+        width: 70%;
         margin: 20px auto;
-        background-color: #fff;
+        background-color:white;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 0px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 9rem;
     }
 
     .card img {
         border-radius: 50%;
-        max-width: 250px;
-        height: auto;
-        margin-right: 20px;
+        width:15rem;
+        height: 15rem;
+       border: 4px solid #12a8ae;
+       
     }
 
     h1 {
-        color: #333;
+        color: black;
     }
 
     p {
         line-height: 1.6;
     }
 
-    .button {
+    .card .button {
         display: inline-block;
         padding: 10px 20px;
-        background-color: #333;
+        background-color: #12a8ae;
         color: #fff;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 0px;
         margin-top: 10px;
+        margin-bottom: 1rem;
+        border: none;
     }
-
+    .card .button:hover{
+        color: black;
+    }
     main {
+        background-color:#f4f9fc;
         padding-top: 12vh;
         /* margin-left: 0px; */
     }
-   
+    @media screen and (max-width: 1250px){
+        .header h1{
+  
+       font-size: 2.4rem;
+
+  transform: translate(-50%, -50%);
+    }
+     .card {
+        text-align: center;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        width: 60%;
+     }
+     .card img {
+        
+        width:10rem;
+        height: 10rem;}
+        h1 {
+       font-size: 2rem;
+       font-weight: 600;
+       color: #0b5a5d;
+    }
+   }
+   @media screen and (max-width: 750px){
+    .header h1{
+     
+       font-size: 2.4rem;
+
+  transform: translate(-50%, -50%);
+    }
+    .header{
+        margin-top: 2.5rem;
+        height: 350px;
+    }
+   }
+   @media screen and (max-width: 640px){
+    .header h1{
+        width: 70%;
+     
+       font-size: 2rem;
+
+  transform: translate(-50%, -50%);
+    }
+    .header{
+        margin-top: 2.5rem;
+        height: 350px;
+    }
+   }
+   @media screen and (max-width: 550px){
+     .card {
+       
+        width: 80%;
+     }
+     .card img {
+        
+        width:10rem;
+        height: 10rem;}
+        h1 {
+       font-size: 1.8rem;
+      
+    }
+   }
+   @media screen and (max-width: 350px){
+     .card {
+       
+        width: 82%;
+     }
+     .card img {
+        
+        width:9rem;
+        height: 9rem;}
+        h1 {
+       font-size: 1.5rem;
+      
+    }
+   }
 </style>
 <main>
     <div class="header">
-        <h1 style="color: white;">Doctor Profile</h1>
-    </div>
+        <h1 >Doctor Profile</h1>
+    </div>
+    
     {% for i in doctor %}
 
     <div class="card">
         <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo">
         <div>
+            {% comment %} {{i.username}} {% endcomment %}
             <h1>Dr. {{i.first_name}}{{i.last_name}}</h1>
             <p>Specialization: {{i.doctors.get.specialization}}</p>
             <p>Experience: {{i.doctors.get.experience}}</p>
             <p>Education: {{i.doctors.get.education}}</p>
             <p>Location: {{i.doctors.get.address}}</p>
             <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p>
-            <button class="button" onclick="bookAppointment()">Book Appointment</button>
+            <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a>
         </div>
     </div>
+    
     {% endfor %}
-    <script>
-        function bookAppointment() {
-            alert("Appointment booked successfully!");
-            // You can add additional logic for booking an appointment here
-        }
-    </script>
+    {% include "drprofile_slider.html" %}
+   
 
     {% include "footer.html" %}
 </main>

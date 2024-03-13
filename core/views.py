@@ -16,7 +16,12 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.core.mail import send_mail
 # Create your views here.
+import datetime
+from .utils import send_email_to_client
+from django.conf import settings
+from django import forms
 
 def creatPatient(request):
     if request.method == "POST":
@@ -99,6 +104,8 @@ def patient_signin(request):
         return signin(request)
     else:
         return render(request,"patient_signin.html")
+    
+    
 @login_required(login_url='/patient_signin')
 def patient_dashbord(request):
     return render(request,'patient_dashbord.html')
@@ -265,6 +272,7 @@ def search_ambulance(request):
         return render(request,"search_ambulance.html")
 
 def blood_storage(request):
+    
     if request.method == 'POST':
         return check_form(request)
     elif request.GET.get('location'):
@@ -284,6 +292,8 @@ def demo(request):
     queryset=Patient.objects.all()
     patient={'patient':queryset}
     return render(request,"demo.html",patient)
+
+
 
 @ensure_csrf_cookie
 @csrf_protect 
@@ -370,27 +380,6 @@ def drlogin(request):
 def drsignin(request):
     return render(request,"drsignin.html")
 
-def drDashbord(request):
-    # try:
-        dr = Doctor.objects.get(user = request.user)
-        even = dr.events.filter(user = dr)
-        events_data = []
-        # dr = Doctor.objects.get(id=request.user.doctors.get.id)
-        for event in even:
-            events_data.append({
-                'title': event.title,
-                'start': event.start_time.isoformat(),
-                'end': event.end_time.isoformat(),
-                'backgroundColor': event.color,
-                'borderColor': '#27ae60'
-            })
-
-        # return JsonResponse({'status': 'success', 'events': events_data})
-        return render(request,"drDashbord.html",{'events_data': events_data})
-    # except Exception as e:
-    #     # return JsonResponse({'status': 'error', 'message': str(e)})
-    #     return render(request,"drDashbord.html")
-
 @csrf_exempt  # For simplicity. You may want to use a proper CSRF token in production.
 @require_POST
 def save_events(request,id):
@@ -401,7 +390,7 @@ def save_events(request,id):
             print(data)
             # Clear existing events in the database (if needed)
             dr = Doctor.objects.get(id=id)
-            dr.events.all().delete()
+            # dr.events.all().delete()
             # Save new events to the database
             for event_data in data:
                 event = dr.events.create(
@@ -411,14 +400,118 @@ def save_events(request,id):
                     end_time=event_data.get('end'),
                     color=event_data.get('backgroundColor', '#2ecc71')
                 )
-           
-            event.save()
+                event.save()
             
             return JsonResponse({'status': 'success'})
     except json.JSONDecodeError as e:
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+@csrf_exempt  # For simplicity. You may want to use a proper CSRF token in production.
+@require_POST
+def delete_events(request,id):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('ed', '[]'))
+            dr = Doctor.objects.get(id=id)
+            k=dr.events.filter(start_time=data['start'])
+            k.delete()
+            print(k)
+            # Clear existing events in the database (if needed)
+            # dr = Doctor.objects.get(id=id)
+            # dr.events.all().delete()
+            # # Save new events to the database
+            # for event_data in data:
+            #     event = dr.events.create(
+            #         user=dr,
+            #         title=event_data.get('title', ''),
+            #         start_time=event_data.get('start'),
+            #         end_time=event_data.get('end'),
+            #         color=event_data.get('backgroundColor', '#2ecc71')
+            #     )
+           
+            # event.save()
+            
+            return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
 
 
-def drProfile(request,id):
+@login_required(login_url='/patient_signin')
+def appointmentbooking(request,id):
     doctor=User.objects.filter(id=id)
-    return render(request,"drProfile.html",{'doctor':doctor})
+    for i in doctor:
+        u = i.username
+
+    dr = Doctor.objects.get(user = u)
+    even = dr.events.all()
+    events_data = []
+        # dr = Doctor.objects.get(id=request.user.doctors.get.id)
+    for event in even:
+            events_data.append({
+                'title': event.title,
+                'start': event.start_time.isoformat(),
+                'end': event.end_time.isoformat(),
+                'backgroundColor': event.color,
+                'borderColor': '#27ae60'
+            })
+    return render(request,"AppointmentBooking.html",{'events_data':events_data,'doctor':doctor})
+now = datetime.datetime.now()
+print(now)
+@csrf_exempt  # For simplicity. You may want to use a proper CSRF token in production.
+@require_POST
+def update_events(request,id):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('events', '[]'))
+            dr = User.objects.get(id=id)
+            d=Doctor.objects.get(user = dr.username)
+            k=d.events.get(start_time=data['start'],end_time=data['end'])
+            k.title=data['title']
+            k.color=data['backgroundColor']
+            k.patient_booked=data['patient_booked']
+            k.time_of_booking=datetime.datetime.now()
+           
+            us = User.objects.get(username=data['patient_booked'])
+            p=NewUser.objects.get(user = us.username)
+            print(us)
+            send_email_to_client(k,dr,p)
+            k.save()
+            return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+def send_email(request):
+    send_email_to_client()
+    return redirect("/")
+
+def manage_availability(request):
+    doctor = request.user.doctors  # Assuming a one-to-one relationship with User
+    id=doctor.all()[0].id
+    availability_list = Availability.objects.filter(id=id)
+
+    class AvailabilityForm(forms.ModelForm):
+        class Meta:
+            model = Availability
+            fields = ['day_of_week', 'start_time', 'end_time']
+
+        def __init__(self, *args, **kwargs):
+            super(AvailabilityForm, self).__init__(*args, **kwargs)
+            self.fields['day_of_week'].widget.attrs.update({'class': 'form-control'})
+            self.fields['start_time'].widget.attrs.update({'class': 'form-control'})
+            self.fields['end_time'].widget.attrs.update({'class': 'form-control'})
+
+    if request.method == 'POST':
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            availability = form.save(commit=False)
+            availability.doctor = doctor.all()[0]
+            availability.save()
+            messages.success(request, 'Availability added successfully!')
+            return redirect('manage_availability')
+        else:
+            messages.error(request, 'Invalid form submission. Please check the data.')
+    else:
+        form = AvailabilityForm()
+
+    return render(request, 'manage_availability.html', {'form': form, 'availability_list': availability_list})

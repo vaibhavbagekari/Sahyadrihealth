@@ -1,82 +1,295 @@
- <style>
-    .footer_container{
-      width: 100%;
+<style>
+  .footer_container {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .footer {
+    background: #000000d6;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   
+  }
+
+  .quick-links {
+    list-style: none;
+    padding: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+
+  }
+  .quick-links h4{
+    color: white;
+  }
+.contact {
+  color: white;
+}
+  .quick-links li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  .quick-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight:500;
+    transition: color 0.3s ease;
+    
+    
+  }
+
+  .quick-links li a:hover {
+    color: blue;
+    
+  }
+
+  .address {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ecf0f1;
+  }
+
+  .social-icons {
+    margin-top: 20px;
+  }
+
+  .social-icons a {
+    color: #ecf0f1;
+    margin: 0 15px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    color: #3498db;
+  }
+
+  .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #ecf0f1;
+  }
+
+  .designer-link {
+    font-size: 12px;
+    color: #bdc3c7;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    text-align: left;
+     z-index: 0;
+  }
+
+  .mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    text-align: left;
+    
+    
+  }
+  .quick-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .quick-links li a:hover {
+    color: gray;
+    transform: scale(1.5); 
+  }
+
+ 
+  .quick-links li a:hover::after {
+    width: 100%;
+    left: 0;
+  } 
+  .quick-links h4{
+  position: relative;
+  width: 100%;
+  font-size: 1.3rem; /* Adjust the font size as needed */
+}
+.contact {
+  text-align:center;
+  position: relative;
+  font-size: 1.3rem; 
+  z-index: 0;
+}
+
+.quick-links h4::after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -5px; /* Adjust the distance of the line from the text */
+  left: -8px;
+  width: 50%; /* Adjust the width of the line */
+  height: 2px; /* Adjust the height of the line */
+  background-color: blue; /* Adjust the color of the line */
+  transition: width 0.3s ease;
+}
+ .contact::after{
+  content: "";
+  display: block;
+  position: absolute;
+  
+  bottom: -5px; /* Adjust the distance of the line from the text */
+  left: 7rem;
+ 
+  width: 30%; /* Adjust the width of the line */
+  height: 2px; /* Adjust the height of the line */
+  background-color: blue; /* Adjust the color of the line */
+  transition: width 0.3s ease;
+ }
+.quick-links h4:hover::after {
+  width: 70%;
+}
+.contact:hover::after{
+  width: 40%;
+}
+.link a{
+  text-decoration: none;
+  color: green;
+}
+@media screen and (max-width: 1200px){
+  .contact::after{
+    left: 4rem;
+    right: 7rem;
+  }
+}
+@media screen and (max-width: 1000px){
+  .footer{
+      flex-direction: column;
+    }
+    .footalign-right{
+margin-top: 3rem;
+    }
+    .contact::after{
+    left: 7rem;
+   
+  }
+  
+}
+ 
+  @media screen and (max-width: 740px){
+    .quick-links{
+      /* flex-direction: column; */
+      width: 100vw;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .footer {
+      margin-top: 4rem;
+    }
+    .quick-links{
+      /* flex-direction: column; */
+      width: 100vw;
+    }
+    .mid{
+      /* margin-top: 1rem; */
+      
     }
   
-    .footer {
-      background: #343a40;
-      color: #fff;
-      width: 100%;
-      /* padding: 30px 20px; */
+  }
+  @media screen and (max-width: 400px){
+    .quick-links{
+      flex-direction: column;
+      align-items: center;
+     text-align: center;
+     
+    }
+ 
+    .quick-links li a {
+      position: relative;
+      left:-3rem
+    }
+    .mid{
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      
+    }
+    .mid li a{
+      left: -1.3rem;
+      position: relative;
+    }
+  
+    .quick-links h4{
       text-align: center;
-      /* border-top-left-radius: 10px; */
-      /* border-top-right-radius: 10px; */
-      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
     }
+    .quick-links h4::after{
+      width: 40%;
+      left: 1.8rem;
+    }
+  }
+  
+</style>
 
-    .footer p {
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .quick-links {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-    }
-
-    .quick-links li {
-      display: inline-block;
-      margin-right: 15px;
-    }
-
-    .address {
-      margin-top: 20px;
-      font-size: 14px;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-    }
-
-    .social-icons a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 20px;
-    }
-
-    .social-icons a:hover {
-      text-decoration: none;
-      color: #007bff; /* Change color on hover as per your preference */
-    }
-  </style>
 </head>
+
 <body>
 
   <div class="footer_container">
-    
-        <div class="footer">
-          <ul class="quick-links">
+
+    <div class="footer">
+      <div class="footalign-left">
+        <ul class="quick-links">
+          <div class="left">
+            <h4>Quick Links</h4>
             <li><a href="/home/">Home</a></li>
             <li><a href="/services/">Services</a></li>
             <li><a href="/about/">About Us</a></li>
             <li><a href="/contact/">Contact</a></li>
-            <li><a href="/drSigUp/" >Doctor SingUp</a></li>
-            <li><a href="/drsignin/" >Doctor SingIn</a></li>
-          </ul>
-          <div class="address">
-            <p>Your Health Clinic</p>
-            <p>123 Wellness Street</p>
-            <p>City, Country</p>
+            <li><a href="/drSigUp/">Doctor SingUp</a></li>
+            <li><a href="/drsignin/">Doctor SingIn</a></li>
           </div>
-          <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          
+          <div class="mid">
+            <h4>Services</h4>
+            <li><a href="/services/">Health Information</a></li>
+            <li><a href="/services/">Blood Storage</a></li>
+            <li><a href="/services/">Ambulance Service</a></li>
+            <li><a href="/services/">Government Service</a></li>
+            <li><a href="/services/">Online Appointment</a></li>
           </div>
-          <p>&copy; 2024 Your Health Website. All rights reserved.</p>
-          <p>Designed by <a href="https://www.yourwebdesigner.com" target="_blank">Your Web Designer</a></p>
-        </div>
+        </ul>
       </div>
-    
+      <div class="footalign-right">
+        <h4 class="contact">Contact Us</h4>
+        <div class="address">
+          <p>Your Health Clinic</p>
+          <p>123 Wellness Street</p>
+          <p>City, Country</p>
+        </div><br>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      
+        <p class="link">Designed by <a href="https://www.yourwebdesigner.com" target="_blank">Your Web Designer</a></p>
+        <p class="p">&copy; 2024 Your Health Website. All rights reserved.</p>
+      </div>
+     
+    </div>
+  
+  </div>
