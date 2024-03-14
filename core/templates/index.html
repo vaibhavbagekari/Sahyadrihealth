@@ -407,7 +407,7 @@ h5{
 .hidden{
     
     opacity: 0;
-    transition: all 1s;
+    transition: all 0.65s;
     filter: blur(5px);
     transform: translateX(100%);
    
@@ -964,12 +964,14 @@ margin-top: 2rem;
 </body>
 
 </html>
-<script src="script.js"></script>
+<!-- <script src="script.js"></script> -->
 <script>
 
     function toggle_layout() {
         var obj1 = document.getElementById("nav_bar");
         obj1.classList.toggle('nav_bar_mob');
+        var objm = document.getElementById("nav_overlay");
+            objm.classList.toggle('toggle_nav_overlay');
         var obj2 = document.getElementById('icon');
         obj2.classList.toggle('fa-xmark');
         obj2.classList.toggle('fa-bars');

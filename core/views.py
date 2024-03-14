@@ -105,10 +105,20 @@ def patient_signin(request):
     else:
         return render(request,"patient_signin.html")
     
-    
+
 @login_required(login_url='/patient_signin')
 def patient_dashbord(request):
-    return render(request,'patient_dashbord.html')
+    if request.GET.get('location'):
+        data=Doctor.objects.filter(address__icontains=request.GET.get('location'),category__icontains=request.GET.get('category'))
+        count=len(data)
+        ad=request.GET.get('location')
+        if not data.exists():
+           m="docter not found"
+           return render(request,"patient_dashbord.html",{'data':data,'m':m})
+        else:
+            return render(request,"patient_dashbord.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
+    else:
+        return render(request,'patient_dashbord.html')
 
 def logout_btn(request):
     logout(request)
@@ -151,6 +161,9 @@ def get_locations():
     for i in data:
         list.append(i.address)
     return list
+
+def cut_event(request):
+    return redirect(request.path)
 
 def home(request):
     if request.method == 'POST':

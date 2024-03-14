@@ -84,9 +84,7 @@
             font-size: 1.7rem;
             font-weight: bolder;
             color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            
         }
 
         header {
@@ -345,6 +343,16 @@
             /*
             z-index: 10000;
             backdrop-filter: blur(13px); */
+        }
+        .loader_overlay{
+            display: none;
+            position: fixed;
+            height: 200vh;
+            width: 200vw;
+            background-color: #6f626279;
+            z-index: 1000;
+            background-color: #16131379;
+            backdrop-filter: blur(3px);
         }
 
         .sure {}
@@ -674,9 +682,7 @@
         }
 
         .icon {
-            position: relative;
-            top: 3rem;
-            left: 1rem;
+           
             z-index: 1;
         }
 
@@ -1092,7 +1098,8 @@
             position: fixed;
             left: 50%;
             top: 50%;
-            z-index: 1000;
+            transform: translate(-50,-50);
+            z-index: 10000;
             visibility: visible;
             -webkit-animation: animball_two 1s infinite;
             -moz-animation: animball_two 1s infinite;
@@ -1126,25 +1133,25 @@
         }
 
         .ball_1 {
-            background-color: #CB2025;
+            background-color: #6af035;
             top: 0;
             left: 0
         }
 
         .ball_2 {
-            background-color: #F8B334;
+            background-color: #1babff;
             top: 0;
             left: 24px
         }
 
         .ball_3 {
-            background-color: #00A096;
+            background-color: #3bfe38;
             top: 24px;
             left: 0
         }
 
         .ball_4 {
-            background-color: #9FC725;
+            background-color: #30dbfd;
             top: 24px;
             left: 24px
         }
@@ -1302,9 +1309,10 @@
             z-index: 999;
             position: fixed;
             display: none;
+            /* z-index: 1000; */
         }
         .toggle_nav_overlay{
-            
+            /* z-index: 1000; */
             display: block;
         }
         .zindex{
@@ -1328,8 +1336,7 @@
 
     <style>
         .icon {
-            margin: 2px;
-            padding: 4px;
+           
         }
     </style>
 </head>
@@ -1350,18 +1357,13 @@
             <div class="ballcolor ball_4">&nbsp;</div>
         </div>
     </div>
-    <div class="overlay" id="loader_overlay"></div>
+    <div class="loader_overlay" id="loader_overlay"></div>
     <div class="overlay" id="overlay"></div>
     <header id="head">
-        {% if messages %}
-        {% for message in messages %}
-        <script>
-            alert("{{message}}")
-        </script>
-        {% endfor %}
-        {% endif %}
+        
         <div></div>
-        <h2 class="titel"><img src="{% static 'sahyadri.png' %}" alt="" class="logo_img">Sahyadri </h2>
+        <h2 class="titel">Sahyadri health</h2>
+
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
         <div class="search_bar">
             <form action="">
@@ -1585,4 +1587,5 @@
             }
                 });
         });
+        
     </script>

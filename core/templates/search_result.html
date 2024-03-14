@@ -124,6 +124,15 @@
 {% endif %}
 <script>
     function cutSearchResults() {
-        document.querySelector(".search-results").style.display = "none";
+        // window.location.href = "cut_event"
+        // Get the current URL without the query string
+        var urlWithoutParams = window.location.origin + window.location.pathname;
+        
+        // Replace the current URL without query parameters
+        history.replaceState({}, document.title, urlWithoutParams);
+        let currentPageURL = window.location.href;
+        window.location.href = currentPageURL;
+
+        // document.querySelector(".search-results").style.display = "none";
     }
 </script>
