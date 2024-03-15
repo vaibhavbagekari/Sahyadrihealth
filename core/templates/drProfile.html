@@ -5,7 +5,6 @@
 
 
 <style>
-    
     body {
         font-family: 'Arial', sans-serif;
         margin: 0;
@@ -16,48 +15,58 @@
     .header {
         background: linear-gradient(90deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .55), rgba(0, 0, 0, .5)), url("https://img.freepik.com/free-photo/portrait-friendly-male-doctor-dressed-uniform_171337-105.jpg?t=st=1709746055~exp=1709749655~hmac=7121eca35017fc018be81d7711a8c846580ab50686d0f198db891c4ca2aae354&w=996");
         background-repeat: no-repeat;
-    background-size: cover;
-    background-position:top;
-        
-     position: relative;
-       justify-content: center;
-       height: 400px;
+        background-size: cover;
+        background-position: top;
+
+        position: relative;
+        justify-content: center;
+        height: 400px;
         padding: 2rem;
-        margin-top: -1rem;
-        margin-bottom: 8rem;
+        margin-top: 0rem;
+        margin-bottom: 3rem;
     }
-    .header h1{
+
+    .header h1 {
         font-weight: 500;
         text-transform: uppercase;
         color: #12a9aeb1;
-       font-size: 3.2rem;
-       position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-100%, -50%);
+        font-size: 3.2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-100%, -50%);
     }
 
     .card {
         display: flex;
-  border-bottom: 5px solid #12a8ae;
+        border-bottom: 5px solid #12a8ae;
         align-items: center;
         justify-content: space-around;
         flex-direction: row;
-        width: 70%;
-        margin: 20px auto;
-        background-color:white;
+        width: 90%;
+        margin: auto;
+        background-color: white;
         padding: 20px;
         border-radius: 0px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 9rem;
+        margin-bottom: 2rem;
     }
-
+    .info_card{
+        border-bottom: 5px solid #12a8ae;
+        width: 90%;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 20px;
+        border-radius: 0px;
+        margin-bottom: 2rem;
+    }
     .card img {
         border-radius: 50%;
-        width:15rem;
+        width: 15rem;
         height: 15rem;
-       border: 4px solid #12a8ae;
-       
+        border: 4px solid #12a8ae;
+
     }
 
     h1 {
@@ -79,97 +88,154 @@
         margin-bottom: 1rem;
         border: none;
     }
-    .card .button:hover{
+
+    .card .button:hover {
         color: black;
     }
+
     main {
-        background-color:#f4f9fc;
+        background-color: #f4f9fc;
         padding-top: 12vh;
         /* margin-left: 0px; */
     }
-    @media screen and (max-width: 1250px){
-        .header h1{
-  
-       font-size: 2.4rem;
 
-  transform: translate(-50%, -50%);
+    @media screen and (max-width: 1250px) {
+        .header h1 {
+
+            font-size: 2.4rem;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .card {
+            text-align: center;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 90%;
+        }
+
+        .card img {
+
+            width: 10rem;
+            height: 10rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b5a5d;
+        }
     }
-     .card {
+
+    @media screen and (max-width: 750px) {
+        .header h1 {
+
+            font-size: 2.4rem;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .header {
+            margin-top: 2.5rem;
+            height: 350px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .header h1 {
+            width: 70%;
+
+            font-size: 2rem;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .header {
+            margin-top: 2.5rem;
+            height: 350px;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        .card {
+
+            width: 80%;
+        }
+
+        .card img {
+
+            width: 10rem;
+            height: 10rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+
+        }
+    }
+    .button1 {
+        background-color: #1c87c9;
+        -webkit-border-radius: 60px;
+        border-radius: 30px;
+        border: none;
+        color: #eeeeee;
+        cursor: pointer;
+        display: inline-block;
+        font-family: sans-serif;
+        font-size: 10px;
+        padding: 10px;
         text-align: center;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1rem;
-        width: 60%;
-     }
-     .card img {
-        
-        width:10rem;
-        height: 10rem;}
-        h1 {
-       font-size: 2rem;
-       font-weight: 600;
-       color: #0b5a5d;
-    }
-   }
-   @media screen and (max-width: 750px){
-    .header h1{
-     
-       font-size: 2.4rem;
+        text-decoration: none;
+      }
+      @keyframes glowing {
+        0% {
+          background-color: #2ba805;
+          box-shadow: 0 0 5px #2ba805;
+        }
+        50% {
+          background-color: #49e819;
+          box-shadow: 0 0 20px #49e819;
+        }
+        100% {
+          background-color: #2ba805;
+          box-shadow: 0 0 5px #2ba805;
+        }
+      }
+      .button1 {
+        animation: glowing 1300ms infinite;
+      }
 
-  transform: translate(-50%, -50%);
-    }
-    .header{
-        margin-top: 2.5rem;
-        height: 350px;
-    }
-   }
-   @media screen and (max-width: 640px){
-    .header h1{
-        width: 70%;
-     
-       font-size: 2rem;
+    @media screen and (max-width: 350px) {
+        .card {
 
-  transform: translate(-50%, -50%);
-    }
-    .header{
-        margin-top: 2.5rem;
-        height: 350px;
-    }
-   }
-   @media screen and (max-width: 550px){
-     .card {
-       
-        width: 80%;
-     }
-     .card img {
-        
-        width:10rem;
-        height: 10rem;}
+            width: 82%;
+        }
+
+        .card img {
+
+            width: 9rem;
+            height: 9rem;
+        }
+
         h1 {
-       font-size: 1.8rem;
-      
+            font-size: 1.5rem;
+
+        }
     }
-   }
-   @media screen and (max-width: 350px){
-     .card {
-       
-        width: 82%;
-     }
-     .card img {
-        
-        width:9rem;
-        height: 9rem;}
-        h1 {
-       font-size: 1.5rem;
-      
+    .card_title{
+        margin: auto;
+        padding:.71rem;
+        text-transform: uppercase;
+        color: #12a8ae;
     }
-   }
 </style>
 <main>
     <div class="header">
-        <h1 >Doctor Profile</h1>
-    </div>
-    
+        <h1>Doctor Profile</h1>
+            
+    </div>
+
     {% for i in doctor %}
 
     <div class="card">
@@ -183,12 +249,30 @@
             <p>Location: {{i.doctors.get.address}}</p>
             <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p>
             <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a>
+            <a class="button" href="/appointmentbooking/{{i.id}}">Contact Hospital</a>
         </div>
     </div>
-    
-    {% endfor %}
-    {% include "drprofile_slider.html" %}
-   
+    <div class="info_card">
+        <h3 class="card_title"><i class="fa-solid fa-hospital"></i> Hospital</h3>
+        {% include "drprofile_slider.html" %}
+    </div>
+    <div class="info_card">
+        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Health Insurance</h3>
+        <span>
+            <h5>Title</h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
+        </span>
+    </div>
+    <div class="info_card">
+        <h3 class="card_title"><i class="fa-solid fa-handshake-angle"></i> Goverment Scheme</h3>
+        <span>
+            <h5>Title <button type="submit" class="button1">Click here!</button></h5>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
+        </span>
+    </div>
+        {% endfor %}
+
+
 
     {% include "footer.html" %}
 </main>
