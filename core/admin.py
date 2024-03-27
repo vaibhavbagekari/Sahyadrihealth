@@ -50,3 +50,41 @@ class AvailabilityAdmin(admin.ModelAdmin):
         'end_time',
     )
 admin.site.register(Availability,AvailabilityAdmin)
+
+class Availability_weeklyAdmin(admin.ModelAdmin):
+    Availability_weeklyDisplay = (
+        'doctor',
+        'json'
+    )
+admin.site.register(Availability_weekly,Availability_weeklyAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    ConntactDisplay=(
+        'fullname',
+        'contact',
+        'message'
+    )
+
+admin.site.register(Contact,ContactAdmin)
+
+class AmbulanceAdmin(admin.ModelAdmin):
+    AmbulanceDisplay=(
+        'name',
+        'name_owner',
+        'about_service',
+        'contact',
+        'location'
+    )
+
+admin.site.register(Ambulance,AmbulanceAdmin)
+
+class bloodStoragAdmin(admin.ModelAdmin):
+    bloodStorageDisplay = (
+        'name',
+'name_owner',
+'about_service',
+'contact',
+'location'
+    )
+
+admin.site.register(bloodStorage,bloodStoragAdmin)

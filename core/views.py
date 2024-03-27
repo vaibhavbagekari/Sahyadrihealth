@@ -4,13 +4,13 @@ from pydoc import render_doc
 from urllib import request
 from django.views.decorators.csrf import ensure_csrf_cookie,csrf_protect
 from django.shortcuts import redirect, render
-from matplotlib import category
+
 from .models import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.hashers import make_password, check_password
+
 from django.contrib.auth.decorators import login_required
 import json
 from django.http import JsonResponse
@@ -240,7 +240,20 @@ def findDr(request):
 
 def contactUs(request):
      if request.method == 'POST':
-        return check_form(request)
+        if request.POST.get('check')=='contactform':
+            fullname = request.POST.get('fullName')
+            contact = request.POST.get('contact')
+            message= request.POST.get('message')
+            obj = Contact.objects.create(
+                fullname=fullname,
+                contact=contact,
+                message=message
+            )
+            obj.save()
+            messages.add_message(request, messages.INFO, "Message has been Send successfully, Thank You !")
+            return redirect(request.path)
+        else:
+            return check_form(request)
      elif request.GET.get('location'):
         data=Doctor.objects.filter(address__icontains=request.GET.get('location'),category__icontains=request.GET.get('category'))
         count=len(data)
@@ -270,7 +283,10 @@ def goverment_scheme(request):
     
 
 def search_ambulance(request):
-    if request.method == 'POST':
+    if request.GET.get('locationOfAmbulance'):
+        l=request.GET.get('locationOfAmbulance')
+        
+    elif request.method == 'POST':
         return check_form(request)
     elif request.GET.get('location'):
         data=Doctor.objects.filter(address__icontains=request.GET.get('location'),category__icontains=request.GET.get('category'))

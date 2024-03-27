@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import ImageForm
 from django.contrib.auth.decorators import login_required
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/drsignin')
 def drDashbord(request):
@@ -60,3 +64,49 @@ def drDashbord_setting(request):
     images = dr_img.Himgs.all()
     images=reversed(images)
     return render(request,'drDashbord_setting.html',{'images': images})
+
+def availability(request):
+    return render(request,'brAvailability.html')
+  
+@csrf_exempt  # For simplicity. You may want to use a proper CSRF token in production.
+# @require_POST
+def save_availability(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('availabilities','[]'))
+            doctor = request.user.doctors.all()[0]
+            Availability.objects.filter(doctor=doctor).delete()
+            obj = Availability_weekly.objects.create(
+                doctor = doctor,
+                json = data
+            )
+            obj.save()
+            return redirect(request.path)
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+
+@csrf_exempt
+def save_day(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('dayEvent','[]'))
+            ls1 = list(data)
+            ls = list(data.values())
+            doctor = request.user.doctors.all()[0]
+            Availability.objects.filter(doctor=doctor).delete()
+            for i in range(len(ls)):
+                obj =  Availability.objects.create(
+                    doctor = doctor,
+                    session = ls1[i],
+                    start_time = ls[i]['start'],
+                    end_time = ls[i]['end']
+                )
+                obj.save()
+
+            return JsonResponse({'status': 'success'})
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})

@@ -58,6 +58,9 @@ urlpatterns = [
     # path('doctor_availability/<id>', doctor_views.doctor_availability, name='doctor_availability'),
     path('manage-availability/', manage_availability, name='manage_availability'),
     path('cut_event/', cut_event, name='cut_event'),
+    path('availability/', doctor_views.availability, name='availability'),
+    path('save_availability/', doctor_views.save_availability, name='save_availability'),
+    path('save_day/', doctor_views.save_day, name='save_day'),
 
 
 ]    

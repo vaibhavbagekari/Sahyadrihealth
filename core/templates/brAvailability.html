@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Weekly Availability</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .card-div {
+            height: cal(100%-15vh);
+            display: flex;
+            /* align-items: center; */
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .context_div {}
+
+        .availability {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .session {
+            margin: 10px;
+            margin-bottom: 20px;
+        }
+
+        .session h3 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            list-style: none;
+        }
+
+        li::before {
+            content: "\2022";
+            /* Bullet point */
+            color: #333;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+</head>
+
+<body>
+    {% include "drDashbord_header.html" %}
+    <div class="content">
+        <div class="header_div"><i class="fa fa-bars" aria-hidden="true" onclick="myFunction()"></i>
+            <div class="title_bar">
+                <h3><i class="fa-solid fa-gear" style="margin: 0px;"></i> Appointments</h3>
+            </div>
+        </div>
+        <h2>Availability of Day</h2>
+        <div class="card-div">
+            <div class="session">
+                <h3>Morning Session</h3>
+                <ul>
+                    <li><label for="mstime">start time</label> <input type="time" name="mstime" id="mstime" required></li>
+                    <li><label for="metime">end time</label> <input type="time" name="metime" id="metime" required></li>
+                </ul>
+            </div>
+            <div class="session">
+                <h3>Afternoon Session</h3>
+                <ul>
+                    <li><label for="astime">start time</label> <input type="time" name="astime" id="astime" required></li>
+                    <li><label for="aetime">end time</label> <input type="time" name="aetime" id="aetime" required></li>
+                </ul>
+            </div>
+            <div class="session">
+                <h3>Evening Session</h3>
+                <ul>
+                    <li><label for="estime">start time</label> <input type="time" name="estime" id="estime" required></li>
+                    <li><label for="eetime">end time</label> <input type="time" name="eetime" id="eetime" required></li>
+                </ul>
+            </div>
+        </div>
+        <button id="save_day">Save Availability</button>
+        <h2>Doctor's Weekly Availability</h2>
+
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Morning</th>
+                <th>Afternoon</th>
+                <th>Evening</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td><input type="checkbox" id="MondayMorning" name="MondayMorning"></td>
+                <td><input type="checkbox" id="MondayAfternoon" name="MondayAfternoon"></td>
+                <td><input type="checkbox" id="MondayEvening" name="MondayEvening"></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td><input type="checkbox" id="TuesdayMorning" name="TuesdayMorning"></td>
+                <td><input type="checkbox" id="TuesdayAfternoon" name="TuesdayAfternoon"></td>
+                <td><input type="checkbox" id="TuesdayEvening" name="TuesdayEvening"></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td><input type="checkbox" id="WednesdayMorning" name="WednesdayMorning"></td>
+                <td><input type="checkbox" id="WednesdayAfternoon" name="WednesdayAfternoon"></td>
+                <td><input type="checkbox" id="WednesdayEvening" name="WednesdayEvening"></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td><input type="checkbox" id="ThursdayMorning" name="ThursdayMorning"></td>
+                <td><input type="checkbox" id="ThursdayAfternoon" name="ThursdayAfternoon"></td>
+                <td><input type="checkbox" id="ThursdayEvening" name="ThursdayEvening"></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td><input type="checkbox" id="FridayMorning" name="FridayMorning"></td>
+                <td><input type="checkbox" id="FridayAfternoon" name="FridayAfternoon"></td>
+                <td><input type="checkbox" id="FridayEvening" name="FridayEvening"></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td><input type="checkbox" id="SaturdayMorning" name="SaturdayMorning"></td>
+                <td><input type="checkbox" id="SaturdayAfternoon" name="SaturdayAfternoon"></td>
+                <td><input type="checkbox" id="SaturdayEvening" name="SaturdayEvening"></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td><input type="checkbox" id="SundayMorning" name="SundayMorning"></td>
+                <td><input type="checkbox" id="SundayAfternoon" name="SundayAfternoon"></td>
+                <td><input type="checkbox" id="SundayEvening" name="SundayEvening"></td>
+            </tr>
+
+            <!-- Repeat rows for Wednesday to Sunday -->
+        </table>
+
+        <button id="saveEventsBtn">Save Availability</button>
+
+        <script>
+            // function saveAvailability() {
+            //     var availability = {
+            //         Monday: {
+            //             morning: document.getElementById("MondayMorning").checked,
+            //             afternoon: document.getElementById("MondayAfternoon").checked,
+            //             evening: document.getElementById("MondayEvening").checked
+            //         },
+            //         Tuesday: {
+            //             morning: document.getElementById("TuesdayMorning").checked,
+            //             afternoon: document.getElementById("TuesdayAfternoon").checked,
+            //             evening: document.getElementById("TuesdayEvening").checked
+            //         },
+            //         // Repeat for Wednesday to Sunday
+            //     };
+
+            //     // Here you can send the 'availability' object to your server to store the data
+            //     console.log(availability);
+            //     alert("Availability saved successfully!");
+            // }
+            $(document).ready(function () {
+                $('#saveEventsBtn').click(function () {
+                    var availability = {
+                        Monday: {
+                            morning: document.getElementById("MondayMorning").checked,
+                            afternoon: document.getElementById("MondayAfternoon").checked,
+                            evening: document.getElementById("MondayEvening").checked
+                        },
+                        Tuesday: {
+                            morning: document.getElementById("TuesdayMorning").checked,
+                            afternoon: document.getElementById("TuesdayAfternoon").checked,
+                            evening: document.getElementById("TuesdayEvening").checked
+                        },
+                        Wednesday: {
+                            morning: document.getElementById("WednesdayMorning").checked,
+                            afternoon: document.getElementById("WednesdayAfternoon").checked,
+                            evening: document.getElementById("WednesdayEvening").checked
+                        },
+                        Thursday: {
+                            morning: document.getElementById("ThursdayMorning").checked,
+                            afternoon: document.getElementById("ThursdayAfternoon").checked,
+                            evening: document.getElementById("ThursdayEvening").checked
+                        },
+                        Friday: {
+                            morning: document.getElementById("FridayMorning").checked,
+                            afternoon: document.getElementById("FridayAfternoon").checked,
+                            evening: document.getElementById("FridayEvening").checked
+                        },
+                        Saturday: {
+                            morning: document.getElementById("SaturdayMorning").checked,
+                            afternoon: document.getElementById("SaturdayAfternoon").checked,
+                            evening: document.getElementById("SaturdayEvening").checked
+                        },
+                        Sunday: {
+                            morning: document.getElementById("SundayMorning").checked,
+                            afternoon: document.getElementById("SundayAfternoon").checked,
+                            evening: document.getElementById("SundayEvening").checked
+                        },
+                        // Repeat for Wednesday to Sunday
+                    };
+                    $.ajax(
+                        {
+                            url: '/save_availability/',
+                            method: 'POST',
+                            data: { availabilities: JSON.stringify(availability) },
+                            success: function (response) {
+                                console.log(response);
+                                alert('Events saved successfully!');
+                            },
+                            error: function (error) {
+                                console.error(error);
+                                alert('Error saving events!');
+                            }
+                        }
+                    )
+                });
+                $('#save_day').click(function () {
+                    var dayEvent = {
+                        Morning: {
+                            start: document.getElementById('mstime').value,
+                            end: document.getElementById('metime').value
+                        },
+                        Afternoon: {
+                            start: document.getElementById('astime').value,
+                            end: document.getElementById('aetime').value
+                        },
+                        Evening: {
+                            start: document.getElementById('estime').value,
+                            end: document.getElementById('eetime').value
+                        }
+                    };
+                    console.log(dayEvent + "hii");
+                    $.ajax(
+                        {
+                            url: '/save_day/',
+                            method: 'POST',
+                            data: { dayEvent: JSON.stringify(dayEvent) },
+                            success: function (response) {
+                                console.log(response);
+                                alert('Events saved successfully!');
+                            },
+                            error: function (error) {
+                                console.error(error);
+                                alert('Error saving events!');
+                            }
+                        }
+                    );
+                });
+
+            });
+        </script>
+        {% comment %} {% include "footer.html" %} {% endcomment %}
+    </div>
+</body>
+
+</html>

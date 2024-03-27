@@ -1,94 +1,131 @@
 {% load static %}
 {% include "header.html" %}
-  <title>Blood Storage Center Search</title>
-  <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-   
-   *{
-        font-family: "Poppins", sans-serif;
-   }
-      .main_sdiv {
-      /* font-family: Arial, sans-serif; */
-      margin-bottom: -2rem;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70vh;
-      background-color: #f2f2f2;
-    }
+<title>Blood Storage Center Search</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-    .search-container {
-      text-align: center;
-      
-    }
-    .search-container h2{
-      margin-bottom: 1rem;
-    }
+  * {
+    font-family: "Poppins", sans-serif;
+  }
 
+  .main_sdiv {
+    /* font-family: Arial, sans-serif; */
+    margin-bottom: -2rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    background-color: #f2f2f2;
+  }
+
+  .search-container {
+    text-align: center;
+
+  }
+
+  .search-container h2 {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    padding: 10px;
+    width: 20rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+
+  #suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    border-top: none;
+  }
+
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .suggestion-item:hover {
+    background-color: #ddd;
+  }
+
+  .gradient-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to right, rgba(53, 153, 241, 0.777), rgba(255, 255, 255, 0.5)),
+    url("{% static 'donor.jpg' %} ");
+    background-size: cover;
+    background-position: center;
+    color: #125953;
+    ;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+  .sresult{
+    width: 100%;
+    height: 70vh;
+    background-color: #f2f2f2;
+    overflow-y: scroll
+  }
+  .profile_card{
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin: 1rem;
+    background-color: #bebebe;
+    box-shadow: 2px 2px 2px rgba(67, 67, 67, 0.551);
+    transition-duration: 0.3s;
+    border-radius: 10px;
+  }
+  .profile_card:hover{
+    background-color: #acababc3;
+    box-shadow: 4px 4px 2px rgba(67, 67, 67, 0.551);
+  }
+  .img_div{
+    margin: 5px;
+    padding: 8px;
+    border-radius: 50%;
+    /* overflow: hidden; */
+  }
+  .context_div{
+    margin: 5px;
+    padding: 8px;
+  }
+
+  @media screen and (max-width: 500px) {
     input {
-      padding: 10px;
-      width: 20rem;
-      font-size: 16px;
-      border: 1px solid #ccc;
+      width: 15rem;
     }
+  }
 
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
+  @media screen and (max-width: 400px) {
+    input {
+      width: 10rem;
     }
-
-    #suggestions {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      max-height: 200px;
-      overflow-y: auto;
-      border: 2px solid #ccc;
-      border-top: none;
-    }
-
-    .suggestion-item {
-      padding: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .suggestion-item:hover {
-      background-color: #ddd;
-    }
-    .gradient-container {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(to right,rgba(53, 153, 241, 0.777), rgba(255, 255, 255, 0.5)), url("{% static 'donor.jpg' %} ");
-      background-size: cover;
-      background-position: center;
-      color: #125953;;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color:black;
-    }
-    @media screen and (max-width: 500px) {
-      input{
-        width:15rem;
-      }
-    }
-    @media screen and (max-width: 400px) {
-      input{
-        width:10rem;
-      }
-    }
-    
-  </style>
+  }
+</style>
 <main>
-    
+
 
   <div class="gradient-container">
     <div class="content">
@@ -97,18 +134,44 @@
     </div>
   </div>
 
-    
-    <div class="main_sdiv">
-  <div class="search-container">
-    <h2>Blood Storage Center Search</h2>
-    <input type="text" id="locationInput" placeholder="Enter location">
-    <button onclick="searchBloodCenter()">Search</button>
-    <ul id="suggestions"></ul>
+  <div class="main_sdiv">
+    <div class="search-container">
+      <h2>Blood Storage Center Search</h2>
+      <form action="">
+        <div class="input-group">
+          <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name">
+          <input type="text" aria-label="First name" class="form-control" placeholder="location">
+          <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
-{% include "footer.html" %}
+    <div class="sresult">
+      <div class="profile_card">
+        <div class="img_div">
+          <img src="https://tse1.mm.bing.net/th?id=OIP.c5KXw-wPcnwyyBNayoXfFQHaHa&pid=Api&P=0&h=180" alt="" srcset="">
+        </div>
+        <div class="context_div">
+          <span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptas! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus velit eius architecto fugiat recusandae id maiores quod laboriosam odit corporis consequuntur obcaecati delectus, consectetur amet. Reprehenderit alias odio iste.</p>
+          </span>
+        </div>
+      </div>
+      <div class="profile_card">
+        <div class="img_div">
+          <img src="https://tse1.mm.bing.net/th?id=OIP.c5KXw-wPcnwyyBNayoXfFQHaHa&pid=Api&P=0&h=180" alt="" srcset="">
+        </div>
+        <div class="context_div">
+          <span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptas! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus velit eius architecto fugiat recusandae id maiores quod laboriosam odit corporis consequuntur obcaecati delectus, consectetur amet. Reprehenderit alias odio iste.</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  
+  {% include "footer.html" %}
 </main>
-  <script>
+<!-- <script>
     const locationInput = document.getElementById('locationInput');
     const suggestionsList = document.getElementById('suggestions');
 
@@ -152,6 +215,7 @@
         alert('Please enter a valid location');
       }
     } {% endcomment %}
-  </script>
+  </script> -->
 </body>
+
 </html>

@@ -32,7 +32,6 @@ class Doctor(models.Model):
     biography=models.TextField(max_length=1000,null=True,blank=True)
     hospital_name=models.TextField(max_length=150,null=True,blank=True)
 
-
 class Event(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='events')
     title = models.CharField(max_length=255,null=True,blank=True)
@@ -48,7 +47,40 @@ class Hospital_Image(models.Model):
     image = models.ImageField(upload_to='hospital_images/')
 
 class Availability(models.Model):
-    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE)
-    day_of_week = models.CharField(max_length=10, choices=[('monday', 'Monday'), ('tuesday', 'Tuesday'), ('wednesday', 'Wednesday'), ('thursday', 'Thursday'), ('friday', 'Friday'), ('saturday', 'Saturday'), ('sunday', 'Sunday')])
+    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='doctor')
+    session = models.CharField(max_length=10,null=True,blank=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+class Availability_weekly(models.Model):
+    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='doctorW')
+    json = models.JSONField( null=True,blank=True)
+
+
+class Contact(models.Model):
+    fullname = models.CharField(max_length=150,null=True,blank = True)
+    contact = models.IntegerField(null = True,blank = True)
+    message = models.CharField(max_length=150,null=True,blank = True)
+
+class Ambulance(models.Model):
+    name=models.CharField(max_length=500,null=True,blank=True)
+    name_owner=models.CharField(max_length=150,null=True,blank=True)
+    about_service=models.CharField(null=True, max_length=900,blank=True)
+    contact = models.IntegerField(null=True,blank=True)
+    location = models.CharField(max_length=500,null=True,blank=True)
+
+class AmbulanceImage(models.Model):
+    image = models.ForeignKey(Ambulance,to_field='id',related_name='image',on_delete=models.CASCADE)
+    mainimage = models.ImageField(upload_to='ambulance/', null = True,blank=True)
+
+class bloodStorage(models.Model):
+    name=models.CharField(max_length=500,null=True,blank=True)
+    name_owner=models.CharField(max_length=150,null=True,blank=True)
+    about_service=models.CharField(null=True, max_length=900,blank=True)
+    contact = models.IntegerField(null=True,blank=True)
+    location = models.CharField(max_length=500,null=True,blank=True)
+
+class bloodStorageImage(models.Model):
+    image = models.ForeignKey(bloodStorage,to_field='id',related_name='image',on_delete=models.CASCADE)
+    mainimage = models.ImageField(upload_to='bloodStorage/', null = True,blank=True)
+
