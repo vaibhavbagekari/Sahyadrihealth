@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="box"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: max-content; width: calc(100%-1rem); text-wrap: wrap; background-color: lightblue; border-radius: 8px; padding: 1rem;">
+        <div class="top" style="width: 95%;">
+            <h2 style="color: blue;">Appointment Confirmation</h2>
+            <h4>Dear Vaibhav Sanjay Bagekari,</h4>
+            <p>We hope this email finds you well. We are pleased to inform you that your appointment with Dr. Vaibhav
+                Bagekari has been successfully booked.</p>
+        </div>
+
+        <div class="btm"
+            style="display: flex; justify-content: space-around; width: 100%; text-wrap: wrap;flex-wrap: wrap;">
+            <div class="left" style="width: max-content; color: rgb(255, 0, 51);">
+                <h4>{{slotData.date}} <br>at {{slotData.stime}} - {{slotData.etime}}</h4>
+                <button
+                    style="margin-bottom: 1rem; padding: .5rem; width: 90%; color: white; border: none; border-radius: 20px; background-color: rgb(255, 0, 51);"><a
+                        href="/core/templates/patient_signin.html" style="text-decoration: none; color: white;">Go to
+                        Profile</a></button>
+            </div>
+
+            <div class="list" style="width: 50%;">
+                <ul>
+                    <h4><b>Appointment Details:</b> </h4>
+                    <li><b>Doctor:</b> Dr. {{drData.name}}</li>
+                    <li><b>Date:</b> {{slotData.date}}</li>
+                    <li><b>Time:</b> {{slotData.stime}} - {{slotData.etime}}</li>
+                    <li><b>Hospital :</b> {{drData.hospital_name}}</li>
+                    <li><b>Location :</b> {{slotData.location}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

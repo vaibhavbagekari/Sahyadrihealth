@@ -1,0 +1,79 @@
+
+<style>
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 3vh auto 3vh auto;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+    .card h2 {
+        margin-top: 0;
+    }
+    .card p {
+        margin-bottom: 0;
+    }
+</style>
+
+<div id="cardList">
+    <!-- Card items will be added dynamically using JavaScript -->
+</div>
+
+<script>
+    
+    let data
+    function setData(d) {
+        data=d;
+        console.log(data);
+        populateCardList();
+    }
+    // var data = [
+    //     {
+    //         name: "xyz",
+    //         name_owner: "vaibhav",
+    //         contact: "1234567890",
+    //         location: "Bagekari ali road",
+    //         about_service: "abc"
+    //     },
+    //     {
+    //         name: "Vaibhav Sanjay Bagekari",
+    //         name_owner: "vaibhav",
+    //         contact: "123456789",
+    //         location: "Bagekari ali road",
+    //         about_service: "abc"
+    //     }
+    // ];
+
+    // Function to create card HTML
+    function createCard(item) {
+        var cardHTML = `
+            <div class="card">
+                <h2>${item.name}</h2>
+                <p><strong>Name Owner:</strong> ${item.name_owner}</p>
+                <p><strong>Contact:</strong> ${item.contact}</p>
+                <p><strong>Location:</strong> ${item.location}</p>
+                <p><strong>About Service:</strong> ${item.about_service}</p>
+            </div>
+        `;
+        return cardHTML;
+    }
+
+    // Function to populate card list
+    function populateCardList() {
+        var cardList = document.getElementById("cardList");
+        
+        // Clear previous content
+        cardList.innerHTML = "";
+
+        // Loop through data and create cards
+        data.forEach(function(item) {
+            var cardHTML = createCard(item);
+            cardList.innerHTML += cardHTML;
+        });
+    }
+
+    // Call populateCardList function to generate card list
+    
+</script>
+  

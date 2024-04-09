@@ -7,7 +7,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-
+import pandas as pd
 @login_required(login_url='/drsignin')
 def drDashbord(request):
     # try:
@@ -33,6 +33,8 @@ def drDashbord(request):
 def drProfile(request,id):
     doctor=User.objects.filter(id=id)
     slider_img=User.objects.get(id=id).doctors.all()[0].Himgs.all()
+    # if request.method == 'POST':
+
     # appointments = Appointment.objects.filter(doctor=doctor.doctors.all()[0])
     # context = {'doctor': doctor, 'appointments': appointments}
     # slider_img = dr.Himgs.all()
@@ -75,7 +77,7 @@ def save_availability(request):
         if request.method == 'POST':
             data = json.loads(request.POST.get('availabilities','[]'))
             doctor = request.user.doctors.all()[0]
-            Availability.objects.filter(doctor=doctor).delete()
+            Availability_weekly.objects.filter(doctor=doctor).delete()
             obj = Availability_weekly.objects.create(
                 doctor = doctor,
                 json = data

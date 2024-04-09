@@ -80,6 +80,10 @@
             font-size: 1.7rem;
             font-weight: bolder;
             color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
 
         }
 
@@ -1257,7 +1261,7 @@
         }
 
         main {
-            padding-top: 1vh;
+            padding-top: 10vh;
             margin-left: 250px;
         }
 
@@ -1273,13 +1277,16 @@
         .nav_bar::-webkit-scrollbar {
             width: 5px;
         }
+        .logoImg{
+            width: 220px;
+        }
 
         @media screen and (max-height: 650px) {}
 
 
         @media screen and (max-width: 750px) {
             main {
-                padding-top: 10vh;
+                padding-top: 30vh;
                 margin-left: 0vw;
             }
 
@@ -1351,7 +1358,7 @@
     <header id="head">
 
         <div></div>
-        <h2 class="titel">Sahyadri health</h2>
+        <h2 class="titel"><img src="{% static 'health_empire_logo.gif' %}" alt="" srcset="" class="logoImg"></h2>
 
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
         <div class="search_bar">

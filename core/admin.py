@@ -78,13 +78,22 @@ class AmbulanceAdmin(admin.ModelAdmin):
 
 admin.site.register(Ambulance,AmbulanceAdmin)
 
-class bloodStoragAdmin(admin.ModelAdmin):
-    bloodStorageDisplay = (
+class BloodStoragAdmin(admin.ModelAdmin):
+    BloodStorageDisplay = (
         'name',
-'name_owner',
-'about_service',
-'contact',
-'location'
+        'name_owner',
+        'about_service',
+        'contact',
+        'location'
     )
 
-admin.site.register(bloodStorage,bloodStoragAdmin)
+admin.site.register(BloodStorage,BloodStoragAdmin)
+
+class BookedAppoinmentAdmin(admin.ModelAdmin):
+    BookedAppoinmentDisplay=(
+        'doctor',
+        'date',
+        'start_time',
+        'end_time'
+    )
+admin.site.register(BookedAppoinment,BookedAppoinmentAdmin)

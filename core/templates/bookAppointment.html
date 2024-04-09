@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+<h3 class="card_title"><i class="fa-solid fa-handshake-angle"></i> Book Appointment</h3>
+
+
+<button class="button" id="findslots" onclick="disableButton()">Find slots <p
+        style="margin: 0px; padding: 3px; font-weight: bolder;" class="button1">Free</p></button>
+{% include 'slotConform.html' %}
+{% include 'showAppoinment.html' %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    function disableButton() {
+        // Disable the button
+        document.getElementById("findslots").disabled = true;
+    }
+    flatpickr("#dateInput", {
+        minDate: "today",
+        maxDate: new Date().fp_incr(14), // Limit to 14 days (current week + next week)
+        dateFormat: "Y-m-d",
+        disable: [
+            function (date) {
+                var today = new Date();
+                var day = today.getDay();
+                // Calculate the start date of the current week (Sunday)
+                const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day);
+                // Calculate the end date of the next week (Saturday)
+                const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 13);
+
+                // Disable dates outside of the current week and next week
+                return !(date >= startDate && date <= endDate);
+            }
+        ]
+    });
+
+
+    let globdata;
+    $(document).ready(function () {
+        $('#findslots').click(function () {
+            var today = new Date();
+            var day = today.getDay();
+            // Calculate the start date of the current week (Sunday)
+            const startDate = new Date();
+            const tomorrowDate = new Date(startDate);
+            tomorrowDate.setDate(startDate.getDate() + 1);
+            // Calculate the end date of the next week (Saturday)
+            const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 19);
+
+            var daraRange = {
+                start: tomorrowDate,
+                end: endDate
+            }
+            $.ajax(
+                {
+                    url: '/findslots/{{i.doctors.get.id}}',
+                    method: 'POST',
+                    data: { date: JSON.stringify(daraRange) },
+                    success: function (response) {
+                        globdata = response["context"];
+                        handleData(globdata);
+                        // alert('Events saved successfully!');
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        alert('Error saving events!');
+                    }
+                }
+            )
+        });
+        $('.checked').click(function () {
+            var drid = document.getElementById("id").value;
+            var drname = document.getElementById("drName").value;
+            var date = document.getElementById("date_info").value;
+            var stime = document.getElementById("stime_info").value;
+            var etime = document.getElementById("etime_info").value;
+            var contact_no = document.getElementById("contact_no").value;
+            var email_id = document.getElementById("email_id").value;
+            var patient_name = document.getElementById("patient_name").value;
+            // console.log(drid);
+            // console.log(drname);
+            // console.log(date);
+            // console.log(stime);
+            // console.log(etime);
+            // console.log(email_id);
+            var info = { 'drid': drid, 'date': date, 'stime': stime, 'etime': etime ,'patient_name':patient_name,'contact_no':contact_no,'email':email_id};
+            $.ajax(
+                {
+                    url: '/bookAppoinment/',
+                    method: 'POST',
+                    data: { data: JSON.stringify(info) },
+                    success: function (response) {
+                        alert('Events saved successfully!');
+                        thankyou();
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        alert('Error saving events!');
+                    }
+                }
+            )
+        });
+
+    });
+
+
+
+
+</script>

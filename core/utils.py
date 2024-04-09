@@ -4,10 +4,11 @@ from django.utils.html import strip_tags
 from django.conf import settings
 
 
-def send_email_to_client(k,d,p):
-    html_content = render_to_string("email_template.html",{"event":k,"doctor":d,"patient":p})
+def send_email_to_client(drData,patientData,slotData):
+    html_content = render_to_string("email_template1.html",{"drData":drData,"patientData":patientData,"slotData":slotData})
     subject = "Confirmation of Your Successfully Booked Doctor Appointment"
-    message = strip_tags(html_content)
+    # message = strip_tags(html_content)
     from_email = settings.EMAIL_HOST_USER
-    recipient_list = ["surajnimbalkar805@gmail.com","testwebbyvaibhav@gmail.com","aniketthorat2122@gmail.com"]
-    send_mail(subject,message,from_email,recipient_list)
+    print(type(patientData["email"]))
+    recipient_list = [drData["email"],patientData["email"]]
+    send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)

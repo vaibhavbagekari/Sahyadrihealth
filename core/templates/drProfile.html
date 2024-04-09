@@ -77,7 +77,7 @@
         line-height: 1.6;
     }
 
-    .card .button {
+    .button {
         display: inline-block;
         padding: 10px 20px;
         background-color: #12a8ae;
@@ -89,7 +89,7 @@
         border: none;
     }
 
-    .card .button:hover {
+    .button:hover {
         color: black;
     }
 
@@ -248,9 +248,13 @@
             <p>Education: {{i.doctors.get.education}}</p>
             <p>Location: {{i.doctors.get.address}}</p>
             <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p>
-            <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a>
-            <a class="button" href="/appointmentbooking/{{i.id}}">Contact Hospital</a>
+            {% comment %} <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a> {% endcomment %}
+            {% comment %} <a class="button" href="/bookAppointment/{{i.id}}">Book Appointment</a> {% endcomment %}
+            <a class="button" href="#">Contact Hospital</a>
         </div>
+    </div>
+    <div class="info_card">
+        {% include "bookAppointment.html" %}
     </div>
     <div class="info_card">
         <h3 class="card_title"><i class="fa-solid fa-hospital"></i> Hospital</h3>

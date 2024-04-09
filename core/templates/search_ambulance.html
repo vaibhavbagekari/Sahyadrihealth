@@ -1,121 +1,133 @@
 {% load static %}
 {% include "header.html" %}
-<style>
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-  *{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  * {
     font-family: "Poppins", sans-serif;
   }
-    .infocard {
-        margin: 10px;
-        margin-top: 100px;
-        border-radius: 12px;
-        width: calc(100% - 20px);
-        background-image: linear-gradient(to right, rgb(245, 102, 102), rgb(248, 223, 223));
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        overflow: hidden;
-        flex-wrap: wrap;
-        /* flex-wrap: wrap; */
-        /* position: relative; */
-    }
 
- h2{
- 
+  .infocard {
+    margin: 10px;
+    margin-top: 100px;
+    border-radius: 12px;
+    width: calc(100% - 20px);
+    background-image: linear-gradient(to right, rgb(245, 102, 102), rgb(248, 223, 223));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    overflow: hidden;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    /* position: relative; */
+  }
+
+  h2 {
+
     font-family: Poppins, sans-serif;
     font-weight: 600;
 
- }
- 
-    .infocard img {
-        width: 40%;
-        position: relative;
-   
-        transition-duration: 0.3s;
-    }
-    .infocard button{
-      border-radius: 0;
-    }
-    .subdiv_img .card img {
-        width: 100%;
-    }
-
-    .infocard img:hover {
-        transform: scale(1.05);
-    }
-    .text1{
-      
-      width: 40%;
-      padding: 1rem;
-    
-    }
-    @media screen and (max-width:1100px){
-      .infocard {
-      
-        flex-direction: column;
-     align-items: center;
-        text-align: center;
-        
-      
-    }
-
-   
-    .text1{
-      
-      width: 60%;
-     
-    
-    }
-    @media screen and (max-width: 750px) {
-        .infocard {
-            flex-wrap: wrap;
-        }
-
-        .infocard img {
-        width: 60%;
-        
-    }
-    .text1{
-     
-      width: 70%;
-     
-    }
-
-    }
-    @media screen and (max-width: 400px){
-   
-    .text1{
-      padding: 0;
-      width: 90%;
-      margin-bottom: 1rem;
-    }
-    }
-    .infocard img {
-        width: 70%;
-        
-    }
   }
 
+  .infocard img {
+    width: 40%;
+    position: relative;
+
+    transition-duration: 0.3s;
+  }
+
+  .infocard button {
+    border-radius: 0;
+  }
+
+  .subdiv_img .card img {
+    width: 100%;
+  }
+
+  .infocard img:hover {
+    transform: scale(1.05);
+  }
+
+  .text1 {
+
+    width: 40%;
+    padding: 1rem;
+
+  }
+
+  @media screen and (max-width:1100px) {
+    .infocard {
+
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+
+    }
+
+
+    .text1 {
+
+      width: 60%;
+
+
+    }
+
+    @media screen and (max-width: 750px) {
+      .infocard {
+        flex-wrap: wrap;
+      }
+
+      .infocard img {
+        width: 60%;
+
+      }
+
+      .text1 {
+
+        width: 70%;
+
+      }
+
+    }
+
+    @media screen and (max-width: 400px) {
+
+      .text1 {
+        padding: 0;
+        width: 90%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .infocard img {
+      width: 70%;
+
+    }
+  }
 </style>
 <main>
-    <div class="infocard">
-        <div class="text1">
-            <p  class="card-text">
-            <h2>Ambulance Services</h2>
-            Our ambulance services are available 24/7 to provide immediate medical assistance. 
-            Our fleet of well-equipped ambulances is staffed with trained medical professionals 
-            to ensure the safety and well-being of patients during transport.
-            </p>
-            <button type="button m-3" class="btn btn-success">success</button>
-        </div>
-        <img src="{% static 'ambulance2.jpg' %}" alt="">
+  <div class="infocard">
+    <div class="text1">
+      <p class="card-text">
+      <h2>Ambulance Services</h2>
+      Our ambulance services are available 24/7 to provide immediate medical assistance.
+      Our fleet of well-equipped ambulances is staffed with trained medical professionals
+      to ensure the safety and well-being of patients during transport.
+      </p>
+      <button type="button m-3" class="btn btn-success">success</button>
     </div>
-    
+    <img src="{% static 'ambulance2.jpg' %}" alt="">
+  </div>
+
   <title>Ambulance Search</title>
   <style>
     .main_sdiv {
-     margin-bottom: -2rem;
+      margin-bottom: -2rem;
       padding: 0;
       display: flex;
       justify-content: center;
@@ -125,9 +137,9 @@
     }
 
     .search-container {
-    
+
       text-align: center;
-      
+
       margin-bottom: 0;
     }
 
@@ -166,67 +178,73 @@
     .suggestion-item:hover {
       background-color: #ddd;
     }
+
     @media screen and (max-width: 500px) {
-      input{
+      input {
         width: 15rem;
       }
-      .main_sdiv{
+
+      .main_sdiv {
         margin-bottom: -4rem;
       }
     }
+
     @media screen and (max-width: 400px) {
-      input{
+      input {
         width: 12rem;
       }
     }
+
     @media screen and (max-width: 340px) {
-      input{
+      input {
         width: 9rem;
       }
     }
   </style>
-<div class="main_sdiv">
-  
-  <div class="search-container">
-    <h1>Ambulance Search <i class="fa-solid fa-truck-fast"></i></h1>
-    <input type="text" id="locationInput" placeholder="Enter location">
-    <button onclick="searchAmbulance()">Search</button>
-    <ul id="suggestions"></ul>
+  <div class="main_sdiv">
+
+   <div class="search-container">
+     
+      <h1>Ambulance Search <i class="fa-solid fa-truck-fast"></i></h1>
+      <input type="text" name="locationInput" id="locationInput" placeholder="Enter location">
+    
+      <button id="btnSun" onclick="">Search</button>
+    </div>
   </div>
-</div>
+  {% include "serach_result_cards.html" %}
   <script>
-    const locationInput = document.getElementById('locationInput');
-    const suggestionsList = document.getElementById('suggestions');
+    // const locationInput = document.getElementById('locationInput');
+    // const suggestionsList = document.getElementById('suggestions');
 
-    locationInput.addEventListener('input', function () {
-      // TODO: Fetch location suggestions based on user input from the backend
-      const inputValue = locationInput.value.trim();
-      if (inputValue.length > 0) {
-        // Mock suggestions for demonstration purposes
-        const mockSuggestions = ['Division A', 'Division B', 'Division C'];
-        displaySuggestions(mockSuggestions);
-      } else {
-        clearSuggestions();
-      }
-    });
+    // locationInput.addEventListener('input', function () {
+    //   // TODO: Fetch location suggestions based on user input from the backend
+    //   const inputValue = locationInput.value.trim();
+    //   if (inputValue.length > 0) {
+    //     // Mock suggestions for demonstration purposes
+    //     const mockSuggestions = ['Division A', 'Division B', 'Division C'];
+    //     displaySuggestions(mockSuggestions);
+    //   } else {
+    //     clearSuggestions();
+    //   }
+    // });
 
-    function displaySuggestions(suggestions) {
-      clearSuggestions();
-      suggestions.forEach((suggestion) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'suggestion-item';
-        listItem.textContent = suggestion;
-        listItem.addEventListener('click', function () {
-          locationInput.value = suggestion;
-          clearSuggestions();
-        });
-        suggestionsList.appendChild(listItem);
-      });
-    }
+    // function displaySuggestions(suggestions) {
+    //   clearSuggestions();
+    //   suggestions.forEach((suggestion) => {
+    //     const listItem = document.createElement('li');
+    //     listItem.className = 'suggestion-item';
+    //     listItem.textContent = suggestion;
+    //     listItem.addEventListener('click', function () {
+    //       locationInput.value = suggestion;
+    //       clearSuggestions();
+    //     });
+    //     suggestionsList.appendChild(listItem);
+    //   });
+    // }
 
-    function clearSuggestions() {
-      suggestionsList.innerHTML = '';
-    }
+    // function clearSuggestions() {
+    //   suggestionsList.innerHTML = '';
+    // } 
 
     // function searchAmbulance() {
     //   const location = locationInput.value.trim();
@@ -238,9 +256,34 @@
     //     alert('Please enter a valid location');
     //   }
     // }
-  </script>
-</body>
-</html>
+    $(document).ready(function () {
+      $('#btnSun').click(function () {
+        var info = document.getElementById('locationInput').value;
+        // console.log(info);
+        $.ajax(
+          {
+            url: '/SearchAmbulance/',
+            method: 'POST',
+            data: { data: JSON.stringify(info) },
+            success: function (response) {
+              console.log(response);
+              setData(response["amblance_list"]);
+            },
+            error: function (error) {
+              console.error(error);
+              alert('Error saving events!');
+            }
+          }
+        )
+      });
+    });
 
-    {% include "footer.html" %}
+    
+  
+  </script>
+  </body>
+
+  </html>
+
+  {% include "footer.html" %}
 </main>

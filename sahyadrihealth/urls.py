@@ -56,11 +56,15 @@ urlpatterns = [
     path('drDashbord_setting/', doctor_views.drDashbord_setting, name='drDashbord_setting'),
     path('delet_img/<id>', doctor_views.delet_img, name='delet_img'),
     # path('doctor_availability/<id>', doctor_views.doctor_availability, name='doctor_availability'),
-    path('manage-availability/', manage_availability, name='manage_availability'),
     path('cut_event/', cut_event, name='cut_event'),
     path('availability/', doctor_views.availability, name='availability'),
     path('save_availability/', doctor_views.save_availability, name='save_availability'),
     path('save_day/', doctor_views.save_day, name='save_day'),
+    path('bookAppointment/<id>', bookAppointment, name='bookAppointment'),
+    path('findslots/<id>', findslots, name='findslots'),
+    path('bookAppoinment/', bookAppoinment, name='bookAppoinment'),
+    path('SearchAmbulance/', SearchAmbulance, name='SearchAmbulance'),
+    path('SearchBloodStorage/', SearchBloodStorage, name='SearchBloodStorage'),
 
 
 ]    

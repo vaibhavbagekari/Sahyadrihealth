@@ -4,13 +4,13 @@ from pydoc import render_doc
 from urllib import request
 from django.views.decorators.csrf import ensure_csrf_cookie,csrf_protect
 from django.shortcuts import redirect, render
-
+import pandas as pd
 from .models import *
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-
+from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 import json
 from django.http import JsonResponse
@@ -285,7 +285,10 @@ def goverment_scheme(request):
 def search_ambulance(request):
     if request.GET.get('locationOfAmbulance'):
         l=request.GET.get('locationOfAmbulance')
-        
+    elif request.GET.get('locationInput'):
+        loc=request.GET.get('locationInput')
+        return render(request,"search_ambulance.html")
+
     elif request.method == 'POST':
         return check_form(request)
     elif request.GET.get('location'):
@@ -514,33 +517,170 @@ def send_email(request):
     send_email_to_client()
     return redirect("/")
 
-def manage_availability(request):
-    doctor = request.user.doctors  # Assuming a one-to-one relationship with User
-    id=doctor.all()[0].id
-    availability_list = Availability.objects.filter(id=id)
+def bookAppointment(request,id):
+    return render(request,"bookAppointment.html")
 
-    class AvailabilityForm(forms.ModelForm):
-        class Meta:
-            model = Availability
-            fields = ['day_of_week', 'start_time', 'end_time']
+def daterange(date1, date2):
+    date1 = datetime.datetime.strptime(date1, '%Y-%m-%d')
+    date2 = datetime.datetime.strptime(date2, '%Y-%m-%d')
+    return [date1 + datetime.timedelta(days=x) for x in range((date2-date1).days + 1)]
 
-        def __init__(self, *args, **kwargs):
-            super(AvailabilityForm, self).__init__(*args, **kwargs)
-            self.fields['day_of_week'].widget.attrs.update({'class': 'form-control'})
-            self.fields['start_time'].widget.attrs.update({'class': 'form-control'})
-            self.fields['end_time'].widget.attrs.update({'class': 'form-control'})
+def Merge(dict1, dict2):
+    res = {**dict1, **dict2}
+    return res
 
-    if request.method == 'POST':
-        form = AvailabilityForm(request.POST)
-        if form.is_valid():
-            availability = form.save(commit=False)
-            availability.doctor = doctor.all()[0]
-            availability.save()
-            messages.success(request, 'Availability added successfully!')
-            return redirect('manage_availability')
-        else:
-            messages.error(request, 'Invalid form submission. Please check the data.')
-    else:
-        form = AvailabilityForm()
+def divide_time_slots(start_time, end_time, slot_duration):
+    slots = {}
+    start_time_str = start_time.strftime("%H:%M")
+    end_time_str = end_time.strftime("%H:%M")
+    # Convert string times to datetime objects
+    start = datetime.datetime.strptime(start_time_str, "%H:%M")
+    end = datetime.datetime.strptime(end_time_str, "%H:%M")
+    
+    current_slot_start = start
+    while current_slot_start < end:
+        current_slot_end = current_slot_start + timedelta(minutes=slot_duration)
+        
+        if current_slot_end > end:
+            current_slot_end = end
+        
+        slots[current_slot_start.strftime("%H:%M") + "-" + current_slot_end.strftime("%H:%M")] = {
+            "start": current_slot_start.strftime("%H:%M"),
+            "end": current_slot_end.strftime("%H:%M")
+        }
+        
+        current_slot_start = current_slot_end
+    return slots
 
-    return render(request, 'manage_availability.html', {'form': form, 'availability_list': availability_list})
+def getSlots(id,day):
+    dr = Doctor.objects.get(id=id)
+    data = Availability_weekly.objects.get(doctor=dr)
+    m=data.json
+    slot_duration=10
+    ls=("Morning","Afternoon","Evening")
+    jn=[]
+    for i in ls:
+        if m[day][i.lower()]:
+            h=Availability.objects.filter(doctor=dr,session=i)
+            j={
+                "session":i,
+                "slots":divide_time_slots(h[0].start_time,h[0].end_time,slot_duration)
+            }
+            jn.append(j)
+    
+    # print(jn)
+    return jn
+
+@csrf_exempt
+def findslots(request,id):
+    try:
+        if request.method == 'POST':
+            date = json.loads(request.POST.get('date', '[]'))
+            print(date)
+            ls=list(date.values())
+            date_list = daterange(ls[0].split('T')[0], ls[1].split('T')[0])
+            jn=[]
+
+            for i in date_list:
+                d=pd.Timestamp(i)
+                # print(i.strftime('%Y-%m-%d'),d.day_name())
+                j={
+                    "date":i.strftime('%Y-%m-%d'),
+                    "day":d.day_name(),
+                    "slots":getSlots(id,d.day_name())
+                }
+                jn.append(j)
+            # print(jn[3]["slots"]["session"])
+            # print(jn)
+            
+            return JsonResponse({'status': 'success',"context":jn})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+
+@csrf_exempt
+def bookAppoinment(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data', '[]'))
+            ls=list(data.values())
+            id=ls[0]
+            id=int(id)
+            dr = User.objects.get(id=id)
+            d=Doctor.objects.get(user = dr.username)
+            # print(ls)
+            # print(ls[1])
+            date=ls[1]
+            print(ls[1])
+            stime=ls[2]
+            etime=ls[3]
+            patient_name=ls[4]
+            contact_no=ls[5]
+            email=ls[6]
+            obj = BookedAppoinment.objects.create(
+                doctor=d,
+                date=date,
+                start_time=stime,
+                end_time=etime,
+                Patient_name=patient_name,
+                Patient_contact=contact_no,
+                email=email
+            )
+            obj.save()
+            drData={'email':dr.email,'name':dr.first_name+" "+dr.last_name,'hospital_name':d.hospital_name}
+            patientData = {'email':email,'name':patient_name}
+            slotData={'date':date,'stime':stime,'etime':etime,'location':d.address}
+            print(patientData['name'])
+            print(patientData['email'])
+            send_email_to_client(drData,patientData,slotData)
+            return JsonResponse({'status': 'success'})
+        
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+@csrf_exempt
+
+def SearchAmbulance(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data', '[]'))
+            ambulance = Ambulance.objects.filter(location__icontains=data)
+            ls=[]
+            for i in ambulance:
+                j={
+                    'name':i.name,
+                    'name_owner':i.name_owner,
+                    'about_service':i.about_service,
+                    'contact':i.contact,
+                    'location':i.location
+                }
+                ls.append(j)
+
+
+            return JsonResponse({'status': 'success', 'amblance_list': ls})
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+@csrf_exempt
+def SearchBloodStorage(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data', '[]'))
+            BloodStorage = Ambulance.objects.filter(location__icontains=data)
+            ls=[]
+            for i in BloodStorage:
+                j={
+                    'name':i.name,
+                    'name_owner':i.name_owner,
+                    'about_service':i.about_service,
+                    'contact':i.contact,
+                    'location':i.location
+                }
+                ls.append(j)
+
+            send_email_to_client(k,d,p)
+            return JsonResponse({'status': 'success', 'amblance_list': ls})
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})

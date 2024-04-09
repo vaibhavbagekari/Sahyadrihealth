@@ -1,6 +1,11 @@
 {% load static %}
 {% include "header.html" %}
 <title>Blood Storage Center Search</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -137,16 +142,16 @@
   <div class="main_sdiv">
     <div class="search-container">
       <h2>Blood Storage Center Search</h2>
-      <form action="">
+      
         <div class="input-group">
-          <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name">
-          <input type="text" aria-label="First name" class="form-control" placeholder="location">
-          <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+          {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
+          <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput">
+          <button type="button" class="input-group-text" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-      </form>
+      
     </div>
   </div>
-    <div class="sresult">
+    <!-- <div class="sresult">
       <div class="profile_card">
         <div class="img_div">
           <img src="https://tse1.mm.bing.net/th?id=OIP.c5KXw-wPcnwyyBNayoXfFQHaHa&pid=Api&P=0&h=180" alt="" srcset="">
@@ -167,8 +172,9 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
   
+  {% include "serach_result_cards.html" %}
   {% include "footer.html" %}
 </main>
 <!-- <script>
@@ -216,6 +222,30 @@
       }
     } {% endcomment %}
   </script> -->
+  <script>
+
+    $(document).ready(function () {
+      $('#search').click(function () {
+        var info = document.getElementById('locationInput').value;
+        // console.log(info);
+        $.ajax(
+          {
+            url: '/SearchBloodStorage/',
+          method: 'POST',
+          data: { data: JSON.stringify(info) },
+          success: function (response) {
+            console.log(response);
+            setData(response["amblance_list"]);
+          },
+          error: function (error) {
+            console.error(error);
+            alert('Error saving events!');
+          }
+        }
+        )
+      });
+    });
+    </script>
 </body>
 
 </html>

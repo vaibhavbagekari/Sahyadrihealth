@@ -73,14 +73,22 @@ class AmbulanceImage(models.Model):
     image = models.ForeignKey(Ambulance,to_field='id',related_name='image',on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='ambulance/', null = True,blank=True)
 
-class bloodStorage(models.Model):
+class BloodStorage(models.Model):
     name=models.CharField(max_length=500,null=True,blank=True)
     name_owner=models.CharField(max_length=150,null=True,blank=True)
     about_service=models.CharField(null=True, max_length=900,blank=True)
     contact = models.IntegerField(null=True,blank=True)
     location = models.CharField(max_length=500,null=True,blank=True)
 
-class bloodStorageImage(models.Model):
-    image = models.ForeignKey(bloodStorage,to_field='id',related_name='image',on_delete=models.CASCADE)
+class BloodStorageImage(models.Model):
+    image = models.ForeignKey(BloodStorage,to_field='id',related_name='image',on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='bloodStorage/', null = True,blank=True)
 
+class BookedAppoinment(models.Model):
+    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='dr')
+    date = models.DateField(null=True,blank=True)
+    start_time = models.TimeField(null=True,blank=True)
+    end_time = models.TimeField(null=True,blank=True)
+    Patient_name = models.CharField(max_length=150,null=True,blank=True)
+    Patient_contact = models.IntegerField(null=True,blank=True)
+    email=models.EmailField(null=True,blank=True)

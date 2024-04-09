@@ -1,0 +1,125 @@
+<style>
+    .tabs {
+        display: flex;
+        /* flex-wrap: wrap; */
+        overflow-x: scroll;
+        /* gap: 1rem; */
+        background-color: #83d3d6d9;
+
+    }
+
+    .tab {
+        flex: 1 0 200px;
+        padding: 10px;
+        text-align: center;
+        /* background-color: #c6c6c6; */
+        cursor: pointer;
+        /* border-radius: 10px; */
+        
+    }
+    .tab:hover{
+        background-color: #c3f2f4d9 ;
+    }
+    .tab-content {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ddd;
+    }
+    #tab_cantainer{
+        background-color: rgb(255, 255, 255);
+        height: max-content;
+        width: 100%;
+        padding: 10px;
+    }
+    .slotbtn{
+        margin:5px;
+        padding:5px;
+        background-color: #9ad1f0;
+        border: 3px solid  #9ad1f0;
+        border-radius: 5px;
+    }
+    .slotbtn:hover{
+        background-color:  #bee1f6;
+    }
+</style>
+</head>
+
+<body>
+    {% include 'slotConform.html' %}
+    <div class="tabs" id="tabsContainer">
+        <!-- Tabs will be populated dynamically -->
+    </div>
+    <div id="tab_cantainer">
+
+    </div>
+
+    <script>
+
+        function handleData(datat) {
+            const data = datat;
+
+            console.log(datat);
+
+            const tabsContainer = document.getElementById('tabsContainer');
+            // Use the data as neededd
+            console.log(data);
+            data.forEach((appointment, index) => {
+                const tab = document.createElement('div');
+                tab.className = 'tab';
+                tab.innerHTML = `${appointment.date}<br> ${appointment.day}`;
+                // tab.onclick = () => openTab(event, `tab-${index}`);
+                tab.onclick = () => opnTab(appointment);
+                tabsContainer.appendChild(tab);
+
+                // const tabContent = document.createElement('div');
+                // // const tabContent = document.createElement('tab_cantainer');
+                // tabContent.id = `tab-${index}`;
+                // tabContent.className = 'tab-content';
+                // tabContent.innerHTML = formatSlots(appointment.slots);
+                // tabsContainer.appendChild(tabContent);
+            });
+
+            function opnTab(appointment) {
+                const tabContent = document.getElementById('tab_cantainer');
+                // tabContent.id = `tab-${index}`;
+                // tabContent.className = 'tab-content';
+                // console.log(appointment.slots)
+                tabContent.innerHTML = formatSlots(appointment);
+                // tabsContainer.appendChild(tabContent);
+            }
+            // Function to open tabs
+            function openTab(event, tabName) {
+                var i, tabContent;
+
+                // Hide all tab contents
+                tabContent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabContent.length; i++) {
+                    tabContent[i].style.display = "none";
+                }
+
+                // Show the clicked tab content
+                document.getElementById(tabName).style.display = "block";
+            }
+
+            // Helper function to format slots
+            function formatSlots(appointment) {
+                if (appointment.slots.length === 0) {
+                    return 'No slots available';
+                } else {
+                    let slotsString = '';
+                    appointment.slots.forEach(slot => {
+                        slotsString += `<br><strong>${slot.session}</strong><br>`;
+                        for (const timeSlot in slot.slots) {
+                            slotsString += `<button class="slotbtn" onclick="bookslot('${appointment.date}','${timeSlot}')">${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
+                        }
+                    });
+                    return slotsString;
+                }
+            }
+        }
+       
+    </script>
+
+</body>
+
+</html>

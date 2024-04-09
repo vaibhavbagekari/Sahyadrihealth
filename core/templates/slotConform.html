@@ -1,0 +1,112 @@
+<style>
+  .conform_form {
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding: 10px;
+    display: none;
+    z-index: 1000;
+
+  }
+
+  .info-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .info-div input {
+    border: none;
+    max-width: min-content;
+  }
+  #next_block{
+    display: none;
+  }
+  .thankYou{
+    display: none;
+  }
+</style>
+<div class="conform_form" id="conform_form">
+   
+  <div class="info-div" id="info-div">
+    <h4>please check your appointment information</h4>
+    <input type="hidden" name="id" id="id" value="">
+    <section>
+      <strong>Doctor name:</strong><input type="text" name="drName" id="drName" value="" readonly>
+    </section>
+    <section>
+      <strong>Date:</strong><input type="date" name="date_info" id="date_info" readonly value="">
+    </section>
+    <div>
+      <strong>Time slot:</strong><input type="time" name="stime_info" id="stime_info" readonly value="">-<input
+        type="time" id="etime_info" name="etime_info" value="" readonly>
+    </div>
+    <div class="btn_div">
+      <button onclick="next_block()" >next</button>
+      <button type="button" onclick="cancelslot()">Cancel</button>
+    </div>
+  </div>
+  <div class="next_block" id="next_block">
+    <section>
+      <strong>Full name :</strong><input style="border: 1px solid orange;" required type="text"
+       name="patient_name" id="patient_name" value="" placeholder="Full Name">
+    </section>
+    <section>
+      <strong>E-mail : </strong><input style="border: 1px solid orange;" required type="email"
+       name="email" id="email_id" value="" placeholder="Enter your email id">
+    </section>
+    <section>
+      <strong>enter your contact number:</strong><input style="border: 1px solid orange;" required type="number"
+      maxlength="10" name="contact_no" id="contact_no" value="" placeholder="Enter your contact Number">
+    </section>
+    <button type="button" onclick="pre_block()">Back</button>
+    <button type="button" class="checked">Conform</button>
+    <button type="button" onclick="cancelslot()">Cancel</button>
+    
+  </div>
+  <div class="thankYou" id="thankYou">
+    Thank You!!!
+    <button type="button" onclick="cancelslot()">ok</button>
+  </div>
+ 
+</div>
+<script>
+  var loader_overlay = document.getElementById('loader_overlay');
+  var conform_form = document.getElementById("conform_form");
+  var info_div = document.getElementById("info-div");
+  var next_block1 = document.getElementById("next_block");
+  var thankYou = document.getElementById("thankYou");
+  function bookslot(date, time) {
+    loader_overlay.style.display = "block";
+    conform_form.style.display = "block";
+    document.getElementById("id").value = "{{i.id}}";
+    document.getElementById("drName").value = "Dr. {{i.first_name}} " + " {{i.last_name}}";
+    document.getElementById("date_info").value = date;
+    console.log(date)
+    var timearr = time.split("-");
+    document.getElementById("stime_info").value = timearr[0];
+    document.getElementById("etime_info").value = timearr[1];
+  }
+  function cancelslot() {
+    loader_overlay.style.display = "none";
+    conform_form.style.display = "none";
+  }
+  function next_block() {
+    info_div.style.display = "none";
+    next_block1.style.display = "block";
+  }
+  function pre_block() {
+    info_div.style.display = "block";
+    next_block1.style.display = "none";
+  }
+  function thankyou() {
+    info_div.style.display="none";
+    next_block1.style.display = "none";
+    thankYou.style.display="block";
+  }
+
+
+</script>
