@@ -1,5 +1,19 @@
 {% include "drDashbord_header.html" %}
     <!-- Dashboard content -->
+    <style>
+        .container_div .bt{
+            padding: .5rem 1.5rem;
+                    background-color:  #199fd9;
+                color: white;
+                font-size: .9rem;
+            border: 1px solid #199fd9;
+            text-decoration: none;
+        }
+        .container_div .bt a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
     <div class="content">
         
         
@@ -23,6 +37,8 @@
                     <strong>Contact:</strong> 123-456-7890<br />
                     <strong>Email:</strong> {{request.user.email}}
                 </p>
+                
+                <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit</a></button>
             </div>
         </div>
         <!-- </div> -->

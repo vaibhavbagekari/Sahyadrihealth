@@ -6,14 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor's Weekly Availability</title>
     <style>
-        table {
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        .content table {
             border-collapse: collapse;
-            width: 100%;
+            width: 90%;
+            position: relative;
+            left: 50%;
+
+            transform: translate(-50%, 0%);
+
+
         }
 
         th,
         td {
-            border: 1px solid #dddddd;
+            border: 2px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
@@ -32,6 +42,10 @@
             width: 100%;
         }
 
+        h2 {
+            /* color: #125953; */
+        }
+
         .context_div {}
 
         .availability {
@@ -46,6 +60,7 @@
         .session {
             margin: 10px;
             margin-bottom: 20px;
+
         }
 
         .session h3 {
@@ -58,7 +73,7 @@
         }
 
         li {
-            margin-bottom: 5px;
+            margin-bottom: 1rem;
             list-style: none;
         }
 
@@ -69,6 +84,33 @@
             display: inline-block;
             width: 1em;
             margin-left: -1em;
+        }
+
+        .time {
+            padding: .3rem .7rem;
+            margin-left: .3rem;
+            color: #199fd9;
+            border: 1.5px solid #199fd9;
+        }
+
+        #metime,
+        #aetime,
+        #eetime {
+            margin-left: .8rem;
+        }
+
+        .sbtn {
+            padding: .6rem;
+            background-color: #199fd9;
+            color: white;
+            font-size: .8rem;
+            border: 1px solid #199fd9;
+            border: none;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-58%, 50%);
+            margin-bottom: 1.9rem;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
@@ -91,26 +133,26 @@
             <div class="session">
                 <h3>Morning Session</h3>
                 <ul>
-                    <li><label for="mstime">start time</label> <input type="time" name="mstime" id="mstime" required></li>
-                    <li><label for="metime">end time</label> <input type="time" name="metime" id="metime" required></li>
+                    <li><label for="mstime">start time</label> <input type="time"  class="time" name="mstime" id="mstime" required></li>
+                    <li><label for="metime">end time</label> <input type="time" class="time"  name="metime" id="metime" required></li>
                 </ul>
             </div>
             <div class="session">
                 <h3>Afternoon Session</h3>
                 <ul>
-                    <li><label for="astime">start time</label> <input type="time" name="astime" id="astime" required></li>
-                    <li><label for="aetime">end time</label> <input type="time" name="aetime" id="aetime" required></li>
+                    <li><label for="astime">start time</label> <input type="time" class="time" name="astime" id="astime" required></li>
+                    <li><label for="aetime">end time</label> <input type="time" class="time" name="aetime" id="aetime" required></li>
                 </ul>
             </div>
             <div class="session">
                 <h3>Evening Session</h3>
                 <ul>
-                    <li><label for="estime">start time</label> <input type="time" name="estime" id="estime" required></li>
-                    <li><label for="eetime">end time</label> <input type="time" name="eetime" id="eetime" required></li>
+                    <li><label for="estime">start time</label> <input type="time" class="time" name="estime" id="estime" required></li>
+                    <li><label for="eetime">end time</label> <input type="time" class="time" name="eetime" id="eetime" required></li>
                 </ul>
             </div>
         </div>
-        <button id="save_day">Save Availability</button>
+        <button id="save_day" class="sbtn">Save Availability</button>
         <h2>Doctor's Weekly Availability</h2>
 
         <table>
@@ -166,8 +208,8 @@
             <!-- Repeat rows for Wednesday to Sunday -->
         </table>
 
-        <button id="saveEventsBtn">Save Availability</button>
-
+        <button id="saveEventsBtn" class="sbtn">Save Availability</button>
+        {% include "footer.html" %}
         <script>
             // function saveAvailability() {
             //     var availability = {

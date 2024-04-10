@@ -6,8 +6,9 @@
     margin: 0;
     padding: 0;
   }
-  .Snav{
-    padding-top: 12vh;
+
+  .Snav {
+    padding-top: 9.9vh;
   }
 
 
@@ -49,7 +50,7 @@
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-   
+
   }
 
   /* Style the buttons inside the tab */
@@ -72,7 +73,7 @@
 
   /* Create an active/current tablink class */
   .tab button.active {
-    background-color: #ccc;
+    background-color: #23aea3;
     color: black;
   }
 
@@ -80,10 +81,44 @@
   .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    align-items: center;
     border-top: none;
+    justify-content: space-around;
+    height: 90vh;
   }
 
+  .tabcontent .p {
+    text-align: justify;
+    width: 40%;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+
+  }
+
+  .tabcontent h5 {
+    font-size: 2rem;
+    color: #23aea3;
+    line-height: 1cm;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .tabcontent button {
+    padding: .9rem;
+    background-color: #23aea3;
+   
+    border: 0;
+    /* margin-bottom: 2rem; */
+    color: white;
+  }
+  .tabcontent button a{
+    text-decoration: none;
+    color: white;
+    font-size: .9rem;
+  }
   /* Style the close button */
   .topright {
     float: right;
@@ -94,68 +129,152 @@
   .topright:hover {
     color: red;
   }
-  .main_img{
+
+  .main_img {
     width: 100%;
     height: max-content;
   }
-  @media screen and (max-width: 750px){
-    .Snav{
-    padding-top: 22vh;
+
+  #Blood_Storage {}
+
+  .tabcontent img {
+    width: 33%;
   }
+  @media screen and (max-width: 950px){
+    .tabcontent{
+      flex-direction: column;
+      margin-top: 1rem;
+      height: 100vh;
+    }
+    .tabcontent .p{
+      width: 80%;
+      font-size: 15px;
+    }
+    .tabcontent img{
+      width: 68%;
+    }
+    .tabcontent h5{
+      margin-top: 1rem;
+    }
+    .tabcontent button{
+      font-size: .8rem;
+      padding: .7rem;
+    }
+  } 
+  @media screen and (max-width: 950px) and (min-height:700px){
+    .tabcontent{
+      flex-direction: column;
+      margin-top: 1rem;
+      height: 100vh;
+    }
+    .tabcontent .p{
+      width: 80%;
+      font-size: 15px;
+    }
+    .tabcontent img{
+      width: 68%;
+    }
+    .tabcontent h5{
+      margin-top: -13rem;
+    }
+    .tabcontent button{
+      font-size: .8rem;
+      padding: .7rem;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .Snav {
+      padding-top: 14vh;
+    }
+ 
   }
 </style>
 <main>
-<nav class="Snav">
-  <ul class="tab">
-    <li><button class="tablinks" onclick="openCity(event, 'Health_Information')" id="defaultOpen">Health Information</button></li>
-    <li><button class="tablinks" onclick="openCity(event, 'Blood_Storage')">Blood Storage </button></li>
-    <li><button class="tablinks" onclick="openCity(event, 'Ambulance_Service')">Ambulance Service</button></li>
-    <li><button class="tablinks" onclick="openCity(event, 'Government_Services')">Government Services</button></li>
-    <li><button class="tablinks" onclick="openCity(event, 'Online_Appointment_Booking')">Online Appointment
-        Booking</button></li>
+  <nav class="Snav">
+    <ul class="tab">
+      <!-- <li><button class="tablinks" onclick="openCity(event, 'Health_Information')" id="defaultOpen">Health
+          Information</button></li> -->
+      <li><button class="tablinks" onclick="openCity(event, 'Blood_Storage')" id="defaultOpen">Blood Storage </button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Ambulance_Service')">Ambulance Service</button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Government_Services')">Government Services</button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Online_Appointment_Booking')">Online Appointment
+          Booking</button></li>
 
-  </ul>
-</nav>
+    </ul>
+  </nav>
 
 
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- Your custom JavaScript code -->
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Your custom JavaScript code -->
 
-<div id="Health_Information" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>Health Information</h3>
-  <p>Health Information</p>
-  <div class="main_img">
-    <img src="{% static 'healthInfo.jpeg' %}" alt="" srcset="">
+  <!-- <div id="Health_Information" class="tabcontent"> -->
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <!-- <img src="{% static 'donor.jpg' %}" alt="">
+    <div class="p">
+      <h5>H</h5>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi dolores aut asperiores ullam! Nemo, quam?
+      </p>
+      <button>sub</button>
+    </div>
+  </div> -->
+
+
+  <div id="Blood_Storage" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'donor.jpg' %}" alt="">
+    <div class="p">
+      <h5>BLOOD STORAGE</h5>
+      <p>Our website offers a convenient tool for users to locate nearby blood storage facilities quickly and easily.
+        Whether you're seeking blood for medical purposes or looking to donate, our platform provides access to vital
+        information about nearby blood banks, donation centers, and hospitals with blood storage capabilities.
+      </p>
+      <button><a href="{% url 'blood_storage' %}">Blood Storage</a></button>
+    </div>
   </div>
-</div>
 
-<div id="Blood_Storage" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>Blood Storage</h3>
-  <p>Blood Storage</p>
-</div>
+  <div id="Ambulance_Service" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'ambu.jpg' %}" alt="">
+    <div class="p">
+      <h5>AMBULANCE SERVICES</h5>
+      <p> With a modern fleet of fully-equipped ambulances and certified medical personnel, we offer 24/7 emergency
+        response and non-emergency medical transportation. Whether it's a critical situation or routine medical
+        transport, trust us to prioritize your health and safety with prompt and reliable service. Contact us for
+        assistance or to learn more about our services. </p>
+      <button><a href="{% url 'search_ambulance' %}">Ambulance Service</a></button>
+    </div>
+  </div>
 
-<div id="Ambulance_Service" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>Ambulance Service</h3>
-  <p>Ambulance Service</p>
-</div>
-
-<div id="Government_Services" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>Government_Services</h3>
-  <p>Government_Services</p>
-</div>
-<div id="Online_Appointment_Booking" class="tabcontent">
-  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-  <h3>Online_Appointment_Booking</h3>
-  <p>Online_Appointment_Booking</p>
-</div>
-{% include "footer.html" %}
+  <div id="Government_Services" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'govern.jpg' %}" alt="">
+    <div class="p">
+      <h5>GOVERNMENT SERVICES</h5>
+      <p>We are committed to delivering transparent, accessible, and responsive government services to all citizens.
+        Whether you're seeking assistance with healthcare, education, employment, social welfare, or any other aspect of
+        public service, our goal is to provide timely and effective support to meet your needs.
+      </p>
+      <button><a href="{% url 'goverment_scheme' %}">Government Services</a></button>
+    </div>
+  </div>
+  <div id="Online_Appointment_Booking" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'Doctor.jpg' %}" alt="">
+    <div class="p">
+      <h5>APPOINTMENT SERVICE</h5>
+      <p>Our Online Appointment Booking platform offers a convenient and efficient way to schedule appointments with our
+        services. With 24/7 accessibility, real-time availability updates, and automated reminders, booking appointments
+        has never been easier. Simply select your desired date and time, provide your information, and receive instant
+        confirmation.
+      </p>
+      
+      <button><a href="">Book Appointment</a></button>
+    </div>
+  </div>
+  {% include "footer.html" %}
 </main>
 <script>
   function openCity(evt, cityName) {
@@ -168,7 +287,7 @@
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(cityName).style.display = "flex";
     evt.currentTarget.className += " active";
   }
 

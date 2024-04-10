@@ -1423,18 +1423,19 @@
             </button> -->
         {% endif %}
         {% if request.user.is_authenticated %}
+        {% if request.user.patients.get.user %}
         <div class="pd_dict">
             <!-- Left side: Profile Picture -->
             <img class="patient_img"
-                src="https://img.freepik.com/free-photo/nurse-preparing-consult_23-2149309949.jpg?t=st=1709031515~exp=1709035115~hmac=546e90648c171fde3668741c4155def0209b521812021efc46e28331d3ae2c06&w=360"
-                alt="">
+            src="{{request.user.patients.get.profile_picture.url}}"
+            alt="">
         </div>
         <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
-        {% if request.user.patients.get.user %}
         <a href="{% url 'patient_dashbord' %}" class="{% if request.path == '/patient_dashbord/' %} active {% endif %}">
             <i class='bx bxs-dashboard'></i> Dashboard</a>
-        {% endif %}
-        {% if request.user.doctors.get.user %}
+            {% endif %}
+            {% if request.user.doctors.get.user %}
+            <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
         <a href="{% url 'drDashbord' %}" class="{% if request.path == '/drDashbord/' %} active {% endif %}"><i
                 class='bx bxs-dashboard'></i> Dashboard</a>
         {% endif %}

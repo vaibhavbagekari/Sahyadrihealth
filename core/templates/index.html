@@ -504,7 +504,62 @@ display: flex;
 flex-direction: column;
 justify-content: center;
       }
+      #disclaimer{
+        display: none;
+            background-color: rgb(201, 193, 193);
+            padding: 20px;
+            width: 20%;
+            height: max-content;
+            transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 2);
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            border-top: 5px solid #1b8077;
+            border-bottom: 5px solid #1b8077;
+            top: 30%;
+            right: -9%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+
+      }
+      #disclaimer button{
+        padding: .5rem .8rem;
+        background-color: #1b8077;
+        border: none;
+        font-size: .9rem;
+        text-decoration: none;
+      }
+      #disclaimer button a{
+        text-decoration: none;
+        color: white;
+      }
+      #disclaimer p{
+        width: 100%;
+        text-align: center;
+        color: black;
+        font-size: 0.9rem;
+      }
+      #disclaimer h5{
+        position: absolute;
+        top: -12%;
+        right: -30%;
+        color: black;
+        cursor: pointer;
+      }
+      #disclaimer h4{
+        color: red;
+      }
       @media (max-width: 1300px){
+        #disclaimer{
+            width: 38vw;
+                height: 35vh;
+                right: -17%;
+                top: 32%;
+        }
         .hero_textm{
     font-size: 2.5rem;
    padding: 1rem;
@@ -556,6 +611,12 @@ margin-top: 2rem;
     font-size: 2rem;
 
         }
+        #disclaimer{
+            width: 40vw;
+                height: 37vh;
+                
+
+        }
         .hero_textm button{
             font-size: .7rem;
         }
@@ -602,6 +663,12 @@ margin-top: 2rem;
         .col-md-4:nth-child(1){
     transition-delay: 1s;
 }
+#disclaimer{
+            width: 40vw;
+                height: 42vh;
+                top: 50%;
+
+        }
 .col-md-4:nth-child(2){
    
     transition-delay: 1s;
@@ -654,7 +721,14 @@ margin-top: 2rem;
         }
     }
     @media (max-width: 520px){
-      
+        #disclaimer{
+            height: 40vh;
+            width: 46vw;
+            top: 48%;
+        }
+        #disclaimer p{
+            font-size: 0.8rem;
+        }
         .hero_textm{
     font-size: 1.8rem;
    padding: 1rem;
@@ -680,12 +754,33 @@ margin-top: 2rem;
             font-size: 0.6rem;
         }
       }
+      @media screen and  (max-width: 450px) and (min-height:600px){
+        #disclaimer{
+            top: 40%;
+            height: 26vh;
+            width: 47vw;
+        }
+        main{
+            padding-top: 7vh;
+
+        }
+      }
       @media (max-width: 400px){
         .hero_textm{
             width: 82%;
     font-size: 1.5rem;
    padding: 1rem;
    margin-top: 0;
+        }
+        #disclaimer{
+            height: 38vh;
+            width: 56vw;
+        }
+        #disclaimer p{
+            font-size: 0.8rem;
+        }
+        #disclaimer h4{
+            font-size: 1.2rem;
         }
         .hero_textm button{
             font-size: .4rem;
@@ -694,12 +789,30 @@ margin-top: 2rem;
             font-size: 0.5rem;
         }
       }
+      @media screen and  (max-width: 400px) and (min-height:650px){
+        #disclaimer{
+            top: 45%;
+            height: 37vh;
+            width: 50vw;
+        }
+      
+      }
       @media (max-width: 340px){
         .hero_textm{
             width: 85%;
     font-size: 1.1rem;
    padding: 1rem;
    margin-top: 0;
+        }
+        #disclaimer{
+            height: 38vh;
+            width: 57vw;
+        }
+        #disclaimer p{
+            font-size: 0.75rem;
+        }
+        #disclaimer h4{
+            font-size: 1.1rem;
         }
         .hero_textm button{
             padding: .5rem;
@@ -728,7 +841,13 @@ margin-top: 2rem;
 <main id="layer2">
     <!-- <h2>Main Content</h2>
             <p>This is some dummy content for the main section of the website.</p> -->
-
+            <div id="disclaimer">
+                <h5 id="cross">&times</h5>
+                <center><h4>Disclaimer</h4></center>
+                
+                <p>  Excepturi mollitia harum, aliquid cumque neque nisi dicta. Voluptas necessitatibus impedit quidem?</p>
+            <center><button ><a href="#" id="crossbtn">I AGREE</a></button></center>
+            </div>
 
     <div class="slider-container">
         
@@ -1025,7 +1144,25 @@ margin-top: 2rem;
     });
     const hiddenElement=document.querySelectorAll(".hidden")
 hiddenElement.forEach((el)=>observer.observe(el))
+setTimeout(function(){
+            let disclaim=document.getElementById("disclaimer");
+            disclaim.style.display="block"
+            // disclaim.innerHTML="This website is for informational purpose only"
+        },2000);
+        
+let cross=document.getElementById("cross")
+let crossbtn=document.getElementById("crossbtn")
+cross.addEventListener("click",function(){
+    event.preventDefault();
+    let disclaim=document.getElementById("disclaimer");
+            disclaim.style.display="none"
+})
 
+crossbtn.addEventListener("click",function(){
+    event.preventDefault();
+    let disclaim=document.getElementById("disclaimer");
+            disclaim.style.display="none"
+})
 </script> 
 
 {% comment %} <script>
@@ -1060,7 +1197,10 @@ hiddenElement.forEach((el)=>observer.observe(el))
         animationFrame = requestAnimationFrame(animateSlider);
     }
     startSlider();
+    //    js for disclaimer
 
+
+//ended here
     // slider.addEventListener('mousedown', (e) => {
     //     isDragging = true;
     //     startPos = e.clientX;
