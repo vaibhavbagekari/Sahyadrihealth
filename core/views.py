@@ -93,7 +93,6 @@ def signin(request):
             return  redirect(request.path)
         
         else:
-           
             main_data=User.objects.get(username=user)
             login(request,user)
             messages.add_message(request,messages.INFO,'login Successful')

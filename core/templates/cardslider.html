@@ -1,9 +1,10 @@
 {% load static %}
 <style>
     .card-slider3 {
-        overflow: hidden;
+        /* overflow: hidden;  */
         min-width:100%;
         position: relative;
+        overflow-x:scroll;
     }
     .scontainer{
         margin: 30px auto 30px auto;
@@ -18,14 +19,16 @@
     }
     
     .cardm {
-        width: 250px;
+        min-width: max-content;
         margin: 0 10px;
     }
-
+    .card-title{
+        text-wrap: nowrap;
+    }
     /* Optional: Adjust styles for smaller screens */
     @media (max-width: 768px) {
         .cardm {
-            width: 100%;
+            width: 80%;
         }
     }
     .btn_div{
@@ -35,9 +38,15 @@
         
         /* z-index: 2; */
     }
+    .cardm{
+        width: 350px;
+    }
+    .card-img-top{
+        max-width: 100%;
+    }
+    
 </style>
-</head>
-<body>
+
 
 <div class="scontainer">
     <br>
@@ -115,13 +124,13 @@
         
         <!-- Add more cards as needed -->
     </div>
-    <div class="btn_div">
+</div>
+<div class="btn_div">
 
-        <button class="btn " onclick="showPrevCard2()"><img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px; 
-                                                                                                                transform: rotate(180deg);">Previous</button>
-        <button class="btn" onclick="showNextCard2()">Next <img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px;"></button>
-    </div>
-    </div>
+    <button class="btn " onclick="showPrevCard2()"><img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px; 
+                                                                                                            transform: rotate(180deg);">Previous</button>
+    <button class="btn" onclick="showNextCard2()">Next <img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px;"></button>
+</div>
 </div>
 <script>
 // Manual card slider using Bootstrap
@@ -159,5 +168,4 @@ document.addEventListener('keydown', (event) => {
     }
 });
 </script>
-</body>
-</html>
+

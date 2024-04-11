@@ -1,5 +1,11 @@
 {% load static %}
 {% include "header.html" %}
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'health_empire_logo.gif' %}" />
+
+    <title>Health Empire</title>
+    
+</head>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
             crossorigin="anonymous"></script>
@@ -407,7 +413,7 @@ h5{
 .hidden{
     
     opacity: 0;
-    transition: all 0.6s;
+    transition: all 1.2s;
     filter: blur(5px);
     transform: translateX(100%);
    
@@ -508,7 +514,7 @@ justify-content: center;
         display: none;
             background-color: rgb(201, 193, 193);
             padding: 20px;
-            width: 20%;
+            width: 50%;
             height: max-content;
             transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 2);
 
@@ -555,8 +561,8 @@ justify-content: center;
       }
       @media (max-width: 1300px){
         #disclaimer{
-            width: 38vw;
-                height: 35vh;
+            width: 48vw;
+                height: max-content;
                 right: -17%;
                 top: 32%;
         }
@@ -613,7 +619,7 @@ margin-top: 2rem;
         }
         #disclaimer{
             width: 40vw;
-                height: 37vh;
+                height: max-content;
                 
 
         }
@@ -665,7 +671,7 @@ margin-top: 2rem;
 }
 #disclaimer{
             width: 40vw;
-                height: 42vh;
+                height:max-content;
                 top: 50%;
 
         }
@@ -722,7 +728,7 @@ margin-top: 2rem;
     }
     @media (max-width: 520px){
         #disclaimer{
-            height: 40vh;
+            height: max-content;
             width: 46vw;
             top: 48%;
         }
@@ -758,7 +764,7 @@ margin-top: 2rem;
         #disclaimer{
             top: 40%;
             height: 26vh;
-            width: 47vw;
+            width: max-content;
         }
         main{
             padding-top: 7vh;
@@ -793,7 +799,7 @@ margin-top: 2rem;
         #disclaimer{
             top: 45%;
             height: 37vh;
-            width: 50vw;
+            width: max-content;
         }
       
       }
@@ -806,7 +812,7 @@ margin-top: 2rem;
         }
         #disclaimer{
             height: 38vh;
-            width: 57vw;
+            width: max-content;
         }
         #disclaimer p{
             font-size: 0.75rem;
@@ -845,7 +851,8 @@ margin-top: 2rem;
                 <h5 id="cross">&times</h5>
                 <center><h4>Disclaimer</h4></center>
                 
-                <p>  Excepturi mollitia harum, aliquid cumque neque nisi dicta. Voluptas necessitatibus impedit quidem?</p>
+                <p>  हेल्थ एम्पायर या कंपनीचा उद्देश प्रामुख्याने आरोग्य क्षेत्रामध्ये जागरूकता निर्माण करून रुग्ण आणि डॉक्टर यांच्यामध्ये समन्वय साधने हा होय. तसेच नजीकच्या तज्ञ डॉक्टरांच्या भेटी वेबसाईट द्वारे घडवून आणण्यास मदत करणे.ही कंपनी आरोग्य क्षेत्रामध्ये मध्यस्थी म्हणून काम करत नाही, त्यामुळेच सर्व माहितीची शहानिशा करूनच डॉक्टरांशी भेटणे. तसेच रुग्णांच्या बाबतीत कोणतीही लापरवाही झाल्यास कंपनी जबाबदार राहणार नाही ही नम्र विनंती.
+                </p>
             <center><button ><a href="#" id="crossbtn">I AGREE</a></button></center>
             </div>
 
@@ -939,8 +946,8 @@ margin-top: 2rem;
     </div>
   </div><br><br><br>
 
-  <div class="subdiv_img ">
-            <div class="card flex_card hidden ">
+  <div class="subdiv_img hidden">
+            <div class="card flex_card  ">
                <!-- Add your cards here -->
                <img src="{% static 'doc.jpg' %}"alt="Card 1">
                <div class="card-body">
@@ -949,7 +956,7 @@ margin-top: 2rem;
                 </div>
                <!-- Add card content as needed -->
            </div>
-           <div class="card flex_card hidden">
+           <div class="card flex_card ">
                <!-- Add your cards here -->
                <img src="{% static 'blood.jpg' %}" alt="Card 1">
                <div class="card-body">
@@ -958,7 +965,7 @@ margin-top: 2rem;
                 </div>
                <!-- Add card content as needed -->
            </div>
-           <div class="card flex_card hidden">
+           <div class="card flex_card ">
                <!-- Add your cards here -->
                <img src="{% static 'ambu.jpg' %}" alt="Card 1">
                <div class="card-body">
@@ -967,7 +974,7 @@ margin-top: 2rem;
                 </div>
                <!-- Add card content as needed -->
            </div>
-           <div class="card  flex_card hidden">
+           <div class="card  flex_card ">
                <img src="{% static 'govern.jpg' %}" alt="Card 1">
                <div class="card-body">
                    <h5 class="card-title">Online appointment booking</h5>

@@ -54,6 +54,7 @@ urlpatterns = [
     path('img_upload/', doctor_views.image_upload, name='img_upload'),
     path('image_slider', doctor_views.image_slider, name='image_slider'),
     path('drDashbord_setting/', doctor_views.drDashbord_setting, name='drDashbord_setting'),
+    path('updateDrData/', doctor_views.updateDrData, name='updateDrData'),
     path('delet_img/<id>', doctor_views.delet_img, name='delet_img'),
     # path('doctor_availability/<id>', doctor_views.doctor_availability, name='doctor_availability'),
     path('cut_event/', cut_event, name='cut_event'),

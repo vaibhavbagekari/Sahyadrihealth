@@ -267,6 +267,9 @@ height: 25rem;
 <main>
 
   {% if request.user.is_authenticated %}
+  <title>
+    {{request.user.patients.get.name }}
+  </title>
   <div class="top">
     <div class="container1">
       <div class="pd_dic1">

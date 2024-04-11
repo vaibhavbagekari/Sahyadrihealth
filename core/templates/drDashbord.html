@@ -38,7 +38,7 @@
                     <strong>Email:</strong> {{request.user.email}}
                 </p>
                 
-                <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit</a></button>
+                <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit <i class="fas fa-edit"></i></a></button>
             </div>
         </div>
         <!-- </div> -->
@@ -123,6 +123,7 @@
         </div>
         {% comment %} <div class="container_div">{% include "calender.html" %}</div> {% endcomment %}
         {% comment %} {% include "footer.html" %} {% endcomment %}
+        {% include "footer.html" %}
     </div>
     
     

@@ -29,6 +29,38 @@ def drDashbord(request):
     # except Exception as e:
     #     # return JsonResponse({'status': 'error', 'message': str(e)})
     #     return render(request,"drDashbord.html")
+@csrf_exempt
+def updateDrData(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data','[]'))
+            img = request.FILES.get("picture")
+            print(data)
+            ls = list(data.values())
+            user = User.objects.get(username=ls[0])
+            querySet = user.doctors.all()[0]
+            user.first_name=ls[1]
+            user.last_name=ls[2]
+            user.email=ls[3]
+            user.save()
+            querySet.age=ls[4]
+            querySet.contact_no=ls[5]
+            querySet.biography=ls[6]
+            querySet.category=ls[7]
+            querySet.specialization=ls[8]
+            querySet.experience=ls[9]
+            querySet.education=ls[10]
+            querySet.hospital_name=ls[11]
+            querySet.license_no=ls[12]
+            querySet.hospital_about=ls[13]
+            if img:
+                querySet.profile_picture=img
+            querySet.save()
+            return JsonResponse({'status': 'success'})
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
 
 def drProfile(request,id):
     doctor=User.objects.filter(id=id)

@@ -28,6 +28,128 @@
   .thankYou{
     display: none;
   }
+  <style>
+    .conform_form {
+      background-color: #fff;
+      border-bottom: 5px solid #125953;
+      border-top: 5px solid #125953;
+  
+      box-shadow: 0 8px 16px 0 rgba(205, 190, 255, .2);
+  
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* border: 2px solid black; */
+      padding: 15px;
+      display: none;
+      z-index: 1000;
+      font-size: 1.2rem;
+  
+    }
+  
+    .info-div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .info-div input {
+      border: none;
+      max-width: min-content;
+    }
+  
+    #next_block {
+      display: none;
+    }
+  
+    .thankYou {
+      display: none;
+    }
+    strong{
+      color: #125953;
+    }
+    .info-div h4{
+      color:#125953 ;
+    }
+    .btn_div button{
+      padding: .5rem;
+      width: 8rem;
+      font-size: 1rem;
+      background-color: #125953;
+      border: 0;
+      margin-right: 1rem;
+      color: white;
+      text-transform: uppercase;
+    }
+    section{
+      margin-bottom: 1rem;
+    }
+    section input::placeholder{
+      font-size: 1rem;
+      margin-left: .5rem;
+    }
+    
+    section input{
+      margin-left: .5rem;
+    }
+    .next_block section input{
+      font-size: 1rem;
+    }
+    .next_block{
+      padding: 25px;
+    }
+    .next_block button{
+      padding: .4rem;
+      width: 7rem;
+      font-size: .9rem;
+      background-color: #125953;
+      border: 0;
+      margin-right: .1rem;
+      color: white;
+      text-transform: uppercase;
+    }
+    .thankYou{
+      padding: 30px;
+  
+    }
+    .thankYou p{
+      font-size: 1.1rem;
+    }
+    .thankYou button{
+      padding: .4rem;
+      width: 7rem;
+      font-size: .9rem;
+      background-color: #125953;
+      border: 0;
+      margin-right: .1rem;
+      color: white;
+     
+    }
+    @media screen and (max-width:650px) {
+  
+       .conform_form {
+        font-size: 1.1rem;
+      
+       }
+       .btn_div button{
+        margin-bottom: 1rem;
+        margin-right: 0;
+        width: 7rem;
+        padding: .4rem;
+       }
+     
+       .next_block button{
+        
+        margin-bottom: 1rem;
+        margin-right: 0;
+        width: 7rem;
+        padding: .3rem;
+       }
+       section input{
+      margin-left:0;
+    }
+    }
 </style>
 <div class="conform_form" id="conform_form">
    
@@ -62,14 +184,17 @@
       <strong>enter your contact number:</strong><input style="border: 1px solid orange;" required type="number"
       maxlength="10" name="contact_no" id="contact_no" value="" placeholder="Enter your contact Number">
     </section>
-    <button type="button" onclick="pre_block()">Back</button>
-    <button type="button" class="checked">Conform</button>
-    <button type="button" onclick="cancelslot()">Cancel</button>
+    <center><button type="button" onclick="pre_block()" style="background-color: orangered;">Back</button>
+      <button type="button" class="checked" id="checked">Confirm</button>
+      <button type="button" onclick="cancelslot()" style="background-color: red;">Cancel</button></center>
     
   </div>
   <div class="thankYou" id="thankYou">
     Thank You!!!
-    <button type="button" onclick="cancelslot()">ok</button>
+    
+    <center>
+      <button type="button" onclick="cancelslot()">ok</button>
+    </center>
   </div>
  
 </div>

@@ -1,6 +1,8 @@
 import profile
+from xml.dom.minidom import Document
 from django.db import models
 from django.contrib.auth.models import User
+from numpy import true_divide
 # Create your models here.
 class Patient(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank =True)
@@ -31,6 +33,7 @@ class Doctor(models.Model):
     languages=models.TextField(max_length=100,null=True,blank=True)
     biography=models.TextField(max_length=1000,null=True,blank=True)
     hospital_name=models.TextField(max_length=150,null=True,blank=True)
+    hospital_about = models.TextField(max_length=1000,null=True,blank=True)
 
 class Event(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='events')
@@ -92,3 +95,8 @@ class BookedAppoinment(models.Model):
     Patient_name = models.CharField(max_length=150,null=True,blank=True)
     Patient_contact = models.IntegerField(null=True,blank=True)
     email=models.EmailField(null=True,blank=True)
+
+class government_schemes(models.Model):
+    title=models.TextField(null=True,blank=True)
+    sub_title = models.TextField(max_length=1000,null=True,blank=True)
+    Document = models.FileField(null=True,blank=True)

@@ -1,10 +1,11 @@
-<style>
 
-</style>
 {% include "header.html" %}
 
 
 <style>
+    .search_bar{
+        display: none;
+    }
     body {
         font-family: 'Arial', sans-serif;
         margin: 0;
@@ -237,7 +238,9 @@
     </div>
 
     {% for i in doctor %}
-
+    <title>
+        Dr. {{i.first_name}}{{i.last_name}}
+    </title>
     <div class="card">
         <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo">
         <div>
