@@ -230,6 +230,60 @@
         text-transform: uppercase;
         color: #12a8ae;
     }
+    
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #ccf4f6;
+      }
+  
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+  
+      /* Change background color of buttons on hover */
+      /* .tab button:hover {
+        background-color: white;
+      } */
+  
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #343a40;
+        color: white;
+      }
+  
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      .text-bg-dark{
+        max-height: 400px;
+        /* width: 500px; */
+        overflow: hidden;
+      }
+      .text-bg-dark img{
+        height: 100%;
+      }
+      .card-img-overlay{
+        left: 1rem;
+      }
+      /* .card-img-overlay:hover .card-img{
+        transform: scale(1.1);
+      } */
+      .tabcontent h5, .tabcontent p{
+        color: #12a8ae;
+      }
 </style>
 <main>
     <div class="header">

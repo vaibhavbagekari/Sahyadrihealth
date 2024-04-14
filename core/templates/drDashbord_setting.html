@@ -254,6 +254,289 @@
       display: none;
       color: red;
     }
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap');
+
+    * {
+      font-family: "Poppins", sans-serif;
+
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      text-wrap: nowrap;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 0px;
+    }
+
+    input[name="username"]:hover {
+      cursor: not-allowed;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .content {
+      padding: 0px;
+    }
+
+    /* edit profile */
+    .edit {
+      width: calc(100%);
+      /* display: flex; */
+      align-items: center;
+      justify-content: space-evenly;
+      /* padding: 10px; */
+    }
+
+    .edit input {
+      /* width: 200%; */
+      border-radius: 0;
+    }
+
+    .img_div {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      /* Added */
+    }
+
+    .overlaye {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Adjust the overlay color and opacity as needed */
+      opacity: 0;
+      /* Initially invisible */
+      transition: opacity 0.3s ease;
+      /* Smooth transition */
+    }
+
+    .file_input {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .custom_button {
+      border: 2px solid white;
+      font-size: .6rem;
+      padding: .5rem .8rem;
+      background-color: transparent;
+      /* Change button color as needed */
+      color: #fff;
+
+
+      cursor: pointer;
+
+    }
+
+    .img_div:hover .overlaye {
+      opacity: 1;
+      /* Display overlay on hover */
+    }
+
+    .img_div img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .edit button {
+      padding: .5rem 1.5rem;
+      background-color: blue;
+      border: none;
+      color: white;
+      /* margin-left: -5rem; */
+      border-radius: 0;
+
+    }
+
+    .flex {
+      display: flex;
+      /* gap: 70%; */
+      justify-content: space-around;
+      width: 100%;
+
+    }
+
+    .lf {
+      /* margin-left: -50%; */
+    }
+    .form-div{
+      /* position: relative;
+      left: 50%;
+      top: -50%;
+      transform: translate(-50%,50%); */
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+   width: 70%;
+      background-color: #fff;
+            padding: 20px;
+            border-radius: 0px;
+            border-top: 5px solid #00A096;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-div input{
+      width: 60%;
+    }
+    @media screen and (max-width: 970px) {
+      .flex {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .lf {
+        margin-left: 0;
+      }
+
+      .edit button {
+        margin-left: 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .edit {
+        width: 100%;
+        flex-direction: column;
+
+
+      }
+
+      .flex {
+        padding: ;
+      }
+
+      #profile-form {
+        width: 100%;
+        padding: 1.5rem;
+        margin-left: 1rem;
+      }
+
+      .edit input {
+        width: 80%;
+      }
+      .form-div{
+        width: 90%;
+      }
+      .form-div input{
+        width: 90%;
+      }
+
+    }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #23aea3;
+      color: black;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .text-bg-dark {
+      max-height: 400px;
+      overflow: hidden;
+    }
+
+    .text-bg-dark img {
+      height: 100%;
+    }
+
+    #documentCards,#documentCardsi {
+      display: flex;
+      flex-direction: row;
+      
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 0px;
+      padding: 10px;
+      border-top: 5px solid #00A096;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+    }
+
+    .card img {
+      margin-top: .5rem;
+      max-width: 100%;
+      height: auto;
+    }
+    .card a{
+      text-decoration: none;
+    }
+
+    #title_img_msg,
+    #title_doc_msg,
+    #title_img_msgi,
+    #title_doc_msgi {
+      display: none;
+      color: red;
+    }
+
+    .Snav .tab {
+
+      background-color: #343a40;
+
+    }
   </style>
   {% include "drDashbord_header.html" %}
   <div class="content">
@@ -348,6 +631,7 @@
       <button class="ajax-button" data-param1="value3" data-param2="value4">Button 2</button>
       <button class="ajax-button" data-param1="value5" data-param2="value6">Button 3</button> {% endcomment %}
 
+      <nav class="Snav">
 
       <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'Goverment')" id="gs">
@@ -360,6 +644,7 @@
           Other Services
         </button>
       </div>
+      </nav>
 
       <div id="Goverment" class="tabcontent">
 
