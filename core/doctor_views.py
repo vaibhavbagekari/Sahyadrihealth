@@ -146,7 +146,7 @@ def addinsurance(request,id):
             data = json.loads(request.POST.get('data','[]'))
             ls = list(data.values())
             
-            obj = Dr_govScheme.objects.create(
+            obj = Dr_Insurance.objects.create(
                 doctor=dr,
                 title=ls[0],
                 sub_title=ls[1],

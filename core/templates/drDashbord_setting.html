@@ -592,7 +592,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           formData.append('Document', Document[0]);
           formData.append('title_img', title_img[0]);
           $.ajax({
-            url: '/addGS/{{request.user.doctors.get.id}}',
+            url: '/addinsurance/{{request.user.doctors.get.id}}',
             method: 'POST',
             data: formData,
             processData: false,

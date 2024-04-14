@@ -9,14 +9,14 @@
 
 <script>
     
-    function populateCards(insurance) {
-        var cardsContainer = document.getElementById("documentCardsi");
+    function populateCardsi(insurance) {
+        var cardsContaineri = document.getElementById("documentCardsi");
         insurance.forEach(function(item) {
-            var card = document.createElement('div');
-            card.className = 'card';
+            var cardi = document.createElement('div');
+            cardi.className = 'card';
 
             
-                var cardContent = `
+                var cardContenti = `
                     <h3>${item.title}</h3>
                     <p>${item.sub_title}</p>
                     <a href="${item.Document}">Download Document</a>
@@ -24,24 +24,24 @@
                     <button onclick="deleteinsurance(${item.id})">delete</button>
                 `;
            
-            card.innerHTML = cardContent;
+            cardi.innerHTML = cardContenti;
             
-            cardsContainer.appendChild(card);
+            cardsContaineri.appendChild(cardi);
         });
     }
     function setinsurance(data){
         
         var insurance=data;
         if (Boolean(insurance.length>0)){
-            populateCards(insurance);
+            populateCardsi(insurance);
 
         }
         else{
-            var cardsContainer = document.getElementById("documentCardsi");
-            var card = document.createElement('div');
-            card.innerHTML = "Insurance not Added yet <br><br>";
+            var cardsContaineri = document.getElementById("documentCardsi");
+            var cardi = document.createElement('div');
+            cardi.innerHTML = "Insurance not Added yet <br><br>";
             
-            cardsContainer.appendChild(card);
+            cardsContaineri.appendChild(cardi);
         }
     }
     // Call the function to populate the cards
