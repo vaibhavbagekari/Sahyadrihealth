@@ -302,11 +302,11 @@
                 <p>{{request.user.doctors.get.category}}</p>
             </div>
             <a href="{% url 'home' %}" class="active"><i class="fas fa-home"></i> Home</a>
-            <a href="#" class="active"><i class="fas fa-user-clock"></i> Dashboard</a>
+            <a href="{% url 'drDashbord' %}" class="active"><i class="fas fa-user-clock"></i> Dashboard</a>
             <a href="{% url "availability" %}"><i class="fas fa-calendar-alt"></i> Appointments</a>
             <!-- <a href="#"><i class="fas fa-money-check-alt"></i> Payment</a> -->
-            <a href="#"><i class="fas fa-user"></i> Profile</a>
-            <a href="{% url 'drDashbord_setting' %}"><i class="fas fa-cogs"></i> Settings</a>
+            {% comment %} <a href="#"><i class="fas fa-user"></i> Profile</a> {% endcomment %}
+            <a href="{% url 'drDashbord_setting' %}"><i class="fas fa-cogs"></i>Profile Settings</a>
             <a href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </div>

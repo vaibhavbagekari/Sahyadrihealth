@@ -117,24 +117,22 @@
       <section>
         <div class="container">
           <div class="row">
+            {% for i in GS %}
+            {% comment %} {{i.title}}
+            {{i.sub_title}} {% endcomment %}
             <div class="col-md-4 hid">
               <div class="card">
-                <img src="{% static 'Central-Government-Health-Scheme-CGHS.jpg' %}" class="card-img-top" alt="Scheme 1">
+                <img src="{{i.title_img.url}}" class="card-img-top" alt="Scheme 1">
                 <div class="card-body">
-                  <h5 class="card-title">Scheme Title 1</h5>
-                  <p class="card-text">Description of the government health scheme. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h5 class="card-title">{{i.title}}</h5>
+                  <p class="card-text">{{i.sub_title}}</p>
+                  <br>
+                  <a href="{{i.Document.url}}" target="_blank" rel="noopener noreferrer">Document</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4 hid" >
-              <div class="card" >
-                <img src="{% static "Government-Schemes.jpg" %}" class="card-img-top" alt="Scheme 2">
-                <div class="card-body">
-                  <h5 class="card-title">Scheme Title 2</h5>
-                  <p class="card-text">Description of the government health scheme. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+           
             <!-- Add more cards as needed -->
           </div>
         </div>

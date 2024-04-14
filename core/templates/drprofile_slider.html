@@ -51,6 +51,13 @@
   </style>
 
 
+  <div class="hinfo">
+    
+    <strong>{{i.doctors.get.hospital_name}}</strong>
+    <br>
+    {{i.doctors.get.hospital_about}}
+  </div>
+  <br><br>
 <div class="thumbnail-list" id="thumbnailList">
   <!-- Add your thumbnail images here -->
   {% for i in images %} 
@@ -59,7 +66,6 @@
 
   <!-- Add more thumbnails as needed -->
 </div>
-
 <div class="large-slider" id="largeSlider">
   <span class="close-btn" onclick="closeLargeSlider()">&times;</span>
   <img src="" alt="Large Image" id="largeImage">

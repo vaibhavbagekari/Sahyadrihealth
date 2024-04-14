@@ -97,3 +97,32 @@ class BookedAppoinmentAdmin(admin.ModelAdmin):
         'end_time'
     )
 admin.site.register(BookedAppoinment,BookedAppoinmentAdmin)
+
+class government_schemesAdmin(admin.ModelAdmin):
+    government_schemesDisplay = (
+        'title',
+        'title_img',
+        'sub_title',
+        'Document',
+    )
+admin.site.register(Government_schemes,government_schemesAdmin)
+
+class Dr_govSchemeAdmin(admin.ModelAdmin):
+    Dr_govSchemeDisplay = (
+        'doctor',
+        'title',
+        'title_img',
+        'sub_title',
+        'Document',
+    )
+admin.site.register(Dr_govScheme,Dr_govSchemeAdmin)
+
+class Dr_InsuranceAdmin(admin.ModelAdmin):
+    Dr_InsuranceDisplay = (
+        'doctor',
+        'title',
+        'title_img',
+        'sub_title',
+        'Document'
+    )
+admin.site.register(Dr_Insurance,Dr_InsuranceAdmin)

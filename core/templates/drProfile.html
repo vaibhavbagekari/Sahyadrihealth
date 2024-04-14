@@ -264,19 +264,21 @@
         {% include "drprofile_slider.html" %}
     </div>
     <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Health Insurance</h3>
+        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Other Services</h3>
+        {% include "tab.html" %}
+        {% comment %} <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Health Insurance</h3>
         <span>
             <h5>Title</h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
-        </span>
+        </span> {% endcomment %}
     </div>
-    <div class="info_card">
+    {% comment %} <div class="info_card">
         <h3 class="card_title"><i class="fa-solid fa-handshake-angle"></i> Goverment Scheme</h3>
         <span>
             <h5>Title <button type="submit" class="button1">Click here!</button></h5>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
         </span>
-    </div>
+    </div> {% endcomment %}
         {% endfor %}
 
 

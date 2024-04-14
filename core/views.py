@@ -91,20 +91,19 @@ def signin(request):
         elif not patient_data:
             messages.error(request,'Invalid credentials')
             return  redirect(request.path)
-        
         else:
             main_data=User.objects.get(username=user)
             login(request,user)
             messages.add_message(request,messages.INFO,'login Successful')
             return render(request,"patient_dashbord.html",{'patient_data':patient_data,'main_data':main_data})
             # return redirect(request.path)
+
 def patient_signin(request):
     if request.method == 'POST':
         return signin(request)
     else:
         return render(request,"patient_signin.html")
     
-
 @login_required(login_url='/patient_signin')
 def patient_dashbord(request):
     if request.GET.get('location'):
@@ -266,19 +265,23 @@ def contactUs(request):
         return render(request,"contactUs.html")
 
 def goverment_scheme(request):
+    GS=Government_schemes.objects.all()
     if request.method == 'POST':
         return check_form(request)
     elif request.GET.get('location'):
         data=Doctor.objects.filter(address__icontains=request.GET.get('location'),category__icontains=request.GET.get('category'))
         count=len(data)
         ad=request.GET.get('location')
+        
+        for i in GS:
+            print(i.title)
         if not data.exists():
            m="docter not found"
-           return render(request,"goverment_scheme.html",{'data':data,'m':m})
+           return render(request,"goverment_scheme.html",{'data':data,'m':m,'GS':GS})
         else:
-            return render(request,"goverment_scheme.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
+            return render(request,"goverment_scheme.html",{'data':data,'count':count,'ad':ad,'locations':get_locations(),'GS':GS})
     else:
-        return render(request,"goverment_scheme.html")
+        return render(request,"goverment_scheme.html",{'GS':GS})
     
 
 def search_ambulance(request):

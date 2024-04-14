@@ -1,0 +1,52 @@
+
+<style>
+
+</style>
+
+<div id="documentCards">
+    <!-- Dynamic content will be added here -->
+</div>
+
+<script>
+    
+    function populateCards(gs) {
+        var cardsContainer = document.getElementById("documentCards");
+        gs.forEach(function(item) {
+            var card = document.createElement('div');
+            card.className = 'card';
+
+            
+                var cardContent = `
+                    <h3>${item.title}</h3>
+                    <p>${item.sub_title}</p>
+                    <a href="${item.Document}">Download Document</a>
+                    <img src="${item.title_img}" alt="${item.title}">
+                    <button onclick="deleteGS(${item.id})">delete</button>
+                `;
+           
+            card.innerHTML = cardContent;
+            
+            cardsContainer.appendChild(card);
+        });
+    }
+    function setgs(data){
+        
+        var gs=data
+        if (Boolean(gs.length>0)){
+            populateCards(gs);
+
+        }
+        else{
+            var cardsContainer = document.getElementById("documentCards");
+            var card = document.createElement('div');
+            card.innerHTML = "Government Schemes not Added yet <br><br>";
+            
+            cardsContainer.appendChild(card);
+        }
+    }
+    // Call the function to populate the cards
+    
+</script>
+
+</body>
+</html>

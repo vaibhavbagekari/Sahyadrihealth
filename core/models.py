@@ -3,6 +3,7 @@ from xml.dom.minidom import Document
 from django.db import models
 from django.contrib.auth.models import User
 from numpy import true_divide
+import os
 # Create your models here.
 class Patient(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank =True)
@@ -26,7 +27,7 @@ class Doctor(models.Model):
     age = models.IntegerField(null=True,blank=True)
     education = models.TextField(max_length=150,null=True,blank=True)
     specialization=models.TextField(max_length=100,null=True,blank=True)
-    profile_picture = models.ImageField(upload_to="doctor")
+    profile_picture = models.ImageField(upload_to="doctor",default="doctor\defaultPicture.png")
     license_no= models.IntegerField(null=True,blank=True)
     category=models.TextField(max_length=100,null=True,blank=True)
     experience=models.TextField(max_length=100,null=True,blank=True)
@@ -96,7 +97,49 @@ class BookedAppoinment(models.Model):
     Patient_contact = models.IntegerField(null=True,blank=True)
     email=models.EmailField(null=True,blank=True)
 
-class government_schemes(models.Model):
+class Government_schemes(models.Model):
     title=models.TextField(null=True,blank=True)
+    title_img=models.FileField(upload_to="Government_schemes\images",default="govschem\images\defaultimg.jpg")
     sub_title = models.TextField(max_length=1000,null=True,blank=True)
     Document = models.FileField(null=True,blank=True)
+
+class CustomManager(models.Manager):
+    def delete(self):
+        for obj in self.get_queryset():
+            obj.delete()
+
+class Dr_govScheme(models.Model):
+    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='drGov')
+    title=models.TextField(null=True,blank=True)
+    title_img=models.FileField(upload_to="govschem\images",default="govschem\images\defaultimg.jpeg")
+    sub_title = models.TextField(max_length=1000,null=True,blank=True)
+    Document = models.FileField(upload_to="govschem\documents",default="govschem\documents\blank.pdf")
+
+    objects= CustomManager()
+
+    def delete(self , using=None):
+        # Delete associated files
+        if self.title_img:
+            os.remove(self.title_img.path)
+        if self.Document:
+            os.remove(self.Document.path)
+        # Call parent delete method to delete the object from the database
+        super().delete(using=using)
+
+class Dr_Insurance(models.Model):
+    doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='drInsurance')
+    title=models.TextField(null=True,blank=True)
+    title_img=models.FileField(upload_to="insurance\images",default="insurance\images\defaultimg.jpg")
+    sub_title = models.TextField(max_length=1000,null=True,blank=True)
+    Document = models.FileField(upload_to="insurance\documents",default="insurance\documents\blank.pdf")
+
+    objects= CustomManager()
+
+    def delete(self , using=None):
+        # Delete associated files
+        if self.title_img:
+            os.remove(self.title_img.path)
+        if self.Document:
+            os.remove(self.Document.path)
+        # Call parent delete method to delete the object from the database
+        super().delete(using=using)

@@ -12,6 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     label {
       display: block;
@@ -181,6 +182,78 @@
       }
 
     }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .text-bg-dark {
+      max-height: 400px;
+      overflow: hidden;
+    }
+
+    .text-bg-dark img {
+      height: 100%;
+    }
+
+    #documentCards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    #title_img_msg,
+    #title_doc_msg,
+    #title_img_msgi,
+    #title_doc_msgi {
+      display: none;
+      color: red;
+    }
   </style>
   {% include "drDashbord_header.html" %}
   <div class="content">
@@ -189,7 +262,7 @@
         <h3><i class="fa-solid fa-gear" style="margin: 0px;"></i> setting</h3>
       </div>
     </div>
-    
+
 
 
     <!-- Edit profile -->
@@ -200,7 +273,7 @@
         <div class="img_div">
           <img src="{{request.user.doctors.get.profile_picture.url}}" alt="Doctor Profile" id="profile_image" />
           <div class="overlaye">
-            <input type="file" class="file_input" id="profile_picture" >
+            <input type="file" class="file_input" id="profile_picture">
             <label for="profile_picture" id="profile_picture" class="custom_button">Change <i
                 class="fas fa-edit"></i></label>
           </div>
@@ -259,16 +332,100 @@
           <input type="number" id="license_no" name="license_no" value="{{request.user.doctors.get.license_no}}"
             required>
 
+          <label for="hospital_about">About Hospital</label>
+          <textarea name="hospital_about" id="hospital_about" cols="30" rows="10"
+            maxlength="20">{{request.user.doctors.get.hospital_about}}</textarea>
         </div>
 
       </div>
+      <button type="submit" id="submit">Save</button>
+      <h3>Add Images</h3>
       <div class="img_slider" style="margin-bottom: 5rem;padding: 10px;">
         {% include "Himg_slider.html" %}
       </div>
-      <label for="hospital_about">About Hospital</label>
-      <textarea name="hospital_about" id="hospital_about" cols="30" rows="10" maxlength="20">{{request.user.doctors.get.hospital_about}}</textarea>
-      <button type="submit" id="submit">Save</button>
+      {% comment %}
+      <button class="ajax-button" data-param1="value1" data-param2="value2">Button 1</button>
+      <button class="ajax-button" data-param1="value3" data-param2="value4">Button 2</button>
+      <button class="ajax-button" data-param1="value5" data-param2="value6">Button 3</button> {% endcomment %}
 
+
+      <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Goverment')" id="gs">
+          Goverment Schemes
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'Insurance')">
+          Insurance
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'Other')">
+          Other Services
+        </button>
+      </div>
+
+      <div id="Goverment" class="tabcontent">
+
+        {% include "GScard.html" %}
+        <div class="form-div">
+          <label for="title">Title:</label>
+          <input type="text" id="heading" placeholder="enter the title of Goverment scheme">
+
+          <label for="sub_title">Sub-title:</label>
+          <input type="text" id="sub_title" placeholder="enter the sub-title of Goverment scheme">
+
+          <label for="Document">Related Document</label>
+          <input type="file" id="Document">
+          <p id="title_doc_msg">Documet is required</p>
+
+          <label for="title_img">Title Image:</label>
+          <input type="file" id="title_img">
+          <p id="title_img_msg">title image is required</p>
+
+          <button id="addGS">Save</button>
+        </div>
+      </div>
+      
+      <div id="Insurance" class="tabcontent">
+        {% include "insurance_card.html" %}
+        <div class="form-div">
+          <label for="title">Title:</label>
+          <input type="text" id="headingi" placeholder="enter the title of Goverment scheme">
+  
+          <label for="sub_title">Sub-title:</label>
+          <input type="text" id="sub_titlei" placeholder="enter the sub-title of Goverment scheme">
+  
+          <label for="Document">Related Document</label>
+          <input type="file" id="Documenti">
+          <p id="title_doc_msgi">Documet is required</p>
+  
+          <label for="title_img">Title Image:</label>
+          <input type="file" id="title_imgi">
+          <p id="title_img_msgi">title image is required</p>
+  
+          <button id="addinsurance">Save</button>
+        </div>
+
+        
+
+      </div>
+
+      <div id="Other" class="tabcontent">
+        No data found
+      </div>
+
+      <script>
+        function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+      </script>
 
     </div>
 
@@ -286,6 +443,18 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 </script> -->
   </body>
   <script>
+    function deleteGS(id) {
+      // Replace "https://www.example.com" with the desired URL
+      if (confirm("Do you want to delete this?")) {
+        window.location.href = "/deleteGS/" + id;
+      }
+    }
+    function deleteinsurance(id) {
+      // Replace "https://www.example.com" with the desired URL
+      if (confirm("Do you want to delete this?")) {
+        window.location.href = "/deleteinsurance/" + id;
+      }
+    }
     $(document).ready(function () {
       $('#submit').click(function () {
         var profile_picture = document.getElementById("profile_picture").files;
@@ -302,7 +471,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         var education = document.getElementById("education").value;
         var hospital_name = document.getElementById("hospital_name").value;
         var license_no = document.getElementById("license_no").value;
-        var hospital_about=document.getElementById("hospital_about").value;
+        var hospital_about = document.getElementById("hospital_about").value;
+
         var updateDrdata = {
           "username": username,
           "first_name": first_name,
@@ -317,7 +487,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "education": education,
           "hospital_name": hospital_name,
           "license_no": license_no,
-          "hospital_about":hospital_about
+          "hospital_about": hospital_about
 
         };
         var formData = new FormData();
@@ -337,9 +507,122 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
             console.error(error);
             alert('Error saving events!');
           }
-        })
+        });
       });
+
+
+      $.ajax({
+        url: '/getGSinsurance/{{request.user.doctors.get.id}}',
+        method: 'POST',
+        data: ("id", {{ request.user.doctors.get.id }}),
+      processData: false,
+        contentType: false,
+          success: function (response) {
+            console.log(response['GSjson']);
+            setgs(response['GSjson']);
+            setinsurance(response['insurancejosn']);
+          },
+    error: function (error) {
+      console.error(error);
+      alert('Error saving events!');
+    }
     });
+
+    $('#addGS').click(function () {
+      var heading = document.getElementById("heading").value;
+      var sub_title = document.getElementById("sub_title").value;
+      var Document = document.getElementById("Document").files;
+      var title_img = document.getElementById("title_img").files;
+      
+      if (title_img.length > 0) {
+        if (Document.length > 0) {
+          var addGS = {
+            'title': heading,
+            'sub_title': sub_title
+          }
+
+          var formData = new FormData();
+          formData.append('data', JSON.stringify(addGS));
+          formData.append('Document', Document[0]);
+          formData.append('title_img', title_img[0]);
+          $.ajax({
+            url: '/addGS/{{request.user.doctors.get.id}}',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              console.log(response['msg']);
+              alert('Events saved successfully!');
+
+            },
+            error: function (error) {
+              console.error(error);
+              alert('Error saving events!');
+            }
+          });
+        }
+        else {
+          document.getElementById("Document").style.border = "2px solid red";
+          document.getElementById("title_doc_msg").style.display = "block";
+        }
+      }
+      else {
+        document.getElementById("title_img").style.border = "2px solid red";
+        document.getElementById("title_img_msg").style.display = "block";
+
+      }
+
+    });
+    $('#addinsurance').click(function () {
+      var heading = document.getElementById("headingi").value;
+      var sub_title = document.getElementById("sub_titlei").value;
+      var Document = document.getElementById("Documenti").files;
+      var title_img = document.getElementById("title_imgi").files;
+      
+      if (title_img.length > 0) {
+        if (Document.length > 0) {
+          var addGS = {
+            'title': heading,
+            'sub_title': sub_title
+          }
+
+          var formData = new FormData();
+          formData.append('data', JSON.stringify(addGS));
+          formData.append('Document', Document[0]);
+          formData.append('title_img', title_img[0]);
+          $.ajax({
+            url: '/addGS/{{request.user.doctors.get.id}}',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              console.log(response['msg']);
+              alert('Events saved successfully!');
+
+            },
+            error: function (error) {
+              console.error(error);
+              alert('Error saving events!');
+            }
+          });
+        }
+        else {
+          document.getElementById("Documenti").style.border = "2px solid red";
+          document.getElementById("title_doc_msgi").style.display = "block";
+        }
+      }
+      else {
+        document.getElementById("title_imgi").style.border = "2px solid red";
+        document.getElementById("title_img_msgi").style.display = "block";
+
+      }
+
+    });
+
+      });
+
   </script>
 
 </html>

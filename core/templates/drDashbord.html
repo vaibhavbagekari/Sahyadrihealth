@@ -1,17 +1,101 @@
 {% include "drDashbord_header.html" %}
     <!-- Dashboard content -->
     <style>
-        .container_div .bt{
-            padding: .5rem 1.5rem;
-                    background-color:  #199fd9;
-                color: white;
-                font-size: .9rem;
+        .container_div{
+             position: relative;
+            left: 5%;
+           
+           
+        }
+        .content{
+            overflow-x: hidden;
+          
+        }
+    
+        /* button css */
+        .btt .bt {
+            padding: .5rem 1rem;
+            width: 8rem;
+            margin-top: 1.5rem;
+            background-color: #199fd9;
+            color: black;
+            font-size: .9rem;
             border: 1px solid #199fd9;
+    
             text-decoration: none;
         }
-        .container_div .bt a{
+    
+        .btt .bt a {
             text-decoration: none;
-            color: white;
+            color: #ffffff;
+        }
+        .appointment-card{
+            border-radius: 0px;
+            width: 100%;
+        }
+    
+        .card-body {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1rem;
+            border-bottom: 5px solid #199fd9;
+            border-top: 5px solid #199fd9;
+            box-shadow: 0 8px 16px 0 rgba(205, 190, 255, 0.549);
+            justify-content: space-around;
+            width: 80%;
+            padding: 1rem;
+            align-items: center;
+    margin-bottom: 2rem;
+        }
+    
+        
+    
+        .img_div img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    
+        /* .lbio , .rbio{
+                display: flex;
+                flex-direction: column;
+            } */
+        .btt {
+            display: flex;
+            flex-direction: column;
+         
+         
+        }
+    
+    
+        .media-flex{
+            display: flex;
+            width: 60%;
+            justify-content: space-around;
+        }
+        @media screen and (max-width: 650px){
+            .card-body{
+                flex-direction: column;
+                width: 90%;
+    
+            }
+            .media-flex{
+                justify-content: space-between;
+                width: 100%;
+            }
+            .btt .bt {
+                position: relative;
+                left: 50%;
+                margin-top: .5rem;
+                margin-bottom: 1rem;
+                transform: translate(-55%,50%);
+            }
+            .container_div{
+           
+            left: 1%;
+          
+        }
         }
     </style>
     <div class="content">
@@ -25,25 +109,118 @@
                 </div>
             </div>
         <!-- <div class="content" > -->
+            <div class="container_div" style="width: 100%; align-items: start; justify-content: start;">
+                {% comment %} <div class="summary-block">
+                    <h2>Patient Summary</h2>
+                    <canvas id="patientChart"></canvas>
+    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <i style="color: #3498db" class="fas fa-circle"></i>
+                            <span>New Patients</span>
+                        </div>
+                        <div class="legend-item">
+                            <i style="color: #2ecc71" class="fas fa-circle"></i>
+                            <span>Old Patients</span>
+                        </div>
+                        <div class="legend-item">
+                            <i style="color: #e74c3c" class="fas fa-circle"></i>
+                            <span>Total Patients</span>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+    
+                <div class="appointment-card card-body" style="display: block;max-width: 100%;">
+                    <h2>Booked Appointments</h2>
+    
+                    <!-- Patient List Section -->
+                    <div class="patient-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>contact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in slots %}
+                                <tr>
+                                    <td>{{i.Patient_name}}</td>
+                                    <td>{{i.date}}</td>
+                                    <td>{{i.start_time}}</td>
+                                    <td>{{i.Patient_contact}}</td>
+                                </tr>
+                                {% endfor %}
+                               
+                                <!-- Add more rows for additional patients -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         <div class="container_div" style="width: 100%; align-items: start; justify-content: start;">
 
             <div class="card-body">
+                <div class="btt">
+                    <div class="img_div">
+                        <img src="{{request.user.doctors.get.profile_picture.url}}" alt="Doctor Profile"
+                            id="profile_image" />
+    
+    
+                    </div>
+                    <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit <i
+                        class="fas fa-edit"></i></a></button>
+                </div>
                 <p class="card-text">
-                    <strong>Specialization:</strong>
-                    {{request.user.doctors.get.specialization}}<br />
-                    <strong>Experience:</strong> 10 years<br />
-                    <strong>Education:</strong>
-                    {{request.user.doctors.get.education}}<br />
-                    <strong>Contact:</strong> 123-456-7890<br />
-                    <strong>Email:</strong> {{request.user.email}}
+    
+                <div class="media-flex">
+                    <div class="lbio">
+                        <strong>Username :</strong>
+                        <p> {{request.user.username }}</p>
+                        <strong>First Name:</strong>
+                        <p> {{request.user.first_name }}</p>
+                        <strong>Last Name:</strong>
+                        <p> {{request.user.last_name }}</p>
+                        <strong>Email:</strong>
+                        <p> {{request.user.email}}</p>
+                        <strong>Specialization:</strong>
+                        <p> {{request.user.doctors.get.specialization}}</p>
+                        <strong>Category:</strong>
+                        <p>{{request.user.doctors.get.category}} </p>
+                        <strong>Experience:</strong>
+                        <p>{{request.user.doctors.get.experience}}</p>
+                    </div>
+        
+        
+                    <div class="rbio">
+        
+                        <strong>Hospital Name:</strong>
+                        <p>{{request.user.doctors.get.hospital_name}} </p>
+                        <strong>Education:</strong>
+                        <p> {{request.user.doctors.get.education}}</p>
+                        <strong>Age:</strong>
+                        <p>{{request.user.doctors.get.age}}</p>
+                        <strong>Contact:</strong>
+                        <p> {{request.user.doctors.get.contact_no}}</p>
+        
+                        <strong>License No:</strong>
+                        <p>{{request.user.doctors.get.license_no}}</p>
+                        <strong>Biography:</strong>
+                        <p>{{request.user.doctors.get.biography}}</p>
+                    </div>
+        
+                </div>
                 </p>
-                
-                <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit <i class="fas fa-edit"></i></a></button>
+    
+    
             </div>
+    
         </div>
         <!-- </div> -->
 
-        <div class="dashboard-container">
+        {% comment %} <div class="dashboard-container">
             <div class="card_div total-patients">
                 <i class="fas fa-users"></i>
                 <h3>Total Patients</h3>
@@ -61,66 +238,9 @@
                 <h3>Today's Appointments</h3>
                 <div class="animated-count" id="todayAppointmentsCount">0</div>
             </div>
-        </div>
+        </div> {% endcomment %}
 
-        <div class="container_div">
-            <div class="summary-block">
-                <h2>Patient Summary</h2>
-                <canvas id="patientChart"></canvas>
-
-                <div class="legend">
-                    <div class="legend-item">
-                        <i style="color: #3498db" class="fas fa-circle"></i>
-                        <span>New Patients</span>
-                    </div>
-                    <div class="legend-item">
-                        <i style="color: #2ecc71" class="fas fa-circle"></i>
-                        <span>Old Patients</span>
-                    </div>
-                    <div class="legend-item">
-                        <i style="color: #e74c3c" class="fas fa-circle"></i>
-                        <span>Total Patients</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="appointment-card">
-                <h2>Today's Appointments</h2>
-
-                <!-- Patient List Section -->
-                <div class="patient-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Profile Photo</th>
-                                <th>Name</th>
-                                <th>Time</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="patient-profile">
-                                    <img src="drimg1.jpg" alt="Patient Profile" />
-                                </td>
-                                <td>John Doe</td>
-                                <td>10:00 AM</td>
-                                <td>2024-02-20</td>
-                            </tr>
-                            <tr>
-                                <td class="patient-profile">
-                                    <img src="drimg1.jpg" alt="Patient Profile" />
-                                </td>
-                                <td>Jane Smith</td>
-                                <td>11:30 AM</td>
-                                <td>2024-02-20</td>
-                            </tr>
-                            <!-- Add more rows for additional patients -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        
         {% comment %} <div class="container_div">{% include "calender.html" %}</div> {% endcomment %}
         {% comment %} {% include "footer.html" %} {% endcomment %}
         {% include "footer.html" %}

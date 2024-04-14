@@ -1,0 +1,117 @@
+ <style>
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      .text-bg-dark{
+        max-height: 400px;
+        overflow: hidden;
+      }
+      .text-bg-dark img{
+        height: 100%;
+      }
+    </style>
+ 
+    
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Goverment')">
+        Goverment Schemes
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Insurance')">
+        Insurance
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Other')">
+        Other Services
+      </button>
+    </div>
+
+    <div id="Goverment" class="tabcontent">
+      {% if GS %}
+      {% for i in GS %}
+      <div class="card text-bg-dark">
+        <img src="{{i.title_img.url}}" class="card-img" alt="..."  style="border: none;border-radius: 0%;height: 100%;width: 100%;" />
+        <div class="card-img-overlay">
+          <h5 class="card-title">{{i.title}}</h5>
+          <p class="card-text">{{i.sub_title}}</p>
+          <p class="card-text">
+            <strong><a href="{{i.Document.url}}">Document</a></strong>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      No data found
+      {% endif %}
+    </div>
+
+    <div id="Insurance" class="tabcontent">
+      {% if insurance %}
+        {% for i in insurance %}
+        <div class="card text-bg-dark">
+          <img src="{{i.title_img.url}}" class="card-img" alt="..." style="border: none;border-radius: 0%;height: 100%;width: 100%;" />
+          <div class="card-img-overlay">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.sub_title}}</p>
+            <p class="card-text">
+              <strong><a href="{{i.Document.url}}">Document</a></strong>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+      No data found
+      {% endif %}
+    </div>
+
+    <div id="Other" class="tabcontent">
+      No data found
+    </div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+ 
