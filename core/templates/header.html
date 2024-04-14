@@ -78,7 +78,7 @@
         }
 
         .titel {
-            
+
             /* margin: auto; */
             margin-top: 0px;
             padding: auto;
@@ -118,8 +118,8 @@
         }
 
         .pd_dict {
-            width: 3rem;
-            height: 3rem;
+            width: 5rem;
+            height: 5rem;
             overflow: visible;
             border-radius: 50%;
             position: relative;
@@ -132,6 +132,7 @@
         .patient_img {
             border-radius: 50%;
             width: 100%;
+            
             height: 100%;
             object-fit: cover;
         }
@@ -703,7 +704,8 @@
             .SignUp_form {
                 width: 60vw;
             }
-            .titel{
+
+            .titel {
                 padding-left: 17vw;
             }
         }
@@ -758,7 +760,7 @@
                 /* left: 10%; */
                 /* transform: translate(20%, 0%); */
                 /* font-size: 1.5rem; */
-                /* width: 100%; */
+                /* width: 100%; */
             }
 
 
@@ -1449,13 +1451,15 @@
         <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
         <a href="{% url 'patient_dashbord' %}" class="{% if request.path == '/patient_dashbord/' %} active {% endif %}">
             <i class='bx bxs-dashboard'></i> Dashboard</a>
-            {% endif %}
-            
-            {% if request.user.doctors.get.user %}
-            <div class="pd_dict">
+        {% endif %}
+
+        {% if request.user.doctors.get.user %}
+        <div class="pd_dict">
             <img class="patient_img" src="{{request.user.doctors.get.profile_picture.url}}" alt="">
-            </div>
-        <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
+        </div>
+        <center>
+            <h6 style="color: black;font-size: .8rem;"> {{request.user}}</h6>
+        </center>
         <a href="{% url 'drDashbord' %}" class="{% if request.path == '/drDashbord/' %} active {% endif %}"><i
                 class='bx bxs-dashboard'></i> Dashboard</a>
         {% endif %}
@@ -1605,5 +1609,15 @@
                 }
             });
         });
+
+
+        //js for redirecting to dashboard when click on profilepic
+        document.querySelector('.patient_img').addEventListener('click', function() {
+     
+        var anchorTag = document.createElement('a');
+        anchorTag.href ="{% url 'drDashbord' %}"; 
+        anchorTag.textContent = 'Dashboard';
+        anchorTag.click();
+    });
 
     </script>
