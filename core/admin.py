@@ -126,3 +126,13 @@ class Dr_InsuranceAdmin(admin.ModelAdmin):
         'Document'
     )
 admin.site.register(Dr_Insurance,Dr_InsuranceAdmin)
+
+class Lab_testAdmin(admin.ModelAdmin):
+    Lab_testDisplay = (
+        'doctor',
+        'title',
+        'title_img',
+        'sub_title',
+        'Document'
+    )
+admin.site.register(Lab_test,Lab_testAdmin)

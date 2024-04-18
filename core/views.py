@@ -669,9 +669,9 @@ def SearchBloodStorage(request):
     try:
         if request.method == 'POST':
             data = json.loads(request.POST.get('data', '[]'))
-            BloodStorage = Ambulance.objects.filter(location__icontains=data)
+            BloodStoragel = BloodStorage.objects.filter(location__icontains=data)
             ls=[]
-            for i in BloodStorage:
+            for i in BloodStoragel:
                 j={
                     'name':i.name,
                     'name_owner':i.name_owner,
@@ -681,8 +681,47 @@ def SearchBloodStorage(request):
                 }
                 ls.append(j)
 
-            send_email_to_client(k,d,p)
+            
             return JsonResponse({'status': 'success', 'amblance_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+def lab_test(request):
+    if request.method == 'POST':
+        return check_form(request)
+    elif request.GET.get('location'):
+        data=Doctor.objects.filter(address__icontains=request.GET.get('location'),category__icontains=request.GET.get('category'))
+        count=len(data)
+        ad=request.GET.get('location')
+        if not data.exists():
+           m="docter not found"
+           return render(request,"lab_test.html",{'data':data,'m':m})
+        else:
+            return render(request,"lab_test.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
+    else:
+        return render(request,"lab_test.html")
+    
+@csrf_exempt
+def search_lab(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data', '[]'))
+            lab = Lab_test.objects.filter(location__icontains=data)
+            ls=[]
+            for i in lab:
+                j={
+                    'name':i.name,
+                    'name_owner':i.name_owner,
+                    'about_service':i.about_service,
+                    'contact':i.contact,
+                    'location':i.location
+                }
+                ls.append(j)
+
+
+            return JsonResponse({'status': 'success', 'lab': ls})
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    

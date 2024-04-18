@@ -27,7 +27,7 @@ class Doctor(models.Model):
     age = models.IntegerField(null=True,blank=True)
     education = models.TextField(max_length=150,null=True,blank=True)
     specialization=models.TextField(max_length=100,null=True,blank=True)
-    profile_picture = models.ImageField(upload_to="doctor",default="doctor\defaultPicture.png")
+    profile_picture = models.ImageField(upload_to="doctor",default="doctor\defaultPicture.png",blank=True)
     license_no= models.IntegerField(null=True,blank=True)
     category=models.TextField(max_length=100,null=True,blank=True)
     experience=models.TextField(max_length=100,null=True,blank=True)
@@ -35,6 +35,17 @@ class Doctor(models.Model):
     biography=models.TextField(max_length=1000,null=True,blank=True)
     hospital_name=models.TextField(max_length=150,null=True,blank=True)
     hospital_about = models.TextField(max_length=1000,null=True,blank=True)
+    def delete(self, *args, **kwargs):
+        # Check if the profile picture is not the default one
+        if self.profile_picture and not self.profile_picture.name == 'doctor/defaultPicture.png':
+            # Get the path to the profile picture file
+            path = self.profile_picture.path
+            # Check if the file exists
+            if os.path.exists(path):
+                # Delete the file
+                os.remove(path)
+        # Call the superclass delete method to delete the Doctor record
+        super(Doctor, self).delete(*args, **kwargs)
 
 class Event(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='events')
@@ -44,11 +55,18 @@ class Event(models.Model):
     color = models.CharField(max_length=20, default='#2ecc71',null=True,blank=True)  # Default color for open slots
     patient_booked=models.CharField(max_length=50,null=True,blank=True)
     time_of_booking=models.DateTimeField(null=True,blank=True)
+    
 
 class Hospital_Image(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='Himgs')
     title = models.CharField(max_length=100,null=True,blank=True)
     image = models.ImageField(upload_to='hospital_images/')
+    def delete(self,*args,**kwargs):
+        if self.image.path:
+            path = self.image.path
+            if os.path.exists(path):
+                os.remove(path)
+        super(Hospital_Image,self).delete(*args, **kwargs)
 
 class Availability(models.Model):
     doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='doctor')
@@ -76,6 +94,12 @@ class Ambulance(models.Model):
 class AmbulanceImage(models.Model):
     image = models.ForeignKey(Ambulance,to_field='id',related_name='image',on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='ambulance/', null = True,blank=True)
+    def delete(self,*args,**kwargs):
+        if self.mainimage.path:
+            path = self.mainimage.path
+            if os.path.exists(path):
+                os.remove(path)
+        super(AmbulanceImage,self).delete(*args, **kwargs)
 
 class BloodStorage(models.Model):
     name=models.CharField(max_length=500,null=True,blank=True)
@@ -87,6 +111,13 @@ class BloodStorage(models.Model):
 class BloodStorageImage(models.Model):
     image = models.ForeignKey(BloodStorage,to_field='id',related_name='image',on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='bloodStorage/', null = True,blank=True)
+
+    def delete(self , using=None):
+        # Delete associated files
+        if self.mainimage:
+            os.remove(self.mainimage.path)
+        # Call parent delete method to delete the object from the database
+        super().delete(using=using)
 
 class BookedAppoinment(models.Model):
     doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='dr')
@@ -143,3 +174,10 @@ class Dr_Insurance(models.Model):
             os.remove(self.Document.path)
         # Call parent delete method to delete the object from the database
         super().delete(using=using)
+
+class Lab_test(models.Model):
+    name=models.CharField(max_length=500,null=True,blank=True)
+    name_owner=models.CharField(max_length=150,null=True,blank=True)
+    about_service=models.CharField(null=True, max_length=900,blank=True)
+    contact = models.IntegerField(null=True,blank=True)
+    location = models.CharField(max_length=500,null=True,blank=True)

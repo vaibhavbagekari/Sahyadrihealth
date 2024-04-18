@@ -72,6 +72,9 @@ urlpatterns = [
     path('bookAppoinment/', bookAppoinment, name='bookAppoinment'),
     path('SearchAmbulance/', SearchAmbulance, name='SearchAmbulance'),
     path('SearchBloodStorage/', SearchBloodStorage, name='SearchBloodStorage'),
+    path('lab_test/', lab_test, name='lab_test'),
+    path('search_lab/', search_lab, name='search_lab'),
+    
 
 
 ]    

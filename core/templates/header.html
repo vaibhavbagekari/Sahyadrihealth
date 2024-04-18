@@ -38,6 +38,8 @@
         .input-group {
             display: flex;
             align-items: center;
+            flex-wrap: nowrap;
+            width: 100%;
         }
 
         .form-control {
@@ -1337,6 +1339,33 @@
                 z-index: 0;
             }
         }
+        .search-container {
+            position: relative;
+            /* width: 300px; */
+            /* margin: 20px auto; */
+        }
+        
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            display: none;
+            color: black;
+            z-index: 1;
+        }
+        
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .suggestion:hover {
+            background-color: #f4f4f4;
+        }
     </style>
     <script>
         function downLoad() {
@@ -1378,27 +1407,31 @@
     <header id="head">
 
         <div></div>
-        <h2 class="titel"><img src="{% static 'health_empire_logo.gif' %}" alt="" srcset="" class="logoImg"></h2>
+        <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.gif' %}" alt="" srcset="" class="logoImg"></h2>
 
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
         <div class="search_bar">
             <form action="">
                 <div class="input-group">
-                    <input type="text" placeholder="Location" aria-label="location" class="form-control" list="browsers"
+                    <div class="search-container" class="form-control">
+                    <input style="width: 100%;height: 100%;" type="text" class="form-control" id="location_searchInput" placeholder="Location"   
                         name="location" required>
-
-
-                    <input type="text" placeholder="Category" list="categories" class="form-control" name="category"
+                        <div id="location_suggestions" class="suggestions"></div>
+                    </div>
+                    <div class="search-container" class="form-control">
+                    <input style="width: 100%;height: 100%;" type="text"  class="form-control" placeholder="Category" id="category_searchInput"  name="category"
                         required>
+                        <div id="category_suggestions" class="suggestions"></div>
+                    </div>
 
-                    <datalist id="categories">
+                    <!-- <datalist id="categories">
                         <option value="Gynecologist">
                         <option value="Dietitian">
                         <option value="Dentist">
                         <option value="General surgeon">
                         <option value="Physiotherapist">
-                            <!-- Add more options as needed -->
-                    </datalist>
+                            
+                    </datalist> -->
 
                     <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
@@ -1409,11 +1442,7 @@
             <br>
             <span>+91 9999999999</span>
         </div>
-        <datalist id="browsers" class="popUp">
-            {% for i in locations %}
-            <option value="{{i}}">
-                {% endfor %}
-        </datalist>
+        
 
     </header>
 
@@ -1482,6 +1511,7 @@
         <!-- <a href="#">Insurence Services</a> -->
         <a href="{% url 'blood_storage' %}" class="{% if request.path == '/blood_storage/' %} active {% endif %}"><i
                 class="fa-solid fa-hand-holding-droplet"></i>Blood Storage Centre</a>
+        <a href="{% url 'lab_test' %}" class="{% if request.path == '/lab_test/' %} active {% endif %}"><i class="fa-solid fa-flask-vial"></i> Lab Test Centre</a>
         <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}"><i
                 class="fa-regular fa-address-card"></i>About</a>
         <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}"><i
@@ -1619,5 +1649,92 @@
         anchorTag.textContent = 'Dashboard';
         anchorTag.click();
     });
-
+   
+    </script>
+    <script>
+        const location_searchInput = document.getElementById('location_searchInput');
+        const category_searchInput = document.getElementById('category_searchInput');
+    const location_suggestions = document.getElementById('location_suggestions');
+    const category_suggestions = document.getElementById('category_suggestions');
+    
+    location_searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        if (query === '') {
+            suggestions.style.display = 'none';
+            return;
+        }
+    
+        // Mock suggestions data
+        const suggestionsData = ["Malegaon",
+        "Chincholi",
+        "Takli",
+        "Nimbaj",
+        "Umalewadi",
+        "Nimsakhar",
+        "Shirshe",
+        "Dudhalwadi",
+        "Jategaon",
+        "Morgaon",
+        "Bhorwadi",
+        "Bramhanwada",
+        "Babhulsar",
+        "Harnal",
+        "Malshiras"];
+        const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+        
+        renderSuggestions(filteredSuggestions,location_suggestions,location_searchInput);
+    });
+    category_searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        if (query === '') {
+            suggestions.style.display = 'none';
+            return;
+        }
+    
+        // Mock suggestions data
+        const suggestionsData = ["General Physician",
+        "Cardiologist",
+        "Dermatologist",
+        "Gastroenterologist",
+        "Neurologist",
+        "Ophthalmologist",
+        "Orthopedic Surgeon",
+        "Pediatrician",
+        "Psychiatrist",
+        "Radiologist",
+        "Urologist",
+        "Obstetrician/Gynecologist",
+        "Oncologist",
+        "Endocrinologist",
+        "Pulmonologist",
+        "ENT Specialist (Otolaryngologist)",
+        "Nephrologist",
+        "Rheumatologist",
+        "Hematologist",
+        "Allergist/Immunologist"];
+        const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+        
+        renderSuggestions(filteredSuggestions,category_suggestions,category_searchInput);
+    });
+    
+    function renderSuggestions(suggestionsArray,suggestions,searchInput) {
+        if (suggestionsArray.length === 0) {
+            suggestions.style.display = 'none';
+            return;
+        }
+    
+        suggestions.innerHTML = '';
+        suggestions.style.display = 'block';
+        suggestionsArray.forEach(suggestion => {
+            const div = document.createElement('div');
+            div.classList.add('suggestion');
+            div.textContent = suggestion;
+            div.addEventListener('click', () => {
+                searchInput.value = suggestion;
+                suggestions.style.display = 'none';
+            });
+            suggestions.appendChild(div);
+        });
+    }
+    
     </script>

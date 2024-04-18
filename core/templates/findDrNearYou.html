@@ -20,10 +20,10 @@
         /* background-image: linear-gradient(rgb(97, 136, 251), rgb(199, 199, 248)); */
         text-align: center;
    
-        padding:75px;
+        padding:60px 0 60px 0;
         color: #0c3b3e;
-        margin: 30px;
-      
+        /* margin: 30px; */
+        width:100%;
         
         text-transform: uppercase;
         
@@ -34,8 +34,9 @@
     }
 
     .search-div {
-        max-width: 600px;
-        min-width: 100px;
+        /* max-width: 600px;
+        min-width: 100px; */
+        width: 100%;
         margin: auto;
         /* align-self: centers; */
         position: relative;
@@ -79,14 +80,22 @@
     .infocard{
         margin: 10px;
         /* padding: 10px; */
-        border-radius: 12px;
+        /* border-radius: 12px; */
         width:calc(100% - 20px) ;
-        background-image: linear-gradient(to right,rgb(52, 52, 253),rgb(163, 163, 249));
+        /* background-image: linear-gradient(to right,rgb(52, 52, 253),rgb(163, 163, 249)); */
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         /* flex-wrap: wrap; */
         /* position: relative; */
+        border-bottom: 5px solid #12a8ae;
+        width: 90%;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 20px;
+        border-radius: 0px;
+        margin-bottom: 2rem;
     }
     .infocard div{
         margin: 10px;
@@ -103,6 +112,11 @@
     }
     .infocard img:hover{
         transform: scale(1.05);
+    }
+    .search_bar{
+        width: 100%;
+        padding: 3rem;
+
     }
 
     @media screen and (max-width: 750px) {

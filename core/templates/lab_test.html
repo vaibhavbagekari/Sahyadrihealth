@@ -1,0 +1,154 @@
+{% load static %}
+{% include "header.html" %}
+<head>
+  <title>
+    Government schemes
+  </title>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+</head>
+<style>
+    .infocard {
+        margin: 10px;
+        margin-top: 100px;
+        /* border-radius: 12px; */
+        width: calc(100% - 20px);
+        /* background-image: linear-gradient(to right, rgb(116, 56, 245), rgb(221, 195, 248)); */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* flex-wrap: wrap; */
+        /* position: relative; */
+        border-bottom: 5px solid #12a8ae;
+        width: 90%;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 20px;
+        border-radius: 0px;
+        margin-bottom: 2rem;
+    }
+
+    .infocard div {
+        margin: 10px;
+    }
+
+    .infocard img {
+        width: 40%;
+        position: relative;
+        right: 20px;
+        transition-duration: 0.3s;
+    }
+
+    .subdiv_img .card img {
+        width: 100%;
+    }
+
+    .infocard img:hover {
+        transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 750px) {
+        .infocard {
+            flex-wrap: wrap;
+        }
+
+        .infocard img {
+            min-width: 350px;
+        }
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .main_sdiv {
+    /* font-family: Arial, sans-serif; */
+    margin-bottom: -2rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    background-color: #f2f2f2;
+  }
+
+  .search-container {
+    text-align: center;
+
+  }
+
+  .search-container h2 {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    padding: 10px;
+    width: 20rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+
+</style>
+<main>
+    <div class="infocard">
+        <div class="text1">
+            <p class="card-text">
+            <h3>Government schemes</h3>
+            Government schemes are programmes launched by the government to improve the standard of living of all citizens. Government schemes are typically categorised into two main types, i.e. central sector and centrally sponsored schemes. </p>
+            <button type="button m-3" class="btn btn-success">success</button>
+        </div>
+        <img src="{% static 'central_government_scheme.png' %}" alt="">
+    </div>
+    <div class="main_sdiv">
+        <div class="search-container">
+          <h2>Lab Test Center Search</h2>
+          
+            <div class="input-group">
+              {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
+              <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput">
+              <button type="button" class="input-group-text" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          
+        </div>
+      </div>
+      {% include "serach_result_cards.html" %}
+    {% include "footer.html" %}
+    <script>
+        
+    $(document).ready(function () {
+        $('#search').click(function () {
+          var info = document.getElementById('locationInput').value;
+          // console.log(info);
+          $.ajax(
+            {
+              url: '/search_lab/',
+            method: 'POST',
+            data: { data: JSON.stringify(info) },
+            success: function (response) {
+              console.log(response);
+              setData(response["lab"]);
+            },
+            error: function (error) {
+              console.error(error);
+              alert('Error saving events!');
+            }
+          }
+          )
+        });
+      });
+    </script>
+</main>
