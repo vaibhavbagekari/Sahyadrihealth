@@ -14,14 +14,14 @@ class Patient(models.Model):
     password = models.TextField(null=True,blank=True)
 
 class NewUser(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank =True,to_field='username',related_name='patients')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank =True,to_field='username',related_name='patients')
     name = models.CharField(max_length=100)
     profile_picture = models.ImageField(upload_to="patient",default="doctor\defaultPicture.png")
     age = models.IntegerField()
     contact_no = models.IntegerField(null=True,blank=True)
 
 class Doctor(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank =True,to_field='username',related_name='doctors')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank =True,to_field='username',related_name='doctors')
     address = models.TextField(null=True,blank=True)
     contact_no = models.IntegerField(null=True,blank=True)
     age = models.IntegerField(null=True,blank=True)
@@ -50,7 +50,7 @@ class Doctor(models.Model):
         super(Doctor, self).delete(*args, **kwargs)
 
 class Event(models.Model):
-    user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='events')
+    user = models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True,blank =True,to_field='id',related_name='events')
     title = models.CharField(max_length=255,null=True,blank=True)
     start_time = models.DateTimeField(null=True,blank=True)
     end_time = models.DateTimeField(null=True,blank=True)
@@ -60,7 +60,7 @@ class Event(models.Model):
     
 
 class Hospital_Image(models.Model):
-    user = models.ForeignKey(Doctor,on_delete=models.SET_NULL,null=True,blank =True,to_field='id',related_name='Himgs')
+    user = models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True,blank =True,to_field='id',related_name='Himgs')
     title = models.CharField(max_length=100,null=True,blank=True)
     image = models.ImageField(upload_to='hospital_images/')
     def delete(self,*args,**kwargs):
