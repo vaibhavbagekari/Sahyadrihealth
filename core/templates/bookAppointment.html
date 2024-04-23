@@ -45,7 +45,7 @@
             // Calculate the start date of the current week (Sunday)
             const startDate = new Date();
             const tomorrowDate = new Date(startDate);
-            tomorrowDate.setDate(startDate.getDate() + 1);
+            tomorrowDate.setDate(startDate.getDate() );
             // Calculate the end date of the next week (Saturday)
             const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 19);
 

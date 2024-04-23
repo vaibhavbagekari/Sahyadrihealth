@@ -29,6 +29,8 @@ class Doctor(models.Model):
     specialization=models.TextField(max_length=100,null=True,blank=True)
     profile_picture = models.ImageField(upload_to="doctor",default="doctor\defaultPicture.png",blank=True)
     license_no= models.IntegerField(null=True,blank=True)
+    mapLink=models.TextField(null=True,blank=True,max_length=500)
+    opdFees=models.IntegerField(null=True,blank=True)
     category=models.TextField(max_length=100,null=True,blank=True)
     experience=models.TextField(max_length=100,null=True,blank=True)
     languages=models.TextField(max_length=100,null=True,blank=True)
@@ -181,3 +183,4 @@ class Lab_test(models.Model):
     about_service=models.CharField(null=True, max_length=900,blank=True)
     contact = models.IntegerField(null=True,blank=True)
     location = models.CharField(max_length=500,null=True,blank=True)
+    Degree = models.CharField(max_length=100,null=True,blank=True)

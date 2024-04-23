@@ -111,9 +111,10 @@
             <img src="{{i.profile_picture.url}}" alt="Doctor 1" />
             <div class="doctor-info">
                 <h2>Dr. {{i.user.first_name}} {{i.user.last_name}}</h2>
+                <p>Education : {{i.education}}</p>
+                <p>Experience : {{i.experience}}</p>
                 <p>Specialty: {{i.specialization}}</p>
                 <p>Location: {{i.address}}</p>
-                <p>Biography: {{i.biography}}</p>
             </div>
         </a>
         {% endfor %}

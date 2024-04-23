@@ -525,7 +525,7 @@ def bookAppointment(request,id):
 def daterange(date1, date2):
     date1 = datetime.datetime.strptime(date1, '%Y-%m-%d')
     date2 = datetime.datetime.strptime(date2, '%Y-%m-%d')
-    return [date1 + datetime.timedelta(days=x) for x in range((date2-date1).days + 1)]
+    return [date1 + datetime.timedelta(days=x) for x in range((date2-date1).days +1)]
 
 def Merge(dict1, dict2):
     res = {**dict1, **dict2}
@@ -581,6 +581,7 @@ def findslots(request,id):
             print(date)
             ls=list(date.values())
             date_list = daterange(ls[0].split('T')[0], ls[1].split('T')[0])
+            # print(date_list)
             jn=[]
 
             for i in date_list:
@@ -715,7 +716,8 @@ def search_lab(request):
                     'name_owner':i.name_owner,
                     'about_service':i.about_service,
                     'contact':i.contact,
-                    'location':i.location
+                    'location':i.location,
+                    'Degree':i.Degree
                 }
                 ls.append(j)
 

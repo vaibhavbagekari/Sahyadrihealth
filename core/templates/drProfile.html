@@ -299,14 +299,17 @@
         <div>
             {% comment %} {{i.username}} {% endcomment %}
             <h1>Dr. {{i.first_name}}{{i.last_name}}</h1>
+            <p>Education: {{i.doctors.get.education}}</p>
             <p>Specialization: {{i.doctors.get.specialization}}</p>
             <p>Experience: {{i.doctors.get.experience}}</p>
-            <p>Education: {{i.doctors.get.education}}</p>
             <p>Location: {{i.doctors.get.address}}</p>
-            <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p>
+            <p>OPD Fees : {{i.doctors.get.opdFees}}</p>
+            {% comment %} <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p> {% endcomment %}
             {% comment %} <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a> {% endcomment %}
             {% comment %} <a class="button" href="/bookAppointment/{{i.id}}">Book Appointment</a> {% endcomment %}
-            <a class="button" href="#">Contact Hospital</a>
+            <a class="button" href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} ">Go to map </a>
+            <a class="button" href="tel:{{i.doctors.get.contact_no}}">Contact Hospital</a>
+            {% comment %} <a class="button" href="#">OPD fees</a> {% endcomment %}
         </div>
     </div>
     <div class="info_card">

@@ -579,6 +579,13 @@
 
           <label for="Email">Email:</label>
           <input type="email" id="Email" name="Email" value="{{request.user.email}}" required><br>
+
+          <label for="address">Email:</label>
+          <input type="text" id="address" name="address" value="{{request.user.doctors.get.address}}" required><br>
+
+          <label for="map">Map-Link:</label>
+          <input type="text" id="map" name="map" value="{{request.user.doctors.get.mapLink}}" required><br>
+          <a type="button" href="{{request.user.doctors.get.mapLink}}">Go to Map </a>
           <!-- Add other input fields for profile details -->
         </div>
         <div class="rf">
@@ -610,6 +617,10 @@
           <input type="text" id="hospital_name" name="hospital_name" value="{{request.user.doctors.get.hospital_name}}"
             required>
 
+          <label for="opdfees">OPD Fees:</label>
+          <input type="number" id="opdfees" name="opdfees" value="{{request.user.doctors.get.opdFees}}"
+            required>
+
 
           <label for="license_no">license_no:</label>
           <input type="number" id="license_no" name="license_no" value="{{request.user.doctors.get.license_no}}"
@@ -635,10 +646,10 @@
 
       <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'Goverment')" id="gs">
-          Goverment Schemes
+          Private Schemes
         </button>
         <button class="tablinks" onclick="openCity(event, 'Insurance')">
-          Insurance
+          Health Insurance
         </button>
         <button class="tablinks" onclick="openCity(event, 'Other')">
           Other Services
@@ -757,6 +768,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         var hospital_name = document.getElementById("hospital_name").value;
         var license_no = document.getElementById("license_no").value;
         var hospital_about = document.getElementById("hospital_about").value;
+        var map = document.getElementById("map").value;
+        var opdfees = document.getElementById("opdfees").value;
 
         var updateDrdata = {
           "username": username,
@@ -772,7 +785,9 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "education": education,
           "hospital_name": hospital_name,
           "license_no": license_no,
-          "hospital_about": hospital_about
+          "hospital_about": hospital_about,
+          "map":map,
+          "opdfees":opdfees,
 
         };
         var formData = new FormData();
