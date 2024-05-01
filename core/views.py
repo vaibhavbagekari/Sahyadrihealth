@@ -332,57 +332,61 @@ def demo(request):
 @ensure_csrf_cookie
 @csrf_protect 
 def drSigUp(request):
-    if request.method == "POST":
-        data = request.POST
-        first_name = data.get('FName')
-        last_name = data.get('LName')
-        age = data.get('age')
-        email=data.get('email')
-        profile_picture = request.FILES.get('Pfile')
-        education = data.get('education')
-        address = data.get('address')
-        contact_no = data.get('contact_no')
-        license_no = data.get('licenseNumber')
-        password=data.get('password')
-        username=data.get('email')
-        specialization=data.get('specialization')
-        catagory = data.get('catagory')
-        
-        obj = User.objects.filter(username=username)
-        print(profile_picture)
-        if obj.exists():
-            msg="username is allredy exist"
-            messages.add_message(request, messages.INFO, msg)
-
-        else:
-            main_user = User.objects.create(
-                first_name=first_name,
-                username=username,
-                last_name=last_name,
-                email=email,
-            )
-            main_user.set_password(password)
-            main_user.save()
-            doctor = Doctor.objects.create(
-                
-                user=main_user,
-                age=age,
-                profile_picture=profile_picture,
-                education=education,
-                address=address,
-                contact_no=contact_no,
-                license_no=license_no,
-                specialization=specialization,
-                category=catagory
-            )
+    try:
+        if request.method == "POST":
+            data = request.POST
+            first_name = data.get('FName')
+            last_name = data.get('LName')
+            age = data.get('age')
+            email=data.get('email')
+            profile_picture = request.FILES.get('Pfile')
+            education = data.get('education')
+            address = data.get('address')
+            contact_no = data.get('contact_no')
+            license_no = data.get('licenseNumber')
+            password=data.get('password')
+            username=data.get('email')
+            specialization=data.get('specialization')
+            catagory = data.get('catagory')
             
-           
-            doctor.save()
+            obj = User.objects.filter(username=username)
+            print(profile_picture)
+            if obj.exists():
+                msg="username is allredy exist"
+                messages.add_message(request, messages.INFO, msg)
 
-            msg="Account created Successfuly"
-            messages.add_message(request, messages.INFO, msg)
-            return render(request,"drsignin.html")
-    return render(request,"drSigUp.html")
+            else:
+                main_user = User.objects.create(
+                    first_name=first_name,
+                    username=username,
+                    last_name=last_name,
+                    email=email,
+                )
+                main_user.set_password(password)
+                main_user.save()
+                doctor = Doctor.objects.create(
+                    
+                    user=main_user,
+                    age=age,
+                    profile_picture=profile_picture,
+                    education=education,
+                    address=address,
+                    contact_no=contact_no,
+                    license_no=license_no,
+                    specialization=specialization,
+                    category=catagory
+                )
+                
+            
+                doctor.save()
+
+                msg="Account created Successfuly"
+                messages.add_message(request, messages.INFO, msg)
+                return render(request,"drsignin.html")
+        return render(request,"drSigUp.html")
+    except:
+        messages.error(request,'Someting went Wroung')
+        return render(request,"drSigUp.html")
 
 
 @ensure_csrf_cookie

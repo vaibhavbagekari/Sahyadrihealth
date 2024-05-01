@@ -13,9 +13,8 @@
         style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: max-content; width: calc(100%-1rem); text-wrap: wrap; background-color: lightblue; border-radius: 8px; padding: 1rem;">
         <div class="top" style="width: 95%;">
             <h2 style="color: blue;">Appointment Confirmation</h2>
-            <h4>Dear Vaibhav Sanjay Bagekari,</h4>
-            <p>We hope this email finds you well. We are pleased to inform you that your appointment with Dr. Vaibhav
-                Bagekari has been successfully booked.</p>
+            <h4>Dear {{patientData.name}},</h4>
+            <p>We hope this email finds you well. We are pleased to inform you that your appointment with Dr. {{drData.name}} has been successfully booked.</p>
         </div>
 
         <div class="btm"
@@ -24,7 +23,7 @@
                 <h4>{{slotData.date}} <br>at {{slotData.stime}} - {{slotData.etime}}</h4>
                 <button
                     style="margin-bottom: 1rem; padding: .5rem; width: 90%; color: white; border: none; border-radius: 20px; background-color: rgb(255, 0, 51);"><a
-                        href="/core/templates/patient_signin.html" style="text-decoration: none; color: white;">Go to
+                        href="{% url "patient_signin" %}" style="text-decoration: none; color: white;">Go to
                         Profile</a></button>
             </div>
 
