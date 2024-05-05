@@ -111,7 +111,7 @@ def patient_dashbord(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"patient_dashbord.html",{'data':data,'m':m})
         else:
             return render(request,"patient_dashbord.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -171,7 +171,7 @@ def home(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"index.html",{'data':data,'m':m})
         else:
             return render(request,"index.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -187,7 +187,7 @@ def about(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"about.html",{'data':data,'m':m})
         else:
             return render(request,"about.html",{'data':data,'ad':ad,'count':count})
@@ -202,7 +202,7 @@ def services(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"services.html",{'data':data,'m':m})
         else:
             return render(request,"services.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -217,7 +217,7 @@ def findDr(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"findDrNearYou.html",{'data':data,'m':m})
         else:
             return render(request,"findDrNearYou.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -227,7 +227,7 @@ def findDr(request):
         count=len(data)
         ad=request.GET.get('Flocation')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"findDrNearYou.html",{'Fdata':data,'Fm':m})
         else:
             l=get_locations()
@@ -257,7 +257,7 @@ def contactUs(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"contactUs.html",{'data':data,'m':m})
         else:
             return render(request,"contactUs.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -276,7 +276,7 @@ def goverment_scheme(request):
         for i in GS:
             print(i.title)
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"goverment_scheme.html",{'data':data,'m':m,'GS':GS})
         else:
             return render(request,"goverment_scheme.html",{'data':data,'count':count,'ad':ad,'locations':get_locations(),'GS':GS})
@@ -298,7 +298,7 @@ def search_ambulance(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"search_ambulance.html",{'data':data,'m':m})
         else:
             return render(request,"search_ambulance.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -314,7 +314,7 @@ def blood_storage(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"blood_storage.html",{'data':data,'m':m})
         else:
             return render(request,"blood_storage.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -322,10 +322,7 @@ def blood_storage(request):
         return render(request,"blood_storage.html")
 
 def demo(request):
-    check_form(request)
-    queryset=Patient.objects.all()
-    patient={'patient':queryset}
-    return render(request,"demo.html",patient)
+    return render(request,"demo.html")
 
 
 
@@ -700,7 +697,7 @@ def lab_test(request):
         count=len(data)
         ad=request.GET.get('location')
         if not data.exists():
-           m="docter not found"
+           m="doctor not found"
            return render(request,"lab_test.html",{'data':data,'m':m})
         else:
             return render(request,"lab_test.html",{'data':data,'count':count,'ad':ad,'locations':get_locations()})
@@ -731,3 +728,27 @@ def search_lab(request):
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
+def healthEquipment(request):
+    return render(request,"healthEquipment.html")
+
+@csrf_exempt
+def SearchhealthEquipment(request):
+    try:
+        if request.method == 'POST':
+            data = json.loads(request.POST.get('data', '[]'))
+            healthEquipment = HealthEquipment.objects.filter(location__icontains=data)
+            ls=[]
+            for i in healthEquipment:
+                j={
+                    'title':i.title,
+                    'sub_title':i.sub_title,
+                    'title_img':i.title_img.url,
+                    'location':i.location
+                }
+                ls.append(j)
+
+            
+            return JsonResponse({'status': 'success', 'healthEquipment_list': ls})
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})

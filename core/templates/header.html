@@ -134,7 +134,7 @@
         .patient_img {
             border-radius: 50%;
             width: 100%;
-            
+
             height: 100%;
             object-fit: cover;
         }
@@ -1339,12 +1339,13 @@
                 z-index: 0;
             }
         }
+
         .search-container {
             position: relative;
             /* width: 300px; */
             /* margin: 20px auto; */
         }
-        
+
         .suggestions {
             position: absolute;
             top: 100%;
@@ -1357,14 +1358,20 @@
             color: black;
             z-index: 1;
         }
-        
+
         .suggestion {
             padding: 10px;
             cursor: pointer;
         }
-        
+
         .suggestion:hover {
             background-color: #f4f4f4;
+        }
+
+        .logoImg {
+            transform: translate(30%, -10%);
+            position: relative;
+            width: 120px;
         }
     </style>
     <script>
@@ -1407,20 +1414,21 @@
     <header id="head">
 
         <div></div>
-        <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset="" class="logoImg"></h2>
+        <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
+                class="logoImg"></h2>
 
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
         <div class="search_bar">
             <form action="">
                 <div class="input-group">
                     <div class="search-container" class="form-control">
-                    <input style="width: 100%;height: 100%;" type="text" class="form-control" id="location_searchInput" placeholder="Location"   
-                        name="location" required>
+                        <input style="width: 100%;height: 100%;" type="text" class="form-control"
+                            id="location_searchInput" placeholder="Location" name="location" required>
                         <div id="location_suggestions" class="suggestions"></div>
                     </div>
                     <div class="search-container" class="form-control">
-                    <input style="width: 100%;height: 100%;" type="text"  class="form-control" placeholder="Category" id="category_searchInput"  name="category"
-                        required>
+                        <input style="width: 100%;height: 100%;" type="text" class="form-control" placeholder="Category"
+                            id="category_searchInput" name="category" required>
                         <div id="category_suggestions" class="suggestions"></div>
                     </div>
 
@@ -1438,13 +1446,14 @@
 
             </form>
         </div>
-        <div class="highlight"><a href="tel:9156429156" style="color: red;text-decoration: none;"><span>Help Line Number</span>
-            <br>
-            <span><i class="fa-solid fa-phone-volume" style="color: green;"></i>
-                &nbsp;&nbsp;9156 42 9156</span>
-        </a>
+        <div class="highlight"><a href="tel:9156429156" style="color: red;text-decoration: none;"><span>Help Line
+                    Number</span>
+                <br>
+                <span><i class="fa-solid fa-phone-volume" style="color: green;"></i>
+                    &nbsp;&nbsp;9156 42 9156</span>
+            </a>
         </div>
-        
+
 
     </header>
 
@@ -1504,6 +1513,7 @@
         <a href="{% url 'findDr' %}" class="{% if request.path == '/findDr/' %} active {% endif %}"><i
                 class="fa-solid fa-user-doctor"></i>Find doctor near
             you</a>
+
         <a href="{% url 'goverment_scheme' %}"
             class="{% if request.path == '/goverment_scheme/' %} active {% endif %}"><i
                 class="fa-solid fa-indian-rupee-sign"></i>Goverment scheme</a>
@@ -1513,7 +1523,10 @@
         <!-- <a href="#">Insurence Services</a> -->
         <a href="{% url 'blood_storage' %}" class="{% if request.path == '/blood_storage/' %} active {% endif %}"><i
                 class="fa-solid fa-hand-holding-droplet"></i>Blood Storage Centre</a>
-        <a href="{% url 'lab_test' %}" class="{% if request.path == '/lab_test/' %} active {% endif %}"><i class="fa-solid fa-flask-vial"></i>Diagnostic center/Lab</a>
+        <a href="{% url 'healthEquipment' %}" class="{% if request.path == '/healthEquipment/' %} active {% endif %}"><i
+                class="fa-solid fa-stethoscope"></i>Health Equipments</a>
+        <a href="{% url 'lab_test' %}" class="{% if request.path == '/lab_test/' %} active {% endif %}"><i
+                class="fa-solid fa-flask-vial"></i>Diagnostic center/Lab</a>
         <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}"><i
                 class="fa-regular fa-address-card"></i>About</a>
         <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}"><i
@@ -1644,66 +1657,66 @@
 
 
         //js for redirecting to dashboard when click on profilepic
-        document.querySelector('.patient_img').addEventListener('click', function() {
-     
-        var anchorTag = document.createElement('a');
-        anchorTag.href ="{% url 'drDashbord' %}"; 
-        anchorTag.textContent = 'Dashboard';
-        anchorTag.click();
-    });
-   
+        document.querySelector('.patient_img').addEventListener('click', function () {
+
+            var anchorTag = document.createElement('a');
+            anchorTag.href = "{% url 'drDashbord' %}";
+            anchorTag.textContent = 'Dashboard';
+            anchorTag.click();
+        });
+
     </script>
     <script>
         const location_searchInput = document.getElementById('location_searchInput');
         const category_searchInput = document.getElementById('category_searchInput');
-    const location_suggestions = document.getElementById('location_suggestions');
-    const category_suggestions = document.getElementById('category_suggestions');
-    
-    location_searchInput.addEventListener('input', function() {
-        const query = this.value.trim();
-        if (query === '') {
-            suggestions.style.display = 'none';
-            return;
-        }
-    
-        // Mock suggestions data
-        const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute","Bhigwan"];
-        const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
-        
-        renderSuggestions(filteredSuggestions,location_suggestions,location_searchInput);
-    });
-    category_searchInput.addEventListener('input', function() {
-        const query = this.value.trim();
-        if (query === '') {
-            suggestions.style.display = 'none';
-            return;
-        }
-    
-        // Mock suggestions data
-        const suggestionsData = ["Medicine",  "pediatrician","Gynecologist", "radiologist",  "orthopaedist","BHMS", "BAMS", "skin specialist", "Cardiologist","Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology","Ayurveda"];
-        const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
-        
-        renderSuggestions(filteredSuggestions,category_suggestions,category_searchInput);
-    });
-    
-    function renderSuggestions(suggestionsArray,suggestions,searchInput) {
-        if (suggestionsArray.length === 0) {
-            suggestions.style.display = 'none';
-            return;
-        }
-    
-        suggestions.innerHTML = '';
-        suggestions.style.display = 'block';
-        suggestionsArray.forEach(suggestion => {
-            const div = document.createElement('div');
-            div.classList.add('suggestion');
-            div.textContent = suggestion;
-            div.addEventListener('click', () => {
-                searchInput.value = suggestion;
+        const location_suggestions = document.getElementById('location_suggestions');
+        const category_suggestions = document.getElementById('category_suggestions');
+
+        location_searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (query === '') {
                 suggestions.style.display = 'none';
-            });
-            suggestions.appendChild(div);
+                return;
+            }
+
+            // Mock suggestions data
+            const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+            renderSuggestions(filteredSuggestions, location_suggestions, location_searchInput);
         });
-    }
-    
+        category_searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (query === '') {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            // Mock suggestions data
+            const suggestionsData = ["Medicine", "pediatrician", "Gynecologist", "radiologist", "orthopaedist", "BHMS", "BAMS", "skin specialist", "Cardiologist", "Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology", "Ayurveda"];
+            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+            renderSuggestions(filteredSuggestions, category_suggestions, category_searchInput);
+        });
+
+        function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+            if (suggestionsArray.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = '';
+            suggestions.style.display = 'block';
+            suggestionsArray.forEach(suggestion => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion');
+                div.textContent = suggestion;
+                div.addEventListener('click', () => {
+                    searchInput.value = suggestion;
+                    suggestions.style.display = 'none';
+                });
+                suggestions.appendChild(div);
+            });
+        }
+
     </script>

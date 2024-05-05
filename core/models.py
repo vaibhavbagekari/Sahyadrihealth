@@ -121,6 +121,12 @@ class BloodStorageImage(models.Model):
         # Call parent delete method to delete the object from the database
         super().delete(using=using)
 
+
+class CustomManager(models.Manager):
+    def delete(self):
+        for obj in self.get_queryset():
+            obj.delete()
+
 class BookedAppoinment(models.Model):
     doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='dr')
     date = models.DateField(null=True,blank=True)
@@ -135,11 +141,18 @@ class Government_schemes(models.Model):
     title_img=models.FileField(upload_to="Government_schemes\images",default="govschem\images\defaultimg.jpg")
     sub_title = models.TextField(max_length=1000,null=True,blank=True)
     Document = models.FileField(null=True,blank=True)
+    objects= CustomManager()
 
-class CustomManager(models.Manager):
-    def delete(self):
-        for obj in self.get_queryset():
-            obj.delete()
+    def delete(self , using=None):
+        # Delete associated files
+        if self.title_img:
+            os.remove(self.title_img.path)
+        if self.Document:
+            os.remove(self.Document.path)
+        # Call parent delete method to delete the object from the database
+        super().delete(using=using)
+
+
 
 class Dr_govScheme(models.Model):
     doctor = models.ForeignKey(Doctor,to_field="id", on_delete=models.CASCADE,related_name='drGov')
@@ -184,3 +197,17 @@ class Lab_test(models.Model):
     contact = models.IntegerField(null=True,blank=True)
     location = models.CharField(max_length=500,null=True,blank=True)
     Degree = models.CharField(max_length=100,null=True,blank=True)
+
+class HealthEquipment(models.Model):
+    title=models.TextField(null=True,blank=True)
+    sub_title = models.TextField(max_length=1000,null=True,blank=True)
+    title_img=models.FileField(upload_to="healthEquipment\images",default="govschem\images\defaultimg.jpg")
+    location = models.CharField(max_length=500,null=True,blank=True)
+    
+class feedbackquestion(models.Model):
+    question = models.TextField(null=True,blank=True)
+
+class feedbackans(models.Model):
+    question = models.ForeignKey(feedbackquestion,to_field="id", on_delete=models.CASCADE,related_name='fbans')
+    doctorid = models.IntegerField(null=True,blank=True)
+    ans = models.CharField(max_length=4,null=True,blank=True)

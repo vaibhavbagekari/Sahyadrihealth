@@ -136,3 +136,26 @@ class Lab_testAdmin(admin.ModelAdmin):
         'Document'
     )
 admin.site.register(Lab_test,Lab_testAdmin)
+
+class HealthEquipmentAdmin(admin.ModelAdmin):
+    HealthEquipmentDisplay = (
+        'title',
+        'title_img',
+        'sub_title'
+    )
+admin.site.register(HealthEquipment,HealthEquipmentAdmin)
+
+class FeedbackquestionAdmin(admin.ModelAdmin):
+    FeedbackquestionDisplay = (
+        'question'
+    )
+
+admin.site.register(feedbackquestion,FeedbackquestionAdmin)
+
+class FeedbackansAdmin(admin.ModelAdmin):
+    feedbackansDisplay = (
+        'questionid',
+        'doctorid',
+        'ans'
+    )
+admin.site.register(feedbackans,FeedbackansAdmin)

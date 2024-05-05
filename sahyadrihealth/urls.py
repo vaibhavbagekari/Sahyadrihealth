@@ -74,6 +74,8 @@ urlpatterns = [
     path('SearchBloodStorage/', SearchBloodStorage, name='SearchBloodStorage'),
     path('lab_test/', lab_test, name='lab_test'),
     path('search_lab/', search_lab, name='search_lab'),
+    path('healthEquipment/', healthEquipment, name='healthEquipment'),
+    path('SearchhealthEquipment/', SearchhealthEquipment, name='SearchhealthEquipment'),
     
 
 

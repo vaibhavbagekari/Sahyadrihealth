@@ -196,7 +196,6 @@
       <p>Your content goes here.</p>
     </div>
   </div>
-
   <div class="main_sdiv">
     <div class="search-container">
       <h2>Equipment Availability Search</h2>
@@ -209,7 +208,87 @@
 
     </div>
   </div><br><br>
-  <div class="flex">
+  
+<style>
+  .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 3vh auto 3vh auto;
+      width: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  .card h2 {
+      margin-top: 0;
+  }
+  .card p {
+      margin-bottom: 0;
+  }
+</style>
+
+<div id="cardList">
+  <!-- Card items will be added dynamically using JavaScript -->
+</div>
+<img src="" alt="">
+<script>
+  
+  let data
+  function setData(d) {
+      data=d;
+      console.log(data);
+      populateCardList();
+  }
+  // var data = [
+  //     {
+  //         name: "xyz",
+  //         name_owner: "vaibhav",
+  //         contact: "1234567890",
+  //         location: "Bagekari ali road",
+  //         about_service: "abc"
+  //     },
+  //     {
+  //         name: "Vaibhav Sanjay Bagekari",
+  //         name_owner: "vaibhav",
+  //         contact: "123456789",
+  //         location: "Bagekari ali road",
+  //         about_service: "abc"
+  //     }
+  // ];
+
+  // Function to create card HTML
+  function createCard(item) {
+      var cardHTML = `
+          <div class="card">
+              <h2>${item.title}</h2>
+              <p><strong>Name Owner:</strong> ${item.sub_title}</p>
+              <p><strong>Contact:</strong> ${item.contact}</p>
+              <p><strong>Location:</strong> ${item.location}</p>
+              <img src="${item.title_img}" alt="" style="width:50%">
+          </div>
+      `;
+      
+      return cardHTML;
+  }
+
+  // Function to populate card list
+  function populateCardList() {
+      var cardList = document.getElementById("cardList");
+      
+      // Clear previous content
+      cardList.innerHTML = "";
+
+      // Loop through data and create cards
+      data.forEach(function(item) {
+          var cardHTML = createCard(item);
+          cardList.innerHTML += cardHTML;
+      });
+  }
+
+  // Call populateCardList function to generate card list
+  
+</script>
+
+  {% comment %} <div class="flex">
     <div class="card">
       <img
         src="https://img.freepik.com/free-psd/hospital-empty-operation-room-with-surgery-bed-surgery-light-generative-ai_587448-1993.jpg?t=st=1714820019~exp=1714823619~hmac=2246bbea17ecb0c3c2e4aa53218ede4405d22f1951bcf6fee3982c76b88feb90&w=1380"
@@ -241,7 +320,7 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, reiciendis?</p>
     </div>
   </div>
-
+ {% endcomment %}
 
 
   {% include "footer.html" %}
@@ -255,12 +334,12 @@
       // console.log(info);
       $.ajax(
         {
-          url: '/SearchBloodStorage/',
+          url: '/SearchhealthEquipment/',
           method: 'POST',
           data: { data: JSON.stringify(info) },
           success: function (response) {
             console.log(response);
-            setData(response["amblance_list"]);
+            setData(response["healthEquipment_list"]);
           },
           error: function (error) {
             console.error(error);
