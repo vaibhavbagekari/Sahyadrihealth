@@ -217,6 +217,9 @@
       margin: 3vh auto 3vh auto;
       width: 100%;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      display:flex;
+      flex-direction: row;
+        flex-wrap: wrap;
   }
   .card h2 {
       margin-top: 0;
@@ -224,6 +227,26 @@
   .card p {
       margin-bottom: 0;
   }
+  .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #12a8ae;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 0px;
+        margin-top: 10px;
+        margin-bottom: 1rem;
+        border: none;
+        width: max-content;
+    }
+    .left1{
+      width: 45%;
+      justify-content:start;
+    }
+    .right{
+      width: 50%;
+      padding: 10px;
+    }
 </style>
 
 <div id="cardList">
@@ -259,11 +282,16 @@
   function createCard(item) {
       var cardHTML = `
           <div class="card">
+            <div class="left1">
               <h2>${item.title}</h2>
               <p><strong>Name Owner:</strong> ${item.sub_title}</p>
               <p><strong>Contact:</strong> ${item.contact}</p>
               <p><strong>Location:</strong> ${item.location}</p>
-              <img src="${item.title_img}" alt="" style="width:50%">
+              <a class="button" href="tel:${item.contact}">Contact</a>
+            </div>
+                <div class="right">
+              <img src="${item.title_img}" alt="" style="width:90%">
+            </div>
           </div>
       `;
       

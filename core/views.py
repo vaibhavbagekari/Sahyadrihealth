@@ -684,7 +684,7 @@ def SearchBloodStorage(request):
                 ls.append(j)
 
             
-            return JsonResponse({'status': 'success', 'amblance_list': ls})
+            return JsonResponse({'status': 'success', 'bloodstorage_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})

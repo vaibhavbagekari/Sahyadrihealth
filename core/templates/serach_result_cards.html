@@ -7,12 +7,26 @@
         margin: 3vh auto 3vh auto;
         width: 100%;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+       
     }
+
     .card h2 {
         margin-top: 0;
     }
     .card p {
         margin-bottom: 0;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #12a8ae;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 0px;
+        margin-top: 10px;
+        margin-bottom: 1rem;
+        border: none;
+        width: max-content;
     }
 </style>
 
@@ -49,12 +63,15 @@
     function createCard(item) {
         var cardHTML = `
             <div class="card">
+                
                 <h2>${item.name}</h2>
                 <p><strong>Name Owner:</strong> ${item.name_owner}</p>
                 <p><strong>Contact:</strong> ${item.contact}</p>
                 <p><strong>Location:</strong> ${item.location}</p>
                 <p><strong>About Service:</strong> ${item.about_service}</p>
-               
+                
+                <a class="button" href="tel:${item.contact}">Contact</a>
+                
             </div>
         `;
         
