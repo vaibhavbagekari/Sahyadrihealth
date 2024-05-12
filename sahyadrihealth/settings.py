@@ -124,10 +124,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = 'sahyadrihealth/core/static/'
 STATICFILES_DIR = {
-    BASE_DIR,'public/static'
+    '../../project/public/static'
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public/static')
+MEDIA_ROOT = os.path.join('../../project/public/static')
 MEDIA_URL = '/media/'
 
 
