@@ -107,8 +107,8 @@
     <div class="infocard">
         <div class="text1">
             <p class="card-text">
-            <h3>Government schemes</h3>
-            Government schemes are programmes launched by the government to improve the standard of living of all citizens. Government schemes are typically categorised into two main types, i.e. central sector and centrally sponsored schemes. </p>
+            <h3>Diagnostic center / Lab</h3>
+            A diagnostic center, also known as a diagnostic laboratory or medical laboratory, is a facility where various medical tests are conducted to aid in the diagnosis, monitoring, and treatment of diseases and health conditions. These centers play a crucial role in healthcare by providing accurate and timely test results to healthcare professionals.
             <button type="button m-3" class="btn btn-success">success</button>
         </div>
         <img src="{% static 'central_government_scheme.png' %}" alt="">
@@ -141,6 +141,18 @@
   .card p {
       margin-bottom: 0;
   }
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #12a8ae;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0px;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    border: none;
+    width: max-content;
+}
 </style>
 
 <div id="cardList">
@@ -182,7 +194,7 @@
               <p><strong>Contact:</strong> ${item.contact}</p>
               <p><strong>Location:</strong> ${item.location}</p>
               <p><strong>About Service:</strong> ${item.about_service}</p>
-             
+              <a class="button" href="tel:${item.contact}">Contact</a>
           </div>
       `;
       
