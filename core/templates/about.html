@@ -9,6 +9,8 @@
     .Amain-container {
       padding: 5px;
       padding-top: 16ch;
+      font-family: "Tiro Devanagari Marathi", serif;
+      line-height: 30px;
       
       /* z-index: -1; */
       
@@ -26,7 +28,7 @@
     }
     .card-body {
       padding: 30px;
-      height: 15rem;
+      height: max-content;
       border-bottom: 5px solid #12a8ae;
         /* width: 90%; */
         /* margin: auto; */
@@ -58,7 +60,15 @@
 <main>
 <div class="Amain-container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <b>हेल्थ एंपायर </b> ही कंपनी प्रामुख्याने आरोग्य क्षेत्रामध्ये लोकांच्या अडचणी सोडवण्यासाठी अग्रेसर मानली जाते. त्यामध्ये प्रत्येक क्षेत्रातील तज्ज्ञ डॉक्टरांच्या मदतीने आरोग्यविषयक अचुक उपचार देण्यासाठी नजीकच्या डॉक्टरांच्या भेटी घडवून आणण्यास आरोग्य मित्र म्हणून सदैव पाठीशी उभी राहते. त्यामुळे घरबसल्या आसपासच्या तज्ज्ञ डॉक्टरांच्या वेळा पाहून घरातूनच अपॉइंटमेंट बुक करून आपला पैसा आणि वेळ या दोन बहुमूल्य गोष्टी वाचू शकता 
+              त्याचबरोबर रुग्णवाहिका, सर्व प्रकारच्या आजारांची चाचणी व X-Ray , CT-Scan, MRI यासारख्या आजारांची निदाने स्पष्ट करणाऱ्या अत्यावश्यक सेवा तसेच ब्लड बँक आरोग्याच्या सरकारी योजना व प्रत्येक गावातील व तालुक्यातील सरकारी दवाखाने यांची अचूक माहिती घरबसल्या एका क्लिक वर किंवा फोन वरती घेऊ शकता तेही अगदी विनाशुल्क धन्यवाद.
+        </div>
+      </div>
+    </div>
+    {% comment %} <div class="col-md-6">
       <div class="card">
         <div class="card-body">
           <h3 style="color: #007bff;">Our Story</h3>
@@ -73,7 +83,7 @@
           <p>Our mission is to improve the well-being of individuals and communities by delivering exceptional healthcare solutions. We strive to innovate, collaborate, and make a positive impact on people's lives.</p>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
   </div>
   {% comment %} <div class="row mt-4">
     <div class="col-md-6">
