@@ -340,6 +340,7 @@ def drSigUp(request):
             education = data.get('education')
             address = data.get('address')
             contact_no = data.get('contact_no')
+            personal_contact = data.get('personal_contact')
             license_no = data.get('licenseNumber')
             password=data.get('password')
             username=data.get('email')
@@ -369,6 +370,7 @@ def drSigUp(request):
                     education=education,
                     address=address,
                     contact_no=contact_no,
+                    personal_contact=personal_contact,
                     license_no=license_no,
                     specialization=specialization,
                     category=catagory

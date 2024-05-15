@@ -24,6 +24,7 @@ class Doctor(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank =True,to_field='username',related_name='doctors')
     address = models.TextField(null=True,blank=True)
     contact_no = models.IntegerField(null=True,blank=True)
+    personal_contact = models.IntegerField(null=True,blank=True)
     age = models.IntegerField(null=True,blank=True)
     education = models.TextField(max_length=150,null=True,blank=True)
     specialization=models.TextField(max_length=100,null=True,blank=True)
