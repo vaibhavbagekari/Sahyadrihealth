@@ -58,6 +58,7 @@ def updateDrData(request):
             querySet.hospital_about=ls[13]
             querySet.mapLink=ls[14]
             querySet.opdFees=ls[15]
+            querySet.personal_contact=ls[16]
             if img:
                 querySet.profile_picture=img
             querySet.save()
