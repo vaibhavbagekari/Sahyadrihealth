@@ -744,6 +744,7 @@ def SearchhealthEquipment(request):
                 j={
                     'title':i.title,
                     'sub_title':i.sub_title,
+                    'contact':i.contact_no,
                     'title_img':i.title_img.url,
                     'location':i.location
                 }

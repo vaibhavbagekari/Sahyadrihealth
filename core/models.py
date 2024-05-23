@@ -202,6 +202,7 @@ class Lab_test(models.Model):
 class HealthEquipment(models.Model):
     title=models.TextField(null=True,blank=True)
     sub_title = models.TextField(max_length=1000,null=True,blank=True)
+    contact_no = models.IntegerField(null=True,blank=True)
     title_img=models.FileField(upload_to="healthEquipment\images",default="govschem\images\defaultimg.jpg")
     location = models.CharField(max_length=500,null=True,blank=True)
     
