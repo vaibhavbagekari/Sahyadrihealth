@@ -20,6 +20,7 @@ from django.core.mail import send_mail
 # Create your views here.
 import datetime
 from .utils import send_email_to_client
+from .utils import drAccountOpeningEmail
 from django.conf import settings
 from django import forms
 
@@ -378,7 +379,9 @@ def drSigUp(request):
                 
             
                 doctor.save()
-
+                drData={'email':main_user.email,'name':main_user.first_name+" "+main_user.last_name,'username':username,'email':email}
+                print(main_user.email,main_user.first_name,main_user.last_name)
+                drAccountOpeningEmail(drData)
                 msg="Account created Successfuly"
                 messages.add_message(request, messages.INFO, msg)
                 return render(request,"drsignin.html")
@@ -661,8 +664,6 @@ def SearchAmbulance(request):
                     'location':i.location
                 }
                 ls.append(j)
-
-
             return JsonResponse({'status': 'success', 'amblance_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
@@ -742,15 +743,13 @@ def SearchhealthEquipment(request):
             ls=[]
             for i in healthEquipment:
                 j={
-                    'title':i.title,
-                    'sub_title':i.sub_title,
-                    'contact':i.contact_no,
-                    'title_img':i.title_img.url,
+                   'name':i.name,
+                    'name_owner':i.name_owner,
+                    'about_service':i.about_service,
+                    'contact':i.contact,
                     'location':i.location
                 }
                 ls.append(j)
-
-            
             return JsonResponse({'status': 'success', 'healthEquipment_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 

@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </div> {% endcomment %}
-    
+                {% if slots %}
                 <div class="appointment-card card-body" style="display: block;max-width: 100%;">
                     <h2>Booked Appointments</h2>
     
@@ -160,6 +160,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         <div class="container_div" style="width: 100%; align-items: start; justify-content: start;">
 
             <div class="card-body">

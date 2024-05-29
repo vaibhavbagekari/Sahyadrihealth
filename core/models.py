@@ -200,10 +200,10 @@ class Lab_test(models.Model):
     Degree = models.CharField(max_length=100,null=True,blank=True)
 
 class HealthEquipment(models.Model):
-    title=models.TextField(null=True,blank=True)
-    sub_title = models.TextField(max_length=1000,null=True,blank=True)
-    contact_no = models.IntegerField(null=True,blank=True)
-    title_img=models.FileField(upload_to="healthEquipment\images",default="govschem\images\defaultimg.jpg")
+    name=models.CharField(max_length=500,null=True,blank=True)
+    name_owner=models.CharField(max_length=150,null=True,blank=True)
+    about_service=models.CharField(null=True, max_length=900,blank=True)
+    contact = models.IntegerField(null=True,blank=True)
     location = models.CharField(max_length=500,null=True,blank=True)
     
 class feedbackquestion(models.Model):

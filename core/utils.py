@@ -9,6 +9,13 @@ def send_email_to_client(drData,patientData,slotData):
     subject = "Confirmation of Your Successfully Booked Doctor Appointment"
     # message = strip_tags(html_content)
     from_email = settings.EMAIL_HOST_USER
-    print(type(patientData["email"]))
     recipient_list = [drData["email"],patientData["email"]]
+    send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)
+
+def drAccountOpeningEmail(drData):
+    html_content = render_to_string("drAccountOpeningEmail.html",{"drData":drData})
+    subject="Welcome to Health Empire - Account Successfully Created!"
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [drData["email"]]
+    print("hii")
     send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)
