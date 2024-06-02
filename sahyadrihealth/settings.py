@@ -138,11 +138,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-# EMAIL_HOST_USER='healthempire@healthempire.in'
-# EMAIL_HOST_PASSWORD = 'Aniket@213141'
-EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
-EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
-
+EMAIL_HOST_USER='healthempire@healthempire.in'
+EMAIL_HOST_PASSWORD = 'Aniket@213141'
+# EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
+# EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
+DEFAULT_FROM_EMAIL = 'healthempire@healthempire.in'

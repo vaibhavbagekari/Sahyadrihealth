@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+
+
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 import json
@@ -17,9 +19,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.core.mail import send_mail
-# Create your views here.
 import datetime
-from .utils import send_email_to_client
+from .utils import send_email_to_client,send_email_to_dr
 from .utils import drAccountOpeningEmail
 from django.conf import settings
 from django import forms
@@ -122,7 +123,6 @@ def patient_dashbord(request):
 def logout_btn(request):
     logout(request)
     return redirect('/home/')
-
 
 def check_form(request):
         data=request.POST
@@ -324,8 +324,6 @@ def blood_storage(request):
 
 def demo(request):
     return render(request,"demo.html")
-
-
 
 @ensure_csrf_cookie
 @csrf_protect 
@@ -634,13 +632,17 @@ def bookAppoinment(request):
                 Patient_contact=contact_no,
                 email=email
             )
-            obj.save()
-            drData={'email':dr.email,'name':dr.first_name+" "+dr.last_name,'hospital_name':d.hospital_name}
             patientData = {'email':email,'name':patient_name}
+            drData={'email':dr.email,'name':dr.first_name+" "+dr.last_name,'hospital_name':d.hospital_name}
+            obj.save()
             slotData={'date':date,'stime':stime,'etime':etime,'location':d.address}
-            print(patientData['name'])
-            print(patientData['email'])
             send_email_to_client(drData,patientData,slotData)
+            send_email_to_dr(drData,patientData,slotData)
+            # print(patientData['name'])
+            # print(patientData['email'])
+            # SMS_body = "hii"
+            # no="+91"+contact_no
+            # send_sms(no,SMS_body)
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
@@ -754,3 +756,11 @@ def SearchhealthEquipment(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+
+
+def developer_team(request):
+    return render(request,"developer_team.html")
+
+def govenment_hospitals(request):
+    return render(request,"govenment_hospitals.html")

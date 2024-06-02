@@ -168,14 +168,11 @@
                     <div class="img_div">
                         <img src="{{request.user.doctors.get.profile_picture.url}}" alt="Doctor Profile"
                             id="profile_image" />
-    
-    
                     </div>
                     <button class="bt"><a href="{% url 'drDashbord_setting' %}">Edit <i
                         class="fas fa-edit"></i></a></button>
                 </div>
                 <p class="card-text">
-    
                 <div class="media-flex">
                     <div class="lbio">
                         <strong>Username :</strong>
@@ -193,10 +190,7 @@
                         <strong>Experience:</strong>
                         <p>{{request.user.doctors.get.experience}}</p>
                     </div>
-        
-        
                     <div class="rbio">
-        
                         <strong>Hospital Name:</strong>
                         <p>{{request.user.doctors.get.hospital_name}} </p>
                         <strong>Education:</strong>
@@ -205,7 +199,6 @@
                         <p>{{request.user.doctors.get.age}}</p>
                         <strong>Contact:</strong>
                         <p> {{request.user.doctors.get.contact_no}}</p>
-        
                         <strong>License No:</strong>
                         <p>{{request.user.doctors.get.license_no}}</p>
                         <strong>Biography:</strong>

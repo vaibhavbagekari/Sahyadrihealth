@@ -22,6 +22,13 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from core import utils
 from core import doctor_views
+from django.contrib.auth.views import (
+    PasswordResetView, 
+    PasswordResetDoneView, 
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home,name="home"),
@@ -76,8 +83,13 @@ urlpatterns = [
     path('search_lab/', search_lab, name='search_lab'),
     path('healthEquipment/', healthEquipment, name='healthEquipment'),
     path('SearchhealthEquipment/', SearchhealthEquipment, name='SearchhealthEquipment'),
-    
+    path('password-reset/', PasswordResetView.as_view(template_name='users/password_reset.html'),name='password-reset'),
+    path('password-reset/done/', PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),name='password_reset_confirm'),
+    path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),name='password_reset_complete'),
 
+    path('developer_team/',developer_team,name='developer_team'),
+    path('govenment_hospitals/',govenment_hospitals,name='govenment_hospitals')
 
 ]    
 
