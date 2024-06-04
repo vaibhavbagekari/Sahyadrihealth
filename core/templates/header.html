@@ -1411,6 +1411,9 @@
     </div>
     <div class="loader_overlay" id="loader_overlay"></div>
     <div class="overlay" id="overlay"></div>
+    <div id="notification" style="display: none; background-color: #f44336; color: white; padding: 15px; position: fixed; top: 0; width: 100%; text-align: center;z-index: 1000;">
+       
+    </div>
     <header id="head">
 
         <div></div>
@@ -1718,6 +1721,20 @@
                 });
                 suggestions.appendChild(div);
             });
+        }
+        function displayNotification(message) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.textContent = message;
+            notificationElement.style.display = 'block';
+        }
+        function check(data,message){
+          
+          if (data.length===0) {
+            displayNotification(message);
+            setTimeout(() => {
+              document.getElementById('notification').style.display = 'none';
+          }, 5000);
+        }
         }
 
     </script>

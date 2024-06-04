@@ -233,6 +233,8 @@
             data: { data: JSON.stringify(info) },
             success: function (response) {
               console.log(response);
+              var message="No Diagnostic center are available at this location. Please try a different location.";
+              check(response["lab"],message);
               setData(response["lab"]);
             },
             error: function (error) {

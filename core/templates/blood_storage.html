@@ -235,6 +235,8 @@
           data: { data: JSON.stringify(info) },
           success: function (response) {
             console.log(response);
+            var message="No Blood Storage are available at this location. Please try a different location.";
+              check(response["bloodstorage_list"],message);
             setData(response["bloodstorage_list"]);
           },
           error: function (error) {

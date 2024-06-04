@@ -15,38 +15,74 @@
         /* background-color: #c6c6c6; */
         cursor: pointer;
         /* border-radius: 10px; */
-        
+
     }
-    .tab:hover{
-        background-color: #c3f2f4d9 ;
+
+    .tab:hover {
+        background-color: #c3f2f4d9;
     }
+
     .tab-content {
         display: none;
         padding: 20px;
         border: 1px solid #ddd;
     }
-    #tab_cantainer{
+
+    #tab_cantainer {
         background-color: rgb(255, 255, 255);
         height: max-content;
         width: 100%;
         padding: 10px;
     }
-    .slotbtn{
-        margin:5px;
-        padding:5px;
+
+    .slotbtn {
+        margin: 5px;
+        padding: 5px;
         background-color: #9ad1f0;
-        border: 3px solid  #9ad1f0;
+        border: 3px solid #9ad1f0;
         border-radius: 5px;
+        color: black;
     }
-    .slotbtn:hover{
-        background-color:  #bee1f6;
+
+    .slotbtn:hover {
+        background-color: #bee1f6;
+    }
+
+    .slotbtn {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .slotbtn.available {
+
+        background-color: #9ad1f0;
+    }
+
+    .slotbtn.booked {
+        background-color: red;
+        color: white;
+
+        cursor: not-allowed;
+    }
+
+    .tab {
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .tab.active {
+        background-color: #007BFF;
+        /* Active background color */
+        color: white;
+        /* Active text color */
     }
 </style>
 </head>
 
 <body>
     {% include 'slotConform.html' %}
-    
+
     <div class="tabs" id="tabsContainer">
         <!-- Tabs will be populated dynamically -->
     </div>
@@ -56,7 +92,7 @@
 
     <script>
 
-        function handleData(datat) {
+        function handleData(datat, bookedAppointments) {
             const data = datat;
 
             console.log(datat);
@@ -64,12 +100,24 @@
             const tabsContainer = document.getElementById('tabsContainer');
             // Use the data as neededd
             console.log(data);
+            let activeTab = null;
             data.forEach((appointment, index) => {
                 const tab = document.createElement('div');
                 tab.className = 'tab';
                 tab.innerHTML = `${appointment.date}<br> ${appointment.day}`;
                 // tab.onclick = () => openTab(event, `tab-${index}`);
-                tab.onclick = () => opnTab(appointment);
+                tab.onclick = () => {
+                    opnTab(appointment);
+
+                    // Remove the active class from the previously active tab
+                    if (activeTab) {
+                        activeTab.classList.remove('active');
+                    }
+
+                    // Add the active class to the clicked tab
+                    tab.classList.add('active');
+                    activeTab = tab;
+                };
                 tabsContainer.appendChild(tab);
 
                 // const tabContent = document.createElement('div');
@@ -85,7 +133,7 @@
                 // tabContent.id = `tab-${index}`;
                 // tabContent.className = 'tab-content';
                 // console.log(appointment.slots)
-                tabContent.innerHTML = formatSlots(appointment);
+                tabContent.innerHTML = formatSlots(appointment, bookedAppointments);
                 // tabsContainer.appendChild(tabContent);
             }
             // Function to open tabs
@@ -103,23 +151,47 @@
             }
 
             // Helper function to format slots
-            function formatSlots(appointment) {
+            // function formatSlots(appointment) {
+            //     if (appointment.slots.length === 0) {
+            //         return 'No slots available';
+            //     } else {
+            //         let slotsString = '';
+            //         appointment.slots.forEach(slot => {
+            //             slotsString += `<br><strong>${slot.session}</strong><br>`;
+            //             for (const timeSlot in slot.slots) {
+            //                 slotsString += `<button class="slotbtn" onclick="bookslot('${appointment.date}','${timeSlot}')">${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
+            //             }
+            //         });
+            //         return slotsString;
+            //     }
+            // }
+            function formatSlots(appointment, bookedAppointments) {
+                bookedAppointments = bookedAppointments || [];
+                console.log(bookedAppointments);
                 if (appointment.slots.length === 0) {
                     return 'No slots available';
                 } else {
                     let slotsString = '';
+
                     appointment.slots.forEach(slot => {
                         slotsString += `<br><strong>${slot.session}</strong><br>`;
+
                         for (const timeSlot in slot.slots) {
-                            slotsString += `<button class="slotbtn" onclick="bookslot('${appointment.date}','${timeSlot}')">${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
+                            const slotIdentifier = `${appointment.date} ${timeSlot}`;
+                            const isBooked = bookedAppointments.includes(slotIdentifier);
+                            console.log(isBooked)
+                            const buttonClass = isBooked ? 'slotbtn booked' : 'slotbtn available';
+                            slotsString += `<button class="${buttonClass}" onclick="bookslot('${appointment.date}','${timeSlot}')" ${isBooked ? 'disabled' : ''}>${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
                         }
                     });
+
                     return slotsString;
                 }
             }
+
         }
-        
-        
+
+
     </script>
 
 </body>

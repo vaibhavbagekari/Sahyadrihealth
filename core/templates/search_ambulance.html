@@ -269,6 +269,7 @@
     //     alert('Please enter a valid location');
     //   }
     // }
+   
     $(document).ready(function () {
       $('#btnSun').click(function () {
         var info = document.getElementById('locationInput').value;
@@ -280,11 +281,14 @@
             data: { data: JSON.stringify(info) },
             success: function (response) {
               console.log(response);
+              var message="No ambulances are available at this location. Please try a different location.";
+              check(response["amblance_list"],message);
               setData(response["amblance_list"]);
+
             },
             error: function (error) {
               console.error(error);
-              alert('Error saving events!');
+              alert('No ambulances are currently available here. Please select another location!');
             }
           }
         )

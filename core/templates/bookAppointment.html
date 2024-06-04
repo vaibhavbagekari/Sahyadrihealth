@@ -8,8 +8,10 @@
 
 <h6>Maximun waiting time <span style="color:red;">15-25 minutes<span>.</h6>
 <h6>Please note that our system operates on a 24-hour clock format.</h6>
-<button class="button" id="findslots" onclick="disableButton()">Find slots <p
-        style="margin: 0px; padding: 3px; font-weight: bolder;" class="button1">Free</p></button>
+<button class="slotbtn available">available</button>&nbsp;&nbsp;<button class="slotbtn booked">booked</button>
+<br>
+<button class="button" id="findslots" onclick="disableButton()">Book slots <p
+        style="margin: 0px; padding: 5px; font-weight: bolder;" class="button1">Free</p></button>
 {% include 'slotConform.html' %}
 {% include 'showAppoinment.html' %}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -61,7 +63,9 @@
                     data: { date: JSON.stringify(daraRange) },
                     success: function (response) {
                         globdata = response["context"];
-                        handleData(globdata);
+                        bookedAppointments = response["bookedsots"];
+                        console.log(bookedAppointments);
+                        handleData(globdata,bookedAppointments);
                         // alert('Events saved successfully!');
                     },
                     error: function (error) {

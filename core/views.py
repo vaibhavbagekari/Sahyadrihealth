@@ -577,6 +577,13 @@ def getSlots(id,day):
     # print(jn)
     return jn
 
+def convert_time_format(time_string):
+    date, time_range = time_string.split(' ')
+    start_time, end_time = time_range.split('-')
+    formatted_start_time = start_time[:-3]  # Remove the last 3 characters (":00")
+    formatted_end_time = end_time[:-3]  # Remove the last 3 characters (":00")
+    return f"{date} {formatted_start_time}-{formatted_end_time}"
+
 @csrf_exempt
 def findslots(request,id):
     try:
@@ -600,7 +607,13 @@ def findslots(request,id):
             # print(jn[3]["slots"]["session"])
             # print(jn)
             
-            return JsonResponse({'status': 'success',"context":jn})
+            dr = Doctor.objects.get(id=id)
+            data = BookedAppoinment.objects.filter(doctor=dr)
+            bookedsots = []
+            for i in data :
+                slot = str(i.date) +" "+ str(i.start_time)+"-"+str(i.end_time)
+                bookedsots.append(convert_time_format(slot))
+            return JsonResponse({'status': 'success',"context":jn,"bookedsots":bookedsots})
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
 

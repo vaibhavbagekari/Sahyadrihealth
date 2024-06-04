@@ -367,6 +367,8 @@
           data: { data: JSON.stringify(info) },
           success: function (response) {
             console.log(response);
+            var message="No Health Equipment are available at this location. Please try a different location.";
+              check(response["healthEquipment_list"],message);
             setData(response["healthEquipment_list"]);
           },
           error: function (error) {
