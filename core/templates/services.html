@@ -1,5 +1,6 @@
 {% load static %}
 {% include "header.html" %}
+
 <head>
   <title>
     HE Services
@@ -114,16 +115,18 @@
   .tabcontent button {
     padding: .9rem;
     background-color: #23aea3;
-   
+
     border: 0;
     /* margin-bottom: 2rem; */
     color: white;
   }
-  .tabcontent button a{
+
+  .tabcontent button a {
     text-decoration: none;
     color: white;
     font-size: .9rem;
   }
+
   /* Style the close button */
   .topright {
     float: right;
@@ -145,53 +148,65 @@
   .tabcontent img {
     width: 33%;
   }
-  @media screen and (max-width: 950px){
-    .tabcontent{
+
+  @media screen and (max-width: 950px) {
+    .tabcontent {
       flex-direction: column;
       margin-top: 1rem;
       height: 100vh;
     }
-    .tabcontent .p{
+
+    .tabcontent .p {
       width: 80%;
       font-size: 15px;
     }
-    .tabcontent img{
+
+    .tabcontent img {
       width: 68%;
     }
-    .tabcontent h5{
+
+    .tabcontent h5 {
       margin-top: 1rem;
     }
-    .tabcontent button{
-      font-size: .8rem;
-      padding: .7rem;
-    }
-  } 
-  @media screen and (max-width: 950px) and (min-height:700px){
-    .tabcontent{
-      flex-direction: column;
-      margin-top: 1rem;
-      height: 100vh;
-    }
-    .tabcontent .p{
-      width: 80%;
-      font-size: 15px;
-    }
-    .tabcontent img{
-      width: 68%;
-    }
-    .tabcontent h5{
-      margin-top: -13rem;
-    }
-    .tabcontent button{
+
+    .tabcontent button {
       font-size: .8rem;
       padding: .7rem;
     }
   }
+
+  @media screen and (max-width: 950px) and (min-height:700px) {
+    .tabcontent {
+      flex-direction: column;
+      margin-top: 1rem;
+      height: 100vh;
+    }
+
+    .tabcontent .p {
+      width: 80%;
+      font-size: 15px;
+    }
+
+    .tabcontent img {
+      width: 68%;
+    }
+
+    .tabcontent h5 {
+      margin-top: -13rem;
+    }
+
+    .tabcontent button {
+      font-size: .8rem;
+      padding: .7rem;
+    }
+  }
+
   @media screen and (max-width: 750px) {
     .Snav {
-      padding-top: 14vh;
+      margin-top: -3rem;
+      padding-top: 0vh;
     }
- 
+
   }
 </style>
 <main>
@@ -199,11 +214,15 @@
     <ul class="tab">
       <!-- <li><button class="tablinks" onclick="openCity(event, 'Health_Information')" id="defaultOpen">Health
           Information</button></li> -->
-      <li><button class="tablinks" onclick="openCity(event, 'Blood_Storage')" id="defaultOpen">Blood Storage </button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Blood_Storage')" id="defaultOpen">Blood Storage </button>
+      </li>
       <li><button class="tablinks" onclick="openCity(event, 'Ambulance_Service')">Ambulance Service</button></li>
       <li><button class="tablinks" onclick="openCity(event, 'Government_Services')">Government Schemes</button></li>
       <li><button class="tablinks" onclick="openCity(event, 'Online_Appointment_Booking')">Online Appointment
           Booking</button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Health_equipment')">Health Equipment
+        </button></li>
+      <li><button class="tablinks" onclick="openCity(event, 'Diagnostic_center')">Diagnostic Centre</button></li>
 
     </ul>
   </nav>
@@ -216,8 +235,8 @@
   <!-- Your custom JavaScript code -->
 
   <!-- <div id="Health_Information" class="tabcontent"> -->
-    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
-    <!-- <img src="{% static 'donor.jpg' %}" alt="">
+  <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+  <!-- <img src="{% static 'donor.jpg' %}" alt="">
     <div class="p">
       <h5>H</h5>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi dolores aut asperiores ullam! Nemo, quam?
@@ -275,8 +294,40 @@
         has never been easier. Simply select your desired date and time, provide your information, and receive instant
         confirmation.
       </p>
-      
+
       <button><a href="">Book Appointment</a></button>
+    </div>
+  </div>
+
+  <div id="Health_equipment" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'image3.jpg' %}" alt="">
+    <div class="p">
+      <h5>Health Equipment</h5>
+      <p>Discover a comprehensive range of health equipment tailored to meet your medical needs.Our platform allows you
+        to easily search for the latest medical devices, from diagnostic tools and imaging systems to
+        surgical instruments and patient care equipment. Whether you're a healthcare professional or an individual
+        seeking high-quality medical equipment, our user-friendly search feature ensures you find exactly what you're
+        looking for with ease and efficiency.
+      </p>
+
+      <button><a href="{% url 'healthEquipment' %}">Health Equipment</a></button>
+    </div>
+  </div>
+
+  <div id="Diagnostic_center" class="tabcontent">
+    <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+    <img src="{% static 'blood.jpg' %}" alt="">
+    <div class="p">
+      <h5>Diagnostic Center</h5>
+      <p>Explore our comprehensive diagnostic center designed to meet your healthcare needs with precision and
+        efficiency. Our platform enables you to search for a variety of diagnostic services, from advanced imaging and
+        laboratory tests to specialized screenings. Our diagnostic center
+        ensures accurate and timely results, supporting better health outcomes. Navigate our user-friendly website to
+        find the diagnostic services that best suit your requirements.
+      </p>
+
+      <button><a href="{% url 'lab_test' %}">Diagnostic Center</a></button>
     </div>
   </div>
   {% include "footer.html" %}
