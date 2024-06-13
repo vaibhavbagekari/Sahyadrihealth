@@ -59,6 +59,7 @@ def updateDrData(request):
             querySet.mapLink=ls[14]
             querySet.opdFees=ls[15]
             querySet.personal_contact=ls[16]
+            querySet.slotDuration = ls[17]
             if img:
                 querySet.profile_picture=img
             querySet.save()

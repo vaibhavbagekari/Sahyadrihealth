@@ -10,14 +10,14 @@
         z-index: 1000;
         padding-top: 10vh;
         backdrop-filter: bler(4px);
-        margin-top: 5px;
+        /* margin-top: 5px; */
     }
 
     .smain_div {
         padding: 10px;
         width: 80%;
         margin: auto;
-        height: 70vh;
+        height: 90vh;
         overflow-y: scroll;
     }
 
@@ -40,7 +40,7 @@
         margin: auto;
         display: flex;
         align-items: center;
-        padding: 20px;
+        padding: 7px;
         border-bottom: 1px solid #ddd;
         cursor: pointer;
         background-color: #fff;
@@ -90,6 +90,16 @@
 
 
     }
+    @media screen and (max-width: 970px) {
+        .doctor-info{
+            font-size: small;
+        }
+        .smain_div{
+            padding: 0px;
+        width: auto;
+        }
+
+    }
 </style>
 {% if m %}
 <script>
@@ -110,7 +120,7 @@
         <a href="/drProfile/{{i.user.id}}" class="doctor">
             <img src="{{i.profile_picture.url}}" alt="Doctor 1" />
             <div class="doctor-info">
-                <h2>Dr. {{i.user.first_name}} {{i.user.last_name}}</h2>
+                <h3 >Dr. {{i.user.first_name}} {{i.user.last_name}}</h3>
                 <p>Education : {{i.education}}</p>
                 <p>Experience : {{i.experience}}</p>
                 <p>Specialty: {{i.specialization}}</p>

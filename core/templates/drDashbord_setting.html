@@ -623,6 +623,19 @@
           <input type="number" id="opdfees" name="opdfees" value="{{request.user.doctors.get.opdFees}}"
             required>
 
+           
+              <label for="slotDuration">Choose slot Duration:</label>
+              <select id="slotDuration" onchange="showSelectedOption()">
+                  <option value="10">10 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="25">25 minutes</option>
+                  <option value="30">30 minutes</option>
+                 
+              </select>
+              <div id="result">current slot Duration: {{request.user.doctors.get.slotDuration}}</div>
+          
+
 
           <label for="license_no">license_no:</label>
           <input type="number" id="license_no" name="license_no" value="{{request.user.doctors.get.license_no}}"
@@ -630,7 +643,7 @@
 
           <label for="hospital_about">About Hospital</label>
           <textarea name="hospital_about" id="hospital_about" cols="30" rows="10"
-            maxlength="20">{{request.user.doctors.get.hospital_about}}</textarea>
+            maxlength="500">{{request.user.doctors.get.hospital_about}}</textarea>
         </div>
 
       </div>
@@ -773,6 +786,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         var hospital_about = document.getElementById("hospital_about").value;
         var map = document.getElementById("map").value;
         var opdfees = document.getElementById("opdfees").value;
+        var slotDuration = document.getElementById("slotDuration").value;
 
         var updateDrdata = {
           "username": username,
@@ -793,6 +807,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "map":map,
           "opdfees":opdfees,
           "personal_contact":personal_contact,
+          "slotDuration":slotDuration
         };
         var formData = new FormData();
         formData.append('data', JSON.stringify(updateDrdata));

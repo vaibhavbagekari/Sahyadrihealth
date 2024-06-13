@@ -562,7 +562,7 @@ def getSlots(id,day):
     dr = Doctor.objects.get(id=id)
     data = Availability_weekly.objects.get(doctor=dr)
     m=data.json
-    slot_duration=10
+    slot_duration=dr.slotDuration
     ls=("Morning","Afternoon","Evening")
     jn=[]
     for i in ls:

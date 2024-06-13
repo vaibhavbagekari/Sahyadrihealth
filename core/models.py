@@ -38,6 +38,7 @@ class Doctor(models.Model):
     biography=models.TextField(max_length=1000,null=True,blank=True)
     hospital_name=models.TextField(max_length=150,null=True,blank=True)
     hospital_about = models.TextField(max_length=1000,null=True,blank=True)
+    slotDuration = models.IntegerField(null=True,blank=True,default=10)
     def delete(self, *args, **kwargs):
         # Check if the profile picture is not the default one
         if self.profile_picture and not self.profile_picture.name == 'doctor/defaultPicture.png':

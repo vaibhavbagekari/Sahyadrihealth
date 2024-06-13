@@ -22,6 +22,7 @@ class DoctorAdmin(admin.ModelAdmin):
         'license_no',
         'password',
         'personal_contact'
+        'slotDuration'
     )
 admin.site.register(NewUser,NewUserAdmin)
 admin.site.register(Doctor,DoctorAdmin)
