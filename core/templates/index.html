@@ -385,7 +385,7 @@ width: 65%;
     line-height: 1.5;
     margin-top: 0;
     text-transform: normal;
-    width: 70%;
+    {% comment %} width: 70%; {% endcomment %}
     z-index: 999;
 }
 h5{
@@ -487,7 +487,7 @@ h5{
         height: 400px;
         background-attachment: fixed;
         
-        background: linear-gradient(to right,rgba(53, 153, 241, 0.898), rgba(255, 255, 255, 0.131)), url("{% static 'blood-sample-collection.jpg' %} ");
+        background: linear-gradient(to right,rgba(53, 153, 241, 0.898), rgba(255, 255, 255, 0.131)), url("{% static 'Doctor.jpg' %} ");
         background-size: cover;
         background-position: center;
         color: white;
@@ -858,7 +858,7 @@ margin-top: 2rem;
                 
                 <p>  हेल्थ एम्पायर या कंपनीचा उद्देश प्रामुख्याने आरोग्य क्षेत्रामध्ये जागरूकता निर्माण करून रुग्ण आणि डॉक्टर यांच्यामध्ये समन्वय साधने हा होय. तसेच नजीकच्या तज्ञ डॉक्टरांच्या भेटी वेबसाईट द्वारे घडवून आणण्यास मदत करणे.ही कंपनी आरोग्य क्षेत्रामध्ये मध्यस्थी म्हणून काम करत नाही, त्यामुळेच सर्व माहितीची शहानिशा करूनच डॉक्टरांशी भेटणे. तसेच रुग्णांच्या बाबतीत कोणतीही लापरवाही झाल्यास कंपनी जबाबदार राहणार नाही ही नम्र विनंती.
                 </p>
-            <center><button ><a href="#" id="crossbtn">I AGREE</a></button></center>
+            <center><a href="#" id="crossbtn"><button >I AGREE</button></a></center>
             </div>
 
     <div class="slider-container">
@@ -943,13 +943,7 @@ margin-top: 2rem;
         </div>
       </div>
       <br><br><br>
-  <div class="gradient-container">
-    <div class="content hidden">
-      <h1>Caring for Your Complete Well-Being</h1>
-      <p>At our clinic, we take your health and well-being to heart. It’s not just about making you feel good; it’s about ensuring that you are genuinely good..</p>
-    </div>
-  </div><br><br><br>
-
+  
   <div class="subdiv_img hidden">
             <div class="card flex_card  ">
                <!-- Add your cards here -->
@@ -987,7 +981,12 @@ margin-top: 2rem;
            </div>
            
 </div>
-
+<div class="gradient-container">
+    <div class="content hidden">
+      <h1>Caring for Your Complete Well-Being</h1>
+      <p>At our clinic, we take your health and well-being to heart. It’s not just about making you feel good; it’s about ensuring that you are genuinely good..</p>
+    </div>
+  </div>
 {% comment %} <div id="carouselExampleDark" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="z-index: 0;"></button>

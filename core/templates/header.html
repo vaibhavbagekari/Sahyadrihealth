@@ -168,6 +168,7 @@
             transition-duration: 0.5s;
             /* overflow: scroll; */
             box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: scroll;
 
         }
 
@@ -1373,7 +1374,18 @@
             position: relative;
             width: 120px;
         }
+        @media screen and  (max-width: 400px) and (min-height:650px){
+            #disclaimer{
+                top: 52%;
+        height: 51vh;
+        /* width: max-content; */
+        width: 70%;
+    
+            }
+          
+          }
     </style>
+    
     <script>
         function downLoad() {
             if (document.all) {
@@ -1394,6 +1406,9 @@
 </head>
 
 <body onload="downLoad()">
+    {% if request.path == '/home/' or  request.path == '/' %}
+    <div class="nav_overlay" id="nav_overlay" onclick="toggle_layout()"></div>
+    {% else %}
     <div class="nav_overlay" id="nav_overlay" onclick="toggle_layout()"></div>
     <div class="contener_general" id="layer1">
         <div class="contener_mixte">
@@ -1410,6 +1425,7 @@
         </div>
     </div>
     <div class="loader_overlay" id="loader_overlay"></div>
+    {% endif %}
     <div class="overlay" id="overlay"></div>
     <div id="notification" style="display: none; background-color: #f44336; color: white; padding: 15px; position: fixed; top: 0; width: 100%; text-align: center;z-index: 1000;">
        
@@ -1738,3 +1754,4 @@
         }
 
     </script>
+    <script src="http://translate.google.com/translate_b/element.js?cb=loadGoogleTranslate"></script>

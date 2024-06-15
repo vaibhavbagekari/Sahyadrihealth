@@ -1,5 +1,6 @@
 {% load static %}
 {% include "header.html" %}
+
 <head>
     <title>
         Find Docter near you
@@ -8,7 +9,7 @@
 <style>
     .hero-container {
         position: static;
-        
+
     }
 
     .search-result-div {
@@ -19,14 +20,14 @@
         background-color: #41b0b4;
         /* background-image: linear-gradient(rgb(97, 136, 251), rgb(199, 199, 248)); */
         text-align: center;
-   
-        padding:60px 0 60px 0;
+
+        padding: 60px 0 60px 0;
         color: #0c3b3e;
         /* margin: 30px; */
-        width:100%;
-        
+        width: 100%;
+
         text-transform: uppercase;
-        
+
     }
 
     .other-div h3 {
@@ -40,12 +41,12 @@
         margin: auto;
         /* align-self: centers; */
         position: relative;
-      
+
 
     }
 
     .search-div input {
-       
+
         /* background-image: linear-gradient(rgb(167, 189, 253),rgb(255, 255, 255),rgb(175, 192, 244)); */
         height: 50px;
     }
@@ -73,15 +74,17 @@
         background-color: rgb(169, 169, 169);
         border-radius: 10px;
     }
-    .doctor{
+
+    .doctor {
         background-color: rgba(210, 210, 210, 0.783);
         border-top: 1px solid black;
     }
-    .infocard{
+
+    .infocard {
         margin: 10px;
         /* padding: 10px; */
         /* border-radius: 12px; */
-        width:calc(100% - 20px) ;
+        width: calc(100% - 20px);
         /* background-image: linear-gradient(to right,rgb(52, 52, 253),rgb(163, 163, 249)); */
         display: flex;
         flex-direction: row;
@@ -97,40 +100,48 @@
         border-radius: 0px;
         margin-bottom: 2rem;
     }
-    .infocard div{
+
+    .infocard div {
         margin: 10px;
     }
-    .infocard img{
+
+    .infocard img {
         width: 30%;
         position: relative;
         right: 20px;
         transition-duration: 0.3s;
         transform: scale(1.12);
     }
-    .subdiv_img .card img{
+
+    .subdiv_img .card img {
         width: 100%;
     }
-    .infocard img:hover{
+
+    .infocard img:hover {
         transform: scale(1.05);
     }
-    .search_bar{
+
+    .search_bar {
         width: 100%;
         padding: 3rem;
 
     }
-    .input-group{
-        justify-content:center;
+
+    .input-group {
+        justify-content: center;
     }
 
     @media screen and (max-width: 750px) {
         main {
             padding-top: 23vh;
         }
-        .infocard{
+
+        .infocard {
             flex-wrap: wrap;
-           
+
         }
-        .infocard img{
+
+        .infocard img {
             min-width: 350px;
         }
 
@@ -142,113 +153,143 @@
             max-width: 100px;
         }
     }
+
     .card-slider3 .card-container3 {
         width: 70vw;
     }
-    @media screen and (max-width: 400px){
+    .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            display: none;
+            color: black;
+            z-index: 1;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f4f4f4;
+        }
+
+
+    @media screen and (max-width: 400px) {
         .card-slider3 .card-container3 {
-    width: 110vw;
-}
-    }
-    @media screen and (max-width: 300px){
-        .card-slider3 .card-container3 {
-    width: 155vw;
-}
+            width: 110vw;
+        }
     }
 
+    @media screen and (max-width: 300px) {
+        .card-slider3 .card-container3 {
+            width: 155vw;
+        }
+    }
 </style>
 <main>
     <div class="infocard">
         <div class="text1">
-        <p class="card-text" >
+            <p class="card-text">
             <h3>Find Doctor near you</h3>
-            
-            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
 
-        </p>
-        <button type="button m-3" class="btn btn-success">success</button>
-    </div>
-       <img src="{% static 'searchdr.png' %}" alt="">
+            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities
+            behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong
+            collaboration across agencies and with countries so that we can reach zero dose children, and expand access
+            to families who are missing out on crucial primary health care services.
+
+            </p>
+            <button type="button m-3" class="btn btn-success">success</button>
+        </div>
+        <img src="{% static 'searchdr.png' %}" alt="">
     </div>
     <div class="hero-container">
-        <!-- <h1>Find Docter near you</h1> -->
         <div class="main-div">
             <h3 class="m-3">search for Doctors near you</h3>
             <div class="search-div">
                 <div class="search_bar">
-            <form action="">
-                <div class="input-group">
-                    <div class="search-container" class="form-control">
-                    <input style="width: 100%;height: 100%;" type="text" class="form-control" id="location_searchInput" placeholder="Location"   
-                        name="location" required>
-                        <div id="location_suggestions" class="suggestions"></div>
-                    </div>
-                    <div class="search-container" class="form-control">
-                    <input style="width: 100%;height: 100%;" type="text"  class="form-control" placeholder="Category" id="category_searchInput"  name="category"
-                        required>
-                        <div id="category_suggestions" class="suggestions"></div>
-                    </div>
+                    <form action="">
+                        <div class="input-group">
+                            <div class="search-container" class="form-control">
+                                <input style="width: 100%;height: 100%;" type="text" class="form-control"
+                                    id="location_searchInput1" placeholder="Location" name="location" required>
+                                <div id="location_suggestions1" class="suggestions"></div>
+                            </div>
+                            <div class="search-container" class="form-control">
+                                <input style="width: 100%;height: 100%;" type="text" class="form-control"
+                                    placeholder="Category" id="category_searchInput1" name="category" required>
+                                <div id="category_suggestions1" class="suggestions"></div>
+                            </div>
 
-                    <!-- <datalist id="categories">
-                        <option value="Gynecologist">
-                        <option value="Dietitian">
-                        <option value="Dentist">
-                        <option value="General surgeon">
-                        <option value="Physiotherapist">
-                            
-                    </datalist> -->
+                            <button type="submit" class="input-group-text"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
 
-                    <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
-
-            </form>
-        </div>
             </div>
         </div>
-        <div class="search-result-div">
-
-            {% if Fdata %}
-           
-                <div class="other-div" style="font-size: medium; color: black;">
-                    <h3 style="color: blue;">{{Fcount}} doctors available nearby {{Fad}}
-                    </h3>
-                    <!-- <button class="cut-button mr-0 ml-auto" onclick="cutSearchResults()" align="right"><i
-                            class="fa-solid fa-xmark" id="icon"></i></button> -->
-                </div>
-                <div class="smain_div" style="width: 90%; ">
-                    {% for i in Fdata %}
-                    <a href="/drProfile/{{i.user.id}}" class="doctor" >
-                        <img src="{{i.profile_picture.url}}" alt="Doctor 1" />
-                        <div class="doctor-info">
-                            <h2>Dr. {{i.user.first_name}} {{i.user.last_name}}</h2>
-                            <p>Specialty: {{i.specialization}}</p>
-                            <p>Location: {{i.address}}</p>
-                            <p>Contact: {{i.specialization}}</p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-           
-            {% endif %}
-
-            <!-- <div class="card-8 m-3 s-card p-3" >
-                <div class="row g-0">
-                    <div class="col-md-1  m-2">
-                        <img src="https://isobarscience.com/wp-content/uploads/2020/09/default-profile-picture1.jpg" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+       
     </div>
 
     {% include "cardslider.html" %}
     {% include "footer.html" %}
 </main>
+<script>
+     const location_searchInput1 = document.getElementById('location_searchInput1');
+        const category_searchInput1 = document.getElementById('category_searchInput1');
+        const location_suggestions1 = document.getElementById('location_suggestions1');
+        const category_suggestions1 = document.getElementById('category_suggestions1');
+
+        location_searchInput1.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (query === '') {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            // Mock suggestions data
+            const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+            renderSuggestions(filteredSuggestions, location_suggestions1, location_searchInput1);
+        });
+        category_searchInput1.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (query === '') {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            // Mock suggestions data
+            const suggestionsData = ["Medicine", "pediatrician", "Gynecologist", "radiologist", "orthopaedist", "BHMS", "BAMS", "skin specialist", "Cardiologist", "Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology", "Ayurveda"];
+            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+            renderSuggestions(filteredSuggestions, category_suggestions1, category_searchInput1);
+        });
+
+        function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+            if (suggestionsArray.length === 0) {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            suggestions.innerHTML = '';
+            suggestions.style.display = 'block';
+            suggestionsArray.forEach(suggestion => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion');
+                div.textContent = suggestion;
+                div.addEventListener('click', () => {
+                    searchInput.value = suggestion;
+                    suggestions.style.display = 'none';
+                });
+                suggestions.appendChild(div);
+            });
+        }
+</script>

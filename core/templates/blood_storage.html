@@ -20,13 +20,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 40vh;
     {% comment %} background-color: #f2f2f2; {% endcomment %}
   }
 
   .search-container {
     text-align: center;
-
+    margin-bottom: 0;
   }
 
   .search-container h2 {
@@ -145,34 +145,14 @@
       
         <div class="input-group">
           {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
-          <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput">
+          <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput1">
+          <div id="location_suggestions1" class="suggestions"></div>
           <button type="button" class="input-group-text" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       
     </div>
   </div>
-    <!-- <div class="sresult">
-      <div class="profile_card">
-        <div class="img_div">
-          <img src="https://tse1.mm.bing.net/th?id=OIP.c5KXw-wPcnwyyBNayoXfFQHaHa&pid=Api&P=0&h=180" alt="" srcset="">
-        </div>
-        <div class="context_div">
-          <span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptas! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus velit eius architecto fugiat recusandae id maiores quod laboriosam odit corporis consequuntur obcaecati delectus, consectetur amet. Reprehenderit alias odio iste.</p>
-          </span>
-        </div>
-      </div>
-      <div class="profile_card">
-        <div class="img_div">
-          <img src="https://tse1.mm.bing.net/th?id=OIP.c5KXw-wPcnwyyBNayoXfFQHaHa&pid=Api&P=0&h=180" alt="" srcset="">
-        </div>
-        <div class="context_div">
-          <span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptas! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam possimus velit eius architecto fugiat recusandae id maiores quod laboriosam odit corporis consequuntur obcaecati delectus, consectetur amet. Reprehenderit alias odio iste.</p>
-          </span>
-        </div>
-      </div>
-    </div> -->
+    
   
   {% include "serach_result_cards.html" %}
   {% include "footer.html" %}
@@ -226,7 +206,7 @@
 
     $(document).ready(function () {
       $('#search').click(function () {
-        var info = document.getElementById('locationInput').value;
+        var info = document.getElementById('locationInput1').value;
         // console.log(info);
         $.ajax(
           {
@@ -247,6 +227,47 @@
         )
       });
     });
+    </script>
+    <script>
+      const location_searchInput1 = document.getElementById('locationInput1');
+         
+         const location_suggestions1 = document.getElementById('location_suggestions1');
+         
+    
+         location_searchInput1.addEventListener('input', function () {
+             const query = this.value.trim();
+             if (query === '') {
+                 suggestions.style.display = 'none';
+                 return;
+             }
+    
+             // Mock suggestions data
+             const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+             const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+    
+             renderSuggestions(filteredSuggestions, location_suggestions1, location_searchInput1);
+         });
+         
+    
+         function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+             if (suggestionsArray.length === 0) {
+                 suggestions.style.display = 'none';
+                 return;
+             }
+    
+             suggestions.innerHTML = '';
+             suggestions.style.display = 'block';
+             suggestionsArray.forEach(suggestion => {
+                 const div = document.createElement('div');
+                 div.classList.add('suggestion');
+                 div.textContent = suggestion;
+                 div.addEventListener('click', () => {
+                     searchInput.value = suggestion;
+                     suggestions.style.display = 'none';
+                 });
+                 suggestions.appendChild(div);
+             });
+         }
     </script>
 </body>
 

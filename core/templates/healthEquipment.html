@@ -202,154 +202,14 @@
 
       <div class="input-group">
         <!-- {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %} -->
-        <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput">
+        <input type="text" aria-label="First name" class="form-control" placeholder="location" id="locationInput1">
+        <div id="location_suggestions1" class="suggestions"></div>
         <button type="button" class="input-group-text" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
 
     </div>
   </div><br><br>
   {% include "serach_result_cards.html" %}
-{% comment %} <style>
-  .card {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 20px;
-      margin: 3vh auto 3vh auto;
-      width: 100%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      display:flex;
-      flex-direction: row;
-        flex-wrap: wrap;
-  }
-  .card h2 {
-      margin-top: 0;
-  }
-  .card p {
-      margin-bottom: 0;
-  }
-  .button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #12a8ae;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 0px;
-        margin-top: 10px;
-        margin-bottom: 1rem;
-        border: none;
-        width: max-content;
-    }
-    .left1{
-      width: 45%;
-      justify-content:start;
-    }
-    .right{
-      width: 50%;
-      padding: 10px;
-    }
-</style>
-
-<div id="cardList">
-  <!-- Card items will be added dynamically using JavaScript -->
-</div>
-<img src="" alt="">
-<script>
-  
-  let data
-  function setData(d) {
-      data=d;
-      console.log(data);
-      populateCardList();
-  }
-  // var data = [
-  //     {
-  //         name: "xyz",
-  //         name_owner: "vaibhav",
-  //         contact: "1234567890",
-  //         location: "Bagekari ali road",
-  //         about_service: "abc"
-  //     },
-  //     {
-  //         name: "Vaibhav Sanjay Bagekari",
-  //         name_owner: "vaibhav",
-  //         contact: "123456789",
-  //         location: "Bagekari ali road",
-  //         about_service: "abc"
-  //     }
-  // ];
-
-  // Function to create card HTML
-  function createCard(item) {
-      var cardHTML = `
-          <div class="card">
-            <div class="left1">
-              <h2>${item.title}</h2>
-              <p><strong>Name Owner:</strong> ${item.sub_title}</p>
-              <p><strong>Contact:</strong> ${item.contact}</p>
-              <p><strong>Location:</strong> ${item.location}</p>
-              <a class="button" href="tel:${item.contact}">Contact</a>
-            </div>
-                <div class="right">
-              <img src="${item.title_img}" alt="" style="width:90%">
-            </div>
-          </div>
-      `;
-      
-      return cardHTML;
-  }
-
-  // Function to populate card list
-  function populateCardList() {
-      var cardList = document.getElementById("cardList");
-      
-      // Clear previous content
-      cardList.innerHTML = "";
-
-      // Loop through data and create cards
-      data.forEach(function(item) {
-          var cardHTML = createCard(item);
-          cardList.innerHTML += cardHTML;
-      });
-  }
-
-  // Call populateCardList function to generate card list
-  
-</script> {% endcomment %}
-
-  {% comment %} <div class="flex">
-    <div class="card">
-      <img
-        src="https://img.freepik.com/free-psd/hospital-empty-operation-room-with-surgery-bed-surgery-light-generative-ai_587448-1993.jpg?t=st=1714820019~exp=1714823619~hmac=2246bbea17ecb0c3c2e4aa53218ede4405d22f1951bcf6fee3982c76b88feb90&w=1380"
-        alt=""><br>
-      <h3>Abc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, cumque.</p>
-    </div>
-    <div class="card">
-      <img
-        src="https://img.freepik.com/free-photo/stethoscope-surgical-mask-scissor-tweezers-colored-background_23-2147874852.jpg?t=st=1714816961~exp=1714820561~hmac=a1b0378c6924fc4051604ee745f5e27592649dc00b01caae8c67b8c729025ce5&w=996"
-        alt=""><br>
-      <h3>Abc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, reiciendis?</p>
-    </div>
-  </div><br>
-  <div class="flex">
-    <div class="card">
-      <img
-        src="https://img.freepik.com/free-photo/empty-modern-hospital-office-room-equipped-with-medical-professional-equipment-ready-patient-consultation-computer-standing-table-having-human-body-skeleton-screen-medicine-concept_482257-38412.jpg?t=st=1714819916~exp=1714823516~hmac=764d84a6f532f90ccee005865bc1f287adfc46e17a1b3f005e47cf0bb64e0fb3&w=996"
-        alt=""><br>
-      <h3>Abc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, cumque.</p>
-    </div>
-    <div class="card">
-      <img
-        src="https://img.freepik.com/free-photo/hospital-equipment-surgical-procedure_23-2148962525.jpg?t=st=1714819739~exp=1714823339~hmac=3a341f22b0a4595dc9155681a0ab1ede609d266ec7b04df3cef0c108a603b721&w=996"
-        alt=""><br>
-      <h3>Abc</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, reiciendis?</p>
-    </div>
-  </div>
- {% endcomment %}
-
 
   {% include "footer.html" %}
 </main>
@@ -358,7 +218,7 @@
 
   $(document).ready(function () {
     $('#search').click(function () {
-      var info = document.getElementById('locationInput').value;
+      var info = document.getElementById('locationInput1').value;
       // console.log(info);
       $.ajax(
         {
@@ -379,6 +239,47 @@
       )
     });
   });
+</script>
+<script>
+  const location_searchInput1 = document.getElementById('locationInput1');
+     
+     const location_suggestions1 = document.getElementById('location_suggestions1');
+     
+
+     location_searchInput1.addEventListener('input', function () {
+         const query = this.value.trim();
+         if (query === '') {
+             suggestions.style.display = 'none';
+             return;
+         }
+
+         // Mock suggestions data
+         const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+         const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+         renderSuggestions(filteredSuggestions, location_suggestions1, location_searchInput1);
+     });
+     
+
+     function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+         if (suggestionsArray.length === 0) {
+             suggestions.style.display = 'none';
+             return;
+         }
+
+         suggestions.innerHTML = '';
+         suggestions.style.display = 'block';
+         suggestionsArray.forEach(suggestion => {
+             const div = document.createElement('div');
+             div.classList.add('suggestion');
+             div.textContent = suggestion;
+             div.addEventListener('click', () => {
+                 searchInput.value = suggestion;
+                 suggestions.style.display = 'none';
+             });
+             suggestions.appendChild(div);
+         });
+     }
 </script>
 </body>
 
