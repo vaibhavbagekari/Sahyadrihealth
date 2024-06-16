@@ -853,22 +853,19 @@ margin-top: 2rem;
     <!-- <h2>Main Content</h2>
             <p>This is some dummy content for the main section of the website.</p> -->
             <div id="disclaimer">
-                <h5 id="cross">&times</h5>
                 <center><h4>Disclaimer</h4></center>
                 
                 <p>  हेल्थ एम्पायर या कंपनीचा उद्देश प्रामुख्याने आरोग्य क्षेत्रामध्ये जागरूकता निर्माण करून रुग्ण आणि डॉक्टर यांच्यामध्ये समन्वय साधने हा होय. तसेच नजीकच्या तज्ञ डॉक्टरांच्या भेटी वेबसाईट द्वारे घडवून आणण्यास मदत करणे.ही कंपनी आरोग्य क्षेत्रामध्ये मध्यस्थी म्हणून काम करत नाही, त्यामुळेच सर्व माहितीची शहानिशा करूनच डॉक्टरांशी भेटणे. तसेच रुग्णांच्या बाबतीत कोणतीही लापरवाही झाल्यास कंपनी जबाबदार राहणार नाही ही नम्र विनंती.
                 </p>
-            <center><a href="#" id="crossbtn"><button >I AGREE</button></a></center>
+            <center><button id="crossbtn">I AGREE</button></center>
             </div>
 
     <div class="slider-container">
         
         <div class="slider over">
-
             <img src="{% static 'govern.jpg' %}">
             <img src="{% static 'image3.jpg' %}">
             <img src="{% static 'image2.jpg' %}"  alt="Image 1" />
-            
         </div>
         <h2 class="hero_textm">
             Healthcare <stronge style="color: red;">All</stronge> Over Under in <stronge style="color: red;">One</stronge> Roof...
@@ -883,13 +880,9 @@ margin-top: 2rem;
     </div>
     
     <div class="sub_div_demo">
-       
-        
         <div class="text hidden">
-            
             <h1>Recovery from the pandemic</h1>
             <h4 class="card-text">
-                
                 Health has a variety of definitions, which have been used for different purposes over time. Health can be promoted by encouraging healthful activities, such as regular physical exercise and adequate sleep, and by reducing or avoiding unhealthful activities or situations, such as smoking or excessive stress. 
             </h4>
             <button type="button m-3" class="btn btn-success" >success</button>
@@ -1154,25 +1147,27 @@ margin-top: 2rem;
     });
     const hiddenElement=document.querySelectorAll(".hidden")
 hiddenElement.forEach((el)=>observer.observe(el))
-setTimeout(function(){
-            let disclaim=document.getElementById("disclaimer");
-            disclaim.style.display="block"
-            // disclaim.innerHTML="This website is for informational purpose only"
-        },2000);
-        
-let cross=document.getElementById("cross")
-let crossbtn=document.getElementById("crossbtn")
-cross.addEventListener("click",function(){
+
+{% comment %} let cross=document.getElementById("cross"); {% endcomment %}
+{% comment %} cross.addEventListener("click",function(){
     event.preventDefault();
     let disclaim=document.getElementById("disclaimer");
-            disclaim.style.display="none"
-})
+    disclaim.style.display="none";
+}) {% endcomment %}
+let crossbtn=document.getElementById("crossbtn");
 
 crossbtn.addEventListener("click",function(){
     event.preventDefault();
+    console.log("hii");
     let disclaim=document.getElementById("disclaimer");
-            disclaim.style.display="none"
-})
+            disclaim.style.display="none";
+});
+setTimeout(function(){
+    let disclaim=document.getElementById("disclaimer");
+    disclaim.style.display="block";
+    // disclaim.innerHTML="This website is for informational purpose only"
+},2000);
+
 </script> 
 
 {% comment %} <script>

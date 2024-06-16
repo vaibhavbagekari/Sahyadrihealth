@@ -787,6 +787,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         var map = document.getElementById("map").value;
         var opdfees = document.getElementById("opdfees").value;
         var slotDuration = document.getElementById("slotDuration").value;
+        var address = document.getElementById("address").value;
+
 
         var updateDrdata = {
           "username": username,
@@ -807,7 +809,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "map":map,
           "opdfees":opdfees,
           "personal_contact":personal_contact,
-          "slotDuration":slotDuration
+          "slotDuration":slotDuration,
+          "address":address
         };
         var formData = new FormData();
         formData.append('data', JSON.stringify(updateDrdata));
