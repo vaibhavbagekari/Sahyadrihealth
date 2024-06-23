@@ -10,8 +10,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-
-
+# from .utils import translate_text
+from django.views.decorators.http import require_GET
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 import json
@@ -24,6 +24,7 @@ from .utils import send_email_to_client,send_email_to_dr
 from .utils import drAccountOpeningEmail
 from django.conf import settings
 from django import forms
+from .utils import SMS_notification
 
 def creatPatient(request):
     if request.method == "POST":
@@ -333,18 +334,18 @@ def drSigUp(request):
             data = request.POST
             first_name = data.get('FName')
             last_name = data.get('LName')
-            age = data.get('age')
+            # age = data.get('age')
             email=data.get('email')
             profile_picture = request.FILES.get('Pfile')
             education = data.get('education')
             address = data.get('address')
             contact_no = data.get('contact_no')
             personal_contact = data.get('personal_contact')
-            license_no = data.get('licenseNumber')
+            # license_no = data.get('licenseNumber')
             password=data.get('password')
             username=data.get('email')
             specialization=data.get('specialization')
-            catagory = data.get('catagory')
+            catagory = data.get('categorySelect')
             
             obj = User.objects.filter(username=username)
             print(profile_picture)
@@ -364,13 +365,13 @@ def drSigUp(request):
                 doctor = Doctor.objects.create(
                     
                     user=main_user,
-                    age=age,
+                    # age=age,
                     profile_picture=profile_picture,
                     education=education,
                     address=address,
                     contact_no=contact_no,
                     personal_contact=personal_contact,
-                    license_no=license_no,
+                    # license_no=license_no,
                     specialization=specialization,
                     category=catagory
                 )
@@ -655,7 +656,7 @@ def bookAppoinment(request):
             # print(patientData['email'])
             # SMS_body = "hii"
             # no="+91"+contact_no
-            # send_sms(no,SMS_body)
+            # SMS_notification(no,SMS_body)
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
@@ -777,3 +778,17 @@ def developer_team(request):
 
 def govenment_hospitals(request):
     return render(request,"govenment_hospitals.html")
+
+# @require_GET
+# def translate_view(request):
+#     text = request.GET.get('text')
+#     target_language = request.GET.get('target_language', 'mr')
+    
+#     if not text:
+#         return JsonResponse({'error': 'No text to translate'}, status=400)
+    
+#     try:
+#         translated_text = translate_text(text, target_language)
+#         return JsonResponse({'translatedText': translated_text})
+#     except Exception as e:
+#         return JsonResponse({'error': str(e)}, status=500)

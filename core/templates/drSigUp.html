@@ -124,6 +124,9 @@
               border-radius: 10px;
               backdrop-filter: blur(10px);
           }
+          #otherCategory {
+            display: none;
+        }
           @media screen and (max-width: 750px){
             .flexdiv{
               width: 80vw;
@@ -137,13 +140,13 @@
             .container{
             width: 100%;
           }
-          .container::-webkit-scrollbar{
+          /* .container::-webkit-scrollbar{
             /* display: none; */
             /* width: 10px; */
            
-          }
+          } */
         
-          
+        }
       </style>
   </head>
   {% if messages %}
@@ -226,10 +229,10 @@
   
   
   
-                              <div class="form-group">
+                               <!-- <div class="form-group">
                                   <label for="age">Age : </label>
                                   <input type="number" class="form-control" id="age" name="age" required>
-                              </div>
+                              </div>  -->
   
                               <div class="form-group">
                                   <label for="Pfile">Profile Picture</label>
@@ -262,18 +265,40 @@
                               
                               <div class="form-group">
                                   <label for="catagory">category</label>
-                                  <input type="text" class="form-control" id="catagory" name="catagory" required>
+                                   <!-- <input type="text" class="form-control" id="catagory" name="catagory" required>  -->
+                                  <label for="categorySelect">Choose a category:</label>
+        <select id="categorySelect" onchange="checkOtherCategory()">
+            <option value="Medicine">Medicine</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Gynecologist">Gynecologist</option>
+            <option value="Radiologist">Radiologist</option>
+            <option value="Orthopaedist">Orthopaedist</option>
+            <option value="BHMS">BHMS</option>
+            <option value="BAMS">BAMS</option>
+            <option value="Skin specialist">Skin specialist</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Neurologist">Neurologist</option>
+            <option value="Physiotherapist">Physiotherapist</option>
+            <option value="General physician">General physician</option>
+            <option value="ENT specialist">ENT specialist</option>
+            <option value="Pathology">Pathology</option>
+            <option value="Ayurveda">Ayurveda</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="otherCategory" placeholder="Enter new category">
                               </div>
+
                               <div class="form-group">
                                   <label for="specialization">Specialization</label>
                                   <input type="text" class="form-control" id="specialization" name="specialization"
-                                      required>
+                                      >
                               </div>
-                              <div class="form-group">
+                              <!-- <div class="form-group">
                                   <label for="licenseNumber">License Number</label>
                                   <input type="text" class="form-control" id="licenseNumber" name="licenseNumber"
                                       required>
-                              </div>
+                              </div>  -->
                               <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
                           </form>
                       </div>
@@ -305,7 +330,29 @@
                   passwordMatchMsg.innerHTML = "";
               }
           }
-  
+          function checkOtherCategory() {
+            const selectElement = document.getElementById('categorySelect');
+            const otherCategoryInput = document.getElementById('otherCategory');
+            if (selectElement.value === 'Other') {
+                otherCategoryInput.style.display = 'block';
+            } else {
+                otherCategoryInput.style.display = 'none';
+            }
+        }
+
+        function submitCategory() {
+            const selectElement = document.getElementById('categorySelect');
+            const otherCategoryInput = document.getElementById('otherCategory');
+            const resultElement = document.getElementById('result');
+            
+            let selectedCategory = selectElement.value;
+            if (selectedCategory === 'Other') {
+                selectedCategory = otherCategoryInput.value;
+            }
+
+            // Simulate sending to backend
+            resultElement.textContent = 'Selected category: ' + selectedCategory;
+        }
   
       </script>
   
@@ -344,10 +391,10 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="age">Age : </label>
                 <input type="number" class="form-control" id="age" name="age" required>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label for="Pfile">Profile Picture</label>
@@ -389,10 +436,10 @@
                 <label for="specialization">Specialization</label>
                 <input type="text" class="form-control" id="specialization" name="specialization" required>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="licenseNumber">License Number</label>
                 <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" required>
-              </div>
+              </div> -->
               <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
             </form>
           </div>
@@ -418,6 +465,29 @@
         passwordMatchMsg.innerHTML = "";
       }
     }
+    function checkOtherCategory() {
+            const selectElement = document.getElementById('categorySelect');
+            const otherCategoryInput = document.getElementById('otherCategory');
+            if (selectElement.value === 'Other') {
+                otherCategoryInput.style.display = 'block';
+            } else {
+                otherCategoryInput.style.display = 'none';
+            }
+        }
+
+        function submitCategory() {
+            const selectElement = document.getElementById('categorySelect');
+            const otherCategoryInput = document.getElementById('otherCategory');
+            const resultElement = document.getElementById('result');
+            
+            let selectedCategory = selectElement.value;
+            if (selectedCategory === 'Other') {
+                selectedCategory = otherCategoryInput.value;
+            }
+
+            // Simulate sending to backend
+            resultElement.textContent = 'Selected category: ' + selectedCategory;
+        }
 
 
   </script> {% endcomment %}

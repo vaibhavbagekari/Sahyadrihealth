@@ -14,7 +14,10 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(BASE_DIR)
+SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, 'credentials', 'balmy-metrics-426508-b9-7730d5294c13.json')
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -147,3 +150,12 @@ EMAIL_HOST_PASSWORD = 'Aniket@213141'
 # EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
 # EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
 DEFAULT_FROM_EMAIL = 'healthempire@healthempire.in'
+
+
+#SMS System
+TWILIO_ACCOUNT_SID = 'AC30f0cbf46e6c80e79bc5ef662e99f18b'
+TWILIO_AUTH_TOKEN = 'd0172933838c35e825cb9acaf8320555'
+TWILIO_PHONE_NUMBER = '+17075498588'
+
+#GOOGEL TRANSLATE API KEY
+GOOGLE_TRANSLATE_API_KEY = os.getenv('AIzaSyBnuS4V04H2X6BkiGuFr0j00YLD3guZxdg')

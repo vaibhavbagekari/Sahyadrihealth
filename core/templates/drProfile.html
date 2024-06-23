@@ -287,8 +287,7 @@
 </style>
 <main>
     <div class="header">
-        <h1>Doctor Profile</h1>
-            
+        <h1><span class="translate">Doctor Profile</span></h1>
     </div>
 
     {% for i in doctor %}
@@ -299,17 +298,17 @@
         <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo">
         <div>
             {% comment %} {{i.username}} {% endcomment %}
-            <h1>Dr. {{i.first_name}}{{i.last_name}}</h1>
-            <p>Education: {{i.doctors.get.education}}</p>
-            <p>Specialization: {{i.doctors.get.specialization}}</p>
-            <p>Experience: {{i.doctors.get.experience}}</p>
-            <p>Location: {{i.doctors.get.address}}</p>
-            <p>OPD Fees : {{i.doctors.get.opdFees}}</p>
+            <h1><span class="translate">Dr. {{i.first_name}}{{i.last_name}}</span></h1>
+            <p><span class="translate">Education: {{i.doctors.get.education}}</span></p>
+            <p><span class="translate">Specialization: {{i.doctors.get.specialization}}</span></p>
+            <p><span class="translate">Experience: {{i.doctors.get.experience}}</span></p>
+            <p><span class="translate">Location: {{i.doctors.get.address}}</span></p>
+            <p><span class="translate">OPD Fees : {{i.doctors.get.opdFees}}</span></p>
             {% comment %} <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p> {% endcomment %}
             {% comment %} <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a> {% endcomment %}
             {% comment %} <a class="button" href="/bookAppointment/{{i.id}}">Book Appointment</a> {% endcomment %}
-            <a class="button" href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} ">Go to map </a>
-            <a class="button" href="tel:{{i.doctors.get.contact_no}}">Contact Hospital</a>
+            <a class="button" href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} "><span class="translate">Go to map </span></a>
+            <a class="button" href="tel:{{i.doctors.get.contact_no}}"><span class="translate">Contact Hospital</span></a>
             {% comment %} <a class="button" href="#">OPD fees</a> {% endcomment %}
         </div>
     </div>
@@ -317,11 +316,11 @@
         {% include "bookAppointment.html" %}
     </div>
     <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-hospital"></i> Hospital</h3>
+        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Hospital</span></h3>
         {% include "drprofile_slider.html" %}
     </div>
     <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Other Services</h3>
+        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i><span class="translate"> Other Services</span></h3>
         {% include "tab.html" %}
         {% comment %} <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Health Insurance</h3>
         <span>

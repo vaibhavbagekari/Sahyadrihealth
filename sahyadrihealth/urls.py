@@ -89,7 +89,8 @@ urlpatterns = [
     path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),name='password_reset_complete'),
 
     path('developer_team/',developer_team,name='developer_team'),
-    path('govenment_hospitals/',govenment_hospitals,name='govenment_hospitals')
+    path('govenment_hospitals/',govenment_hospitals,name='govenment_hospitals'),
+    # path('translate/', translate_view, name='translate')
 
 ]    
 

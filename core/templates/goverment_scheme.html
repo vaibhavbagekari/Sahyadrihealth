@@ -60,9 +60,9 @@
     <div class="infocard">
         <div class="text1">
             <p class="card-text">
-            <h3>Government schemes</h3>
-            Government schemes are programmes launched by the government to improve the standard of living of all citizens. Government schemes are typically categorised into two main types, i.e. central sector and centrally sponsored schemes. </p>
-            <button type="button m-3" class="btn btn-success">success</button>
+            <h3><span class="translate">Government schemes</span></h3>
+            <span class="translate">Government schemes are programmes launched by the government to improve the standard of living of all citizens. Government schemes are typically categorised into two main types, i.e. central sector and centrally sponsored schemes. </span></p>
+            <button type="button m-3" class="btn btn-success"><span class="translate">success</span></button>
         </div>
         <img src="{% static 'central_government_scheme.png' %}" alt="">
     </div>
@@ -132,10 +132,10 @@
               <div class="card">
                 <img src="{{i.title_img.url}}" class="card-img-top" alt="Scheme 1">
                 <div class="card-body">
-                  <h5 class="card-title">{{i.title}}</h5>
-                  <p class="card-text">{{i.sub_title}}</p>
+                  <h5 class="card-title"><span class="translate">{{i.title}}</span></h5>
+                  <p class="card-text"><span class="translate">{{i.sub_title}}</span></p>
                   <br>
-                  <a href="{{i.Document.url}}" target="_blank" rel="noopener noreferrer">Document</a>
+                  <a href="{{i.Document.url}}" target="_blank" rel="noopener noreferrer"><span class="translate">Document</span></a>
                 </div>
               </div>
             </div>
