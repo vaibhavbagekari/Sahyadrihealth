@@ -15,9 +15,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 print(BASE_DIR)
-SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, 'credentials', 'balmy-metrics-426508-b9-7730d5294c13.json')
+# SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, 'credentials', 'balmy-metrics-426508-b9-7730d5294c13.json')
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE
+# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_FILE
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -158,4 +158,4 @@ TWILIO_AUTH_TOKEN = 'd0172933838c35e825cb9acaf8320555'
 TWILIO_PHONE_NUMBER = '+17075498588'
 
 #GOOGEL TRANSLATE API KEY
-GOOGLE_TRANSLATE_API_KEY = os.getenv('AIzaSyBnuS4V04H2X6BkiGuFr0j00YLD3guZxdg')
+# GOOGLE_TRANSLATE_API_KEY = os.getenv('AIzaSyBnuS4V04H2X6BkiGuFr0j00YLD3guZxdg')
