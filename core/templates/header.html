@@ -711,6 +711,11 @@
             .titel {
                 padding-left: 17vw;
             }
+
+            .language {
+                position: relative;
+                left: 0px;
+            }
         }
 
         @media screen and (max-width: 750px) {
@@ -812,6 +817,19 @@
         @media screen and (max-width: 750px) {
             .hero-container {
                 top: 22vh;
+            }
+
+            /* .l1 {
+                display: block;
+
+            } */
+
+        }
+
+        @media screen and (min-width:750px) {
+            .l1 {
+                display: block;
+
             }
         }
 
@@ -969,6 +987,7 @@
             #thank-you-msg:hover {
                 height: 43vh;
             }
+
         }
 
         @media screen and (max-width: 750px) {
@@ -981,6 +1000,7 @@
             #thank-you-msg:hover {
                 height: 45vh;
             }
+
         }
 
         @media screen and (max-width: 600px) {
@@ -1003,6 +1023,7 @@
                 width: 6rem;
 
             }
+
         }
 
         @media screen and (max-width: 420px) {
@@ -1025,6 +1046,7 @@
                 width: 5rem;
 
             }
+
         }
 
         @media screen and (max-width: 365px) {
@@ -1047,6 +1069,7 @@
             .h4s {
                 font-size: 1.2rem;
             }
+
         }
 
         @media screen and (max-width: 300px) {
@@ -1074,6 +1097,7 @@
             .h4s {
                 font-size: 1.2rem;
             }
+
         }
 
         @media screen and (max-width: 250px) {
@@ -1101,7 +1125,9 @@
             .h4s {
                 font-size: 1.1rem;
             }
+
         }
+
 
         /* @media (max-width:420) and (max-height: 1000px){
     #thank-you-msg:hover{
@@ -1135,6 +1161,14 @@
             width: 20px;
             height: 20px;
             border-radius: 50%
+        }
+
+        .l1,
+        .l2 {
+            /* border: 2px solid red;
+            height: 50px;
+            width: 50px;
+            background-color: #00A096; */
         }
 
         .ball_1,
@@ -1351,13 +1385,17 @@
             position: absolute;
             top: 100%;
             left: 0;
-            width: 100%;
+            max-width: max-content;
+            min-width: 100%;
             background-color: #fff;
             border: 1px solid #ccc;
             border-top: none;
             display: none;
             color: black;
             z-index: 1;
+            min-height: max-content;
+            max-height: 60vh;
+            overflow-y: scroll;
         }
 
         .suggestion {
@@ -1383,6 +1421,22 @@
                 width: 70%;
 
             }
+        }
+
+        .l3 {
+            position: relative;
+            left: 200px;
+        }
+
+        @media screen and (max-width: 750px) {
+            .l3 {
+                left: 0px;
+            }
+
+            .search_bar {
+                margin-top: 7px;
+            }
+
         }
     </style>
 
@@ -1466,12 +1520,55 @@
         style="display: none; background-color: #f44336; color: white; padding: 15px; position: fixed; top: 0; width: 100%; text-align: center;z-index: 1000;">
 
     </div>
-    <header id="head">
+    <header id="head" style="top: 0px;">
 
-        <div>
+        <div class="language">
+            <div class="l3">
+                <div id="google_translate_element"></div>
+            </div>
 
 
-            <script>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+
+                    // Function to filter the languages
+                    function filterLanguages() {
+                        const select = document.querySelector('.goog-te-combo');
+                        if (select) {
+                            const allowedLanguages = ['', 'en', 'mr', 'hi'];
+                            for (let i = select.options.length - 1; i >= 0; i--) {
+                                if (!allowedLanguages.includes(select.options[i].value)) {
+                                    select.remove(i);
+                                }
+                            }
+                        }
+                    }
+
+                    // Apply initial filter and set up mutation observer
+                    setTimeout(() => {
+                        filterLanguages();
+                        const select = document.querySelector('.goog-te-combo');
+                        if (select) {
+                            const observer = new MutationObserver(filterLanguages);
+                            observer.observe(select, { childList: true });
+                            select.addEventListener('change', () => setTimeout(filterLanguages, 500));
+                        }
+                    }, 1000);
+                }
+            </script>
+
+            <script type="text/javascript"
+                src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+            <!-- <select id="languageSwitcher">
+                <option selected disabled class="translate">Change Language</option>
+                <option value="en" class="translate">English</option>
+                <option value="mr" class="translate">Marathi</option>
+            </select> -->
+            <!-- <script>
                 // Set your Google Cloud Translation API key here
 
 
@@ -1505,7 +1602,7 @@
                         });
                     });
                 });
-            </script>
+            </script> -->
         </div>
         <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
                 class="logoImg"></h2>
@@ -1553,11 +1650,12 @@
 
     {% include "search_result.html" %}
     <nav class="nav_bar" id="nav_bar">
-        <select id="languageSwitcher">
+        <!-- <select id="languageSwitcher">
             <option selected disabled class="translate">Change Language</option>
             <option value="en" class="translate">English</option>
             <option value="mr" class="translate">Marathi</option>
-        </select>
+        </select> -->
+
         {% if not request.user.is_authenticated %}
 
         <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1770,58 +1868,166 @@
 
     </script>
     <script>
+        // const location_searchInput = document.getElementById('location_searchInput');
+        // const category_searchInput = document.getElementById('category_searchInput');
+        // const location_suggestions = document.getElementById('location_suggestions');
+        // const category_suggestions = document.getElementById('category_suggestions');
+
+        // location_searchInput.addEventListener('input', function () {
+        //     const query = this.value.trim();
+        //     if (query === '') {
+        //         suggestions.style.display = 'none';
+        //         return;
+        //     }
+
+        //     // Mock suggestions data
+        //     const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+        //     const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+        //     renderSuggestions(filteredSuggestions, location_suggestions, location_searchInput);
+        // });
+        // category_searchInput.addEventListener('input', function () {
+        //     const query = this.value.trim();
+        //     if (query === '') {
+        //         suggestions.style.display = 'none';
+        //         return;
+        //     }
+
+        //     // Mock suggestions data
+        //     const suggestionsData = ["Medicine", "pediatrician", "Gynecologist", "radiologist", "orthopaedist", "BHMS", "BAMS", "skin specialist", "Cardiologist", "Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology", "Ayurveda"];
+        //     const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+
+        //     renderSuggestions(filteredSuggestions, category_suggestions, category_searchInput);
+        // });
+
+        // function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+        //     if (suggestionsArray.length === 0) {
+        //         suggestions.style.display = 'none';
+        //         return;
+        //     }
+
+        //     suggestions.innerHTML = '';
+        //     suggestions.style.display = 'block';
+        //     suggestionsArray.forEach(suggestion => {
+        //         const div = document.createElement('div');
+        //         div.classList.add('suggestion');
+        //         div.classList.add('translate')
+        //         div.textContent = suggestion;
+        //         div.addEventListener('click', () => {
+        //             searchInput.value = suggestion;
+        //             suggestions.style.display = 'none';
+        //         });
+        //         suggestions.appendChild(div);
+        //     });
+        // }
+
+
+
         const location_searchInput = document.getElementById('location_searchInput');
         const category_searchInput = document.getElementById('category_searchInput');
         const location_suggestions = document.getElementById('location_suggestions');
         const category_suggestions = document.getElementById('category_suggestions');
 
-        location_searchInput.addEventListener('input', function () {
-            const query = this.value.trim();
+        // Reusable function for adding event listeners
+        function addEventListeners(inputElement, suggestionsElement, suggestionsData) {
+            inputElement.addEventListener('input', function () {
+                const query = this.value.trim();
+                handleSuggestions(query, suggestionsData, suggestionsElement, inputElement);
+            });
+
+            inputElement.addEventListener('focus', function () {
+                const query = this.value.trim();
+                handleSuggestions(query, suggestionsData, suggestionsElement, inputElement);
+            });
+        }
+
+        // Function to handle suggestions display
+        function handleSuggestions(query, suggestionsData, suggestionsElement, inputElement) {
             if (query === '') {
-                suggestions.style.display = 'none';
-                return;
+                renderSuggestions(suggestionsData, suggestionsElement, inputElement);
+            } else {
+                const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
+                renderSuggestions(filteredSuggestions, suggestionsElement, inputElement);
             }
+        }
 
-            // Mock suggestions data
-            const suggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
-            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
-
-            renderSuggestions(filteredSuggestions, location_suggestions, location_searchInput);
-        });
-        category_searchInput.addEventListener('input', function () {
-            const query = this.value.trim();
-            if (query === '') {
-                suggestions.style.display = 'none';
-                return;
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!location_searchInput.contains(event.target) && !location_suggestions.contains(event.target)) {
+                location_suggestions.style.display = 'none';
             }
-
-            // Mock suggestions data
-            const suggestionsData = ["Medicine", "pediatrician", "Gynecologist", "radiologist", "orthopaedist", "BHMS", "BAMS", "skin specialist", "Cardiologist", "Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology", "Ayurveda"];
-            const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
-
-            renderSuggestions(filteredSuggestions, category_suggestions, category_searchInput);
+            if (!category_searchInput.contains(event.target) && !category_suggestions.contains(event.target)) {
+                category_suggestions.style.display = 'none';
+            }
         });
 
-        function renderSuggestions(suggestionsArray, suggestions, searchInput) {
+        // Prevent the document click event from hiding the suggestions when clicking on the input or suggestions
+        location_searchInput.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+        category_searchInput.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+        location_suggestions.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+        category_suggestions.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Suggestions data
+        const locationSuggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+        const categorySuggestionsData = [
+            "Doctor of Heart - Cardiologist",
+            "Doctor of Skin - Dermatologist",
+            "Doctor of Bone - Orthopedic",
+            "Doctor of Brain - Neurologist",
+            "Doctor of Child - Pediatrician",
+            "Doctor of Eyes - Ophthalmologist",
+            "Doctor of Teeth - Dentist",
+            "Doctor of Kidney - Nephrologist",
+            "Doctor of Surgery - Surgeon",
+            "Doctor of Cancer - Oncologist",
+            "Doctor of Mind - Psychiatrist",
+            "Doctor of Liver - Hepatologist",
+            "Doctor of Women - Gynaecologist",
+            "Doctor of Stomach - Gastroenterologists",
+            "Doctor of Ears - Otolaryngologist",
+            "Doctor of Lungs - Pulmonologist",
+            "Doctor of Animals - Veterinarian"
+        ];
+
+        // Adding event listeners
+        addEventListeners(location_searchInput, location_suggestions, locationSuggestionsData);
+        addEventListeners(category_searchInput, category_suggestions, categorySuggestionsData);
+
+        function renderSuggestions(suggestionsArray, suggestionsElement, searchInput) {
             if (suggestionsArray.length === 0) {
-                suggestions.style.display = 'none';
+                suggestionsElement.style.display = 'none';
                 return;
             }
 
-            suggestions.innerHTML = '';
-            suggestions.style.display = 'block';
+            suggestionsElement.innerHTML = '';
+            suggestionsElement.style.display = 'block';
             suggestionsArray.forEach(suggestion => {
                 const div = document.createElement('div');
                 div.classList.add('suggestion');
-                div.classList.add('translate')
+                div.classList.add('translate');
                 div.textContent = suggestion;
                 div.addEventListener('click', () => {
                     searchInput.value = suggestion;
-                    suggestions.style.display = 'none';
+                    suggestionsElement.style.display = 'none';
                 });
-                suggestions.appendChild(div);
+                suggestionsElement.appendChild(div);
             });
         }
+
+
+
+
+
+
+
         function displayNotification(message) {
             const notificationElement = document.getElementById('notification');
             notificationElement.textContent = message;
