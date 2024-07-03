@@ -24,7 +24,7 @@ from .utils import send_email_to_client,send_email_to_dr
 from .utils import drAccountOpeningEmail
 from django.conf import settings
 from django import forms
-from .utils import SMS_notification
+from .utils import SMS_notification,SMS_notification_to_Dr
 
 def creatPatient(request):
     if request.method == "POST":
@@ -654,9 +654,11 @@ def bookAppoinment(request):
             send_email_to_dr(drData,patientData,slotData)
             # print(patientData['name'])
             # print(patientData['email'])
-            # SMS_body = "hii"
-            # no="+91"+contact_no
-            # SMS_notification(no,SMS_body)
+            no="+91"+contact_no
+            dr_no = "+91"+str(d.contact_no)
+            print(no)
+            SMS_notification(no,patientData,drData,slotData)
+            SMS_notification_to_Dr(dr_no,patientData,drData,slotData)
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
