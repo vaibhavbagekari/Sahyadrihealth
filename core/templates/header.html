@@ -745,7 +745,7 @@
 
             .highlight {
                 grid-column: 1/4;
-
+                
             }
 
             .highlight span {
@@ -1523,9 +1523,9 @@
     <header id="head" style="top: 0px;">
 
         <div class="language">
-            <div class="l3">
+            <!-- <div class="l3">
                 <div id="google_translate_element"></div>
-            </div>
+            </div> -->
 
 
             <script type="text/javascript">
@@ -1562,13 +1562,14 @@
                 src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
-
-            <!-- <select id="languageSwitcher">
-                <option selected disabled class="translate">Change Language</option>
-                <option value="en" class="translate">English</option>
-                <option value="mr" class="translate">Marathi</option>
-            </select> -->
-            <!-- <script>
+            <div class="l3">
+                <select id="languageSwitcher">
+                    <option selected disabled class="translate">Change Language</option>
+                    <option value="en" class="translate">English</option>
+                    <option value="mr" class="translate">Marathi</option>
+                </select>
+            </div>
+            <script>
                 // Set your Google Cloud Translation API key here
 
 
@@ -1602,7 +1603,7 @@
                         });
                     });
                 });
-            </script> -->
+            </script>
         </div>
         <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
                 class="logoImg"></h2>
@@ -1636,8 +1637,14 @@
 
             </form>
         </div>
-        <div class="highlight"><a href="tel:9156429156" style="color: red;text-decoration: none;"><span
-                    class="translate">Help Line
+        <!-- <select id="languageSwitcher">
+            <option selected disabled class="translate">Change Language</option>
+            <option value="en" class="translate">English</option>
+            <option value="mr" class="translate">Marathi</option>
+        </select> -->
+        <div class="highlight">
+            
+            <a href="tel:9156429156" style="color: red;text-decoration: none;"><span class="translate">Help Line
                     Number</span>
                 <br>
                 <span><i class="fa-solid fa-phone-volume" style="color: green;"></i>
@@ -1979,8 +1986,8 @@
         const locationSuggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
         const categorySuggestionsData = [
             "Medicine", "Dentist", "Radiologist", "Surgeon", "BAMS", "BHMS", "Psychiatrist",
-            "Gynaecologist / ivf", "Orthopaedic", "Pediatric", "Cardiologist", "Skin specialist",
-            "Eye specialist", "Ear, nose, throat. ENT", "Ayurveda", "Physiotherapist"
+            "Gynaecologist", "Orthopaedic", "Pediatric", "Cardiologist", "Skin specialist",
+            "Eye specialist", "ENT specialist", "Ayurveda", "Physiotherapist"
         ];
 
         // Adding event listeners

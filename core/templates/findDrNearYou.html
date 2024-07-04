@@ -267,7 +267,10 @@
             }
 
             // Mock suggestions data
-            const suggestionsData = ["Medicine", "pediatrician", "Gynecologist", "radiologist", "orthopaedist", "BHMS", "BAMS", "skin specialist", "Cardiologist", "Dentist", "Neurologist", "physiotherapist", "General physician", "ENT specialist", "Pathology", "Ayurveda"];
+            const suggestionsData = ["Medicine", "Dentist", "Radiologist", "Surgeon", "BAMS", "BHMS", "Psychiatrist",
+            "Gynaecologist", "Orthopaedic", "Pediatric", "Cardiologist", "Skin specialist",
+            "Eye specialist", "ENT specialist", "Ayurveda", "Physiotherapist"
+            ];
             const filteredSuggestions = suggestionsData.filter(word => word.toLowerCase().includes(query.toLowerCase()));
 
             renderSuggestions(filteredSuggestions, category_suggestions1, category_searchInput1);
