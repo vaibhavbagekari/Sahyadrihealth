@@ -1995,17 +1995,18 @@
             { en: "Radiologist", mr: "क्ष किरण तज्ञ" },
             { en: "Surgeon", mr: "शस्त्रक्रिया" },
             { en: "Psychiatrist", mr: "मानसोपचार तज्ञ" },
-            { en: "Gynecologist", mr: "स्त्री रोग तज्ञ" },
-            { en: "Orthopedic", mr: "अस्थिरोग तज्ञ" },
-            { en: "Pediatrician", mr: "बालरोग तज्ञ" },
+            { en: "Gynaecologist", mr: "स्त्री रोग तज्ञ" },
+            { en: "Orthopaedic", mr: "अस्थिरोग तज्ञ" },
+            { en: "Pediatric", mr: "बालरोग तज्ञ" },
             { en: "Cardiologist", mr: "हृदयरोग तज्ञ" },
-            { en: "Dermatologist", mr: "त्वचा तज्ञ" },
-            { en: "Ophthalmologist", mr: "नेत्रतज्ञ" },
+            { en: "Skin specialist", mr: "त्वचा तज्ञ" },
+            { en: "Eye specialist", mr: "नेत्रतज्ञ" },
             { en: "ENT Specialist", mr: "कान नाक घसा तज्ञ" },
             { en: "Ayurveda", mr: "आयुर्वेदा" },
             { en: "Physiotherapist", mr: "फिजिओथेरपिस्ट" },
-            { en: "Ayurvedic Specialist (BAMS)", mr: "आयुर्वेदिक तज्ञ (BAMS)" },
-            { en: "Homeopathic Specialist (BHMS)", mr: "होमिओपॅथिक तज्ञ (BHMS)" }
+            { en: "BAMS", mr: "आयुर्वेदिक तज्ञ" },
+            { en: "Homeopathic Specialist", mr: "होमिओपॅथिक तज्ञ" },
+            { en: "Gastroenterology", mr: "पचनतंत्रतज्ञ" }
         ];
 
         // Adding event listeners
@@ -2024,7 +2025,7 @@
                 const div = document.createElement('div');
                 div.classList.add('suggestion');
                 div.classList.add('translate');
-                div.innerHTML = `<strong>${suggestion.en}</strong> / ${suggestion.mr}`;
+                div.innerHTML = `<strong>${suggestion.en}</strong> - ${suggestion.mr}`;
                 div.addEventListener('click', () => {
                     searchInput.value = suggestion.en;
                     suggestionsElement.style.display = 'none';
