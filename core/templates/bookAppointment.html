@@ -76,6 +76,7 @@
             )
         });
         $('.checked').click(function () {
+            activeLoader()
             var drid = document.getElementById("id").value;
             var drname = document.getElementById("drName").value;
             var date = document.getElementById("date_info").value;
@@ -84,13 +85,8 @@
             var contact_no = document.getElementById("contact_no").value;
             var email_id = document.getElementById("email_id").value;
             var patient_name = document.getElementById("patient_name").value;
-            // console.log(drid);
-            // console.log(drname);
-            // console.log(date);
-            // console.log(stime);
-            // console.log(etime);
-            // console.log(email_id);
             var info = { 'drid': drid, 'date': date, 'stime': stime, 'etime': etime ,'patient_name':patient_name,'contact_no':contact_no,'email':email_id};
+
             $.ajax(
                 {
                     url: '/bookAppoinment/',
@@ -102,6 +98,7 @@
                     },
                     error: function (error) {
                         console.error(error);
+                        deactivateLoader()
                         alert('Error saving events!');
                     }
                 }

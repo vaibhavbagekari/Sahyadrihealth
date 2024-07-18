@@ -745,7 +745,7 @@
 
             .highlight {
                 grid-column: 1/4;
-                
+
             }
 
             .highlight span {
@@ -1564,7 +1564,7 @@
 
             <div class="l3">
                 <select id="languageSwitcher">
-                    <option selected disabled class="translate">Change Language</option>
+                    <option selected disabled class="translate">Language</option>
                     <option value="en" class="translate">English</option>
                     <option value="mr" class="translate">Marathi</option>
                 </select>
@@ -1638,12 +1638,12 @@
             </form>
         </div>
         <!-- <select id="languageSwitcher">
-            <option selected disabled class="translate">Change Language</option>
+            <option selected disabled class="translate">Language</option>
             <option value="en" class="translate">English</option>
             <option value="mr" class="translate">Marathi</option>
         </select> -->
         <div class="highlight">
-            
+
             <a href="tel:9156429156" style="color: red;text-decoration: none;"><span class="translate">Help Line
                     Number</span>
                 <br>
@@ -1983,11 +1983,29 @@
         });
 
         // Suggestions data
-        const locationSuggestionsData = ["Baramati", "Indapur", "Phaltan", "Akluj", "Natepute", "Bhigwan"];
+        const locationSuggestionsData = [{ en: "Baramati", mr: "बारामती" },
+        { en: "Indapur", mr: "इंदापूर" },
+        { en: "Phaltan", mr: "फलटण" },
+        { en: "Akluj", mr: "अकलूज" },
+        { en: "Natepute", mr: "नातेपुते" },
+        { en: "Bhigwan", mr: "भिगवण" }];
         const categorySuggestionsData = [
-            "Medicine", "Dentist", "Radiologist", "Surgeon", "BAMS", "BHMS", "Psychiatrist",
-            "Gynaecologist", "Orthopaedic", "Pediatric", "Cardiologist", "Skin specialist",
-            "Eye specialist", "ENT specialist", "Ayurveda", "Physiotherapist"
+            { en: "Medicine", mr: "मेडिसिन" },
+            { en: "Dentist", mr: "दंतवैद्य" },
+            { en: "Radiologist", mr: "क्ष किरण तज्ञ" },
+            { en: "Surgeon", mr: "शस्त्रक्रिया" },
+            { en: "Psychiatrist", mr: "मानसोपचार तज्ञ" },
+            { en: "Gynecologist", mr: "स्त्री रोग तज्ञ" },
+            { en: "Orthopedic", mr: "अस्थिरोग तज्ञ" },
+            { en: "Pediatrician", mr: "बालरोग तज्ञ" },
+            { en: "Cardiologist", mr: "हृदयरोग तज्ञ" },
+            { en: "Dermatologist", mr: "त्वचा तज्ञ" },
+            { en: "Ophthalmologist", mr: "नेत्रतज्ञ" },
+            { en: "ENT Specialist", mr: "कान नाक घसा तज्ञ" },
+            { en: "Ayurveda", mr: "आयुर्वेदा" },
+            { en: "Physiotherapist", mr: "फिजिओथेरपिस्ट" },
+            { en: "Ayurvedic Specialist (BAMS)", mr: "आयुर्वेदिक तज्ञ (BAMS)" },
+            { en: "Homeopathic Specialist (BHMS)", mr: "होमिओपॅथिक तज्ञ (BHMS)" }
         ];
 
         // Adding event listeners
@@ -2006,9 +2024,9 @@
                 const div = document.createElement('div');
                 div.classList.add('suggestion');
                 div.classList.add('translate');
-                div.textContent = suggestion;
+                div.innerHTML = `<strong>${suggestion.en}</strong> / ${suggestion.mr}`;
                 div.addEventListener('click', () => {
-                    searchInput.value = suggestion;
+                    searchInput.value = suggestion.en;
                     suggestionsElement.style.display = 'none';
                 });
                 suggestionsElement.appendChild(div);

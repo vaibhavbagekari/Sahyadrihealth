@@ -628,8 +628,6 @@ def bookAppoinment(request):
             id=int(id)
             dr = User.objects.get(id=id)
             d=Doctor.objects.get(user = dr.username)
-            # print(ls)
-            # print(ls[1])
             date=ls[1]
             print(ls[1])
             stime=ls[2]
@@ -652,18 +650,15 @@ def bookAppoinment(request):
             slotData={'date':date,'stime':stime,'etime':etime,'location':d.address}
             send_email_to_client(drData,patientData,slotData)
             send_email_to_dr(drData,patientData,slotData)
-            # print(patientData['name'])
-            # print(patientData['email'])
             no="+91"+contact_no
             dr_no = "+91"+str(d.contact_no)
-            print(no)
-            SMS_notification(no,patientData,drData,slotData)
-            SMS_notification_to_Dr(dr_no,patientData,drData,slotData)
+            # SMS_notification(no,patientData,drData,slotData)
+            # SMS_notification_to_Dr(dr_no,patientData,drData,slotData)
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
-            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
 @csrf_exempt
 

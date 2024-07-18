@@ -126,6 +126,30 @@
       color: white;
      
     }
+    .loader_div{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      animation-name: loader;
+      border: 2px solid rgba(205, 205, 205, 0.582);
+      border-top: 3px solid black;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      
+    }
+    @keyframes loader {
+      0%{
+        transform: rotate(0deg);
+      }
+      50%{
+        transform: rotate(180deg);
+      }
+      100%{
+        transform: rotate(360deg);
+
+      }
+    }
     @media screen and (max-width:650px) {
   
        .conform_form {
@@ -185,8 +209,8 @@
       maxlength="10" name="contact_no" id="contact_no" value="" placeholder="Enter your contact Number">
     </section>
     <center><button type="button" onclick="pre_block()" style="background-color: orangered;">Back</button>
-      <button type="button" class="checked" id="checked">Confirm</button>
-      <button type="button" onclick="cancelslot()" style="background-color: red;">Cancel</button></center>
+      <button type="button" class="checked" id="checked" onclick="activeLoader()">Confirm</button>
+      <button type="button" id="cancel" onclick="cancelslot()" style="background-color: red;">Cancel</button></center>
     
   </div>
   <div class="thankYou" id="thankYou">
@@ -238,6 +262,24 @@
 
     // loader_overlay.style.display = "none";
     // conform_form.style.display = "none";
+  }
+
+  function activeLoader(){
+    var loader = document.getElementById('checked');
+    var cancel = document.getElementById('cancel');
+    loader.innerHTML = '<center><div class="loader_div"></div></center>';
+    cancel.innerHTML = '<center><div class="loader_div"></div></center>';
+    loader.setAttribute("disabled", true);
+    cancel.setAttribute("disabled", true);
+  }
+  function deactivateLoader() {
+    var loader = document.getElementById('checked');
+    var cancel = document.getElementById('cancel');
+    loader.innerHTML = 'Confirm';
+    cancel.innerHTML = 'Cancel';
+    loader.removeAttribute("disabled");
+    cancel.removeAttribute("disabled");
+    
   }
 
 
