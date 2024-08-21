@@ -124,6 +124,17 @@
   }
 </style>
 <main>
+  <div class="main_sdiv">
+
+    <div class="search-container">
+      
+       <h1><span class="translate">Ambulance Search </span><i class="fa-solid fa-truck-fast"></i></h1>
+       <input type="text" name="locationInput" id="locationInput1" placeholder="Enter location">
+       <div id="location_suggestions1" class="suggestions"></div>
+       <button id="btnSun" onclick=""><span class="translate">Search</span></button>
+     </div>
+   </div>
+   {% include "serach_result_cards.html" %}
   <div class="infocard">
     <div class="text1">
       <p class="card-text">
@@ -246,17 +257,8 @@
       }
     }
   </style>
-  <div class="main_sdiv">
-
-   <div class="search-container">
-     
-      <h1><span class="translate">Ambulance Search </span><i class="fa-solid fa-truck-fast"></i></h1>
-      <input type="text" name="locationInput" id="locationInput1" placeholder="Enter location">
-      <div id="location_suggestions1" class="suggestions"></div>
-      <button id="btnSun" onclick=""><span class="translate">Search</span></button>
-    </div>
-  </div>
-  {% include "serach_result_cards.html" %}
+  
+  
   <script>
 
     $(document).ready(function () {

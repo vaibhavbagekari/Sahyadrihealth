@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -254,6 +255,7 @@
       display: none;
       color: red;
     }
+
     @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap');
 
     * {
@@ -390,23 +392,96 @@
     .lf {
       /* margin-left: -50%; */
     }
-    .form-div{
+
+    .form-div {
       /* position: relative;
       left: 50%;
       top: -50%;
       transform: translate(-50%,50%); */
       margin-top: 1rem;
       margin-bottom: 1rem;
-   width: 70%;
+      width: 70%;
       background-color: #fff;
-            padding: 20px;
-            border-radius: 0px;
-            border-top: 5px solid #00A096;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 0px;
+      border-top: 5px solid #00A096;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .form-div input{
+
+    .form-div input {
       width: 60%;
     }
+    .scheme_container{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+    }
+    .scheme_div {
+      width: 50%;
+      /* min-width: max-content; */
+      /* background-color: #c8c8c8; */
+      margin: 10px;
+      /* border: 1px solid black; */
+      box-shadow: 2px 2px 4px black;
+      border-radius: 5px;
+
+    }
+
+    .scheme_div span {
+      text-transform: uppercase;
+      padding: 8px;
+      min-width: 100%;
+      text-align: center;
+      color: white;
+      background-color: rgb(60, 60, 60);
+      
+    }
+
+    .scheme_div section {
+      /* background-color: #45a049; */
+      width: 100%;
+      min-height: 10vh;
+      max-height: 30vh;
+      overflow: scroll;
+      scrollbar-width: 10px;
+      
+    }
+    .scheme_div section ul{
+      list-style: none;
+      margin: 0px;
+      padding: 0px;
+    }
+    .scheme_div section li {
+      padding: 3px;
+      margin: 6px;
+      width: 100%;
+      box-shadow: 2px 2px 4px black;
+      border-radius: 5px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      /* background-color: rgb(180, 180, 180); */
+      /* border: 1px solid black; */
+    }
+    .add_gov_scheme{
+      padding: 9px;
+      margin: 3px;
+      transition-duration: 0.3s;
+
+    }
+    .delete_gov_scheme{
+      padding: 9px;
+      margin: 3px;
+      color: red;
+      transition-duration: 0.3s;
+    }
+    .delete_gov_scheme:hover{
+      transform: scale(1.5);
+    }
+    .add_gov_scheme:hover{
+      transform: scale(1.5);
+    }
+      
     @media screen and (max-width: 970px) {
       .flex {
         flex-direction: column;
@@ -419,6 +494,13 @@
 
       .edit button {
         margin-left: 0;
+      }
+      .scheme_container{
+        flex-wrap: wrap;
+      }
+      .scheme_div{
+        width: 100%;
+        /* background-color: #343a40; */
       }
     }
 
@@ -443,12 +525,15 @@
       .edit input {
         width: 80%;
       }
-      .form-div{
+
+      .form-div {
         width: 90%;
       }
-      .form-div input{
+
+      .form-div input {
         width: 90%;
       }
+      
 
     }
 
@@ -498,10 +583,11 @@
       height: 100%;
     }
 
-    #documentCards,#documentCardsi {
+    #documentCards,
+    #documentCardsi {
       display: flex;
       flex-direction: row;
-      
+
       flex-wrap: wrap;
     }
 
@@ -511,7 +597,7 @@
       border-radius: 0px;
       padding: 10px;
       border-top: 5px solid #00A096;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       margin: 10px;
     }
 
@@ -520,7 +606,8 @@
       max-width: 100%;
       height: auto;
     }
-    .card a{
+
+    .card a {
       text-decoration: none;
     }
 
@@ -537,6 +624,7 @@
       background-color: #343a40;
 
     }
+   
   </style>
   {% include "drDashbord_header.html" %}
   <div class="content">
@@ -595,8 +683,9 @@
           <label for="Contact">Contact:</label>
           <input type="number" id="Contact" name="Contact" value="{{request.user.doctors.get.contact_no}}" required><br>
           <label for="Contact">Personal Contact:</label>
-          <input type="number" id="personal_contact" name="personal_contact" value="{{request.user.doctors.get.personal_contact}}" required><br>
-          
+          <input type="number" id="personal_contact" name="personal_contact"
+            value="{{request.user.doctors.get.personal_contact}}" required><br>
+
           <label for="Biography">Biography:</label>
           <input type="text" id="Biography" name="Biography" value="{{request.user.doctors.get.biography}}"
             required><br>
@@ -620,21 +709,20 @@
             required>
 
           <label for="opdfees">OPD Fees:</label>
-          <input type="number" id="opdfees" name="opdfees" value="{{request.user.doctors.get.opdFees}}"
-            required>
+          <input type="number" id="opdfees" name="opdfees" value="{{request.user.doctors.get.opdFees}}" required>
 
-           
-              <label for="slotDuration">Choose slot Duration:</label>
-              <select id="slotDuration" onchange="showSelectedOption()">
-                  <option value="10">10 minutes</option>
-                  <option value="15">15 minutes</option>
-                  <option value="20">20 minutes</option>
-                  <option value="25">25 minutes</option>
-                  <option value="30">30 minutes</option>
-                 
-              </select>
-              <div id="result">current slot Duration: {{request.user.doctors.get.slotDuration}}</div>
-          
+
+          <label for="slotDuration">Choose slot Duration:</label>
+          <select id="slotDuration" onchange="showSelectedOption()">
+            <option value="10">10 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="20">20 minutes</option>
+            <option value="25">25 minutes</option>
+            <option value="30">30 minutes</option>
+
+          </select>
+          <div id="result">current slot Duration: {{request.user.doctors.get.slotDuration}}</div>
+
 
 
           <!-- <label for="license_no">license_no:</label>
@@ -656,20 +744,70 @@
       <button class="ajax-button" data-param1="value1" data-param2="value2">Button 1</button>
       <button class="ajax-button" data-param1="value3" data-param2="value4">Button 2</button>
       <button class="ajax-button" data-param1="value5" data-param2="value6">Button 3</button> {% endcomment %}
+      <span>
+        <h4>
+          please reload page to update list's
+        </h4>
+      </span>
+      <div class="scheme_container">
+        <div class="scheme_div">
+          <span>
+            added schemes
+          </span>
+          {% if dr_mapping %}
+          <section class="">
+            
+            <ul>
+              {% for i in dr_mapping %}
+              <li><button class="delete_gov_scheme" govSchemeId="{{i.id}}" style="background-color: rgba(254, 50, 50, 0);"><i class="fa-solid fa-trash" style="color: red;"></i></button><strong>{{i.name}}</strong>
+
+              </li>
+              {% endfor %}
+            </ul>
+            
+            {% else %}
+            <ul style="list-style: none;">
+              <li>No scheme added yet!</li>
+             </ul>
+            
+          </section>
+          {% endif %}
+        </div>
+        <div class="scheme_div">
+          <span>
+            Other schemes
+          </span>
+          {% if al %}
+          <section class="">
+            <ul >
+              {% for i in al %}
+              <li><button class="add_gov_scheme" style="background-color: #ffffff00;" govSchemeId="{{i.id}}"><i class="fa-solid fa-plus" style="color: green;"></i></button><strong>{{i.name}}</strong>
+
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% else %}
+          <ul style="list-style: none;">
+            <li>No scheme!</li>
+           </ul>
+          {% endif %}
+        </div>
+      </div>
 
       <nav class="Snav">
 
-      <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Goverment')" id="gs">
-          Goverment Schemes
-        </button>
-        <button class="tablinks" onclick="openCity(event, 'Insurance')">
-          Health Insurance
-        </button>
-        <button class="tablinks" onclick="openCity(event, 'Other')">
-          Other Services
-        </button>
-      </div>
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'Goverment')" id="gs">
+            Goverment Schemes
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Insurance')">
+            Health Insurance
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Other')">
+            Other Services
+          </button>
+        </div>
       </nav>
 
       <div id="Goverment" class="tabcontent">
@@ -693,28 +831,28 @@
           <button id="addGS">Save</button>
         </div>
       </div>
-      
+
       <div id="Insurance" class="tabcontent">
         {% include "Insurance_card.html" %}
         <div class="form-div">
           <label for="title">Title:</label>
           <input type="text" id="headingi" placeholder="enter the title of Goverment scheme">
-  
+
           <label for="sub_title">Sub-title:</label>
           <input type="text" id="sub_titlei" placeholder="enter the sub-title of Goverment scheme">
-  
+
           <label for="Document">Related Document</label>
           <input type="file" id="Documenti">
           <p id="title_doc_msgi">Documet is required</p>
-  
+
           <label for="title_img">Title Image:</label>
           <input type="file" id="title_imgi">
           <p id="title_img_msgi">title image is required</p>
-  
+
           <button id="addinsurance">Save</button>
         </div>
 
-        
+
 
       </div>
 
@@ -797,7 +935,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "Email": Email,
           // "age": age,
           "Contact": Contact,
-         
+
           "Biography": Biography,
           "category": category,
           "specialization": specialization,
@@ -806,11 +944,11 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "hospital_name": hospital_name,
           // "license_no": license_no,
           "hospital_about": hospital_about,
-          "map":map,
-          "opdfees":opdfees,
-          "personal_contact":personal_contact,
-          "slotDuration":slotDuration,
-          "address":address
+          "map": map,
+          "opdfees": opdfees,
+          "personal_contact": personal_contact,
+          "slotDuration": slotDuration,
+          "address": address
         };
         var formData = new FormData();
         formData.append('data', JSON.stringify(updateDrdata));
@@ -855,7 +993,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
       var sub_title = document.getElementById("sub_title").value;
       var Document = document.getElementById("Document").files;
       var title_img = document.getElementById("title_img").files;
-      
+
       if (title_img.length > 0) {
         if (Document.length > 0) {
           var addGS = {
@@ -901,7 +1039,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
       var sub_title = document.getElementById("sub_titlei").value;
       var Document = document.getElementById("Documenti").files;
       var title_img = document.getElementById("title_imgi").files;
-      
+
       if (title_img.length > 0) {
         if (Document.length > 0) {
           var addGS = {
@@ -942,8 +1080,52 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
       }
 
     });
+    $('.add_gov_scheme').click(function () {
+      var govSchemeId = $(this).attr('govSchemeId');
+      var element = $(this)
+      console.log(govSchemeId)
+      $.ajax({
+        url: '/add_gov_scheme/'+ govSchemeId, // Replace with your API endpoint
+        type: 'POST', // or 'GET' depending on your API method
+        data: {
+            
+        },
+        success: function(response) {
+            // Handle the successful response
+            console.log('API call successful:', response);
+            element.css("display","none")
 
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.log('API call failed:', error);
+        }
+    });
+   
       });
+      $('.delete_gov_scheme').click(function () {
+        var govSchemeId = $(this).attr('govSchemeId');
+        console.log(govSchemeId)
+        var element = $(this)
+        $.ajax({
+          url: '/delete_gov_scheme/'+ govSchemeId, // Replace with your API endpoint
+          type: 'POST', // or 'GET' depending on your API method
+          data: {
+              
+          },
+          success: function(response) {
+              // Handle the successful response
+              console.log('API call successful:', response);
+              $(this).css({display:'none'})
+              element.css("display","none")
+          },
+          error: function(xhr, status, error) {
+              // Handle any errors
+              console.log('API call failed:', error);
+          }
+      });
+    });
+  });
 
   </script>
 

@@ -284,6 +284,27 @@
       .tabcontent h5, .tabcontent p{
         color: #12a8ae;
       }
+      .scheme_ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+      }
+      .scheme_li {
+        padding: 9px;
+        margin: 6px;
+        width: 100%;
+        box-shadow: 2px 2px 4px black;
+        border-radius: 5px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        /* background-color: rgb(180, 180, 180); */
+        /* border: 1px solid black; */
+      }
+      .scheme_li i{
+        padding: 5px;
+        margin: 5px;
+      }
 </style>
 <main>
     <div class="header">
@@ -319,6 +340,16 @@
         <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Hospital</span></h3>
         {% include "drprofile_slider.html" %}
     </div>
+    {% if scheme_data %}
+    <div class="info_card">
+        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Schemes </span></h3>
+        <ul class="scheme_ul">
+        {% for i in scheme_data %}
+                <li class="scheme_li" ><i class="fa-solid fa-check" style="color: green;"></i>{{i.name}}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
     <div class="info_card">
         <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i><span class="translate"> Other Services</span></h3>
         {% include "tab.html" %}

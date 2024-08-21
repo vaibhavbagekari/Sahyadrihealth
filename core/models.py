@@ -20,6 +20,12 @@ class NewUser(models.Model):
     age = models.IntegerField()
     contact_no = models.IntegerField(null=True,blank=True)
 
+class gov_scheme(models.Model):
+    name = models.CharField(max_length=100)
+    
+
+
+
 class Doctor(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank =True,to_field='username',related_name='doctors')
     address = models.TextField(null=True,blank=True)
@@ -50,6 +56,10 @@ class Doctor(models.Model):
                 os.remove(path)
         # Call the superclass delete method to delete the Doctor record
         super(Doctor, self).delete(*args, **kwargs)
+
+class dr_scheme_mapping(models.Model):
+    gov_scheme = models.ForeignKey(gov_scheme,on_delete=models.CASCADE,related_name="scheme_mapping")
+    doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,related_name="dr_mapping")
 
 class Event(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True,blank =True,to_field='id',related_name='events')
@@ -214,3 +224,6 @@ class feedbackans(models.Model):
     question = models.ForeignKey(feedbackquestion,to_field="id", on_delete=models.CASCADE,related_name='fbans')
     doctorid = models.IntegerField(null=True,blank=True)
     ans = models.CharField(max_length=4,null=True,blank=True)
+
+
+    

@@ -107,6 +107,19 @@
 
 </style>
 <main>
+  <div class="main_sdiv">
+    <div class="search-container">
+      <h2><span class="translate">Pathology Lab Search</span></h2>
+      
+        <div class="input-group">
+          {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
+          <input type="text" placeholder="location" id="locationInput1">
+          <div id="location_suggestions1" class="suggestions"></div>
+          <button type="button"  id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      
+    </div>
+  </div>
     <div class="infocard">
         <div class="text1">
             <p class="card-text">
@@ -116,19 +129,7 @@
         </div>
         <img src="{% static 'central_government_scheme.png' %}" alt="">
     </div>
-    <div class="main_sdiv">
-        <div class="search-container">
-          <h2><span class="translate">Pathology Lab Search</span></h2>
-          
-            <div class="input-group">
-              {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
-              <input type="text" placeholder="location" id="locationInput1">
-              <div id="location_suggestions1" class="suggestions"></div>
-              <button type="button"  id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-          
-        </div>
-      </div>
+    
       
 <style>
   .card {

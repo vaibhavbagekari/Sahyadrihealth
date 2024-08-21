@@ -161,3 +161,10 @@ class FeedbackansAdmin(admin.ModelAdmin):
         'ans'
     )
 admin.site.register(feedbackans,FeedbackansAdmin)
+
+@admin.register(gov_scheme)
+class gov_schemes(admin.ModelAdmin):
+    list_display = (
+        'name',
+        
+    )

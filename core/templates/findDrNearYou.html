@@ -193,21 +193,6 @@
     }
 </style>
 <main>
-    <div class="infocard">
-        <div class="text1">
-            <p class="card-text">
-            <h3><span class="translate">Find Doctor near you</span></h3>
-            <span class="translate">
-            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities
-            behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong
-            collaboration across agencies and with countries so that we can reach zero dose children, and expand access
-            to families who are missing out on crucial primary health care services.
-            </span>
-            </p>
-            <button type="button m-3" class="btn btn-success"><span class="translate">success</span></button>
-        </div>
-        <img src="{% static 'searchdr.png' %}" alt="">
-    </div>
     <div class="hero-container">
         <div class="main-div">
             <h3 class="m-3"><span class="translate">search for Doctors near you</span></h3>
@@ -236,6 +221,22 @@
         </div>
        
     </div>
+    <div class="infocard">
+        <div class="text1">
+            <p class="card-text">
+            <h3><span class="translate">Find Doctor near you</span></h3>
+            <span class="translate">
+            We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities
+            behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong
+            collaboration across agencies and with countries so that we can reach zero dose children, and expand access
+            to families who are missing out on crucial primary health care services.
+            </span>
+            </p>
+            <button type="button m-3" class="btn btn-success"><span class="translate">success</span></button>
+        </div>
+        <img src="{% static 'searchdr.png' %}" alt="">
+    </div>
+    
 
     {% include "cardslider.html" %}
     {% include "footer.html" %}

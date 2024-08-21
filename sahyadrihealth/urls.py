@@ -90,6 +90,8 @@ urlpatterns = [
 
     path('developer_team/',developer_team,name='developer_team'),
     path('govenment_hospitals/',govenment_hospitals,name='govenment_hospitals'),
+    path('add_gov_scheme/<scheme_id>',doctor_views.add_gov_scheme,name='add_gov_scheme'),
+    path('delete_gov_scheme/<scheme_id>',doctor_views.delete_gov_scheme,name='delete_gov_scheme')
     # path('translate/', translate_view, name='translate')
 
 ]    

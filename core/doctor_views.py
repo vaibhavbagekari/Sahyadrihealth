@@ -195,12 +195,17 @@ def drProfile(request,id):
     dr = User.objects.get(id=id).doctors.all()[0]
     GS = Dr_govScheme.objects.filter(doctor=dr)
     insurance = Dr_Insurance.objects.filter(doctor=dr)
+    dr_mapping = dr_scheme_mapping.objects.filter(doctor=dr)
+    t=[]
+    for i in dr_mapping:
+        t.append(i.gov_scheme)
+    ts=set(t)
     # if request.method == 'POST':
 
     # appointments = Appointment.objects.filter(doctor=doctor.doctors.all()[0])
     # context = {'doctor': doctor, 'appointments': appointments}
     # slider_img = dr.Himgs.all()
-    return render(request,"drProfile.html",{'doctor':doctor,'images':slider_img,'GS':GS,'insurance':insurance})
+    return render(request,"drProfile.html",{'doctor':doctor,'images':slider_img,'GS':GS,'insurance':insurance,'scheme_data':ts})
 
 def image_upload(request):
     if request.method == "POST":
@@ -227,7 +232,45 @@ def drDashbord_setting(request):
     dr_img = Doctor.objects.get(user = request.user)
     images = dr_img.Himgs.all()
     images=reversed(images)
-    return render(request,'drDashbord_setting.html',{'images': images})
+    gs = gov_scheme.objects.all()
+    dr_mapping = dr_scheme_mapping.objects.filter(doctor=dr_img)
+    t=[]
+    for i in dr_mapping:
+        t.append(i.gov_scheme)
+    gss = set(gs)
+    ts=set(t)
+    al = gss-ts
+    return render(request,'drDashbord_setting.html',{'images': images,'al':al,'dr_mapping':ts})
+
+@csrf_exempt
+def add_gov_scheme(request,scheme_id):
+    try:
+        if request.method == 'POST':
+            dr = Doctor.objects.get(user = request.user)
+            gs = gov_scheme.objects.get(id=scheme_id)
+            obj = dr_scheme_mapping(doctor = dr,gov_scheme = gs)
+            obj.save()
+            
+            return redirect(request.path)
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+@csrf_exempt
+def delete_gov_scheme(request,scheme_id):
+    try:
+        if request.method == 'POST':
+            dr = Doctor.objects.get(user = request.user)
+            gs = gov_scheme.objects.get(id=scheme_id)
+            obj = dr_scheme_mapping.objects.filter(doctor = dr,gov_scheme = gs)
+            obj.delete()
+            return redirect(request.path)
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
 
 def availability(request):
     return render(request,'brAvailability.html')

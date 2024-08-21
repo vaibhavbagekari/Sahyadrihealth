@@ -1609,16 +1609,18 @@
                 class="logoImg"></h2>
 
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
+        {% if request.path == '/home/' or request.path == '/' %}
         <div class="search_bar">
             <form action="">
+            
                 <div class="input-group">
                     <div class="search-container" class="form-control">
                         <input style="width: 100%;height: 100%;" type="text" class="form-control"
-                            id="location_searchInput" placeholder="Location" name="location" required>
+                            id="location_searchInput" placeholder="Location of Doctor" name="location" required>
                         <div id="location_suggestions" class="suggestions"></div>
                     </div>
                     <div class="search-container" class="form-control">
-                        <input style="width: 100%;height: 100%;" type="text" class="form-control" placeholder="Category"
+                        <input style="width: 100%;height: 100%;" type="text" class="form-control" placeholder="Category of Doctor"
                             id="category_searchInput" name="category" required>
                         <div id="category_suggestions" class="suggestions"></div>
                     </div>
@@ -1637,6 +1639,7 @@
 
             </form>
         </div>
+        {% endif %}
         <!-- <select id="languageSwitcher">
             <option selected disabled class="translate">Language</option>
             <option value="en" class="translate">English</option>
@@ -1875,6 +1878,117 @@
 
     </script>
     <script>
+        {% comment %} Mock suggestions data for locations and categories {% endcomment %}
+const locationSuggestionsData = [
+    { en: "Baramati", mr: "बारामती" },
+    { en: "Indapur", mr: "इंदापूर" },
+    { en: "Phaltan", mr: "फलटण" },
+    { en: "Akluj", mr: "अकलूज" },
+    { en: "Natepute", mr: "नातेपुते" },
+    { en: "Bhigwan", mr: "भिगवण" }
+];
+
+const categorySuggestionsData = [
+    { en: "Medicine", mr: "मेडिसिन" },
+    { en: "Dentist", mr: "दंतवैद्य" },
+    { en: "Radiologist", mr: "क्ष किरण तज्ञ" },
+    { en: "Surgeon", mr: "शस्त्रक्रिया" },
+    { en: "Psychiatrist", mr: "मानसोपचार तज्ञ" },
+    { en: "Gynaecologist", mr: "स्त्री रोग तज्ञ" },
+    { en: "Orthopaedic", mr: "अस्थिरोग तज्ञ" },
+    { en: "Pediatric", mr: "बालरोग तज्ञ" },
+    { en: "Cardiologist", mr: "हृदयरोग तज्ञ" },
+    { en: "Skin specialist", mr: "त्वचा तज्ञ" },
+    { en: "Eye specialist", mr: "नेत्रतज्ञ" },
+    { en: "ENT Specialist", mr: "कान नाक घसा तज्ञ" },
+    { en: "Ayurveda", mr: "आयुर्वेदा" },
+    { en: "Physiotherapist", mr: "फिजिओथेरपिस्ट" },
+    { en: "BAMS", mr: "आयुर्वेदिक तज्ञ" },
+    { en: "Homeopathic Specialist", mr: "होमिओपॅथिक तज्ञ" },
+    { en: "Gastroenterology", mr: "पचनतंत्रतज्ञ" }
+];
+const location_searchInput = document.getElementById('location_searchInput');
+const category_searchInput = document.getElementById('category_searchInput');
+const location_suggestions = document.getElementById('location_suggestions');
+const category_suggestions = document.getElementById('category_suggestions');
+
+// Function to add event listeners
+function addEventListeners(inputElement, suggestionsElement, suggestionsData) {
+    inputElement.addEventListener('input', function () {
+        const query = this.value.trim();
+        handleSuggestions(query, suggestionsData, suggestionsElement, inputElement);
+    });
+
+    inputElement.addEventListener('focus', function () {
+        handleSuggestions('', suggestionsData, suggestionsElement, inputElement); // Display all suggestions initially
+    });
+}
+
+// Function to handle suggestions display based on input
+function handleSuggestions(query, suggestionsData, suggestionsElement, inputElement) {
+    const filteredSuggestions = query
+        ? suggestionsData.filter(item =>
+            item.en.toLowerCase().includes(query.toLowerCase()) || 
+            item.mr.toLowerCase().includes(query.toLowerCase())
+        )
+        : suggestionsData;  // If no query, show all suggestions
+
+    renderSuggestions(filteredSuggestions, suggestionsElement, inputElement);
+}
+
+// Hide suggestions when clicking outside
+document.addEventListener('click', function (event) {
+    if (!location_searchInput.contains(event.target) && !location_suggestions.contains(event.target)) {
+        location_suggestions.style.display = 'none';
+    }
+    if (!category_searchInput.contains(event.target) && !category_suggestions.contains(event.target)) {
+        category_suggestions.style.display = 'none';
+    }
+});
+
+// Prevent document click from hiding suggestions when clicking on input or suggestions
+function preventClickPropagation(inputElement, suggestionsElement) {
+    inputElement.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+    suggestionsElement.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+}
+
+// Adding event listeners for locations and categories
+addEventListeners(location_searchInput, location_suggestions, locationSuggestionsData);
+addEventListeners(category_searchInput, category_suggestions, categorySuggestionsData);
+
+// Prevent click propagation on input fields and suggestions
+preventClickPropagation(location_searchInput, location_suggestions);
+preventClickPropagation(category_searchInput, category_suggestions);
+
+// Function to render suggestions
+function renderSuggestions(suggestionsArray, suggestionsElement, inputElement) {
+    if (suggestionsArray.length === 0) {
+        suggestionsElement.style.display = 'none';
+        return;
+    }
+
+    suggestionsElement.innerHTML = '';
+    suggestionsElement.style.display = 'block';
+    suggestionsArray.forEach(suggestion => {
+        const div = document.createElement('div');
+        div.classList.add('suggestion');
+        div.innerHTML = `<strong>${suggestion.en}</strong> - ${suggestion.mr}`;
+        div.addEventListener('click', () => {
+            inputElement.value = suggestion.en; // Keep the selected value in English
+            suggestionsElement.style.display = 'none';
+        });
+        suggestionsElement.appendChild(div);
+    });
+}
+// 
+
+
+    </script>
+    {% comment %} <script>
         // const location_searchInput = document.getElementById('location_searchInput');
         // const category_searchInput = document.getElementById('category_searchInput');
         // const location_suggestions = document.getElementById('location_suggestions');
@@ -2055,5 +2169,5 @@
             }
         }
 
-    </script>
+    </script> {% endcomment %}
     <!-- <script src="http://translate.google.com/translate_b/element.js?cb=loadGoogleTranslate"></script> -->
