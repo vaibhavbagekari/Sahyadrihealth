@@ -106,30 +106,7 @@
   }
 
 </style>
-<main>
-  <div class="main_sdiv">
-    <div class="search-container">
-      <h2><span class="translate">Pathology Lab Search</span></h2>
-      
-        <div class="input-group">
-          {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
-          <input type="text" placeholder="location" id="locationInput1">
-          <div id="location_suggestions1" class="suggestions"></div>
-          <button type="button"  id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-      
-    </div>
-  </div>
-    <div class="infocard">
-        <div class="text1">
-            <p class="card-text">
-            <h3 ><span class="translate">Pathology Lab</span></h3>
-            <span class="translate">A Pathology Lab, also known as a diagnostic laboratory or medical laboratory, is a facility where various medical tests are conducted to aid in the diagnosis, monitoring, and treatment of diseases and health conditions. These centers play a crucial role in healthcare by providing accurate and timely test results to healthcare professionals.</span>
-            <button type="button m-3" class="btn btn-success">success</button>
-        </div>
-        <img src="{% static 'central_government_scheme.png' %}" alt="">
-    </div>
-    
+  
       
 <style>
   .card {
@@ -160,10 +137,35 @@
 }
 </style>
 
+<main>
+  <div class="main_sdiv">
+    <div class="search-container">
+      <h2><span class="translate">Pathology Lab Search</span></h2>
+      
+        <div class="input-group">
+          {% comment %} <input type="text" aria-label="Last name" class="form-control" placeholder="Service Name"> {% endcomment %}
+          <input type="text" placeholder="location" id="locationInput1">
+          <div id="location_suggestions1" class="suggestions"></div>
+          <button type="button"  id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      
+    </div>
+  </div>
+  
 <div id="cardList">
   <!-- Card items will be added dynamically using JavaScript -->
 </div>
 
+    <div class="infocard">
+        <div class="text1">
+            <p class="card-text">
+            <h3 ><span class="translate">Pathology Lab</span></h3>
+            <span class="translate">A Pathology Lab, also known as a diagnostic laboratory or medical laboratory, is a facility where various medical tests are conducted to aid in the diagnosis, monitoring, and treatment of diseases and health conditions. These centers play a crucial role in healthcare by providing accurate and timely test results to healthcare professionals.</span>
+            <button type="button m-3" class="btn btn-success">success</button>
+        </div>
+        <img src="{% static 'central_government_scheme.png' %}" alt="">
+    </div>
+  
 <script>
   
   let data

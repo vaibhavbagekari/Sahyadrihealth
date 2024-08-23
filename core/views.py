@@ -677,6 +677,7 @@ def SearchAmbulance(request):
                     'location':i.location
                 }
                 ls.append(j)
+                print(ls)
             return JsonResponse({'status': 'success', 'amblance_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 

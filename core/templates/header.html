@@ -1337,6 +1337,9 @@
         .logoImg {
             width: 120px;
         }
+        .form-control::placeholder{
+            color: #1e00fffb;
+        }
 
         @media screen and (max-height: 650px) {}
 
@@ -1737,7 +1740,7 @@
             class="{% if request.path == '/govenment_hospitals/' %} active {% endif %}"><i
                 class="fa-solid fa-hospital"></i><span class="translate">Govenment Hospitals</span></a>
         <a href="{% url 'lab_test' %}" class="{% if request.path == '/lab_test/' %} active {% endif %}"><i
-                class="fa-solid fa-flask-vial"></i><span class="translate">Pathology Lab</span></a>
+                class="fa-solid fa-flask-vial"></i><span class="translate">Diagnostics Lab</span></a>
         <a href="{% url 'about' %}" class="{% if request.path == '/about/' %} active {% endif %}"><i
                 class="fa-regular fa-address-card"></i><span class="translate">About</span></a>
         <a href="{% url 'contactUs' %}" class="{% if request.path == '/contactUs/' %} active {% endif %}"><i
@@ -1985,7 +1988,20 @@ function renderSuggestions(suggestionsArray, suggestionsElement, inputElement) {
     });
 }
 // 
+function displayNotification(message) {
+    const notificationElement = document.getElementById('notification');
+    notificationElement.textContent = message;
+    notificationElement.style.display = 'block';
+}
+function check(data, message) {
 
+    if (data.length === 0) {
+        displayNotification(message);
+        setTimeout(() => {
+            document.getElementById('notification').style.display = 'none';
+        }, 5000);
+    }
+}
 
     </script>
     {% comment %} <script>
@@ -2154,20 +2170,7 @@ function renderSuggestions(suggestionsArray, suggestionsElement, inputElement) {
 
 
 
-        function displayNotification(message) {
-            const notificationElement = document.getElementById('notification');
-            notificationElement.textContent = message;
-            notificationElement.style.display = 'block';
-        }
-        function check(data, message) {
-
-            if (data.length === 0) {
-                displayNotification(message);
-                setTimeout(() => {
-                    document.getElementById('notification').style.display = 'none';
-                }, 5000);
-            }
-        }
+        
 
     </script> {% endcomment %}
     <!-- <script src="http://translate.google.com/translate_b/element.js?cb=loadGoogleTranslate"></script> -->

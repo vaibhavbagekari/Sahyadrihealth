@@ -486,6 +486,7 @@
       .flex {
         flex-direction: column;
         gap: 0;
+        padding: 10px;
       }
 
       .lf {
@@ -513,7 +514,7 @@
       }
 
       .flex {
-        padding: ;
+        padding: 10px;
       }
 
       #profile-form {
@@ -686,8 +687,7 @@
           <input type="number" id="personal_contact" name="personal_contact"
             value="{{request.user.doctors.get.personal_contact}}" required><br>
 
-          <label for="Biography">Biography:</label>
-          <input type="text" id="Biography" name="Biography" value="{{request.user.doctors.get.biography}}"
+          <input type="hidden" id="Biography" name="Biography" value="{{request.user.doctors.get.biography}}"
             required><br>
 
 
@@ -935,7 +935,6 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           "Email": Email,
           // "age": age,
           "Contact": Contact,
-
           "Biography": Biography,
           "category": category,
           "specialization": specialization,
@@ -945,7 +944,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           // "license_no": license_no,
           "hospital_about": hospital_about,
           "map": map,
-          "opdfees": opdfees,
+          "opdfees": parseInt(opdfees),
           "personal_contact": personal_contact,
           "slotDuration": slotDuration,
           "address": address

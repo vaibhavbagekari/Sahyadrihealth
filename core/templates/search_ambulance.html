@@ -122,36 +122,6 @@
 
     }
   }
-</style>
-<main>
-  <div class="main_sdiv">
-
-    <div class="search-container">
-      
-       <h1><span class="translate">Ambulance Search </span><i class="fa-solid fa-truck-fast"></i></h1>
-       <input type="text" name="locationInput" id="locationInput1" placeholder="Enter location">
-       <div id="location_suggestions1" class="suggestions"></div>
-       <button id="btnSun" onclick=""><span class="translate">Search</span></button>
-     </div>
-   </div>
-   {% include "serach_result_cards.html" %}
-  <div class="infocard">
-    <div class="text1">
-      <p class="card-text">
-      <h2><span class="translate">Ambulance Services</span></h2>
-        <span class="translate">
-      Our ambulance services are available 24/7 to provide immediate medical assistance.
-      Our fleet of well-equipped ambulances is staffed with trained medical professionals
-      to ensure the safety and well-being of patients during transport.
-        </span>
-      </p>
-      <button type="button m-3" class="btn btn-success">success</button>
-    </div>
-    <img src="{% static 'ambulance2.jpg' %}" alt="">
-  </div>
-
-  <title>Ambulance Search</title>
-  <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
     * {
@@ -256,7 +226,37 @@
         width: 9rem;
       }
     }
-  </style>
+  
+</style>
+<main>
+  <div class="main_sdiv">
+
+    <div class="search-container">
+      
+       <h1><span class="translate">Ambulance Search </span><i class="fa-solid fa-truck-fast"></i></h1>
+       <input type="text" name="locationInput" id="locationInput1" placeholder="Enter location">
+       <div id="location_suggestions1" class="suggestions"></div>
+       <button id="btnSun" onclick=""><span class="translate">Search</span></button>
+     </div>
+   </div>
+   
+   {% include "serach_result_cards.html" %}
+  <div class="infocard">
+    <div class="text1">
+      <p class="card-text">
+      <h2><span class="translate">Ambulance Services</span></h2>
+        <span class="translate">
+      Our ambulance services are available 24/7 to provide immediate medical assistance.
+      Our fleet of well-equipped ambulances is staffed with trained medical professionals
+      to ensure the safety and well-being of patients during transport.
+        </span>
+      </p>
+      <button type="button m-3" class="btn btn-success">success</button>
+    </div>
+    <img src="{% static 'ambulance2.jpg' %}" alt="">
+  </div>
+
+  <title>Ambulance Search</title>
   
   
   <script>
