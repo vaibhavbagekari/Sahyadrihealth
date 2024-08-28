@@ -196,16 +196,23 @@ def drProfile(request,id):
     GS = Dr_govScheme.objects.filter(doctor=dr)
     insurance = Dr_Insurance.objects.filter(doctor=dr)
     dr_mapping = dr_scheme_mapping.objects.filter(doctor=dr)
+    dr_Insurance = dr_insurance_mapping.objects.filter(doctor = dr)
     t=[]
+    m=[]
     for i in dr_mapping:
         t.append(i.gov_scheme)
     ts=set(t)
+
+    for k in dr_Insurance:
+        m.append(k.insurance)
+    
+    ms = set(m)
     # if request.method == 'POST':
 
     # appointments = Appointment.objects.filter(doctor=doctor.doctors.all()[0])
     # context = {'doctor': doctor, 'appointments': appointments}
     # slider_img = dr.Himgs.all()
-    return render(request,"drProfile.html",{'doctor':doctor,'images':slider_img,'GS':GS,'insurance':insurance,'scheme_data':ts})
+    return render(request,"drProfile.html",{'doctor':doctor,'images':slider_img,'GS':GS,'insurance':insurance,'scheme_data':ts,'insuranace_data':ms})
 
 def image_upload(request):
     if request.method == "POST":
@@ -233,14 +240,28 @@ def drDashbord_setting(request):
     images = dr_img.Himgs.all()
     images=reversed(images)
     gs = gov_scheme.objects.all()
+    Is = health_insurance.objects.all()
     dr_mapping = dr_scheme_mapping.objects.filter(doctor=dr_img)
+    dr_Insurance = dr_insurance_mapping.objects.filter(doctor = dr_img)
     t=[]
+    m=[]
     for i in dr_mapping:
         t.append(i.gov_scheme)
+        
+    for k in dr_Insurance:
+        m.append(k.insurance)
     gss = set(gs)
     ts=set(t)
+    Iss = set(Is)
+    ms = set(m)
+    sl = Iss - ms
     al = gss-ts
-    return render(request,'drDashbord_setting.html',{'images': images,'al':al,'dr_mapping':ts})
+    print(m)
+    return render(request,'drDashbord_setting.html',{'images': images,
+                                                     'al':al,
+                                                     'dr_mapping':ts,
+                                                     'sl':sl,
+                                                     'dr_insurance':ms})
 
 @csrf_exempt
 def add_gov_scheme(request,scheme_id):
@@ -270,7 +291,37 @@ def delete_gov_scheme(request,scheme_id):
            return JsonResponse({'status': 'success'})
     except json.JSONDecodeError as e:
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+
+
+@csrf_exempt
+def add_health_insurance(request,insurance_id):
+    try:
+        if request.method == 'POST':
+            dr = Doctor.objects.get(user = request.user)
+            Is = health_insurance.objects.get(id=insurance_id)
+            obj = dr_insurance_mapping.objects.create(doctor = dr,insurance = Is)
+        
+            
+            return redirect(request.path)
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
+@csrf_exempt
+def delete_health_insurance(request,insurance_id):
+    try:
+        if request.method == 'POST':
+            dr = Doctor.objects.get(user = request.user)
+            Is = health_insurance.objects.get(id=insurance_id)
+            obj = dr_insurance_mapping.objects.filter(doctor = dr,insurance = Is)
+            obj.delete()
+            return redirect(request.path)
+        else:
+           return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+
 
 def availability(request):
     return render(request,'brAvailability.html')

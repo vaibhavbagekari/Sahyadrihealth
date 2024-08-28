@@ -168,3 +168,17 @@ class gov_schemes(admin.ModelAdmin):
         'name',
         
     )
+
+@admin.register(health_insurance)
+class health_insurances(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
+@admin.register(gov_hopital)
+class gov_hospitals(admin.ModelAdmin):
+    list_display=(
+        "Location",
+        "Doctor_name",
+        "Contact"
+    )

@@ -350,6 +350,16 @@
     </ul>
     </div>
     {% endif %}
+    {% if insuranace_data %}
+    <div class="info_card">
+        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Health Insurance </span></h3>
+        <ul class="scheme_ul">
+        {% for i in insuranace_data %}
+                <li class="scheme_li" ><i class="fa-solid fa-check" style="color: green;"></i>{{i.name}}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
     <div class="info_card">
         <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i><span class="translate"> Other Services</span></h3>
         {% include "tab.html" %}

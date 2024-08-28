@@ -3,13 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>img_form</title>
+    <title>Doctor Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post"  enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form>
+    <div class="container">
+        <h1>Doctor Information</h1>
+
+        <!-- Select Input -->
+        <label for="locationSelect">Select Location:</label>
+        <select id="locationSelect" onchange="updateTable()">
+            <option value="location1" selected>Location 1</option>
+            <option value="location2">Location 2</option>
+            <option value="location3">Location 3</option>
+        </select>
+
+        <!-- Table of Attributes -->
+        <table id="doctorTable">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Location</th>
+                    <th>Doctor Name</th>
+                    <th>Contact No.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const data = {
+            location1: [
+                { srNo: 1, doctorName: "Dr. A", contactNo: "123-456-7890" },
+                { srNo: 2, doctorName: "Dr. B", contactNo: "234-567-8901" }
+            ],
+            location2: [
+                { srNo: 1, doctorName: "Dr. C", contactNo: "345-678-9012" },
+                { srNo: 2, doctorName: "Dr. D", contactNo: "456-789-0123" }
+            ],
+            location3: [
+                { srNo: 1, doctorName: "Dr. E", contactNo: "567-890-1234" },
+                { srNo: 2, doctorName: "Dr. F", contactNo: "678-901-2345" }
+            ]
+        };
+
+        function updateTable() {
+            const locationSelect = document.getElementById("locationSelect");
+            const selectedLocation = locationSelect.value;
+            const tableBody = document.getElementById("doctorTable").querySelector("tbody");
+
+            // Clear previous table rows
+            tableBody.innerHTML = "";
+
+            // If a location is selected, populate the table with relevant data
+            if (selectedLocation && data[selectedLocation]) {
+                data[selectedLocation].forEach((entry) => {
+                    const row = document.createElement("tr");
+
+                    const srNoCell = document.createElement("td");
+                    srNoCell.textContent = entry.srNo;
+                    row.appendChild(srNoCell);
+
+                    const locationCell = document.createElement("td");
+                    locationCell.textContent = selectedLocation;
+                    row.appendChild(locationCell);
+
+                    const doctorNameCell = document.createElement("td");
+                    doctorNameCell.textContent = entry.doctorName;
+                    row.appendChild(doctorNameCell);
+
+                    const contactNoCell = document.createElement("td");
+                    contactNoCell.textContent = entry.contactNo;
+                    row.appendChild(contactNoCell);
+
+                    tableBody.appendChild(row);
+                });
+            }
+        }
+
+        // Call the function to load the table initially with the default selection
+        document.addEventListener("DOMContentLoaded", function() {
+            updateTable();
+        });
+    </script>
 </body>
 </html>

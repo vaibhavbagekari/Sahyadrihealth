@@ -775,7 +775,10 @@ def developer_team(request):
     return render(request,"developer_team.html")
 
 def govenment_hospitals(request):
-    return render(request,"govenment_hospitals.html")
+    h = gov_hopital.objects.all()
+    return render(request,"govenment_hospitals.html",{"h":h})
+
+
 
 # @require_GET
 # def translate_view(request):

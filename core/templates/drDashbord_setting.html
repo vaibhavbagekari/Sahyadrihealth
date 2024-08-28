@@ -481,6 +481,12 @@
     .add_gov_scheme:hover{
       transform: scale(1.5);
     }
+    .scheme_container{
+      border: 0.5px solid rgb(167, 166, 166);
+      margin: 10px 0px 10px 0px ;
+      border-radius: 5px;
+      padding: 10px 0px 10px 0px;
+    }
       
     @media screen and (max-width: 970px) {
       .flex {
@@ -509,8 +515,6 @@
       .edit {
         width: 100%;
         flex-direction: column;
-
-
       }
 
       .flex {
@@ -744,12 +748,14 @@
       <button class="ajax-button" data-param1="value1" data-param2="value2">Button 1</button>
       <button class="ajax-button" data-param1="value3" data-param2="value4">Button 2</button>
       <button class="ajax-button" data-param1="value5" data-param2="value6">Button 3</button> {% endcomment %}
-      <span>
-        <h4>
-          please reload page to update list's
-        </h4>
-      </span>
+      
       <div class="scheme_container">
+        <span style="padding: 10px;">
+          <h2>Goverment Schemes</h2>
+        <h6 style="color: rgb(248, 74, 74);">
+          please reload page to update list's
+        </h6>
+      </span>
         <div class="scheme_div">
           <span>
             added schemes
@@ -774,6 +780,7 @@
           {% endif %}
         </div>
         <div class="scheme_div">
+          
           <span>
             Other schemes
           </span>
@@ -782,6 +789,57 @@
             <ul >
               {% for i in al %}
               <li><button class="add_gov_scheme" style="background-color: #ffffff00;" govSchemeId="{{i.id}}"><i class="fa-solid fa-plus" style="color: green;"></i></button><strong>{{i.name}}</strong>
+
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+          {% else %}
+          <ul style="list-style: none;">
+            <li>No scheme!</li>
+           </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="scheme_container">
+        <span style="padding: 10px;">
+          <h2>Health Insurance</h2>
+        <h6 style="color: rgb(248, 74, 74);">
+          please reload page to update list's
+        </h6>
+      </span>
+        <div class="scheme_div">
+          <span>
+            added schemes
+          </span>
+          {% if dr_mapping %}
+          <section class="">
+            
+            <ul>
+              {% for i in dr_insurance %}
+              <li><button class="delete_insurance" insuranaceId="{{i.id}}" style="background-color: rgba(254, 50, 50, 0);"><i class="fa-solid fa-trash" style="color: red;"></i></button><strong>{{i.name}}</strong>
+
+              </li>
+              {% endfor %}
+            </ul>
+            
+            {% else %}
+            <ul style="list-style: none;">
+              <li>No scheme added yet!</li>
+             </ul>
+            
+          </section>
+          {% endif %}
+        </div>
+        <div class="scheme_div">
+          <span>
+            Other schemes
+          </span>
+          {% if al %}
+          <section class="">
+            <ul >
+              {% for i in sl %}
+              <li><button class="add_insurance" style="background-color: #ffffff00;" insuranaceId="{{i.id}}"><i class="fa-solid fa-plus" style="color: green;"></i></button><strong>{{i.name}}</strong>
 
               </li>
               {% endfor %}
@@ -1124,7 +1182,50 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
           }
       });
     });
+    $('.add_insurance').click(function () {
+      var insuranceId = $(this).attr('insuranaceId');
+      console.log(insuranceId)
+      var element = $(this)
+      $.ajax({
+        url: '/add_health_insurance/'+ insuranceId, // Replace with your API endpoint
+        type: 'POST', // or 'GET' depending on your API method
+        data: {
+            
+        },
+        success: function(response) {
+            // Handle the successful response
+            console.log('API call successful:', response);
+            $(this).css({display:'none'})
+            element.css("display","none")
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.log('API call failed:', error);
+        }
+    });
   });
+    $('.delete_insurance').click(function () {
+      var insuranceId = $(this).attr('insuranaceId');
+      console.log(insuranceId)
+      var element = $(this)
+      $.ajax({
+        url: '/delete_health_insurance/'+ insuranceId, // Replace with your API endpoint
+        type: 'POST', // or 'GET' depending on your API method
+        data: {
+            
+        },
+        success: function(response) {
+            // Handle the successful response
+            console.log('API call successful:', response);
+            $(this).css({display:'none'})
+            element.css("display","none")
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors
+            console.log('API call failed:', error);
+        }
+    });
+  })});
 
   </script>
 

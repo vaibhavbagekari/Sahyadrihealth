@@ -91,7 +91,9 @@ urlpatterns = [
     path('developer_team/',developer_team,name='developer_team'),
     path('govenment_hospitals/',govenment_hospitals,name='govenment_hospitals'),
     path('add_gov_scheme/<scheme_id>',doctor_views.add_gov_scheme,name='add_gov_scheme'),
-    path('delete_gov_scheme/<scheme_id>',doctor_views.delete_gov_scheme,name='delete_gov_scheme')
+    path('delete_gov_scheme/<scheme_id>',doctor_views.delete_gov_scheme,name='delete_gov_scheme'),
+    path('add_health_insurance/<insurance_id>',doctor_views.add_health_insurance,name='add_health_insurance'),
+    path('delete_health_insurance/<insurance_id>',doctor_views.delete_health_insurance,name='delete_health_insurance')
     # path('translate/', translate_view, name='translate')
 
 ]    

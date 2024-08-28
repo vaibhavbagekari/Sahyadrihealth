@@ -23,7 +23,8 @@ class NewUser(models.Model):
 class gov_scheme(models.Model):
     name = models.CharField(max_length=100)
     
-
+class health_insurance(models.Model):
+    name = models.CharField(max_length=100)
 
 
 class Doctor(models.Model):
@@ -60,6 +61,10 @@ class Doctor(models.Model):
 class dr_scheme_mapping(models.Model):
     gov_scheme = models.ForeignKey(gov_scheme,on_delete=models.CASCADE,related_name="scheme_mapping")
     doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,related_name="dr_mapping")
+
+class dr_insurance_mapping(models.Model):
+    doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE,related_name="dr_insurance_mapping")
+    insurance = models.ForeignKey(health_insurance,on_delete=models.CASCADE,related_name="insurance_mapping")
 
 class Event(models.Model):
     user = models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True,blank =True,to_field='id',related_name='events')
@@ -226,4 +231,8 @@ class feedbackans(models.Model):
     ans = models.CharField(max_length=4,null=True,blank=True)
 
 
+class gov_hopital(models.Model):
     
+    Location = models.CharField(max_length=500,null=True,blank=True)
+    Doctor_name = models.CharField(max_length=100,null=True,blank=True)
+    Contact= models.IntegerField(null=True,blank=True)
