@@ -65,7 +65,7 @@
    
     }
     .txt{
-      position: absolute;
+    
     top: 5rem;
     margin-left: 5px;
     padding: 10px;
@@ -106,19 +106,12 @@
       .txt{
         top: 1rem;
       }
+      main{
+        padding-top: 30vh;
+      }
     }
     
-  </style>
-</head>
-
-<body>
-  {% include "header.html" %}
-
-  <main>
-
-    <h2 class="txt">Govenment Hospital</h2>
-    
-    <style>
+  
       body {
           font-family: Arial, sans-serif;
           background-color: #f4f4f4;
@@ -173,19 +166,28 @@
       tr:hover {
           background-color: #f1f1f1;
       }
+
   </style>
 </head>
+
 <body>
+  {% include "header.html" %}
+
+  <main>
+
+    <h2 class="txt">शासकीय रुग्णालय</h2>
+    
+
   <div class="container">
       {% comment %} <h1>Doctor Information</h1> {% endcomment %}
 
       <!-- Select Input -->
-      {% comment %} <label for="locationSelect">Select Location:</label>
+      <label for="locationSelect">Select Location:</label>
       <select id="locationSelect" onchange="updateTable()">
           <option value="location1" selected>Location 1</option>
           <option value="location2">Location 2</option>
           <option value="location3">Location 3</option>
-      </select> {% endcomment %}
+      </select>
 
       <!-- Table of Attributes -->
       <table id="doctorTable">
@@ -211,6 +213,7 @@
           </tbody>
       </table>
   </div>
+</main>
 {% comment %} 
   <script>
       const data = {

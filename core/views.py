@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate,login,logout
 # from .utils import translate_text
 from django.views.decorators.http import require_GET
 from datetime import timedelta
+import time
 from django.contrib.auth.decorators import login_required
 import json
 from django.http import JsonResponse
@@ -25,6 +26,7 @@ from .utils import drAccountOpeningEmail
 from django.conf import settings
 from django import forms
 from .utils import SMS_notification,SMS_notification_to_Dr
+from datetime import time as dt_time
 
 def creatPatient(request):
     if request.method == "POST":
@@ -495,8 +497,7 @@ def appointmentbooking(request,id):
                 'borderColor': '#27ae60'
             })
     return render(request,"AppointmentBooking.html",{'events_data':events_data,'doctor':doctor})
-now = datetime.datetime.now()
-print(now)
+
 @csrf_exempt  # For simplicity. You may want to use a proper CSRF token in production.
 @require_POST
 def update_events(request,id):
@@ -528,6 +529,7 @@ def bookAppointment(request,id):
     return render(request,"bookAppointment.html")
 
 def daterange(date1, date2):
+    import datetime
     date1 = datetime.datetime.strptime(date1, '%Y-%m-%d')
     date2 = datetime.datetime.strptime(date2, '%Y-%m-%d')
     return [date1 + datetime.timedelta(days=x) for x in range((date2-date1).days +1)]
@@ -541,8 +543,8 @@ def divide_time_slots(start_time, end_time, slot_duration):
     start_time_str = start_time.strftime("%H:%M")
     end_time_str = end_time.strftime("%H:%M")
     # Convert string times to datetime objects
-    start = datetime.datetime.strptime(start_time_str, "%H:%M")
-    end = datetime.datetime.strptime(end_time_str, "%H:%M")
+    start = datetime.strptime(start_time_str, "%H:%M")
+    end = datetime.strptime(end_time_str, "%H:%M")
     
     current_slot_start = start
     while current_slot_start < end:
@@ -558,25 +560,51 @@ def divide_time_slots(start_time, end_time, slot_duration):
         
         current_slot_start = current_slot_end
     return slots
-
-def getSlots(id,day):
+from datetime import datetime, time as dt_time, timedelta
+from datetime import date
+def getSlots(id,day,d):
     dr = Doctor.objects.get(id=id)
     data = Availability_weekly.objects.get(doctor=dr)
     m=data.json
     slot_duration=dr.slotDuration
     ls=("Morning","Afternoon","Evening")
     jn=[]
-    for i in ls:
-        if m[day][i.lower()]:
-            h=Availability.objects.filter(doctor=dr,session=i)
-            j={
-                "session":i,
-                "slots":divide_time_slots(h[0].start_time,h[0].end_time,slot_duration)
-            }
-            jn.append(j)
+    current_date = date.today()
+    current_time_seconds = time.time()
+    current_time_struct = time.localtime(current_time_seconds)
     
-    # print(jn)
+    hour = current_time_struct.tm_hour
+    minute = current_time_struct.tm_min
+    second = current_time_struct.tm_sec
+
+    # Create a datetime.time object
+    datetime_time_obj = dt_time(hour, minute, second)
+    dummy_date = datetime(1900, 1, 1)  # You can use any date here, it won't matter for time calculation
+    combined_datetime = datetime.combine(dummy_date, datetime_time_obj)
+    threshold_time=(combined_datetime+timedelta(hours=2)).time()
+
+    if current_date==d.date():
+        for i in ls:
+            if m[day][i.lower()]:
+                h=Availability.objects.filter(doctor=dr,session=i)
+                if h[0].end_time > threshold_time:
+                    j={
+                        "session":i,
+                        "slots":divide_time_slots(h[0].start_time,h[0].end_time,slot_duration)
+                    }
+                    jn.append(j)
+    else:
+        for i in ls:
+            if m[day][i.lower()]:
+                h=Availability.objects.filter(doctor=dr,session=i)
+                j={
+                    "session":i,
+                    "slots":divide_time_slots(h[0].start_time,h[0].end_time,slot_duration)
+                }
+                jn.append(j)
     return jn
+
+
 
 def convert_time_format(time_string):
     date, time_range = time_string.split(' ')
@@ -593,21 +621,16 @@ def findslots(request,id):
             print(date)
             ls=list(date.values())
             date_list = daterange(ls[0].split('T')[0], ls[1].split('T')[0])
-            # print(date_list)
             jn=[]
 
             for i in date_list:
                 d=pd.Timestamp(i)
-                # print(i.strftime('%Y-%m-%d'),d.day_name())
                 j={
                     "date":i.strftime('%Y-%m-%d'),
                     "day":d.day_name(),
-                    "slots":getSlots(id,d.day_name())
+                    "slots":getSlots(id,d.day_name(),i)
                 }
                 jn.append(j)
-            # print(jn[3]["slots"]["session"])
-            # print(jn)
-            
             dr = Doctor.objects.get(id=id)
             data = BookedAppoinment.objects.filter(doctor=dr)
             bookedsots = []

@@ -1,385 +1,371 @@
-
 {% include "header.html" %}
 
-
 <style>
-    .search_bar{
-        display: none;
-    }
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
+  .search_bar {
+    display: none;
+  }
+  body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
 
-    .header {
-        background: linear-gradient(90deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .55), rgba(0, 0, 0, .5)), url("https://img.freepik.com/free-photo/portrait-friendly-male-doctor-dressed-uniform_171337-105.jpg?t=st=1709746055~exp=1709749655~hmac=7121eca35017fc018be81d7711a8c846580ab50686d0f198db891c4ca2aae354&w=996");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: top;
+  .header {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url("https://img.freepik.com/free-photo/portrait-friendly-male-doctor-dressed-uniform_171337-105.jpg?t=st=1709746055~exp=1709749655~hmac=7121eca35017fc018be81d7711a8c846580ab50686d0f198db891c4ca2aae354&w=996");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 
-        position: relative;
-        justify-content: center;
-        height: 400px;
-        padding: 2rem;
-        margin-top: 0rem;
-        margin-bottom: 3rem;
-    }
+    position: relative;
+    justify-content: center;
+    height: 400px;
+    padding: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 3rem;
+  }
 
+  .header h1 {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #12a9aeb1;
+    font-size: 3.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+  }
+
+  .card {
+    display: flex;
+    border-bottom: 5px solid #12a8ae;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  .info_card {
+    border-bottom: 5px solid #12a8ae;
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    border-radius: 0px;
+    margin-bottom: 2rem;
+  }
+  .card img {
+    border-radius: 50%;
+    width: 15rem;
+    height: 15rem;
+    border: 4px solid #12a8ae;
+    object-fit: cover;
+  }
+
+  h1 {
+    color: black;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #12a8ae;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0px;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+    border: none;
+  }
+
+  .button:hover {
+    color: black;
+  }
+
+  main {
+    background-color: #f4f9fc;
+    padding-top: 12vh;
+  }
+
+  @media screen and (max-width: 1250px) {
     .header h1 {
-        font-weight: 500;
-        text-transform: uppercase;
-        color: #12a9aeb1;
-        font-size: 3.2rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-100%, -50%);
+      font-size: 2.4rem;
+
+      transform: translate(-50%, -50%);
     }
 
     .card {
-        display: flex;
-        border-bottom: 5px solid #12a8ae;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: row;
-        width: 90%;
-        margin: auto;
-        background-color: white;
-        padding: 20px;
-        border-radius: 0px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2rem;
+      text-align: center;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 90%;
     }
-    .info_card{
-        border-bottom: 5px solid #12a8ae;
-        width: 90%;
-        margin: auto;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        background-color: white;
-        padding: 20px;
-        border-radius: 0px;
-        margin-bottom: 2rem;
-    }
+
     .card img {
-        border-radius: 50%;
-        width: 15rem;
-        height: 15rem;
-        border: 4px solid #12a8ae;
-        object-fit: cover;
+      width: 10rem;
+      height: 10rem;
     }
 
     h1 {
-        color: black;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0b5a5d;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .header h1 {
+      font-size: 2.4rem;
+
+      transform: translate(-50%, -50%);
     }
 
-    p {
-        line-height: 1.6;
+    .header {
+      margin-top: 2.5rem;
+      height: 350px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .header h1 {
+      width: 70%;
+
+      font-size: 2rem;
+
+      transform: translate(-50%, -50%);
     }
 
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #12a8ae;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 0px;
-        margin-top: 10px;
-        margin-bottom: 1rem;
-        border: none;
+    .header {
+      margin-top: 2.5rem;
+      height: 350px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .card {
+      width: 80%;
     }
 
-    .button:hover {
-        color: black;
+    .card img {
+      width: 10rem;
+      height: 10rem;
     }
 
-    main {
-        background-color: #f4f9fc;
-        padding-top: 12vh;
-        /* margin-left: 0px; */
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+  .button1 {
+    background-color: #1c87c9;
+    -webkit-border-radius: 60px;
+    border-radius: 30px;
+    border: none;
+    color: #eeeeee;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 10px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+  }
+  @keyframes glowing {
+    0% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+    50% {
+      background-color: #49e819;
+      box-shadow: 0 0 20px #49e819;
+    }
+    100% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+  }
+  .button1 {
+    animation: glowing 1300ms infinite;
+  }
+
+  @media screen and (max-width: 350px) {
+    .card {
+      width: 82%;
     }
 
-    @media screen and (max-width: 1250px) {
-        .header h1 {
-
-            font-size: 2.4rem;
-
-            transform: translate(-50%, -50%);
-        }
-
-        .card {
-            text-align: center;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 1rem;
-            width: 90%;
-        }
-
-        .card img {
-
-            width: 10rem;
-            height: 10rem;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #0b5a5d;
-        }
+    .card img {
+      width: 9rem;
+      height: 9rem;
     }
 
-    @media screen and (max-width: 750px) {
-        .header h1 {
-
-            font-size: 2.4rem;
-
-            transform: translate(-50%, -50%);
-        }
-
-        .header {
-            margin-top: 2.5rem;
-            height: 350px;
-        }
+    h1 {
+      font-size: 1.5rem;
     }
+  }
+  .card_title {
+    margin: auto;
+    padding: 0.71rem;
+    text-transform: uppercase;
+    color: #12a8ae;
+  }
 
-    @media screen and (max-width: 640px) {
-        .header h1 {
-            width: 70%;
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #ccf4f6;
+  }
 
-            font-size: 2rem;
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  .tab button.active {
+    background-color: #343a40;
+    color: white;
+  }
 
-            transform: translate(-50%, -50%);
-        }
-
-        .header {
-            margin-top: 2.5rem;
-            height: 350px;
-        }
-    }
-
-    @media screen and (max-width: 550px) {
-        .card {
-
-            width: 80%;
-        }
-
-        .card img {
-
-            width: 10rem;
-            height: 10rem;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-
-        }
-    }
-    .button1 {
-        background-color: #1c87c9;
-        -webkit-border-radius: 60px;
-        border-radius: 30px;
-        border: none;
-        color: #eeeeee;
-        cursor: pointer;
-        display: inline-block;
-        font-family: sans-serif;
-        font-size: 10px;
-        padding: 10px;
-        text-align: center;
-        text-decoration: none;
-      }
-      @keyframes glowing {
-        0% {
-          background-color: #2ba805;
-          box-shadow: 0 0 5px #2ba805;
-        }
-        50% {
-          background-color: #49e819;
-          box-shadow: 0 0 20px #49e819;
-        }
-        100% {
-          background-color: #2ba805;
-          box-shadow: 0 0 5px #2ba805;
-        }
-      }
-      .button1 {
-        animation: glowing 1300ms infinite;
-      }
-
-    @media screen and (max-width: 350px) {
-        .card {
-
-            width: 82%;
-        }
-
-        .card img {
-
-            width: 9rem;
-            height: 9rem;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-
-        }
-    }
-    .card_title{
-        margin: auto;
-        padding:.71rem;
-        text-transform: uppercase;
-        color: #12a8ae;
-    }
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  .text-bg-dark {
+    max-height: 400px;
+    overflow: hidden;
+  }
+  .text-bg-dark img {
+    height: 100%;
+  }
+  .card-img-overlay {
+    left: 1rem;
+  }
+  .tabcontent h5,
+  .tabcontent p {
+    color: #12a8ae;
+  }
+  .scheme_ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  .scheme_li {
+    padding: 9px;
+    margin: 6px;
+    width: 100%;
+    box-shadow: 2px 2px 4px black;
+    border-radius: 5px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
     
-    .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #ccf4f6;
-      }
-  
-      /* Style the buttons inside the tab */
-      .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-        font-size: 17px;
-      }
-  
-      /* Change background color of buttons on hover */
-      /* .tab button:hover {
-        background-color: white;
-      } */
-  
-      /* Create an active/current tablink class */
-      .tab button.active {
-        background-color: #343a40;
-        color: white;
-      }
-  
-      /* Style the tab content */
-      .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-      }
-      .text-bg-dark{
-        max-height: 400px;
-        /* width: 500px; */
-        overflow: hidden;
-      }
-      .text-bg-dark img{
-        height: 100%;
-      }
-      .card-img-overlay{
-        left: 1rem;
-      }
-      /* .card-img-overlay:hover .card-img{
-        transform: scale(1.1);
-      } */
-      .tabcontent h5, .tabcontent p{
-        color: #12a8ae;
-      }
-      .scheme_ul{
-        list-style: none;
-        margin: 0px;
-        padding: 0px;
-      }
-      .scheme_li {
-        padding: 9px;
-        margin: 6px;
-        width: 100%;
-        box-shadow: 2px 2px 4px black;
-        border-radius: 5px;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        /* background-color: rgb(180, 180, 180); */
-        /* border: 1px solid black; */
-      }
-      .scheme_li i{
-        padding: 5px;
-        margin: 5px;
-      }
+  }
+  .scheme_li i {
+    padding: 5px;
+    margin: 5px;
+  }
 </style>
 <main>
-    <div class="header">
-        <h1><span class="translate">Doctor Profile</span></h1>
-    </div>
+  <div class="header">
+    <h1><span class="translate">Doctor Profile</span></h1>
+  </div>
 
-    {% for i in doctor %}
-    <title>
-        Dr. {{i.first_name}}{{i.last_name}}
-    </title>
-    <div class="card">
-        <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo">
-        <div>
-            {% comment %} {{i.username}} {% endcomment %}
-            <h1><span class="translate">Dr. {{i.first_name}}{{i.last_name}}</span></h1>
-            <p><span class="translate">Education: {{i.doctors.get.education}}</span></p>
-            <p><span class="translate">Specialization: {{i.doctors.get.specialization}}</span></p>
-            <p><span class="translate">Experience: {{i.doctors.get.experience}}</span></p>
-            <p><span class="translate">Location: {{i.doctors.get.address}}</span></p>
-            <p><span class="translate">OPD Fees : {{i.doctors.get.opdFees}}</span></p>
-            {% comment %} <p>Contact: <a href="tel:{{i.doctors.get.contact_no}}">{{i.doctors.get.contact_no}}</a></p> {% endcomment %}
-            {% comment %} <a class="button" href="/appointmentbooking/{{i.id}}">Book Appointment</a> {% endcomment %}
-            {% comment %} <a class="button" href="/bookAppointment/{{i.id}}">Book Appointment</a> {% endcomment %}
-            <a class="button" href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} "><span class="translate">Go to map </span></a>
-            <a class="button" href="tel:{{i.doctors.get.contact_no}}"><span class="translate">Contact Hospital</span></a>
-            {% comment %} <a class="button" href="#">OPD fees</a> {% endcomment %}
-        </div>
+  {% for i in doctor %}
+  <title>Dr. {{i.first_name}}{{i.last_name}}</title>
+  <div class="card">
+    <img src="{{i.doctors.get.profile_picture.url}}" alt="Doctor's Photo" />
+    <div>
+      <h1>
+        <span class="translate">Dr. {{i.first_name}}{{i.last_name}}</span>
+      </h1>
+      <p>
+        <span class="translate">Education: {{i.doctors.get.education}}</span>
+      </p>
+      <p>
+        <span class="translate"
+          >Specialization: {{i.doctors.get.specialization}}</span
+        >
+      </p>
+      <p>
+        <span class="translate">Experience: {{i.doctors.get.experience}}</span>
+      </p>
+      <p><span class="translate">Location: {{i.doctors.get.address}}</span></p>
+      <p><span class="translate">OPD Fees : {{i.doctors.get.opdFees}}</span></p>
+      <a
+        class="button"
+        href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} "
+        ><span class="translate">Go to map </span></a
+      >
+      <a class="button" href="tel:{{i.doctors.get.contact_no}}"
+        ><span class="translate">Contact Hospital</span></a
+      >
     </div>
-    <div class="info_card">
-        {% include "bookAppointment.html" %}
-    </div>
-    <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Hospital</span></h3>
-        {% include "drprofile_slider.html" %}
-    </div>
-    {% if scheme_data %}
-    <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Schemes </span></h3>
-        <ul class="scheme_ul">
-        {% for i in scheme_data %}
-                <li class="scheme_li" ><i class="fa-solid fa-check" style="color: green;"></i>{{i.name}}</li>
-        {% endfor %}
+  </div>
+  <div class="info_card">{% include "bookAppointment.html" %}</div>
+  <div class="info_card">
+    <h3 class="card_title">
+      <i class="fa-solid fa-hospital"></i
+      ><span class="translate"> Hospital</span>
+    </h3>
+    {% include "drprofile_slider.html" %}
+  </div>
+  {% if scheme_data %}
+  <div class="info_card">
+    <h3 class="card_title">
+      <i class="fa-solid fa-hospital"></i
+      ><span class="translate"> Schemes </span>
+    </h3>
+    <ul class="scheme_ul">
+      {% for i in scheme_data %}
+      <li class="scheme_li">
+        <i class="fa-solid fa-check" style="color: green"></i>{{i.name}}
+      </li>
+      {% endfor %}
     </ul>
-    </div>
-    {% endif %}
-    {% if insuranace_data %}
-    <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-hospital"></i><span class="translate"> Health Insurance </span></h3>
-        <ul class="scheme_ul">
-        {% for i in insuranace_data %}
-                <li class="scheme_li" ><i class="fa-solid fa-check" style="color: green;"></i>{{i.name}}</li>
-        {% endfor %}
+  </div>
+  {% endif %} {% if insuranace_data %}
+  <div class="info_card">
+    <h3 class="card_title">
+      <i class="fa-solid fa-hospital"></i
+      ><span class="translate"> Health Insurance </span>
+    </h3>
+    <ul class="scheme_ul">
+      {% for i in insuranace_data %}
+      <li class="scheme_li">
+        <i class="fa-solid fa-check" style="color: green"></i>{{i.name}}
+      </li>
+      {% endfor %}
     </ul>
-    </div>
-    {% endif %}
-    <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i><span class="translate"> Other Services</span></h3>
-        {% include "tab.html" %}
-        {% comment %} <h3 class="card_title"><i class="fa-solid fa-bed-pulse"></i> Health Insurance</h3>
-        <span>
-            <h5>Title</h5>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
-        </span> {% endcomment %}
-    </div>
-    {% include "feedbackform.html" %}
-    {% comment %} <div class="info_card">
-        <h3 class="card_title"><i class="fa-solid fa-handshake-angle"></i> Goverment Scheme</h3>
-        <span>
-            <h5>Title <button type="submit" class="button1">Click here!</button></h5>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla hic fugiat aut consequuntur qui quod esse distinctio, quas culpa natus.</p>
-        </span>
-    </div> {% endcomment %}
-        {% endfor %}
-
-
-
-    {% include "footer.html" %}
+  </div>
+  {% endif %}
+  <div class="info_card">
+    <h3 class="card_title">
+      <i class="fa-solid fa-bed-pulse"></i
+      ><span class="translate"> Other Services</span>
+    </h3>
+    {% include "tab.html" %}
+  </div>
+  {% include "feedbackform.html" %} {% endfor %} {% include "footer.html" %}
 </main>
