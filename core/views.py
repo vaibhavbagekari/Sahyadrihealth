@@ -524,7 +524,7 @@ def divide_time_slots(start_time, end_time, slot_duration):
         current_slot_start = current_slot_end
     return slots
 
-def divide_time_slots_current_date(start_time, end_time, slot_duration,threshold_time):
+def divide_time_slots_current_date(start_time, end_time, slot_duration,threshold_time,d):
     slots = {}
     start_time_str = start_time.strftime("%H:%M")
     end_time_str = end_time.strftime("%H:%M")
@@ -538,15 +538,16 @@ def divide_time_slots_current_date(start_time, end_time, slot_duration,threshold
         
         if current_slot_end > end:
             current_slot_end = end
-        
-        if current_slot_end.time()>threshold_time:
+        # print("date :",d,"cuuent end time:",current_slot_end.time(),"  ","threshold time ",threshold_time ," status : ",current_slot_end.time()>threshold_time)
+
+       
+        if (current_slot_end.time()>threshold_time):
             slots[current_slot_start.strftime("%H:%M") + "-" + current_slot_end.strftime("%H:%M")] = {
                 "start": current_slot_start.strftime("%H:%M"),
                 "end": current_slot_end.strftime("%H:%M")
             }
         
         current_slot_start = current_slot_end
-    print(slots)
     return slots
 
 from datetime import datetime, time as dt_time, timedelta
@@ -569,17 +570,15 @@ def getSlots(id,day,d):
     dummy_date = datetime(1900, 1, 1)  # You can use any date here, it won't matter for time calculation
     combined_datetime = datetime.combine(dummy_date, datetime_time_obj)
     threshold_time=(combined_datetime+timedelta(hours=2)).time()
-
     if current_date==d.date():
         for i in ls:
             if m[day][i.lower()]:
                 h=Availability.objects.filter(doctor=dr,session=i)
-                if h[0].end_time > threshold_time:
-                    j={
-                        "session":i,
-                        "slots":divide_time_slots_current_date(h[0].start_time,h[0].end_time,slot_duration,threshold_time)
-                    }
-                    jn.append(j)
+                j={
+                    "session":i,
+                    "slots":divide_time_slots_current_date(h[0].start_time,h[0].end_time,slot_duration,threshold_time,d)
+                }
+                jn.append(j)
     else:
         for i in ls:
             if m[day][i.lower()]:
