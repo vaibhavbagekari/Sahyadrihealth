@@ -1,6 +1,5 @@
 from operator import ne
 from os import name
-from pydoc import render_doc
 from urllib import request
 from django.views.decorators.csrf import ensure_csrf_cookie,csrf_protect
 from django.shortcuts import redirect, render
@@ -10,7 +9,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-# from .utils import translate_text
 from django.views.decorators.http import require_GET
 from datetime import timedelta
 import time
@@ -22,10 +20,6 @@ from django.views.decorators.http import require_POST
 from django.core.mail import send_mail
 import datetime
 from .utils import send_email_to_client,send_email_to_dr
-from .utils import drAccountOpeningEmail
-from django.conf import settings
-from django import forms
-from .utils import SMS_notification,SMS_notification_to_Dr
 from datetime import time as dt_time
 
 def creatPatient(request):
@@ -135,7 +129,6 @@ def check_form(request):
             return signin(request)
 
 def delete_patient(request,id):
-    print(id)
     querySet = Patient.objects.get(id=id)
     querySet.delete()
     return redirect('/demo/')
@@ -277,8 +270,6 @@ def goverment_scheme(request):
         count=len(data)
         ad=request.GET.get('location')
         
-        for i in GS:
-            print(i.title)
         if not data.exists():
            m="doctor not found"
            return render(request,"goverment_scheme.html",{'data':data,'m':m,'GS':GS})
@@ -287,7 +278,6 @@ def goverment_scheme(request):
     else:
         return render(request,"goverment_scheme.html",{'GS':GS})
     
-
 def search_ambulance(request):
     if request.GET.get('locationOfAmbulance'):
         l=request.GET.get('locationOfAmbulance')
@@ -350,7 +340,6 @@ def drSigUp(request):
             catagory = data.get('categorySelect')
             
             obj = User.objects.filter(username=username)
-            print(profile_picture)
             if obj.exists():
                 msg="username is allredy exist"
                 messages.add_message(request, messages.INFO, msg)
@@ -365,7 +354,6 @@ def drSigUp(request):
                 main_user.set_password(password)
                 main_user.save()
                 doctor = Doctor.objects.create(
-                    
                     user=main_user,
                     # age=age,
                     profile_picture=profile_picture,
@@ -377,12 +365,8 @@ def drSigUp(request):
                     specialization=specialization,
                     category=catagory
                 )
-                
-            
                 doctor.save()
                 drData={'email':main_user.email,'name':main_user.first_name+" "+main_user.last_name,'username':username,'email':email}
-                print(main_user.email,main_user.first_name,main_user.last_name)
-                drAccountOpeningEmail(drData)
                 msg="Account created Successfuly"
                 messages.add_message(request, messages.INFO, msg)
                 return render(request,"drsignin.html")
@@ -428,11 +412,7 @@ def save_events(request,id):
 
      if request.method == 'POST':
             data = json.loads(request.POST.get('events', '[]'))
-            print(data)
-            # Clear existing events in the database (if needed)
             dr = Doctor.objects.get(id=id)
-            # dr.events.all().delete()
-            # Save new events to the database
             for event_data in data:
                 event = dr.events.create(
                     user=dr,
@@ -456,28 +436,11 @@ def delete_events(request,id):
             dr = Doctor.objects.get(id=id)
             k=dr.events.filter(start_time=data['start'])
             k.delete()
-            print(k)
-            # Clear existing events in the database (if needed)
-            # dr = Doctor.objects.get(id=id)
-            # dr.events.all().delete()
-            # # Save new events to the database
-            # for event_data in data:
-            #     event = dr.events.create(
-            #         user=dr,
-            #         title=event_data.get('title', ''),
-            #         start_time=event_data.get('start'),
-            #         end_time=event_data.get('end'),
-            #         color=event_data.get('backgroundColor', '#2ecc71')
-            #     )
-           
-            # event.save()
             
             return JsonResponse({'status': 'success'})
     except json.JSONDecodeError as e:
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
-
-
 @login_required(login_url='/patient_signin')
 def appointmentbooking(request,id):
     doctor=User.objects.filter(id=id)
@@ -514,7 +477,6 @@ def update_events(request,id):
            
             us = User.objects.get(username=data['patient_booked'])
             p=NewUser.objects.get(user = us.username)
-            print(us)
             send_email_to_client(k,dr,p)
             k.save()
             return JsonResponse({'status': 'success'})
@@ -553,6 +515,7 @@ def divide_time_slots(start_time, end_time, slot_duration):
         if current_slot_end > end:
             current_slot_end = end
         
+
         slots[current_slot_start.strftime("%H:%M") + "-" + current_slot_end.strftime("%H:%M")] = {
             "start": current_slot_start.strftime("%H:%M"),
             "end": current_slot_end.strftime("%H:%M")
@@ -560,6 +523,32 @@ def divide_time_slots(start_time, end_time, slot_duration):
         
         current_slot_start = current_slot_end
     return slots
+
+def divide_time_slots_current_date(start_time, end_time, slot_duration,threshold_time):
+    slots = {}
+    start_time_str = start_time.strftime("%H:%M")
+    end_time_str = end_time.strftime("%H:%M")
+    # Convert string times to datetime objects
+    start = datetime.strptime(start_time_str, "%H:%M")
+    end = datetime.strptime(end_time_str, "%H:%M")
+    
+    current_slot_start = start
+    while current_slot_start < end:
+        current_slot_end = current_slot_start + timedelta(minutes=slot_duration)
+        
+        if current_slot_end > end:
+            current_slot_end = end
+        
+        if current_slot_end.time()>threshold_time:
+            slots[current_slot_start.strftime("%H:%M") + "-" + current_slot_end.strftime("%H:%M")] = {
+                "start": current_slot_start.strftime("%H:%M"),
+                "end": current_slot_end.strftime("%H:%M")
+            }
+        
+        current_slot_start = current_slot_end
+    print(slots)
+    return slots
+
 from datetime import datetime, time as dt_time, timedelta
 from datetime import date
 def getSlots(id,day,d):
@@ -572,11 +561,9 @@ def getSlots(id,day,d):
     current_date = date.today()
     current_time_seconds = time.time()
     current_time_struct = time.localtime(current_time_seconds)
-    
     hour = current_time_struct.tm_hour
     minute = current_time_struct.tm_min
     second = current_time_struct.tm_sec
-
     # Create a datetime.time object
     datetime_time_obj = dt_time(hour, minute, second)
     dummy_date = datetime(1900, 1, 1)  # You can use any date here, it won't matter for time calculation
@@ -590,7 +577,7 @@ def getSlots(id,day,d):
                 if h[0].end_time > threshold_time:
                     j={
                         "session":i,
-                        "slots":divide_time_slots(h[0].start_time,h[0].end_time,slot_duration)
+                        "slots":divide_time_slots_current_date(h[0].start_time,h[0].end_time,slot_duration,threshold_time)
                     }
                     jn.append(j)
     else:
@@ -604,8 +591,6 @@ def getSlots(id,day,d):
                 jn.append(j)
     return jn
 
-
-
 def convert_time_format(time_string):
     date, time_range = time_string.split(' ')
     start_time, end_time = time_range.split('-')
@@ -618,7 +603,6 @@ def findslots(request,id):
     try:
         if request.method == 'POST':
             date = json.loads(request.POST.get('date', '[]'))
-            print(date)
             ls=list(date.values())
             date_list = daterange(ls[0].split('T')[0], ls[1].split('T')[0])
             jn=[]
@@ -652,7 +636,6 @@ def bookAppoinment(request):
             dr = User.objects.get(id=id)
             d=Doctor.objects.get(user = dr.username)
             date=ls[1]
-            print(ls[1])
             stime=ls[2]
             etime=ls[3]
             patient_name=ls[4]
@@ -675,8 +658,6 @@ def bookAppoinment(request):
             send_email_to_dr(drData,patientData,slotData)
             no="+91"+contact_no
             dr_no = "+91"+str(d.contact_no)
-            # SMS_notification(no,patientData,drData,slotData)
-            # SMS_notification_to_Dr(dr_no,patientData,drData,slotData)
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
@@ -684,7 +665,6 @@ def bookAppoinment(request):
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
 @csrf_exempt
-
 def SearchAmbulance(request):
     try:
         if request.method == 'POST':
@@ -700,7 +680,6 @@ def SearchAmbulance(request):
                     'location':i.location
                 }
                 ls.append(j)
-                print(ls)
             return JsonResponse({'status': 'success', 'amblance_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
@@ -722,8 +701,6 @@ def SearchBloodStorage(request):
                     'location':i.location
                 }
                 ls.append(j)
-
-            
             return JsonResponse({'status': 'success', 'bloodstorage_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
@@ -761,8 +738,6 @@ def search_lab(request):
                     'Degree':i.Degree
                 }
                 ls.append(j)
-
-
             return JsonResponse({'status': 'success', 'lab': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     except json.JSONDecodeError as e: 
@@ -792,27 +767,9 @@ def SearchhealthEquipment(request):
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     
-
-
 def developer_team(request):
     return render(request,"developer_team.html")
 
 def govenment_hospitals(request):
     h = gov_hopital.objects.all()
     return render(request,"govenment_hospitals.html",{"h":h})
-
-
-
-# @require_GET
-# def translate_view(request):
-#     text = request.GET.get('text')
-#     target_language = request.GET.get('target_language', 'mr')
-    
-#     if not text:
-#         return JsonResponse({'error': 'No text to translate'}, status=400)
-    
-#     try:
-#         translated_text = translate_text(text, target_language)
-#         return JsonResponse({'translatedText': translated_text})
-#     except Exception as e:
-#         return JsonResponse({'error': str(e)}, status=500)
