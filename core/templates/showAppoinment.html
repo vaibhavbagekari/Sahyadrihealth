@@ -49,7 +49,7 @@
     }
 
     .slotbtn {
-        padding: 10px;
+        padding: 5px;
         margin: 5px;
     }
 
@@ -120,51 +120,39 @@
                 };
                 tabsContainer.appendChild(tab);
 
-                // const tabContent = document.createElement('div');
-                // // const tabContent = document.createElement('tab_cantainer');
-                // tabContent.id = `tab-${index}`;
-                // tabContent.className = 'tab-content';
-                // tabContent.innerHTML = formatSlots(appointment.slots);
-                // tabsContainer.appendChild(tabContent);
             });
 
             function opnTab(appointment) {
                 const tabContent = document.getElementById('tab_cantainer');
-                // tabContent.id = `tab-${index}`;
-                // tabContent.className = 'tab-content';
-                // console.log(appointment.slots)
                 tabContent.innerHTML = formatSlots(appointment, bookedAppointments);
-                // tabsContainer.appendChild(tabContent);
             }
             // Function to open tabs
             function openTab(event, tabName) {
                 var i, tabContent;
 
-                // Hide all tab contents
                 tabContent = document.getElementsByClassName("tab-content");
                 for (i = 0; i < tabContent.length; i++) {
                     tabContent[i].style.display = "none";
                 }
 
-                // Show the clicked tab content
                 document.getElementById(tabName).style.display = "block";
             }
 
-            // Helper function to format slots
-            // function formatSlots(appointment) {
-            //     if (appointment.slots.length === 0) {
-            //         return 'No slots available';
-            //     } else {
-            //         let slotsString = '';
-            //         appointment.slots.forEach(slot => {
-            //             slotsString += `<br><strong>${slot.session}</strong><br>`;
-            //             for (const timeSlot in slot.slots) {
-            //                 slotsString += `<button class="slotbtn" onclick="bookslot('${appointment.date}','${timeSlot}')">${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
-            //             }
-            //         });
-            //         return slotsString;
-            //     }
-            // }
+            function convertToSystemTimeFormat(time24) {
+                let [hours, minutes] = time24.split(':').map(Number);
+            
+                // Create a Date object with today's date but the given 24-hour time
+                const currentDate = new Date();
+                currentDate.setHours(hours);
+                currentDate.setMinutes(minutes);
+                currentDate.setSeconds(0);
+            
+                // Automatically formats time according to the system preference (12-hour or 24-hour)
+                const systemFormattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+                return systemFormattedTime;
+            }
+
             function formatSlots(appointment, bookedAppointments) {
                 bookedAppointments = bookedAppointments || [];
                 console.log(bookedAppointments);
@@ -175,13 +163,12 @@
 
                     appointment.slots.forEach(slot => {
                         slotsString += `<br><strong>${slot.session}</strong><br>`;
-
                         for (const timeSlot in slot.slots) {
                             const slotIdentifier = `${appointment.date} ${timeSlot}`;
                             const isBooked = bookedAppointments.includes(slotIdentifier);
                             console.log(isBooked)
                             const buttonClass = isBooked ? 'slotbtn booked' : 'slotbtn available';
-                            slotsString += `<button class="${buttonClass}" onclick="bookslot('${appointment.date}','${timeSlot}')" ${isBooked ? 'disabled' : ''}>${timeSlot.split("-")[0]}</button>&nbsp;&nbsp;`;
+                            slotsString += `<button class="${buttonClass}" onclick="bookslot('${appointment.date}','${timeSlot}')" ${isBooked ? 'disabled' : ''}>${convertToSystemTimeFormat(timeSlot.split("-")[0])}</button>&nbsp;&nbsp;`;
                         }
                     });
 

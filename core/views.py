@@ -569,7 +569,7 @@ def getSlots(id,day,d):
     datetime_time_obj = dt_time(hour, minute, second)
     dummy_date = datetime(1900, 1, 1)  # You can use any date here, it won't matter for time calculation
     combined_datetime = datetime.combine(dummy_date, datetime_time_obj)
-    threshold_time=(combined_datetime+timedelta(hours=2)).time()
+    threshold_time=(combined_datetime+timedelta(hours=7)).time()
     if current_date==d.date():
         for i in ls:
             if m[day][i.lower()]:
