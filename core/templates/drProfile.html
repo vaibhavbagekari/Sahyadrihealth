@@ -280,7 +280,6 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-weight: 600;
-    
   }
   .scheme_li i {
     padding: 5px;
@@ -313,13 +312,11 @@
       </p>
       <p><span class="translate">Location: {{i.doctors.get.address}}</span></p>
       <p><span class="translate">OPD Fees : {{i.doctors.get.opdFees}}</span></p>
-      <a
-        class="button"
-        href="{% if i.doctors.get.mapLink %}{{i.doctors.get.mapLink}} {% else %} # {% endif %} "
-        ><span class="translate">Go to map </span></a
-      >
-      <a class="button" href="tel:{{i.doctors.get.contact_no}}"
-        ><span class="translate">Contact Hospital</span></a
+      <div style="color:green;" href="#">
+        <span class="translate"> 24/7 Support </span>
+      </div>
+      <a class="button" href="tel:9156429156"
+        ><span class="translate">Contact Support</span></a
       >
     </div>
   </div>
