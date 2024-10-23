@@ -182,3 +182,13 @@ class gov_hospitals(admin.ModelAdmin):
         "Doctor_name",
         "Contact"
     )
+@admin.register(MedicalStore)
+class MedicalStoreAdmin(admin.ModelAdmin):
+    list_display=(
+        'name',
+        'name_owner',
+        'hospital_name',
+        'about_service',
+        'contact',
+        'location'
+    )

@@ -318,6 +318,9 @@ def blood_storage(request):
 def demo(request):
     return render(request,"demo.html")
 
+def medicalStore(request):
+    return render(request,"medicalStore.html")
+
 @ensure_csrf_cookie
 @csrf_protect 
 def drSigUp(request):
@@ -702,6 +705,24 @@ def SearchBloodStorage(request):
                 ls.append(j)
             return JsonResponse({'status': 'success', 'bloodstorage_list': ls})
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    except json.JSONDecodeError as e: 
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
+    
+def SearchMedicalStores(request):
+    try:
+        data = json.loads(request.GET.get('data', '[]'))
+        medicalStore = MedicalStore.objects.filter(location__icontains=data)
+        ls=[]
+        for i in medicalStore:
+            j={
+                'name':i.name,
+                'name_owner':i.name_owner,
+                'about_service':i.about_service,
+                'contact':i.contact,
+                'location':i.location
+            }
+            ls.append(j)
+        return JsonResponse({'status': 'success', 'MedicalStorage_list': ls})
     except json.JSONDecodeError as e: 
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})
     

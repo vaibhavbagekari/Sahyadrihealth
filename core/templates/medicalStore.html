@@ -1,6 +1,6 @@
 {% load static %}
 {% include "header.html" %}
-<title>Blood Storage Center Search</title>
+<title>Medical Storage Search</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -136,14 +136,13 @@
 <main>
   <div class="gradient-container">
     <div class="content">
-      <h1><span class="translate">Blood Storage Center</span></h1>
-      <p><span class="translate">Your content goes here.</span></p>
+      <h1><span class="translate">Medical Store</span></h1>
     </div>
   </div>
 
   <div class="main_sdiv">
     <div class="search-container">
-      <h2><span class="translate">Blood Bank/Storage Center Search</span></h2>
+      <h2><span class="translate">Medical Store Search</span></h2>
       
         <div class="input-group">
           <input type="text"  placeholder="location" id="locationInput1">
@@ -165,16 +164,16 @@
         var info = document.getElementById('locationInput1').value;
         $.ajax(
           {
-            url: '/SearchBloodStorage/',
-          method: 'POST',
+            url: '/SearchMedicalStores/',
+          method: 'GET',
           data: { data: JSON.stringify(info) },
           success: function (response) {
-            var message="No Blood Storage are available at this location. Please try a different location.";
-              check(response["bloodstorage_list"],message);
-            setData(response["bloodstorage_list"]);
+            console.log(response)
+            var message="No Medical Store are available at this location. Please try a different location.";
+              check(response["MedicalStorage_list"],message);
+            setData(response["MedicalStorage_list"]);
           },
           error: function (error) {
-            console.error(error);
             alert('Error saving events!');
           }
         }

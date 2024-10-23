@@ -127,6 +127,14 @@ class BloodStorage(models.Model):
     contact = models.IntegerField(null=True,blank=True)
     location = models.CharField(max_length=500,null=True,blank=True)
 
+class MedicalStore(models.Model):
+    name=models.CharField(max_length=500,null=True,blank=True)
+    name_owner=models.CharField(max_length=150,null=True,blank=True)
+    hospital_name = models.CharField(max_length=200, null=True, blank=True)
+    about_service=models.CharField(null=True, max_length=900,blank=True)
+    contact = models.IntegerField(null=True,blank=True)
+    location = models.CharField(max_length=500,null=True,blank=True)
+
 class BloodStorageImage(models.Model):
     image = models.ForeignKey(BloodStorage,to_field='id',related_name='image',on_delete=models.CASCADE)
     mainimage = models.ImageField(upload_to='bloodStorage/', null = True,blank=True)

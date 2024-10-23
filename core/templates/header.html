@@ -1669,6 +1669,7 @@
                 class="fa-solid fa-user-doctor"></i><span class="translate">Find doctor near you</span>
         </a>
 
+        <a href="{% url 'medicalStore' %}" class="{% if request.path == '/medicalStore/' %} active {% endif %}"><i class="fa-solid fa-house-medical-circle-check"></i><span class="translate">Medical Store</span></a>
         <a href="{% url 'goverment_scheme' %}"
             class="{% if request.path == '/goverment_scheme/' %} active {% endif %}"><i
                 class="fa-solid fa-indian-rupee-sign"></i><span class="translate">Goverment scheme</span></a>
