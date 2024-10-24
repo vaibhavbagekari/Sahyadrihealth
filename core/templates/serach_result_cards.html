@@ -1,4 +1,3 @@
-
 <style>
     .card {
         border: 1px solid #ccc;
@@ -29,11 +28,8 @@
         width: max-content;
     }
 </style>
-
 <div id="cardList">
-    <!-- Card items will be added dynamically using JavaScript -->
 </div>
-
 <script>
     
     let data
@@ -42,24 +38,6 @@
         console.log(data);
         populateCardList();
     }
-    // var data = [
-    //     {
-    //         name: "xyz",
-    //         name_owner: "vaibhav",
-    //         contact: "1234567890",
-    //         location: "Bagekari ali road",
-    //         about_service: "abc"
-    //     },
-    //     {
-    //         name: "Vaibhav Sanjay Bagekari",
-    //         name_owner: "vaibhav",
-    //         contact: "123456789",
-    //         location: "Bagekari ali road",
-    //         about_service: "abc"
-    //     }
-    // ];
-
-    // Function to create card HTML
     function createCard(item) {
         var cardHTML = `
             <div class="card">
@@ -69,7 +47,7 @@
                 <p><strong>Contact:</strong> ${item.contact}</p>
                 <p><strong>Location:</strong> ${item.location}</p>
                 <p><strong>About Service:</strong> ${item.about_service}</p>
-                
+                ${item.hospital_name ? `<p><strong>Attachd by hospital name:</strong> ${item.hospital_name}</p>` : ""}
                 <a class="button" href="tel:${item.contact}">Contact</a>
                 
             </div>
@@ -78,21 +56,14 @@
         return cardHTML;
     }
 
-    // Function to populate card list
     function populateCardList() {
         var cardList = document.getElementById("cardList");
-        
-        // Clear previous content
         cardList.innerHTML = "";
-
-        // Loop through data and create cards
         data.forEach(function(item) {
             var cardHTML = createCard(item);
             cardList.innerHTML += cardHTML;
         });
     }
 
-    // Call populateCardList function to generate card list
-    
 </script>
   

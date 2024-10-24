@@ -1397,7 +1397,6 @@
             display: none;
             color: black;
             z-index: 1;
-            min-height: max-content;
             max-height: 60vh;
             overflow-y: scroll;
         }
@@ -1405,6 +1404,7 @@
         .suggestion {
             padding: 10px;
             cursor: pointer;
+            max-height: 200px;
         }
 
         .suggestion:hover {
@@ -1801,9 +1801,6 @@
         let noButton1 = document.getElementById("no");
         document.addEventListener("DOMContentLoaded", function () {
             noButton1.addEventListener("click", function () {
-                // event.preventDefault();
-
-
                 b.classList.toggle('display_block');
                 if (msg.style.display = "flex") {
                     msg.style.display = "none"
@@ -1814,10 +1811,7 @@
             });
         });
 
-
-        //js for redirecting to dashboard when click on profilepic
         document.querySelector('.patient_img').addEventListener('click', function () {
-
             var anchorTag = document.createElement('a');
             anchorTag.href = "{% url 'drDashbord' %}";
             anchorTag.textContent = 'Dashboard';
@@ -1826,14 +1820,11 @@
 
     </script>
     <script>
-        {% comment %} Mock suggestions data for locations and categories {% endcomment %}
         const locationSuggestionsData = [
             { en: "Baramati", mr: "बारामती" },
             { en: "Indapur", mr: "इंदापूर" },
             { en: "Phaltan", mr: "फलटण" },
             { en: "Akluj", mr: "अकलूज" },
-            { en: "Natepute", mr: "नातेपुते" },
-            { en: "Bhigwan", mr: "भिगवण" }
         ];
 
         const categorySuggestionsData = [
@@ -1849,7 +1840,6 @@
             { en: "Skin specialist", mr: "त्वचा तज्ञ" },
             { en: "Eye specialist", mr: "नेत्रतज्ञ" },
             { en: "ENT Specialist", mr: "कान नाक घसा तज्ञ" },
-            { en: "Ayurveda", mr: "आयुर्वेदा" },
             { en: "Physiotherapist", mr: "फिजिओथेरपिस्ट" },
             { en: "BAMS", mr: "आयुर्वेदिक तज्ञ" },
             { en: "Homeopathic Specialist", mr: "होमिओपॅथिक तज्ञ" },
@@ -1860,7 +1850,6 @@
         const location_suggestions = document.getElementById('location_suggestions');
         const category_suggestions = document.getElementById('category_suggestions');
 
-        // Function to add event listeners
         function addEventListeners(inputElement, suggestionsElement, suggestionsData) {
             inputElement.addEventListener('input', function () {
                 const query = this.value.trim();
@@ -1872,19 +1861,17 @@
             });
         }
 
-        // Function to handle suggestions display based on input
         function handleSuggestions(query, suggestionsData, suggestionsElement, inputElement) {
             const filteredSuggestions = query
                 ? suggestionsData.filter(item =>
                     item.en.toLowerCase().includes(query.toLowerCase()) ||
                     item.mr.toLowerCase().includes(query.toLowerCase())
                 )
-                : suggestionsData;  // If no query, show all suggestions
+                : suggestionsData; 
 
             renderSuggestions(filteredSuggestions, suggestionsElement, inputElement);
         }
 
-        // Hide suggestions when clicking outside
         document.addEventListener('click', function (event) {
             if (!location_searchInput.contains(event.target) && !location_suggestions.contains(event.target)) {
                 location_suggestions.style.display = 'none';
@@ -1894,7 +1881,6 @@
             }
         });
 
-        // Prevent document click from hiding suggestions when clicking on input or suggestions
         function preventClickPropagation(inputElement, suggestionsElement) {
             inputElement.addEventListener('click', function (event) {
                 event.stopPropagation();
@@ -1904,15 +1890,12 @@
             });
         }
 
-        // Adding event listeners for locations and categories
         addEventListeners(location_searchInput, location_suggestions, locationSuggestionsData);
         addEventListeners(category_searchInput, category_suggestions, categorySuggestionsData);
 
-        // Prevent click propagation on input fields and suggestions
         preventClickPropagation(location_searchInput, location_suggestions);
         preventClickPropagation(category_searchInput, category_suggestions);
 
-        // Function to render suggestions
         function renderSuggestions(suggestionsArray, suggestionsElement, inputElement) {
             if (suggestionsArray.length === 0) {
                 suggestionsElement.style.display = 'none';

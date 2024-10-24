@@ -182,12 +182,12 @@
       {% comment %} <h1>Doctor Information</h1> {% endcomment %}
 
       <!-- Select Input -->
-      <label for="locationSelect">Select Location:</label>
+      {% comment %} <label for="locationSelect">Select Location:</label>
       <select id="locationSelect" onchange="updateTable()">
           <option value="location1" selected>Location 1</option>
           <option value="location2">Location 2</option>
           <option value="location3">Location 3</option>
-      </select>
+      </select> {% endcomment %}
 
       <!-- Table of Attributes -->
       <table id="doctorTable">
@@ -213,7 +213,6 @@
           </tbody>
       </table>
   </div>
-</main>
 {% comment %} 
   <script>
       const data = {
@@ -270,12 +269,9 @@
           updateTable();
       });
   </script> {% endcomment %}
-</body>
-</html>
+
     {% include "footer.html" %}
-
-  </main>
-
+</main>
 </body>
 
 </html>

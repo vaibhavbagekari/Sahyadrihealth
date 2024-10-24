@@ -718,6 +718,7 @@ def SearchMedicalStores(request):
                 'name':i.name,
                 'name_owner':i.name_owner,
                 'about_service':i.about_service,
+                'hospital_name':i.hospital_name,
                 'contact':i.contact,
                 'location':i.location
             }
