@@ -3,9 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-
 <h3 class="card_title"><i class="fa-solid fa-handshake-angle"></i> Book Appointment</h3>
-
 <h6><span class="translate">Maximun waiting time </span><span style="color:red; translate">15-25 minutes<span>.</h6>
 <button class="slotbtn available"><span class="translate">available</span></button>&nbsp;&nbsp;<button class="slotbtn booked"><span class="translate">booked</span></button>
 <br>
@@ -16,7 +14,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     function disableButton() {
-        // Disable the button
         document.getElementById("findslots").disabled = true;
     }
     flatpickr("#dateInput", {
@@ -27,30 +24,21 @@
             function (date) {
                 var today = new Date();
                 var day = today.getDay();
-                // Calculate the start date of the current week (Sunday)
                 const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day);
-                // Calculate the end date of the next week (Saturday)
                 const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 13);
-
-                // Disable dates outside of the current week and next week
                 return !(date >= startDate && date <= endDate);
             }
         ]
     });
-
-
     let globdata;
     $(document).ready(function () {
         $('#findslots').click(function () {
             var today = new Date();
             var day = today.getDay();
-            // Calculate the start date of the current week (Sunday)
             const startDate = new Date();
             const tomorrowDate = new Date(startDate);
             tomorrowDate.setDate(startDate.getDate() );
-            // Calculate the end date of the next week (Saturday)
-            const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 19);
-
+            const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - day + 8);
             var daraRange = {
                 start: tomorrowDate,
                 end: endDate
@@ -63,9 +51,7 @@
                     success: function (response) {
                         globdata = response["context"];
                         bookedAppointments = response["bookedsots"];
-                        console.log(bookedAppointments);
                         handleData(globdata,bookedAppointments);
-                        // alert('Events saved successfully!');
                     },
                     error: function (error) {
                         console.error(error);
@@ -103,10 +89,5 @@
                 }
             )
         });
-
     });
-
-
-
-
 </script>

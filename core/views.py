@@ -572,7 +572,7 @@ def getSlots(id,day,d):
     datetime_time_obj = dt_time(hour, minute, second)
     dummy_date = datetime(1900, 1, 1)  # You can use any date here, it won't matter for time calculation
     combined_datetime = datetime.combine(dummy_date, datetime_time_obj)
-    threshold_time=(combined_datetime+timedelta(hours=8)).time()
+    threshold_time=(combined_datetime+timedelta(hours=7)).time()
     if current_date==d.date():
         for i in ls:
             if m[day][i.lower()]:
@@ -660,6 +660,7 @@ def bookAppoinment(request):
             send_email_to_dr(drData,patientData,slotData)
             no="+91"+contact_no
             dr_no = "+91"+str(d.contact_no)
+            # SMS_notification_to_Dr(no,patientData ,drData, slotData )
             return JsonResponse({'status': 'success'})
         
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'})

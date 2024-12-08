@@ -12,7 +12,7 @@ def send_email_to_client(drData,patientData,slotData):
     subject = "Confirmation of Your Successfully Booked Doctor Appointment"
     # message = strip_tags(html_content)
     from_email = settings.EMAIL_HOST_USER
-    recipient_list = [patientData["email"]]
+    recipient_list = [patientData["email"],"healthempire447@gmail.com"]
     send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)
 
 def send_email_to_dr(drData,patientData,slotData):
@@ -34,7 +34,6 @@ def drAccountOpeningEmail(drData):
 def SMS_notification(to,patientData,drData,slotData):
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
     body = "Dear "+ patientData["name"] +" , your appointment with Dr. "+ drData["name"]+" on "+ slotData["date"] +" at "+ slotData["stime"] +" has been successfully booked. If you need to make any changes, please contact us at 9156 42 9156. Thank you, Health Empire Services."
-            
     try:
         message = client.messages.create(
             body=body,
@@ -48,7 +47,6 @@ def SMS_notification(to,patientData,drData,slotData):
 def SMS_notification_to_Dr(to,patientData,drData,slotData):
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
     body = "Dr. "+drData["name"]+  " , "+patientData["name"] +" has booked an appointment with you on +"+ slotData["date"] +" at "+ slotData["stime"] +". For any additional information, please contact us at 9156 42 9156. Thank you, Health Empire Services."
-            
     try:
         message = client.messages.create(
             body=body,
