@@ -144,11 +144,11 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER='healthempire@healthempire.in'
-EMAIL_HOST_PASSWORD = 'Aniket@213141'
+EMAIL_HOST_USER='info@healthempire.in'
+EMAIL_HOST_PASSWORD = 'Helthempire@info'
 # EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
 # EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
-DEFAULT_FROM_EMAIL = 'healthempire@healthempire.in'
+DEFAULT_FROM_EMAIL = 'info@healthempire.in'
 
 
 #SMS System
