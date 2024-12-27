@@ -15,6 +15,13 @@ def send_email_to_client(drData,patientData,slotData):
     recipient_list = [patientData["email"],"healthempire447@gmail.com"]
     send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)
 
+def send_email_to_admin(drData,patientData,slotData):
+    html_content = render_to_string("adminMail.html",{"drData":drData,"patientData":patientData,"slotData":slotData})
+    subject = "Successfully Booked Doctor Appointment"
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = ["healthempire447@gmail.com","bagekariv@gmail.com"]
+    send_mail(subject,html_content,from_email,recipient_list, html_message=html_content)
+
 def send_email_to_dr(drData,patientData,slotData):
     html_content = render_to_string("email_template_for_dr.html",{"drData":drData,"patientData":patientData,"slotData":slotData})
     subject = "Confirmation of Your Successfully Booked Appointment"

@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.core.mail import send_mail
 import datetime
-from .utils import send_email_to_client,send_email_to_dr
+from .utils import send_email_to_client,send_email_to_dr,send_email_to_admin
 from datetime import time as dt_time
 
 def creatPatient(request):
@@ -652,11 +652,12 @@ def bookAppoinment(request):
                 Patient_contact=contact_no,
                 email=email
             )
-            patientData = {'email':email,'name':patient_name}
+            patientData = {'email':email,'name':patient_name,'contact':contact_no}
             drData={'email':dr.email,'name':dr.first_name+" "+dr.last_name,'hospital_name':d.hospital_name}
             obj.save()
             slotData={'date':date,'stime':stime,'etime':etime,'location':d.address}
             send_email_to_client(drData,patientData,slotData)
+            send_email_to_admin(drData,patientData,slotData)
             send_email_to_dr(drData,patientData,slotData)
             no="+91"+contact_no
             dr_no = "+91"+str(d.contact_no)
