@@ -1619,6 +1619,7 @@
     </header>
 
     {% include "search_result.html" %}
+    {% include "signinbuttons.html" %}
     <nav class="nav_bar" id="nav_bar">
         {% if not request.user.is_authenticated %}
 
@@ -1669,7 +1670,8 @@
                 class="fa-solid fa-user-doctor"></i><span class="translate">Find doctor near you</span>
         </a>
 
-        <a href="{% url 'medicalStore' %}" class="{% if request.path == '/medicalStore/' %} active {% endif %}"><i class="fa-solid fa-house-medical-circle-check"></i><span class="translate">Medical Store</span></a>
+        <a href="{% url 'medicalStore' %}" class="{% if request.path == '/medicalStore/' %} active {% endif %}"><i
+                class="fa-solid fa-house-medical-circle-check"></i><span class="translate">Medical Store</span></a>
         <a href="{% url 'goverment_scheme' %}"
             class="{% if request.path == '/goverment_scheme/' %} active {% endif %}"><i
                 class="fa-solid fa-indian-rupee-sign"></i><span class="translate">Goverment scheme</span></a>
@@ -1772,10 +1774,11 @@
             obj2.classList.toggle('fa-bars');
         }
         var b = document.getElementById('overlay');
-        var a = document.getElementById('form-div');
+        var a = document.getElementById('   -div');
         var c = document.getElementById('form2');
         var e = document.getElementById("nav_bar");
-
+        var f = document.getElementById("signinbuttons-container");
+        
         function form_state() {
             a.classList.toggle('display_block');
             b.classList.toggle('display_block');
@@ -1867,7 +1870,7 @@
                     item.en.toLowerCase().includes(query.toLowerCase()) ||
                     item.mr.toLowerCase().includes(query.toLowerCase())
                 )
-                : suggestionsData; 
+                : suggestionsData;
 
             renderSuggestions(filteredSuggestions, suggestionsElement, inputElement);
         }
@@ -1932,3 +1935,52 @@
         }
 
     </script>
+    <script>
+        /*
+        function setCookie(name, value, minutes) {
+            let expires = "";
+            if (minutes) {
+                const date = new Date();
+                date.setTime(date.getTime() + (minutes * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+    
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    
+        {% if not request.user.is_authenticated %}
+        if (!getCookie('isOpenForm')) {
+            setCookie('isOpenForm', 'true', 1);
+            
+            setTimeout(() => {
+                c.classList.toggle('display_block');
+                b.classList.toggle('display_block');
+            }, 5000);
+        }
+        {% endif %}
+        */
+        
+       {% if not request.user.is_authenticated %}
+    
+        setTimeout(() => {
+            // Access the sign-in button by its ID
+            f.style.display = "flex";
+            b.classList.toggle('display_block');
+        }, 000);
+    
+        
+        {% endif %}
+            
+    </script>
+    </script>
+    

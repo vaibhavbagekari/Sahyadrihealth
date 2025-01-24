@@ -796,3 +796,10 @@ def developer_team(request):
 def govenment_hospitals(request):
     h = gov_hopital.objects.all()
     return render(request,"govenment_hospitals.html",{"h":h})
+
+
+def signinbuttons(request):
+    if request.method == 'POST':
+        return signinbuttons(request)
+    else:
+        return render(request,"signinbuttons.html")

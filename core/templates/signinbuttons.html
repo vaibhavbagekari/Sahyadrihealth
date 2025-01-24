@@ -1,0 +1,178 @@
+
+<style>
+    .signinbuttons-container {
+        z-index: 100000;
+        position: fixed;
+        width: 100vw;
+        top: 0px;
+        left: 0px;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff00;
+        border: 20px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        display: none;
+    }
+
+    .signinbuttons {
+        background-color: #ece9e961;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        margin: auto;
+    }
+
+    .button-group {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100px;
+    }
+
+    .button-group a {
+        text-decoration: none;
+        color: white;
+        background-color: #007BFF; /* Blue background */
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 5px;
+        
+    }
+
+    .button-group a:hover {
+        background-color: #0056b3; 
+       
+    }
+
+    /* Active (pressed) state for buttons */
+    .button-group a:active {
+        background-color: #003d7a; 
+        transform: translateY(2px); 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+    }
+
+    .cancel-button {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-top-right-radius: 10px;
+        width: 70px;
+        height: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .cancel-button:hover {
+        background-color: #d32f2f;
+    }
+
+    .cancel-button:active {
+        background-color: #b71c1c;
+        transform: scale(0.95); /* Slight shrink effect on click */
+    }.signup-container {
+      position: sticky;
+      width: 400px;
+      height: 300px;
+      padding: 20px;
+      background-color: rgba(213, 216, 219, 0.356);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px #00000033;
+      text-align: center;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Active state for signup container */
+    .signup-container.active {
+      background-color: rgba(210, 240, 255, 0.9); /* Lighter, slightly bluish color */
+      transform: scale(1.05); /* Slight zoom-in effect */
+      box-shadow: 0 6px 15px #00000033; /* Enhance shadow for focus */
+    }
+
+    /* Cancel button in the top-right corner */
+    .cancel-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      color: white;
+      background-color: #d01e27;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .cancel-button:hover {
+      background-color: #a81a20;
+    }
+
+    /* Style for the buttons */
+    .button {
+      display:inline-block;
+      text-align: center;
+      width: 200px;
+      max-width: 300px;
+      height: 60px;
+      max-height: 200px;
+      margin: 5px;
+      font-size: 25px;
+      color: rgb(240, 235, 235);
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      /* text-align: center; */
+      transition: background-color 0.3s ease;
+    }
+
+</style>
+<div class="signinbuttons-container" id="signinbuttons-container">
+    <div class="signup-container" id="signupContainer">
+        <!-- Cancel button -->
+        <button class="cancel-button" id="cancelSignup">×</button>
+        
+        <h2 >Choose an Option</h2>
+        <h6>"you are doctor or patient"</h6>
+        <!-- Patient button -->
+        <button class="button" id="patientButton" onclick="alert('Patient button clicked!')">
+          Patient signup
+        </button>
+        <!-- Doctor button -->
+        <button class="button" id="doctorButton" onclick="alert('ram ram')">
+          Doctor signup
+        </button>
+      </div>    
+</div>
+<script>
+     document.getElementById("cancelSignup").addEventListener("click", function () {
+      const signupContainer = document.getElementById("signupContainer");
+      signupContainer.style.display = "none";
+    });
+
+</script>
+  
+   
