@@ -1,0 +1,118 @@
+<style>
+    .popup-card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 50vw;
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        z-index: 5000;
+        display: none;
+    }
+
+    .popup-card h2 {
+        color: #00796b;
+        margin-bottom: 20px;
+    }
+    .cut-button{
+        border-radius: 50%;
+    }
+
+    .popup-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 10px;
+        background-color: #00796b;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .popup-btn:hover {
+        background-color: #004d40;
+    }
+
+    .popup-btn.patient {
+        background-color: #43a047;
+    }
+
+    .popup-btn.patient:hover {
+        background-color: #2e7d32;
+    }
+    .popup-cut-button{
+        font-size: medium;
+        color: red;
+        position: absolute;
+        right: 25px;
+        top:10px;
+    }
+    .popup-title{
+        font-family: 0.3rem;
+    }
+    .inner-div{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        gap: 3rem;
+    }
+    @media (max-width: 750px){
+        .popup-title{
+            font-size: 1rem;
+        }
+        .popup-card{
+            width: 90vw;
+        }
+    }
+</style>
+{% if not request.user.is_authenticated %}
+<div class="popup-card">
+    <div class="popup-cut-button"><i class="fa-solid fa-xmark cut" id="popup-cut-button"></i></div>
+    <h2 class="popup-title">Please select your role to continue</h2>
+    <div class="inner-div">
+        <button class="popup-btn doctor">I am a Doctor</button>
+        <button class="popup-btn patient">I am a Patient</button>
+    </div>
+</div>
+{% endif %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.querySelector('.popup-card');
+    const overlay = document.querySelector('#overlay');
+    const closeButton = document.querySelector('#popup-cut-button');
+    const doctorButton = document.querySelector('.popup-btn.doctor');
+    const patientButton = document.querySelector('.popup-btn.patient');
+
+    const showStatus = JSON.parse(localStorage.getItem('popupShowStatus'));
+    if (!showStatus || showStatus.status === 'true') {
+        setTimeout(() => {
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+            overlay.style.zIndex = '1000';
+        }, 3000);
+    }
+
+    closeButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+        localStorage.setItem('popupShowStatus', JSON.stringify({
+            status: false,
+            expiry: new Date().getTime() + 180000 // 3 minutes from now
+        }));
+    });
+    doctorButton.addEventListener('click', () => {
+        window.location.href = '/drsignin/';
+    });
+    patientButton.addEventListener('click', () => {
+        window.location.href = '/patient_signin/';
+    });
+});
+
+</script>
