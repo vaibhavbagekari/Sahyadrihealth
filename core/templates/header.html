@@ -1499,7 +1499,6 @@
 
     </div>
     <header id="head" style="top: 0px;">
-
         <div class="language">
             <script type="text/javascript">
                 function googleTranslateElementInit() {
@@ -1535,13 +1534,13 @@
                 src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
-            <div class="l3">
+            {% comment %} <div class="l3">
                 <select id="languageSwitcher">
                     <option selected disabled class="translate">Language</option>
                     <option value="en" class="translate">English</option>
                     <option value="mr" class="translate">Marathi</option>
                 </select>
-            </div>
+            </div> {% endcomment %}
             <script>
                 // Set your Google Cloud Translation API key here
 
@@ -1578,7 +1577,7 @@
                 });
             </script>
         </div>
-        <h2 class="titel" style="z-index: -1;"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
+        <h2 class="titel"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
                 class="logoImg"></h2>
 
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>

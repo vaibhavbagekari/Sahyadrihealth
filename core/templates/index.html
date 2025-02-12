@@ -981,102 +981,14 @@ margin-top: 2rem;
       <p class="translate">At our clinic, we take your health and well-being to heart. It’s not just about making you feel good; it’s about ensuring that you are genuinely good..</p>
     </div>
   </div>
-{% comment %} <div id="carouselExampleDark" class="carousel carousel-dark slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="z-index: 0;"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="z-index: 0;"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style="z-index: 0;"></button>
-    </div>
-    <div class="carousel-inner" >
-      <div class="carousel-item active" data-bs-interval="10000">
-        <div class="card-12 text-center scrd">
-            <div class="card-header" >
-              Featured
-            </div>
-            <div class="card-body">
-                <center>
-                    
-                    <h2 class="card-title">Special title treatment</h2>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" style="margin-bottom: 1rem;border-radius: 0;" class="btn btn-primary">Go somewhere</a>
-                </center>
-            </div>
-            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
-              2 days ago
-            </div>
-          </div>
-      </div>
-      <div class="carousel-item" data-bs-interval="2000">
-        <div class="card-12 text-center scrd">
-            <div class="card-header">
-              Featured
-            </div>
-            <div class="card-body">
-                <center>
-                    <h2 class="card-title">Special title treatment</h2>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" style="margin-bottom: 1rem;border-radius: 0" class="btn btn-primary">Go somewhere</a>
-                </center>
-            </div>
-            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
-              2 days ago
-            </div>
-          </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card-12 text-center scrd">
-            <div class="card-header">
-              Featured
-            </div>
-            <div class="card-body">
-                <center>
-                    
-                    <h2 class="card-title">Special title treatment</h2>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" style="margin-bottom: 1rem;border-radius: 0" class="btn btn-primary">Go somewhere</a>
-                </center>
-            </div>
-            <div class="card-footer text-body-secondary" style="margin-bottom: .6rem;">
-              2 days ago
-            </div>
-          </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="z-index: 0;">
-        <img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px; 
-        transform: rotate(180deg);
-        "></button>
-      
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" id="mk1" data-bs-slide="next" style="z-index: 0;">
-        <img src="{% static "icons8-arrow.gif" %}" alt="" style="width: 45px; 
-        "></button>
-    </button>
-  </div> {% endcomment %}
-
-<!--    
-<div class="infocard">
-    
-    <div class="text1">
-        <h3>Recovery from the pandemic</h3>
-    <p class="card-text" >
-        
-        We cannot have an equitable recovery from the pandemic if we leave the most vulnerable in our communities behind. This includes the zero-dose children who have not received a single vaccine shot. We need strong collaboration across agencies and with countries so that we can reach zero dose children, and expand access to families who are missing out on crucial primary health care services.
-
-    </p>
-    <button type="button m-3" class="btn btn-success">success</button>
-</div>
-   <img src="{% static 'drimgc.png' %}" alt="">
-</div>
-  -->
-    {% include "footer.html" %}
+  
+  {% include "footer.html" %}
 </main>
 
-
+{% include "popUpWindow.html" %}
 </body>
 
 </html>
-<!-- <script src="script.js"></script> -->
 <script>
 
     function toggle_layout() {
@@ -1132,12 +1044,10 @@ margin-top: 2rem;
         showSlide(currentSlide + direction);
     }
 
-    // Automatically advance the slider every 3 seconds (3000 milliseconds)
     setInterval(function () {
         changeSlide(1);
     }, 4000);
 
-     // js for animation
     const observer=new IntersectionObserver((entries)=>{
         entries.forEach((entry)=>{
            
@@ -1148,13 +1058,6 @@ margin-top: 2rem;
     });
     const hiddenElement=document.querySelectorAll(".hidden")
 hiddenElement.forEach((el)=>observer.observe(el))
-
-{% comment %} let cross=document.getElementById("cross"); {% endcomment %}
-{% comment %} cross.addEventListener("click",function(){
-    event.preventDefault();
-    let disclaim=document.getElementById("disclaimer");
-    disclaim.style.display="none";
-}) {% endcomment %}
 let crossbtn=document.getElementById("crossbtn");
 
 crossbtn.addEventListener("click",function(){
@@ -1170,101 +1073,3 @@ setTimeout(function(){
 },2000);
 
 </script> 
-
-{% comment %} <script>
-    const slider = document.querySelector('.slider2');
-    let isDragging = false;
-    let startPos = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let animationFrame;
-
-    function startSlider() {
-        animationFrame = requestAnimationFrame(animateSlider);
-    }
-
-    function stopSlider() {
-        cancelAnimationFrame(animationFrame);
-    }
-
-    function animateSlider() {
-        currentTranslate -= 8; // Adjust the speed by changing this value
-        slider.style.transform = translateX(${currentTranslate}px);
-
-        const cardWidth = document.querySelector('.card').offsetWidth;
-        const totalWidth = cardWidth * document.querySelectorAll('.card').length;
-
-        // Reset when reaching the last slide
-        if (Math.abs(currentTranslate) >= totalWidth) {
-            currentTranslate = 0;
-            prevTranslate = 0;
-        }
-
-        animationFrame = requestAnimationFrame(animateSlider);
-    }
-    startSlider();
-    //    js for disclaimer
-
-
-//ended here
-    // slider.addEventListener('mousedown', (e) => {
-    //     isDragging = true;
-    //     startPos = e.clientX;
-
-    //     // Disable automatic sliding during manual drag
-    //     stopSlider();
-
-    //     // Disable transitions during drag to improve responsiveness
-    //     slider.style.transition = 'none';
-    // });
-
-    // slider.addEventListener('mousemove', (e) => {
-    //     if (isDragging) {
-    //         const currentPosition = e.clientX;
-    //         const moveAmount = currentPosition - startPos;
-
-    //         currentTranslate = prevTranslate + moveAmount;
-
-    //         slider.style.transform = translateX(${currentTranslate}px);
-    //     }
-
-    // });
-
-    
-    // slider.addEventListener('mouseup', () => {
-    //     isDragging = false;
-
-    //     // Enable transitions after drag
-    //     slider.style.transition = 'transform 0.5s';
-
-    //     // Snap to the nearest card
-    //     const cardWidth = document.querySelector('.card').offsetWidth;
-    //     const newIndex = Math.round(currentTranslate / cardWidth);
-
-    //     prevTranslate = newIndex * cardWidth;
-    //     slider.style.transform = translateX(${prevTranslate}px);
-
-    //     // Resume automatic sliding after manual drag
-    //     startSlider();
-    // });
-
-    // slider.addEventListener('mouseleave', () => {
-    //     isDragging = false;
-
-    //     // Enable transitions after drag
-    //     slider.style.transition = 'transform 0.5s';
-
-    //     // Snap to the nearest card
-    //     const cardWidth = document.querySelector('.card').offsetWidth;
-    //     const newIndex = Math.round(currentTranslate / cardWidth);
-
-    //     prevTranslate = newIndex * cardWidth;
-    //     slider.style.transform = translateX(${prevTranslate}px);
-
-    //     // Resume automatic sliding after manual drag
-    //     startSlider();
-    // });
-    
-   
-
-</script> {% endcomment %}
