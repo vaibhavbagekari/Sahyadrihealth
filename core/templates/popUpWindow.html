@@ -31,7 +31,6 @@
         border-radius: 10px;
         background-color: #00796b;
         color: white;
-        font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
@@ -70,9 +69,12 @@
         .popup-card{
             width: 90vw;
         }
+        .inner-div{
+            flex-direction: column;
+            gap: 1rem;
+        }
     }
 </style>
-{% if not request.user.is_authenticated %}
 <div class="popup-card">
     <div class="popup-cut-button"><i class="fa-solid fa-xmark cut" id="popup-cut-button"></i></div>
     <h2 class="popup-title">Please select your role to continue</h2>
@@ -81,7 +83,6 @@
         <button class="popup-btn patient">I am a Patient</button>
     </div>
 </div>
-{% endif %}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
     const popup = document.querySelector('.popup-card');
@@ -92,11 +93,13 @@
 
     const showStatus = JSON.parse(localStorage.getItem('popupShowStatus'));
     if (!showStatus || showStatus.status === 'true') {
+        {% if not request.user.is_authenticated %}
         setTimeout(() => {
             overlay.style.display = 'block';
             popup.style.display = 'block';
             overlay.style.zIndex = '1000';
         }, 3000);
+        {% endif %}
     }
 
     closeButton.addEventListener('click', () => {
