@@ -20,20 +20,6 @@ body {
     align-self: center;
 }
 
-header {
-    z-index: 1;
-    width: 100vw;
-    background-color: #446c9c;
-    color: white;
-    flex-wrap: wrap;
-    padding: 10px;
-    position: fixed;
-    display: grid;
-    /* gap: 10px; */
-    grid-template-rows: 8vh;
-    grid-template-columns: 0vw 31vw 45vw 21vw;
-    align-items: center;
-}
 
 .nav_bar {
     display: flex;
@@ -66,10 +52,14 @@ main {
 }
 
 .icon {
+    position: absolute;
+    top: 15px;
+    left: 5px;
     display: none;
     align-self: flex-start;
     float: left;
     height: fit-content;
+    z-index: 1;
 }
 
 .search_bar {
@@ -499,9 +489,8 @@ body {
     }
 
     .search_bar {
-        padding-right: 30px;
-        grid-row: 2/3;
-        grid-column: 2/4;
+        grid-column: 1/4;
+        margin: 0px 10px 0px 10px;
     }
 
     .nav_bar_mob {

@@ -23,8 +23,6 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
         * {
             font-family: "Poppins", sans-serif;
         }
@@ -37,7 +35,7 @@
         /* Input Group Styling */
         .input-group {
             display: flex;
-            align-items: center;
+            justify-content: center;
             flex-wrap: nowrap;
             width: 100%;
         }
@@ -46,10 +44,10 @@
             flex: 1;
             padding: 6.5px;
             margin-right: 2px;
-            border: 2px solid gray;
+            border: none;
             border-radius: 5px;
             font-size: 14px;
-            outline: none;
+            outline: white;
         }
 
         .input-group-text {
@@ -76,32 +74,6 @@
             width: 8%;
             border-radius: 50%;
             display: none;
-
-        }
-
-        .titel {
-
-            /* margin: auto; */
-            margin-top: 0px;
-            padding: auto;
-        }
-
-        header {
-            z-index: 1;
-            width: 100vw;
-            background-color: #0077bd;
-            /* background-color:#223645; */
-            border-bottom: 1px solid #00A0DD;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.1);
-            flex-wrap: wrap;
-            padding: 10px;
-            position: fixed;
-            display: grid;
-            /* gap: 10px; */
-            grid-template-rows: 8vh;
-            grid-template-columns: 0vw 31vw 45vw 21vw;
-            align-items: center;
-            /* background-color: #12ac8e; */
         }
 
         .nav_bar {
@@ -150,14 +122,7 @@
 
         .nav_bar {
             display: flex;
-            /* background-color: #6c9acee2; */
-            /* background-color: #ddeffa; */
-            /* background-color: #647589; */
             background-color: #3445b4;
-            /* background-color:#0077bd; */
-            /* background-color: #00A096; */
-            /* background-color: #2c3e50;; */
-            /* background-color:#007c9d; */
             color: white;
             padding: 10px;
             position: fixed;
@@ -249,11 +214,7 @@
             align-self: flex-start;
             float: left;
             height: fit-content;
-        }
-
-        .search_bar {
-            align-self: center;
-
+            z-index: 1;
         }
 
         body {
@@ -334,9 +295,6 @@
             z-index: 10000;
             background-color: #16131379;
             backdrop-filter: blur(3px);
-            /*
-            z-index: 10000;
-            backdrop-filter: blur(13px); */
         }
 
         .loader_overlay {
@@ -349,9 +307,6 @@
             background-color: #16131379;
             backdrop-filter: blur(3px);
         }
-
-        .sure {}
-
         .yes {
             color: black;
             background-color: white;
@@ -557,8 +512,6 @@
             width: 100%;
             height: 50vh;
             overflow-y: hidden;
-
-
         }
 
         .circles {
@@ -661,24 +614,16 @@
         .subdiv_img {
             height: 300px;
             width: 100%;
-            /* background-image: url("Doctor.jpg"); */
             background-position: center;
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            /* backdrop-filter: blur(10px); */
-
         }
 
         .sub_div_demo {
             height: 300px;
             width: 100%;
             font-weight: 200;
-        }
-
-        .icon {
-
-            z-index: 1;
         }
 
         @keyframes animate {
@@ -723,10 +668,6 @@
                 width: 85vw;
             }
 
-            .area {
-                /* display: none; */
-            }
-
             .sub_div {
                 margin-top: 22vh;
             }
@@ -752,39 +693,16 @@
                 font-size: .9rem;
 
             }
-
-            header {
-                grid-template-rows: 8vh 6vh 8vh;
-                grid-template-columns: 8vw 40vw 50vw;
-            }
-
-            .titel {
-                grid-row: 1/2;
-                grid-column: 2/4;
-            }
-
-            .titel {
-                /* position: relative; */
-                /* left: 10%; */
-                /* transform: translate(20%, 0%); */
-                /* font-size: 1.5rem; */
-                /* width: 100%; */
-            }
-
-
             .icon {
                 display: block;
+                z-index: 1;
                 padding: 7px;
                 margin: 5px;
                 transform: scale(1.9);
             }
 
             .search_bar {
-                padding-right: 30px;
-                grid-row: 2/3;
-                grid-column: 2/4;
-                width: 95%;
-                margin-left: 1rem;
+                width: 93%;
             }
 
             .nav_bar_mob {
@@ -802,12 +720,6 @@
             }
         }
 
-        @media screen and (max-width: 750px) and (min-height:600px) {
-            .search_bar {
-                margin-top: -.7rem;
-            }
-        }
-
         .hero-container {
             position: relative;
             top: 10.2vh;
@@ -818,18 +730,11 @@
             .hero-container {
                 top: 22vh;
             }
-
-            /* .l1 {
-                display: block;
-
-            } */
-
         }
 
         @media screen and (min-width:750px) {
             .l1 {
                 display: block;
-
             }
         }
 
@@ -869,17 +774,10 @@
         .highlight span {
             display: block;
             font-weight: bold;
-
         }
 
         .highlight span:first-child {
             margin-bottom: -1.5rem;
-        }
-
-
-        main {
-            /* padding-top: 12vh; */
-            /* background-color:#b7d7fff2 ; */
         }
 
         @keyframes blinking {
@@ -953,6 +851,11 @@
         #loader_overlay {
             display: block;
         }
+        .logo-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
         @media screen and (max-width: 1300px) {
             #thank-you-msg {
@@ -978,6 +881,9 @@
         }
 
         @media screen and (max-width: 850px) {
+            .logo-container{
+                width: 100vw;
+            }
             #thank-you-msg {
                 width: 52vw;
                 height: 29vh;
@@ -1125,15 +1031,8 @@
             .h4s {
                 font-size: 1.1rem;
             }
-
         }
 
-
-        /* @media (max-width:420) and (max-height: 1000px){
-    #thank-you-msg:hover{
-    height: 20vh;
-}
-    } */
     </style>
     <style type="text/css">
         .contener_general {
@@ -1161,14 +1060,6 @@
             width: 20px;
             height: 20px;
             border-radius: 50%
-        }
-
-        .l1,
-        .l2 {
-            /* border: 2px solid red;
-            height: 50px;
-            width: 50px;
-            background-color: #00A096; */
         }
 
         .ball_1,
@@ -1341,8 +1232,33 @@
         .form-control::placeholder {
             color: #1e00fffb;
         }
+        .search-container input:focus {
+            outline: none;
+            box-shadow: none;
+        }
 
-        @media screen and (max-height: 650px) {}
+        #head{
+            z-index: 1;
+            width: 100vw;
+            color: white;
+            display: grid;
+            padding: 10px 0px 10px 0px;
+            grid-template-rows: 8vh;
+            grid-template-columns: 20% 50% 30%;
+            align-items: center;
+            width: 100vw;
+            position: fixed;
+            gap: .5rem;
+            top: 0px;
+            background-color: #0077bd;
+        }
+
+        @media screen and (max-height: 650px) {
+            #head{
+                grid-template-rows: 8vh;
+                grid-template-columns: 0% 100% 0%;
+            }
+        }
 
 
         @media screen and (max-width: 750px) {
@@ -1412,9 +1328,7 @@
         }
 
         .logoImg {
-            transform: translate(30%, -10%);
-            position: relative;
-            width: 120px;
+            width: 90px;
         }
 
         @media screen and (max-width: 400px) and (min-height:650px) {
@@ -1435,10 +1349,6 @@
         @media screen and (max-width: 750px) {
             .l3 {
                 left: 0px;
-            }
-
-            .search_bar {
-                margin-top: 7px;
             }
 
         }
@@ -1465,7 +1375,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-4QR3ZDX1MX');
     </script>
 
@@ -1496,126 +1405,39 @@
     <div class="overlay" id="overlay"></div>
     <div id="notification"
         style="display: none; background-color: #f44336; color: white; padding: 15px; position: fixed; top: 0; width: 100%; text-align: center;z-index: 1000;">
-
     </div>
-    <header id="head" style="top: 0px;">
-        <div class="language">
-            <script type="text/javascript">
-                function googleTranslateElementInit() {
-                    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-
-                    // Function to filter the languages
-                    function filterLanguages() {
-                        const select = document.querySelector('.goog-te-combo');
-                        if (select) {
-                            const allowedLanguages = ['', 'en', 'mr', 'hi'];
-                            for (let i = select.options.length - 1; i >= 0; i--) {
-                                if (!allowedLanguages.includes(select.options[i].value)) {
-                                    select.remove(i);
-                                }
-                            }
-                        }
-                    }
-
-                    // Apply initial filter and set up mutation observer
-                    setTimeout(() => {
-                        filterLanguages();
-                        const select = document.querySelector('.goog-te-combo');
-                        if (select) {
-                            const observer = new MutationObserver(filterLanguages);
-                            observer.observe(select, { childList: true });
-                            select.addEventListener('change', () => setTimeout(filterLanguages, 500));
-                        }
-                    }, 1000);
-                }
-            </script>
-
-            <script type="text/javascript"
-                src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-            {% comment %} <div class="l3">
-                <select id="languageSwitcher">
-                    <option selected disabled class="translate">Language</option>
-                    <option value="en" class="translate">English</option>
-                    <option value="mr" class="translate">Marathi</option>
-                </select>
-            </div> {% endcomment %}
-            <script>
-                // Set your Google Cloud Translation API key here
-
-
-                $(document).ready(function () {
-                    const apiKey = 'AIzaSyBnuS4V04H2X6BkiGuFr0j00YLD3guZxdg';
-
-                    function translateText(text, targetLanguage) {
-                        return $.ajax({
-                            url: `https://translation.googleapis.com/language/translate/v2`,
-                            type: 'POST',
-                            data: {
-                                q: text,
-                                target: targetLanguage,
-                                format: 'text',
-                                key: apiKey
-                            }
-                        });
-                    }
-
-                    $('#languageSwitcher').change(function () {
-                        const selectedLanguage = $(this).val();
-                        $('.translate').each(function () {
-                            const element = $(this);
-                            const text = element.text();
-                            translateText(text, selectedLanguage).done(function (response) {
-                                const translatedText = response.data.translations[0].translatedText;
-                                element.text(translatedText);
-                            }).fail(function (err) {
-                                console.error("Error translating text:", err);
-                            });
-                        });
-                    });
-                });
-            </script>
-        </div>
-        <h2 class="titel"><img src="{% static 'health_empire_logo.png' %}" alt="" srcset=""
-                class="logoImg"></h2>
-
+    <div id="head" style="top: 0px;">
         <i class="fa-solid fa-bars icon" id="icon" onclick="toggle_layout()"></i>
+        <div class="logo-container">
+            <img src="{% static 'health_empire_logo.png' %}" alt="" class="logoImg">
+        </div>
         {% if request.path == '/home/' or request.path == '/' %}
         <div class="search_bar">
             <form action="">
-
                 <div class="input-group">
-                    <div class="search-container" class="form-control">
-                        <input style="width: 100%;height: 100%;" type="text" class="form-control"
+                    <div class="search-container form-control">
+                        <input style="width: 100%;height: 100%; outline: none;" type="text" class="form-control"
                             id="location_searchInput" placeholder="Location of Doctor" name="location" required>
                         <div id="location_suggestions" class="suggestions"></div>
                     </div>
-                    <div class="search-container" class="form-control">
+                    <div class="search-container form-control">
                         <input style="width: 100%;height: 100%;" type="text" class="form-control"
                             placeholder="Category of Doctor" id="category_searchInput" name="category" required>
                         <div id="category_suggestions" class="suggestions"></div>
                     </div>
-
-
                     <button type="submit" class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-
             </form>
         </div>
         {% endif %}
         <div class="highlight">
-
-            <a href="tel:9156429156" style="color: red;text-decoration: none;"><span class="translate">Help Line
-                    Number</span>
+            <a href="tel:9156429156" style="color: red;text-decoration: none;">
+                <span class="translate">Help Line Number</span>
                 <br>
-                <span><i class="fa-solid fa-phone-volume" style="color: green;"></i>
-                    &nbsp;&nbsp;9156 42 9156</span>
+                <span><i class="fa-solid fa-phone-volume" style="color: green;"></i>&nbsp;&nbsp;9156 42 9156</span>
             </a>
         </div>
-
-
-    </header>
+    </div>
 
     {% include "search_result.html" %}
     <nav class="nav_bar" id="nav_bar">
@@ -1745,7 +1567,6 @@
 
     </div>
     <div class="form-div2" id="form2">
-
         <form method="post" class="SignIn_form ">
             {% csrf_token %}
             <i class="fa-solid fa-xmark cut" onclick="form_state2()"></i>
