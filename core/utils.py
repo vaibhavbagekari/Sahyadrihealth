@@ -4,7 +4,6 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
-from google.cloud import translate_v2 as translate
 import os
 
 def send_email_to_client(drData,patientData,slotData):
@@ -63,9 +62,3 @@ def SMS_notification_to_Dr(to,patientData,drData,slotData):
         return message.sid
     except TwilioRestException as e:
         return str(e)
-    
-
-# def translate_text(text, target_language):
-#     translate_client = translate.Client()
-#     result = translate_client.translate(text, target_language=target_language)
-#     return result['translatedText']
