@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from decouple import config, Csv
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,13 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xsqkcohp!$w6u9rnd-7--&l!hab5x2zf)0i#5j!4o%2h#23ah6'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -84,14 +80,9 @@ WSGI_APPLICATION = 'sahyadrihealth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '../../project/db.sqlite3',
+        'NAME': '../Sahyadrihealth/db.sqlite3',
     }
 }
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,9 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -120,9 +108,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfile')
 STATIC_URL = 'sahyadrihealth/core/static/'
 STATICFILES_DIR = {
@@ -133,28 +118,22 @@ MEDIA_ROOT = os.path.join('../../project/public/static')
 MEDIA_URL = '/media/'
 
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST = 'smtpout.secureserver.net'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER='info@healthempire.in'
-EMAIL_HOST_PASSWORD = 'Helthempire@info'
-# EMAIL_HOST_USER = 'webtestbyvaibhav@gmail.com'
-# EMAIL_HOST_PASSWORD = 'imoxubpqybkkavuc'
-DEFAULT_FROM_EMAIL = 'info@healthempire.in'
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 
 #SMS System
-TWILIO_ACCOUNT_SID = 'AC30f0cbf46e6c80e79bc5ef662e99f18b'
-TWILIO_AUTH_TOKEN = '2ef5adfefb20002eb8dc12b4863b8817'
-TWILIO_PHONE_NUMBER = '+17075498588'
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
 
 #GOOGEL TRANSLATE API KEY
 # GOOGLE_TRANSLATE_API_KEY = os.getenv('AIzaSyBnuS4V04H2X6BkiGuFr0j00YLD3guZxdg')
