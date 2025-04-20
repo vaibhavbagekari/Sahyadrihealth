@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+CSRF_TRUSTED_ORIGINS = ['http://52.66.236.46', 'http://www.healthempire.in', 'http://healthempire.in', 'http://localhost:8000']
 
 # Application definition
 
