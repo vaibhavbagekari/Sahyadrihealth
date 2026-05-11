@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sahyadrihealth-web
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      # Keep the source code editable on the host.
+      - .:/app
+      # Persist SQLite outside the container filesystem.
+      - sqlite_data:/data
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:

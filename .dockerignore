@@ -1,0 +1,30 @@
+# Git and local tooling
+.git
+.gitignore
+.gitattributes
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Environment and local runtime data
+.env
+db.sqlite3
+staticfiles
+media
+
+# Editor and OS files
+.vscode
+.idea
+*.swp
+Thumbs.db
+.DS_Store
+
+# Build/test noise
+.pytest_cache
+.mypy_cache
+htmlcov
+dist
+build
